@@ -1,3 +1,9 @@
 export default function Footer() {
-  return <div>푸터</div>;
+  return (
+    <div>
+      GLPS online
+      <br />
+      Since 2024
+    </div>
+  );
 }

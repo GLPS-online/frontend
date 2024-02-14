@@ -1,30 +1,30 @@
-import { fetchSampleStudents } from "../api";
-import { useEffect, useState } from "react";
+import "./HomePage.css";
+import { useState } from "react";
+import Students from "../components/Students";
+import PTLAs from "../components/PTLAs";
 
 export default function HomePage() {
-  const [students, setStudents] = useState([]);
-  async function getStudetns() {
-    try {
-      const res = await fetchSampleStudents();
-      console.log(res);
-      setStudents(res);
-    } catch (e) {
-      alert(e);
-      return;
-    }
-  }
-
-  useEffect(() => {
-    getStudetns();
-  }, []);
-
+  const [dataset, setDataset] = useState(true);
   return (
     <>
       <h1>홈 입니다</h1>
-
-      {students.map((student) => (
-        <div key={student.id}>{student.korName}</div>
-      ))}
+      <div className="buttons">
+        <button
+          onClick={() => {
+            setDataset(true);
+          }}
+        >
+          학생 정보
+        </button>
+        <button
+          onClick={() => {
+            setDataset(false);
+          }}
+        >
+          PA/TA/LA 정보
+        </button>
+      </div>
+      {dataset ? <Students /> : <PTLAs />}
     </>
   );
 }
