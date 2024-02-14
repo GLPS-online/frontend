@@ -1,4 +1,4 @@
-.student {
+.row {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
   border-radius: 5px;
 }
 
-.student div {
+.row div {
   width: 100px;
   text-align: center;
 }

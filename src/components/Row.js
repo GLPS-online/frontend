@@ -1,8 +1,8 @@
-import "./Student.css";
+import "./Row.css";
 
-export default function Student({ data }) {
+export default function Row({ data }) {
   return (
-    <div className="student">
+    <div className="row">
       <div>{data.korName}</div>
       <div>{data.classNum}</div>
       <div>{data.roomNum}</div>

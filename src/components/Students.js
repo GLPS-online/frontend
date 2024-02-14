@@ -1,7 +1,7 @@
 import "./Students.css";
 import { fetchSampleStudents } from "../api";
 import { useEffect, useState } from "react";
-import Student from "./Student";
+import Table from "./Table";
 
 const LOAD = 30;
 
@@ -91,9 +91,7 @@ export default function Students() {
         />
       </div>
 
-      {displayedStudents.map((student) => (
-        <Student key={student.id} data={student} />
-      ))}
+      <Table data={displayedStudents} />
 
       {loadAmount < students.length ? (
         <button className="load-more" onClick={increaseLoadAmount}>
