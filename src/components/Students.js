@@ -1,11 +1,14 @@
 import "./Students.css";
-import { fetchSampleStudents } from "../api";
+import { fetchSampleStudents, fetchStudents } from "../api";
 import { useEffect, useState } from "react";
 import Table from "./Table";
 
 const LOAD = 30;
 
 export default function Students() {
+  //https://developer.mozilla.org/en-US/docs/Web/API/Window/focus_event
+  // 창 최소화했다가 다시 열면 정보 재로딩
+
   const [rawStudents, setRawStudents] = useState([]);
   const [loadAmount, setLoadAmount] = useState(LOAD);
   const [nameSearch, setNameSearch] = useState("");
@@ -27,7 +30,7 @@ export default function Students() {
 
   async function getStudetns() {
     try {
-      const res = await fetchSampleStudents();
+      const res = await fetchStudents();
       setRawStudents(res);
     } catch (e) {
       alert(e);
