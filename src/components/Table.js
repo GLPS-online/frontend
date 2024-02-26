@@ -5,7 +5,7 @@ export default function Table({ data = [] }) {
   return (
     <div>
       {data.map((elem) => (
-        <Row key={elem.id} data={elem} />
+        <Row key={elem._id} elem={elem} />
       ))}
     </div>
   );
