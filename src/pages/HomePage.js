@@ -1,7 +1,8 @@
 import "./HomePage.css";
 import { useState } from "react";
-import Students from "../components/Students";
-import PTLAs from "../components/PTLAs";
+import Table from "../components/Table/Table";
+
+import { fetchStudents } from "../api";
 
 export default function HomePage() {
   const [dataset, setDataset] = useState(true);
@@ -24,7 +25,7 @@ export default function HomePage() {
           PA/TA/LA 정보
         </button>
       </div>
-      {dataset ? <Students /> : <PTLAs />}
+      <Table fetchFunction={fetchStudents} />
     </>
   );
 }

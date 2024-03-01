@@ -9,6 +9,7 @@ export async function fetchSampleStudents() {
 }
 
 export async function fetchStudents() {
+  console.log("fecth students executed");
   const res = await fetch(`${BASE_URL}/students`);
   if (!res.ok) {
     throw new Error("cannot download links");

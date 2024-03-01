@@ -28,7 +28,9 @@ export default function Modal({ student, onClose }) {
         <div className="modal-header">
           <span className="modal-title">{student.korName}</span>
           {pa && (
-            <span className="modal-info">해당 클래스PA: {pa.korName}</span>
+            <span className="modal-info">
+              class{student.classNum} PA: {pa.korName}
+            </span>
           )}
         </div>
         {/* {children} */}

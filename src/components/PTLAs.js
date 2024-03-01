@@ -1,6 +1,5 @@
 import { fetchPtlas } from "../api";
 import { useEffect, useState } from "react";
-import Table from "./Table";
 
 const LOAD = 30;
 
@@ -55,50 +54,5 @@ export default function PTLAs() {
     getStudetns();
   }, []);
 
-  return (
-    <div className="students">
-      <button className="refresh" onClick={refreshData}>
-        새로고침
-      </button>
-      <div className="searches">
-        <input
-          name="name"
-          type="text"
-          placeholder="이름"
-          value={nameSearch}
-          onChange={(e) => {
-            setNameSearch(e.target.value);
-          }}
-        />
-        <input
-          name="class"
-          type="number"
-          placeholder="역할"
-          value={roleSearch}
-          onChange={(e) => {
-            setRoleSearch(e.target.value);
-          }}
-        />
-        <input
-          name="room"
-          type="number"
-          placeholder="방"
-          value={roomSearch}
-          onChange={(e) => {
-            setRoomSearch(e.target.value);
-          }}
-        />
-      </div>
-
-      <Table data={displayedItems} />
-
-      {loadAmount < items.length ? (
-        <button className="load-more" onClick={increaseLoadAmount}>
-          더 보기
-        </button>
-      ) : (
-        <div>-end of list-</div>
-      )}
-    </div>
-  );
+  return <div className="students">hi</div>;
 }
