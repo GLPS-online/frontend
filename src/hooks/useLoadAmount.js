@@ -24,9 +24,7 @@ export default function useLoadAmount(data) {
     });
   };
 
-  const isThereMore = () => {
-    return loadAmount < data.length;
-  };
+  const isThereMore = loadAmount < data.length;
 
   return [displayedData, resetLoadAmount, increaseLoadAmount, isThereMore];
 }

@@ -1,56 +1,31 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
-import "./Table.css";
-import useLoadAmount from "../../pages/useLoadAmount";
+import useLoadAmount from "../../hooks/useLoadAmount";
 import useFetchData from "../../hooks/useFetchData";
 import useSearches from "../../hooks/useSearches";
 import Row from "../Row/Row";
 import SearchBar from "../SearchBar/SearchBar";
+import * as S from "./TableStyled";
+import useAutoReload from "../../hooks/useAutoReload";
+import useInifiniteScroll from "../../hooks/useInfiniteScroll";
 
-//로드하려는 데이터의 api 함수, 검색 옵션, 로딩할 프롭
 export default function Table({ fetchFunction, searchOptions }) {
   const [data, fetchData, isLoading] = useFetchData(fetchFunction, []);
-
   const [filteredData, searches, setSearches] = useSearches(
     data,
     searchOptions
   );
-
   const [displayedData, resetLoadAmount, increaseLoadAmount, isThereMore] =
     useLoadAmount(filteredData);
-
-  function refresh() {
+  const refresh = () => {
     fetchData();
     resetLoadAmount();
-  }
-
-  const handleObserver = (entries) => {
-    const target = entries[0];
-    if (target.isIntersecting) {
-      increaseLoadAmount();
-    }
   };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(handleObserver, {
-      threshold: 1, // 0~1: 교차점의 비율
-    });
-    const observerTarget = document.getElementById("observer");
-    if (observerTarget) {
-      observer.observe(observerTarget);
-    }
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible") {
-        refresh();
-      }
-    });
-  }, []);
+  useAutoReload(refresh);
+  const ref = useInifiniteScroll(increaseLoadAmount, isLoading);
 
   return (
-    <div className="students">
-      <button disabled={isLoading} className="refresh" onClick={refresh}>
-        새로고침
-      </button>
+    <S.TableContainer>
       <SearchBar
         searches={searches}
         setSearches={setSearches}
@@ -61,11 +36,11 @@ export default function Table({ fetchFunction, searchOptions }) {
         <Row key={elem._id} elem={elem} />
       ))}
 
-      {isThereMore() ? (
-        <div id="observer" style={{ height: "10px" }}></div>
+      {!isLoading && isThereMore ? (
+        <S.EndOfList ref={ref}>-loadging more items-</S.EndOfList>
       ) : (
-        <div>-end of list-</div>
+        <S.EndOfList>-end of list-</S.EndOfList>
       )}
-    </div>
+    </S.TableContainer>
   );
 }
