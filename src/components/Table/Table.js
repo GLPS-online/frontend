@@ -9,8 +9,6 @@ import SearchBar from "../SearchBar/SearchBar";
 
 //로드하려는 데이터의 api 함수, 검색 옵션, 로딩할 프롭
 export default function Table({ fetchFunction, searchOptions }) {
-  //https://developer.mozilla.org/en-US/docs/Web/API/Window/focus_event
-  // 창 최소화했다가 다시 열면 정보 재로딩
   const [data, fetchData, isLoading] = useFetchData(fetchFunction, []);
 
   const [filteredData, searches, setSearches] = useSearches(
@@ -41,6 +39,11 @@ export default function Table({ fetchFunction, searchOptions }) {
     if (observerTarget) {
       observer.observe(observerTarget);
     }
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") {
+        refresh();
+      }
+    });
   }, []);
 
   return (
