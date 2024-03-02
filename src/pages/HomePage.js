@@ -1,3 +1,4 @@
+import PtlaTable from "../components/Table/PtlaTable";
 import StudentTable from "../components/Table/StudentTable";
 import "./HomePage.css";
 import { useState } from "react";
@@ -23,7 +24,7 @@ export default function HomePage() {
           PA/TA/LA 정보
         </button>
       </div>
-      <StudentTable />
+      {dataset ? <StudentTable /> : <PtlaTable />}
     </>
   );
 }
