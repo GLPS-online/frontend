@@ -1,8 +1,6 @@
+import StudentTable from "../components/Table/StudentTable";
 import "./HomePage.css";
 import { useState } from "react";
-import Table from "../components/Table/Table";
-
-import { fetchStudents } from "../api";
 
 export default function HomePage() {
   const [dataset, setDataset] = useState(true);
@@ -25,7 +23,7 @@ export default function HomePage() {
           PA/TA/LA 정보
         </button>
       </div>
-      <Table fetchFunction={fetchStudents} />
+      <StudentTable />
     </>
   );
 }
