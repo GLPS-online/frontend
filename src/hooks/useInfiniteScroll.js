@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import "intersection-observer";
 
 export default function useInifiniteScroll(callback, isLoading) {
   const ref = useRef();
@@ -13,7 +12,7 @@ export default function useInifiniteScroll(callback, isLoading) {
     }
     const observer = new IntersectionObserver(onIntersection);
     if (observer && ref.current) {
-      console.log("start observing scroll");
+      // console.log("start observing scroll");
       observer.observe(ref.current);
     }
     return () => {

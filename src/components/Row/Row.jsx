@@ -1,21 +1,21 @@
 import { useState } from "react";
-import "./Row.css";
+import "./RowStyled.js";
 import Modal from "../../modals/Modal";
+import * as S from "./RowStyled.js";
 
 export default function Row({ elem, props = [] }) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <>
-      <div
-        className="row"
+      <S.RowContainer
         onClick={() => {
           setIsExpanded(true);
         }}
       >
-        <div>{elem.korName}</div>
-        <div>{elem.classNum || elem.role}</div>
-        <div>{elem.roomNum}</div>
-      </div>
+        <S.Cell>{elem.korName}</S.Cell>
+        <S.Cell>{elem.classNum || elem.role}</S.Cell>
+        <S.Cell>{elem.roomNum}</S.Cell>
+      </S.RowContainer>
       {isExpanded && (
         <Modal
           student={elem}

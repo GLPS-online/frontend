@@ -8,9 +8,9 @@ export default function useLoadAmount(data) {
     0,
     data.length > loadAmount ? loadAmount : data.length
   );
-  const resetLoadAmount = () => {
-    setLoadAmount(LOAD);
-  };
+  // const resetLoadAmount = () => {
+  //   setLoadAmount(LOAD);
+  // };
 
   const increaseLoadAmount = () => {
     if (loadAmount >= data.length) {
@@ -26,5 +26,5 @@ export default function useLoadAmount(data) {
 
   const isThereMore = loadAmount < data.length;
 
-  return [displayedData, resetLoadAmount, increaseLoadAmount, isThereMore];
+  return [displayedData, increaseLoadAmount, isThereMore];
 }

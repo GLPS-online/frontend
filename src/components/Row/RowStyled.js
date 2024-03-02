@@ -1,4 +1,6 @@
-.row {
+import styled from "styled-components";
+
+export const RowContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,9 +9,9 @@
   padding: 3px;
   border: solid;
   border-radius: 5px;
-}
+`;
 
-.row div {
+export const Cell = styled.div`
   width: 100px;
   text-align: center;
-}
+`;

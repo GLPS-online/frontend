@@ -1,11 +1,10 @@
-import { useEffect } from "react";
-import "./SearchBar.css";
+import * as S from "./SearchBarStyled.js";
 
 export default function SearchBar({ searches, setSearches, searchOptions }) {
   return (
-    <div className="searches">
+    <S.SearchBarContainer>
       {searchOptions.map((searchOption, i) => (
-        <input
+        <S.SearchBarInput
           key={i}
           name={searchOption.propName}
           type={searchOption.type}
@@ -19,6 +18,6 @@ export default function SearchBar({ searches, setSearches, searchOptions }) {
           }}
         />
       ))}
-    </div>
+    </S.SearchBarContainer>
   );
 }

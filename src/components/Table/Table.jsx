@@ -1,13 +1,11 @@
-import { useEffect, useRef } from "react";
-
 import useLoadAmount from "../../hooks/useLoadAmount";
 import useFetchData from "../../hooks/useFetchData";
 import useSearches from "../../hooks/useSearches";
+import useAutoReload from "../../hooks/useAutoReload";
+import useInifiniteScroll from "../../hooks/useInfiniteScroll";
 import Row from "../Row/Row";
 import SearchBar from "../SearchBar/SearchBar";
 import * as S from "./TableStyled";
-import useAutoReload from "../../hooks/useAutoReload";
-import useInifiniteScroll from "../../hooks/useInfiniteScroll";
 
 export default function Table({ fetchFunction, searchOptions }) {
   const [data, fetchData, isLoading] = useFetchData(fetchFunction, []);
@@ -15,11 +13,10 @@ export default function Table({ fetchFunction, searchOptions }) {
     data,
     searchOptions
   );
-  const [displayedData, resetLoadAmount, increaseLoadAmount, isThereMore] =
+  const [displayedData, increaseLoadAmount, isThereMore] =
     useLoadAmount(filteredData);
   const refresh = () => {
     fetchData();
-    resetLoadAmount();
   };
   useAutoReload(refresh);
   const ref = useInifiniteScroll(increaseLoadAmount, isLoading);
