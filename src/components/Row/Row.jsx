@@ -13,7 +13,7 @@ export default function Row({ elem, props = [] }) {
         }}
       >
         <S.Cell>{elem.korName}</S.Cell>
-        <S.Cell>{elem.classNum || elem.role}</S.Cell>
+        <S.Cell>{elem.class || elem.role}</S.Cell>
         <S.Cell>{elem.roomNum}</S.Cell>
       </S.RowContainer>
       {isExpanded && (

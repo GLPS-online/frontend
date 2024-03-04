@@ -6,14 +6,14 @@ import { useState, useEffect } from "react";
  * @param {Array} params apiFunction에 전달할 파라미터들의 배열
  * @returns {Object} 데이터 배열, 리로딩 함수, 로딩 상태, 에러 상태
  */
-function useFetchData(apiFunction, params = []) {
+function useFetchData(apiFunction) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = async (params) => {
     setIsLoading(true);
     try {
-      const response = await apiFunction(...params);
+      const response = await apiFunction(params);
       setData(response);
     } catch (err) {
       alert(err);

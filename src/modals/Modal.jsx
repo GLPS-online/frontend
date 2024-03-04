@@ -10,7 +10,7 @@ export default function Modal({ student, onClose }) {
     setPa(newPA);
   }
   useEffect(() => {
-    let num = student.classNum;
+    let num = student.class;
     let role = "";
     if (num < 10) {
       role = `pa_class0${num}`;
@@ -29,7 +29,7 @@ export default function Modal({ student, onClose }) {
           <span className="modal-title">{student.korName}</span>
           {pa && (
             <span className="modal-info">
-              class{student.classNum} PA: {pa.korName}
+              class{student.class} PA: {pa.korName}
             </span>
           )}
         </div>

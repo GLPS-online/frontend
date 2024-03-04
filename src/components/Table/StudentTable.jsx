@@ -13,14 +13,14 @@ export default function StudentTable() {
           realType: "string",
         },
         {
-          propName: "classNum",
-          type: "number",
+          propName: "className",
+          type: "string",
           placeholder: "학급",
-          realType: "number",
+          realType: "string",
         },
         {
           propName: "roomNum",
-          type: "number",
+          type: "number", // 검색 시 입력 타입
           placeholder: "방",
           realType: "string",
         },

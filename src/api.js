@@ -1,12 +1,4 @@
-import mock from "./mock.js";
 const BASE_URL = "http://localhost:3000";
-
-export async function fetchSampleStudents() {
-  setTimeout(() => {
-    console.log("fetched student data");
-  }, 500);
-  return mock;
-}
 
 export async function fetchStudents() {
   console.log("fecth students executed");
@@ -15,7 +7,6 @@ export async function fetchStudents() {
     throw new Error("cannot download links");
   }
   const body = await res.json();
-  console.log(body);
   return body;
 }
 
@@ -25,7 +16,6 @@ export async function fetchPtlas() {
     throw new Error("cannot download links");
   }
   const body = await res.json();
-  console.log(body);
   return body;
 }
 
@@ -35,7 +25,15 @@ export async function fetchPtlaByRole(role) {
     throw new Error("cannot download links");
   }
   const body = await res.json();
-  console.log(body);
+  return body;
+}
+
+export async function fetchTimetable(className) {
+  const res = await fetch(`${BASE_URL}/timetables/${className}`);
+  if (!res.ok) {
+    throw new Error("cannot download links");
+  }
+  const body = await res.json();
   return body;
 }
 
