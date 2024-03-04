@@ -1,14 +1,15 @@
 import useLoadAmount from "../../hooks/useLoadAmount";
-import useFetchData from "../../hooks/useFetchData";
 import useSearches from "../../hooks/useSearches";
 import useAutoReload from "../../hooks/useAutoReload";
 import useInifiniteScroll from "../../hooks/useInfiniteScroll";
 import Row from "../Row/Row";
 import SearchBar from "../SearchBar/SearchBar";
 import * as S from "./TableStyled";
+import { useEffect, useState } from "react";
 
 export default function Table({ fetchFunction, searchOptions }) {
-  const [data, fetchData, isLoading] = useFetchData(fetchFunction, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState([]);
   const [filteredData, searches, setSearches] = useSearches(
     data,
     searchOptions
@@ -16,10 +17,21 @@ export default function Table({ fetchFunction, searchOptions }) {
   const [displayedData, increaseLoadAmount, isThereMore] =
     useLoadAmount(filteredData);
   const refresh = () => {
-    fetchData();
+    handleFetch();
   };
   useAutoReload(refresh);
   const ref = useInifiniteScroll(increaseLoadAmount, isLoading);
+
+  async function handleFetch() {
+    setIsLoading(true);
+    const newData = await fetchFunction();
+    setData(newData);
+    setIsLoading(false);
+  }
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
 
   return (
     <S.TableContainer>
@@ -30,7 +42,7 @@ export default function Table({ fetchFunction, searchOptions }) {
       />
 
       {displayedData.map((elem) => (
-        <Row key={elem._id} elem={elem} />
+        <Row key={elem._id} elem={elem} searchOptions={searchOptions} />
       ))}
 
       {!isLoading && isThereMore ? (

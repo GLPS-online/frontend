@@ -3,7 +3,7 @@ import "./RowStyled.js";
 import Modal from "../../modals/Modal";
 import * as S from "./RowStyled.js";
 
-export default function Row({ elem, props = [] }) {
+export default function Row({ elem, searchOptions }) {
   const [isExpanded, setIsExpanded] = useState(false);
   return (
     <>
@@ -12,9 +12,9 @@ export default function Row({ elem, props = [] }) {
           setIsExpanded(true);
         }}
       >
-        <S.Cell>{elem.korName}</S.Cell>
-        <S.Cell>{elem.class || elem.role}</S.Cell>
-        <S.Cell>{elem.roomNum}</S.Cell>
+        {searchOptions.map((option, i) => (
+          <S.Cell key={i}>{elem[option.propName]}</S.Cell>
+        ))}
       </S.RowContainer>
       {isExpanded && (
         <Modal
