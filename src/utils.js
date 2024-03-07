@@ -1,3 +1,7 @@
+export function getCourse(grade, className) {
+  return "초등 액티브";
+}
+
 export function getDate(createdAt) {
   const date = new Date(createdAt);
   return (

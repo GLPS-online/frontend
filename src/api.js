@@ -1,39 +1,103 @@
+import axios from "axios";
 const BASE_URL = "http://localhost:3000";
 
+const client = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 export async function fetchStudents() {
-  const res = await fetch(`${BASE_URL}/students`);
-  if (!res.ok) {
-    throw new Error("cannot download links");
+  try {
+    const response = await client.get("/students");
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
   }
-  const body = await res.json();
-  return body;
 }
 
 export async function fetchPtlas() {
-  const res = await fetch(`${BASE_URL}/ptlas`);
-  if (!res.ok) {
-    throw new Error("cannot download links");
+  try {
+    const response = await client.get("/ptlas");
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
   }
-  const body = await res.json();
-  return body;
 }
 
-export async function fetchPtlaByRole(role) {
-  const res = await fetch(`${BASE_URL}/ptlas?role=${role}`);
-  if (!res.ok) {
-    throw new Error("cannot download links");
+export async function fetchPtla(role, area) {
+  try {
+    const response = await client.get("/ptlas", {
+      params: { role, area },
+    });
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
   }
-  const body = await res.json();
-  return body;
+}
+
+export async function fetchTimetables() {
+  try {
+    const response = await client.get("/timetables");
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
 }
 
 export async function fetchTimetable(className) {
-  const res = await fetch(`${BASE_URL}/timetables/${className}`);
-  if (!res.ok) {
-    throw new Error("cannot download links");
+  try {
+    const response = await client.get(`/timetables/${className}`);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
   }
-  const body = await res.json();
-  return body;
+}
+
+export async function createTimeTable(className, table) {
+  try {
+    const response = await client.post(`/timetables/${className}`, table);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
+}
+
+export async function deleteTimetable(className) {
+  try {
+    const response = await client.delete(`/timetables/${className}`);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
+}
+
+export async function initialize(body) {
+  try {
+    const response = await client.post("/students", body);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
+}
+
+export async function endOfCamp() {
+  try {
+    const response = await client.delete("/students");
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
 }
 
 export async function fetchSampleUser() {

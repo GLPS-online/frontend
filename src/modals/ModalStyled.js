@@ -1,4 +1,7 @@
-.modal-container {
+import styled from "styled-components";
+import { ReactComponent as closeSvg } from "../assets/images/close.svg";
+
+export const ModalContainer = styled.div`
   width: 100% !important;
   height: 100%;
   position: fixed;
@@ -9,9 +12,9 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.4);
   z-index: 9999;
-}
+`;
 
-.modal-contents {
+export const ModalContents = styled.div`
   position: relative;
   width: 360px;
   display: flex;
@@ -23,36 +26,25 @@
   border: 1px solid gray;
   background: white;
   z-index: 9999;
-}
+`;
 
-.modal-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 24px;
-}
-
-.modal-title {
-  color: var(--gray100);
+export const ModalTitle = styled.div`
+  color: black;
   font-size: 20px;
   font-weight: 700;
-}
+`;
 
-.modal-info {
-  color: #9fa6b2;
-  text-align: center;
-  font-size: 14px;
+export const ModalText = styled.div`
+  color: gray;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 22px;
-}
+`;
 
-.modal-closer {
+export const ModalCloser = styled(closeSvg)`
   position: absolute;
   top: 16px;
   right: 16px;
   width: 24px;
   height: 24px;
   flex-shrink: 0;
-}
+`;
