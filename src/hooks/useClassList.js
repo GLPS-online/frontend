@@ -8,7 +8,6 @@ export default function useClassList() {
     const data = await fetchTimetables();
     const list = [];
     data.forEach((timetable) => list.push(timetable.className));
-    console.log(list);
     setClassList(list);
   }
 

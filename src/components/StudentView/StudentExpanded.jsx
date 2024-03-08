@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { fetchPtla } from "../../api";
+import { Link } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
+import { getCurrentTime, getCurrentTimetableIndex } from "../../utils/time";
 // import { fetchPtla } from "../api";
 
 export default function StudentExpanded({ student }) {
@@ -23,13 +25,16 @@ export default function StudentExpanded({ student }) {
     let area = "glps_hq";
     handleFetch({ area }).then((res) => setFloorLA(res));
     area = "glps_hq";
-    handleFetch({ area }).then((res) => setFloorLA(res));
+    handleFetch({ area }).then((res) => setSubjectTA(res));
   }, []);
   return (
     <S.StudentExpandedContainer>
       <div>{student.korName}</div>
-      <div>클래스 PA: {classPA && classPA.korName}</div>
-      <div>층 LA: {floorLA && floorLA.korName}</div>
+      <div>클래스 PA: {classPA?.korName || "-"}</div>
+      <div>층 LA: {floorLA?.korName || "-"}</div>
+      <div>현재 수업 TA: {subjectTA?.korName || "-"}</div>
+      <div>{getCurrentTimetableIndex()}</div>
+      <Link to={`/timetables/${student.className}`}>시간표 보기</Link>
     </S.StudentExpandedContainer>
   );
 }

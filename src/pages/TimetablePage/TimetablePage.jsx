@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Timetable from "../../components/Timetable/Timetable";
 import { fetchTimetable } from "../../api";
 import useClassList from "../../hooks/useClassList";
+import { useParams } from "react-router-dom";
 
-export default function TimetablePage({ defaultClass }) {
+export default function TimetablePage() {
+  const { className: defaultClass } = useParams();
   const [val, setVal] = useState(null);
   const [table, setTable] = useState([]);
   const classList = useClassList();
@@ -15,10 +17,11 @@ export default function TimetablePage({ defaultClass }) {
 
   useEffect(() => {
     if (classList) {
-      if (classList.includes(defaultClass)) {
+      if (defaultClass && classList.includes(defaultClass)) {
         setVal(defaultClass);
+      } else {
+        setVal(classList[0]);
       }
-      setVal(classList[0]);
     }
   }, [classList, defaultClass]);
 
