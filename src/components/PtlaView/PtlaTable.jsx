@@ -1,10 +1,10 @@
-import Table from "./Table";
-import { fetchStudents } from "../../api";
+import Table from "../common/Table/Table";
+import { fetchPtlas } from "../../api";
 
-export default function StudentTable() {
+export default function PtlaTable() {
   return (
     <Table
-      fetchFunction={fetchStudents}
+      fetchFunction={fetchPtlas}
       searchOptions={[
         {
           propName: "korName",
@@ -13,14 +13,14 @@ export default function StudentTable() {
           realType: "string",
         },
         {
-          propName: "className",
+          propName: "role",
           type: "string",
-          placeholder: "학급",
+          placeholder: "역할",
           realType: "string",
         },
         {
           propName: "roomNum",
-          type: "number", // 검색 시 입력 타입
+          type: "number",
           placeholder: "방",
           realType: "string",
         },

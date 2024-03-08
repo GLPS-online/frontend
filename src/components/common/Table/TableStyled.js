@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const TableContainer = styled.div`
+  width: 460px;
   display: flex;
   flex-direction: column;
   gap: 10px;

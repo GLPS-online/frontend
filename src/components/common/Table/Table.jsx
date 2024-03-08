@@ -1,13 +1,13 @@
-import useLoadAmount from "../../hooks/useLoadAmount";
-import useSearches from "../../hooks/useSearches";
-import useAutoReload from "../../hooks/useAutoReload";
-import useInifiniteScroll from "../../hooks/useInfiniteScroll";
+import useLoadAmount from "../../../hooks/useLoadAmount";
+import useSearches from "../../../hooks/useSearches";
+import useAutoReload from "../../../hooks/useAutoReload";
+import useInifiniteScroll from "../../../hooks/useInfiniteScroll";
 import Row from "../Row/Row";
 import SearchBar from "../SearchBar/SearchBar";
 import * as S from "./TableStyled";
 import { useEffect, useState } from "react";
 
-export default function Table({ fetchFunction, searchOptions }) {
+export default function Table({ fetchFunction, searchOptions, onExpand }) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [filteredData, searches, setSearches] = useSearches(
@@ -42,7 +42,12 @@ export default function Table({ fetchFunction, searchOptions }) {
       />
 
       {displayedData.map((elem) => (
-        <Row key={elem._id} elem={elem} searchOptions={searchOptions} />
+        <Row
+          key={elem._id}
+          elem={elem}
+          props={searchOptions}
+          onExpand={onExpand}
+        />
       ))}
 
       {!isLoading && isThereMore ? (

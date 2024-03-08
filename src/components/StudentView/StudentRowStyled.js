@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-export const RowContainer = styled.div`
+export const StudentRowContainer = styled.div`
+  width: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
   font-size: 20px;
   padding: 3px;
   border: solid;
