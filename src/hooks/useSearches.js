@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 export default function useSearches(data, searchOptions) {
   const [searches, setSearches] = useState({});
 
-  const filteredData = data.filter((datum) => {
+  const filteredData = data?.filter((datum) => {
     return searchOptions.every((searchOption) => {
       switch (searchOption.realType) {
         case "string":

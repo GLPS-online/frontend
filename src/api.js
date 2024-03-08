@@ -18,6 +18,16 @@ export async function fetchStudents() {
   }
 }
 
+export async function fetchStudent(id) {
+  try {
+    const response = await client.get(`/students/${id}`);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
+}
+
 export async function fetchPtlas() {
   try {
     const response = await client.get("/ptlas");
@@ -28,7 +38,7 @@ export async function fetchPtlas() {
   }
 }
 
-export async function fetchPtla(role, area) {
+export async function fetchPtla({ role = "", area = "" }) {
   try {
     const response = await client.get("/ptlas", {
       params: { role, area },

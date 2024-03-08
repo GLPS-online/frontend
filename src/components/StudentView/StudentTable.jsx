@@ -26,7 +26,7 @@ export default function StudentTable() {
           realType: "string",
         },
       ]}
-      onExpand={(id) => <StudentExpanded id={id} />}
+      onExpand={(elem) => <StudentExpanded student={elem} />}
     />
   );
 }

@@ -46,7 +46,7 @@ export default function Table({ fetchFunction, searchOptions, onExpand }) {
           key={elem._id}
           elem={elem}
           props={searchOptions}
-          onExpand={() => onExpand(elem._id)}
+          onExpand={() => onExpand(elem)}
         />
       ))}
 
