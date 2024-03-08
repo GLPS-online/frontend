@@ -1,7 +1,7 @@
-import PtlaTable from "../../components/Table/PtlaTable";
-import StudentTable from "../../components/Table/StudentTable";
 import { useState } from "react";
 import * as S from "./HomePageStyled";
+import StudentTable from "../../components/StudentView/StudentTable";
+import PtlaTable from "../../components/PtlaView/PtlaTable";
 
 export default function HomePage() {
   const [dataset, setDataset] = useState(true);

@@ -1,5 +1,6 @@
 import Table from "../common/Table/Table";
 import { fetchStudents } from "../../api";
+import StudentExpanded from "./StudentExpanded";
 
 export default function StudentTable() {
   return (
@@ -25,9 +26,7 @@ export default function StudentTable() {
           realType: "string",
         },
       ]}
-      onExpand={() => {
-        return <div>확장됨</div>;
-      }}
+      onExpand={(id) => <StudentExpanded id={id} />}
     />
   );
 }
