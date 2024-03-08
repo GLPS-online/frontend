@@ -1,33 +1,32 @@
 import { useEffect, useState } from "react";
 import Timetable from "../../components/Timetable/Timetable";
-import { fetchTimetables } from "../../api";
+import { fetchTimetable } from "../../api";
+import useClassList from "../../hooks/useClassList";
 
 export default function TimetablePage({ defaultClass }) {
-  const [data, setData] = useState(null);
   const [val, setVal] = useState(null);
   const [table, setTable] = useState([]);
+  const classList = useClassList();
 
-  async function handleFetchTables() {
-    const newData = await fetchTimetables();
-    setData(newData);
-    const list = [];
-    newData.forEach((timetable) => list.push(timetable.className));
-    if (list.includes(defaultClass)) {
-      setVal(defaultClass);
-      return;
-    }
-    setVal(newData[0].className);
+  async function handleFetch(className) {
+    const newData = await fetchTimetable(className);
+    setTable(newData.table || []);
   }
 
   useEffect(() => {
-    if (data) {
-      setTable(data.find(({ className }) => className === val).table);
+    if (classList) {
+      if (classList.includes(defaultClass)) {
+        setVal(defaultClass);
+      }
+      setVal(classList[0]);
     }
-  }, [val]);
+  }, [classList, defaultClass]);
 
   useEffect(() => {
-    handleFetchTables();
-  }, []);
+    if (val != null) {
+      handleFetch(val);
+    }
+  }, [val]);
 
   return (
     <>
@@ -38,9 +37,9 @@ export default function TimetablePage({ defaultClass }) {
             setVal(event.target.value);
           }}
         >
-          {data?.map((timetable, i) => (
-            <option key={i} value={timetable.className}>
-              {timetable.className}반
+          {classList?.map((className, i) => (
+            <option key={i} value={className}>
+              {className}반
             </option>
           ))}
         </select>
