@@ -14,6 +14,7 @@ export const TimetableItem = styled.div`
   align-items: center;
   gap: 5px;
   border: 1px solid black;
+  ${({ $selected }) => ($selected ? "border: 3px solid blue;" : "")}
 `;
 
 export const Subject = styled.div`

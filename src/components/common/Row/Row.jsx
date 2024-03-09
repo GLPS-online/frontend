@@ -7,12 +7,12 @@ export default function Row({ elem, props, onExpand }) {
   return (
     <>
       <S.RowContainer onClick={handleExpand}>
-        {isExpanded
-          ? onExpand()
-          : props.map((option, i) => (
-              <S.Cell key={i}>{elem[option.propName]}</S.Cell>
-            ))}
-        {}
+        <S.Cells>
+          {props.map((option, i) => (
+            <S.Cell key={i}>{elem[option.propName]}</S.Cell>
+          ))}
+        </S.Cells>
+        {isExpanded && onExpand()}
       </S.RowContainer>
     </>
   );

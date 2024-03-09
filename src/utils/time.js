@@ -1,4 +1,4 @@
-export function getCurrentTime() {
+function getCurrentTime() {
   const now = new Date();
   const day = now.getDay();
   const hour = now.getHours();
@@ -52,6 +52,9 @@ export function getCurrentTimetableIndex() {
       break;
     default:
       return null;
+  }
+  if (index > 21) {
+    return null;
   }
   return index;
 }

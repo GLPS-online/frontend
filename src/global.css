@@ -46,3 +46,10 @@ button {
   background-color: unset;
   cursor: pointer;
 }
+
+* {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const LOAD = 30;
-export default function useLoadAmount(data) {
+export default function useLoadAmount(data = []) {
   const [loadAmount, setLoadAmount] = useState(LOAD);
 
   const displayedData = data.slice(

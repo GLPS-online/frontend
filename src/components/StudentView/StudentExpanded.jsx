@@ -2,39 +2,53 @@ import { useEffect, useState } from "react";
 import { fetchPtla } from "../../api";
 import { Link } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
-import { getCurrentTime, getCurrentTimetableIndex } from "../../utils/time";
-// import { fetchPtla } from "../api";
+import Nametag from "../common/Nametag/Nametag";
 
 export default function StudentExpanded({ student }) {
   const [classPA, setClassPA] = useState(null);
   const [floorLA, setFloorLA] = useState(null);
-  const [subjectTA, setSubjectTA] = useState(null);
   async function handleFetch(role, area) {
     const res = await fetchPtla(role, area);
     return res;
   }
   useEffect(() => {
-    let num = student.className;
+    let className = student.className;
     let role = "";
-    if (num < 10) {
-      role = `pa_class0${num}`;
+    if (className < 10) {
+      role = `pa_class0${className}`;
     } else {
-      role = `pa_class${num}`;
+      role = `pa_class${className}`;
     }
     handleFetch({ role }).then((res) => setClassPA(res));
-    let area = "glps_hq";
+    let area = "";
+    let floor = Math.floor(student.roomNum / 100);
+    area = `dorm_floor_${floor}`;
     handleFetch({ area }).then((res) => setFloorLA(res));
-    area = "glps_hq";
-    handleFetch({ area }).then((res) => setSubjectTA(res));
   }, []);
   return (
     <S.StudentExpandedContainer>
-      <div>{student.korName}</div>
-      <div>클래스 PA: {classPA?.korName || "-"}</div>
-      <div>층 LA: {floorLA?.korName || "-"}</div>
-      <div>현재 수업 TA: {subjectTA?.korName || "-"}</div>
-      <div>{getCurrentTimetableIndex()}</div>
-      <Link to={`/timetables/${student.className}`}>시간표 보기</Link>
+      <S.Cells>
+        <S.Cell>{student.school}</S.Cell>
+        <S.Cell>
+          {"PA "}
+          <Nametag
+            wave={classPA?.wave}
+            name={classPA?.korName}
+            phone={`010-2918-8815`}
+          />
+        </S.Cell>
+        <S.Cell>
+          LA{" "}
+          <Nametag
+            wave={floorLA?.wave}
+            name={floorLA?.korName}
+            phone={`010-2918-8815`}
+          />
+        </S.Cell>
+      </S.Cells>
+
+      <Link to={`/timetables/${student.className}`}>수업 시간표</Link>
+      <Link to={`/timetables/${student.className}`}>정보수정</Link>
     </S.StudentExpandedContainer>
   );
 }
