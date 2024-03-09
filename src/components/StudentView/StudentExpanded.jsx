@@ -30,16 +30,16 @@ export default function StudentExpanded({ student }) {
       <S.Cells>
         <S.Cell>{student.school}</S.Cell>
         <S.Cell>
-          {"PA "}
           <Nametag
+            division={"PA"}
             wave={classPA?.wave}
             name={classPA?.korName}
             phone={`010-2918-8815`}
           />
         </S.Cell>
         <S.Cell>
-          LA{" "}
           <Nametag
+            division={"LA"}
             wave={floorLA?.wave}
             name={floorLA?.korName}
             phone={`010-2918-8815`}

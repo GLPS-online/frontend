@@ -6,8 +6,8 @@ export default function Row({ elem, props, onExpand }) {
   const handleExpand = () => setIsExpanded((prev) => !prev);
   return (
     <>
-      <S.RowContainer onClick={handleExpand}>
-        <S.Cells>
+      <S.RowContainer>
+        <S.Cells onClick={handleExpand}>
           {props.map((option, i) => (
             <S.Cell key={i}>{elem[option.propName]}</S.Cell>
           ))}
