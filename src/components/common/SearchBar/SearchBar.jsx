@@ -5,6 +5,7 @@ export default function SearchBar({ searches, setSearches, searchOptions }) {
     <S.SearchBarContainer>
       {searchOptions.map((searchOption, i) => (
         <S.SearchBarInput
+          autoFocus={i === 0}
           key={i}
           name={searchOption.propName}
           type={searchOption.type}
