@@ -38,10 +38,17 @@ export async function fetchPtlas() {
   }
 }
 
-export async function fetchPtla({ role = "", area = "" }) {
+export async function fetchPtla({ role, area }) {
   try {
     const response = await client.get("/ptlas", {
-      params: { role, area },
+      params: {
+        ...(role && {
+          role,
+        }),
+        ...(area && {
+          area,
+        }),
+      },
     });
     const result = response.data;
     return result;
