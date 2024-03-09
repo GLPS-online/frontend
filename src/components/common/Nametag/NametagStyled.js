@@ -21,3 +21,9 @@ export const Division = styled.span`
   letter-spacing: -0.05px;
   color: black;
 `;
+
+export const Phone = styled.span`
+  font-size: 16px;
+  letter-spacing: -0.05px;
+  color: black;
+`;
