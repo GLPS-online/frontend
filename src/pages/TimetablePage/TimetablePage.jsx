@@ -76,7 +76,7 @@ export default function TimetablePage() {
         </S.InformationItem>
         <S.InformationItem>Office: {office}</S.InformationItem>
       </S.InformationRow>
-      {table && <Timetable table={table} />}
+      {table && classPA && <Timetable table={table} classPA={classPA} />}
     </S.Container>
   );
 }

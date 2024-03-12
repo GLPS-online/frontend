@@ -6,24 +6,22 @@ export const Container = styled.button`
 `;
 
 export const Wave = styled.span`
-  font-size: 16px;
+  ${({ $forTimetable }) =>
+    $forTimetable ? "font-size: 12px;" : "font-size: 16px;"}
+
   color: gray;
   align-self: flex-end;
 `;
 
 export const Name = styled.span`
-  font-size: 20px;
+  ${({ $forTimetable }) =>
+    $forTimetable ? "font-size: 15px;" : "font-size: 20px;"}
   color: black;
 `;
 
 export const Division = styled.span`
-  font-size: 19px;
-  letter-spacing: -0.05px;
-  color: black;
-`;
-
-export const Phone = styled.span`
-  font-size: 16px;
+  ${({ $forTimetable }) =>
+    $forTimetable ? "font-size: 14.25px;" : "font-size: 19px;"}
   letter-spacing: -0.05px;
   color: black;
 `;

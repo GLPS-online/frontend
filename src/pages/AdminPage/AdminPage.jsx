@@ -50,6 +50,8 @@ export default function AdminPage() {
       alert(err);
     } finally {
       setClassName("");
+      setAdvisor("");
+      setOffice("");
       setTable("");
       setIsLoading(false);
     }
