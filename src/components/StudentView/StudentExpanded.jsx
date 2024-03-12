@@ -8,8 +8,8 @@ export default function StudentExpanded({ student }) {
   const navigate = useNavigate();
   const [classPA, setClassPA] = useState(null);
   const [floorLA, setFloorLA] = useState(null);
-  async function handleFetch(role, area) {
-    const res = await fetchPtla(role, area);
+  async function handleFetch(params) {
+    const res = await fetchPtla(params);
     return res;
   }
   useEffect(() => {
@@ -32,20 +32,10 @@ export default function StudentExpanded({ student }) {
       <S.Cells>
         <S.Cell>{student.school}</S.Cell>
         <S.Cell>
-          <Nametag
-            division={classPA?.division}
-            wave={classPA?.wave}
-            name={classPA?.korName}
-            phone={classPA?.phone}
-          />
+          <Nametag data={classPA} />
         </S.Cell>
         <S.Cell>
-          <Nametag
-            division={floorLA?.division}
-            wave={floorLA?.wave}
-            name={floorLA?.korName}
-            phone={floorLA?.phone}
-          />
+          <Nametag data={floorLA} />
         </S.Cell>
       </S.Cells>
 

@@ -3,7 +3,8 @@ import * as S from "./NametagStyled";
 import Toast from "../Toast/Toast";
 import useToast from "../../../hooks/useToast";
 
-export default function Nametag({ division, wave, name, phone }) {
+export default function Nametag({ data, displayDivision = true }) {
+  const { division, wave, korName, phone } = data || {};
   const { shouldRender, isShown, showToast, startHidingToast, message } =
     useToast();
 
@@ -23,8 +24,8 @@ export default function Nametag({ division, wave, name, phone }) {
   return (
     <>
       <S.Container onClick={handleClick}>
-        <S.Division>{division}</S.Division>
-        <S.Name>{name} </S.Name>
+        {displayDivision && <S.Division>{division}</S.Division>}
+        <S.Name>{korName} </S.Name>
         <S.Wave>{wave}</S.Wave>
       </S.Container>
       {shouldRender && (

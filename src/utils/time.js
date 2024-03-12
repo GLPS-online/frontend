@@ -44,7 +44,9 @@ export function getCurrentTimetableIndex() {
     case hour === 12:
       index += 1;
       break;
-    case (hour === 14 && minutes >= 30) || (hour === 16 && minutes < 30):
+    case (hour === 14 && minutes >= 30) ||
+      hour === 15 ||
+      (hour === 16 && minutes < 30):
       index += 2;
       break;
     case (hour === 16 && minutes >= 30) || (hour === 17 && minutes < 30):

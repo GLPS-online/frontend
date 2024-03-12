@@ -3,6 +3,7 @@ import * as S from "./TimetableStyled";
 
 export default function Timetable({ table }) {
   const currentIndex = getCurrentTimetableIndex();
+  console.log(currentIndex);
   if (!table || table.length !== 22) {
     return <div>insufficient timetable data</div>;
   }
