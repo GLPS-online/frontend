@@ -8,15 +8,19 @@ import Nametag from "../../components/common/Nametag/Nametag";
 
 export default function TimetablePage() {
   const { state } = useLocation();
-  const { className: defaultClass } = state;
+  const { className: defaultClass } = state || {};
   const [val, setVal] = useState(null);
   const [table, setTable] = useState([]);
+  const [advisor, setAdvisor] = useState("");
+  const [office, setOffice] = useState("");
   const [classPA, setClassPA] = useState(null);
   const classList = useClassList();
 
   async function handleFetchTable(className) {
     const newData = await fetchTimetable(className);
-    setTable(newData.table || []);
+    setTable(newData?.table || []);
+    setAdvisor(newData?.advisor || "");
+    setOffice(newData?.office || "");
   }
 
   async function handleFetchPa(params) {
@@ -64,13 +68,13 @@ export default function TimetablePage() {
         </S.ClassSelect>
       )}
       <S.InformationRow>
-        <S.InformationItem>Advisor: John Doe</S.InformationItem>
+        <S.InformationItem>Advisor: {advisor}</S.InformationItem>
       </S.InformationRow>
       <S.InformationRow>
         <S.InformationItem>
           Class PA: <Nametag data={classPA} displayDivision={false}></Nametag>
         </S.InformationItem>
-        <S.InformationItem>Office: M101</S.InformationItem>
+        <S.InformationItem>Office: {office}</S.InformationItem>
       </S.InformationRow>
       {table && <Timetable table={table} />}
     </S.Container>

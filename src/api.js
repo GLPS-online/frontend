@@ -77,9 +77,13 @@ export async function fetchTimetable(className) {
   }
 }
 
-export async function createTimeTable(className, table) {
+export async function createTimeTable(className, advisor, office, table) {
   try {
-    const response = await client.post(`/timetables/${className}`, table);
+    const response = await client.post(`/timetables/${className}`, {
+      advisor,
+      office,
+      table: JSON.parse(table),
+    });
     const result = response.data;
     return result;
   } catch (err) {

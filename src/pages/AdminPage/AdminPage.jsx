@@ -12,6 +12,8 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [students, setStudents] = useState("");
   const [className, setClassName] = useState("");
+  const [advisor, setAdvisor] = useState("");
+  const [office, setOffice] = useState("");
   const [classNameToDelete, setClassNameToDelete] = useState("");
   const [table, setTable] = useState("");
 
@@ -42,7 +44,7 @@ export default function AdminPage() {
   async function handleTimetableCreation() {
     try {
       setIsLoading(true);
-      const res = await createTimeTable(className, table);
+      const res = await createTimeTable(className, advisor, office, table);
       alert(res);
     } catch (err) {
       alert(err);
@@ -95,6 +97,18 @@ export default function AdminPage() {
           value={className}
           onChange={(e) => setClassName(e.target.value)}
           placeholder="학급 이름"
+        />
+        <S.TextInput
+          type="text"
+          value={advisor}
+          onChange={(e) => setAdvisor(e.target.value)}
+          placeholder="어드바이저 이름"
+        />
+        <S.TextInput
+          type="text"
+          value={office}
+          onChange={(e) => setOffice(e.target.value)}
+          placeholder="어드바이저 오피스"
         />
         <S.Textarea
           placeholder={Placeholders.timetable}
