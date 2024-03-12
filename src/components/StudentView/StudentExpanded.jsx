@@ -25,7 +25,7 @@ export default function StudentExpanded({ student }) {
     let floor = Math.floor(student.roomNum / 100);
     area = `dorm_floor_${floor}`;
     handleFetch({ area }).then((res) => setFloorLA(res));
-  }, []);
+  }, [student]);
 
   return (
     <S.StudentExpandedContainer>

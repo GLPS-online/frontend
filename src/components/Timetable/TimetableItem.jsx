@@ -20,7 +20,7 @@ export default function TimetableItem({ elem, selected, classPA }) {
 
     const area = elem.location;
     handleFetch({ area }).then((res) => setSubjectTA(res));
-  }, []);
+  }, [classPA, elem]);
 
   return (
     <S.Item $selected={selected} onClick={() => setIsFlipped((prev) => !prev)}>
