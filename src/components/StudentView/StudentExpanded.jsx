@@ -56,7 +56,6 @@ export default function StudentExpanded({ student }) {
       >
         수업 시간표
       </button>
-      <Link to={`/timetables/${student.className}`}>수업 시간표</Link>
       <Link to={`/timetables/${student.className}`}>정보수정</Link>
     </S.StudentExpandedContainer>
   );

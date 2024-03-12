@@ -2,11 +2,8 @@ import { isMobile, isBrowser } from "react-device-detect";
 import * as S from "./NametagStyled";
 import Toast from "../Toast/Toast";
 import useToast from "../../../hooks/useToast";
-import { useState } from "react";
 
 export default function Nametag({ division, wave, name, phone }) {
-  const [isHovered, setIsHovered] = useState(false);
-
   const { shouldRender, isShown, showToast, startHidingToast, message } =
     useToast();
 
@@ -25,22 +22,11 @@ export default function Nametag({ division, wave, name, phone }) {
   }
   return (
     <>
-      <div
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <S.Container onClick={handleClick}>
-          {isHovered ? (
-            <S.Phone>{phone}</S.Phone>
-          ) : (
-            <>
-              <S.Division>{division}</S.Division>
-              <S.Name>{name} </S.Name>
-              <S.Wave>{wave}</S.Wave>
-            </>
-          )}
-        </S.Container>
-      </div>
+      <S.Container onClick={handleClick}>
+        <S.Division>{division}</S.Division>
+        <S.Name>{name} </S.Name>
+        <S.Wave>{wave}</S.Wave>
+      </S.Container>
       {shouldRender && (
         <Toast
           shouldRender={shouldRender}
