@@ -20,7 +20,6 @@ root.render(
           <Route path="signup" element={<SignupPage />} />
           <Route path="admin" element={<AdminPage />} />
           <Route path="timetables" element={<TimetablePage />} />
-          <Route path="timetables/:className" element={<TimetablePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

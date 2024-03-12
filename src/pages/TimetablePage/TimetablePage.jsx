@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import Timetable from "../../components/Timetable/Timetable";
 import { fetchTimetable } from "../../api";
 import useClassList from "../../hooks/useClassList";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export default function TimetablePage() {
-  const { className: defaultClass } = useParams();
+  const { state } = useLocation();
+  const { className: defaultClass } = state;
   const [val, setVal] = useState(null);
   const [table, setTable] = useState([]);
   const classList = useClassList();

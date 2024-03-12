@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchPtla } from "../../api";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
 import Nametag from "../common/Nametag/Nametag";
 
 export default function StudentExpanded({ student }) {
+  const navigate = useNavigate();
   const [classPA, setClassPA] = useState(null);
   const [floorLA, setFloorLA] = useState(null);
   async function handleFetch(role, area) {
@@ -25,6 +26,7 @@ export default function StudentExpanded({ student }) {
     area = `dorm_floor_${floor}`;
     handleFetch({ area }).then((res) => setFloorLA(res));
   }, []);
+
   return (
     <S.StudentExpandedContainer>
       <S.Cells>
@@ -47,6 +49,13 @@ export default function StudentExpanded({ student }) {
         </S.Cell>
       </S.Cells>
 
+      <button
+        onClick={() =>
+          navigate("/timetables", { state: { className: student.className } })
+        }
+      >
+        수업 시간표
+      </button>
       <Link to={`/timetables/${student.className}`}>수업 시간표</Link>
       <Link to={`/timetables/${student.className}`}>정보수정</Link>
     </S.StudentExpandedContainer>
