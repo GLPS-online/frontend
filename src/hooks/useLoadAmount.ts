@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Person from "../interfaces/Person";
 
 const LOAD = 30;
 
 export default function useLoadAmount(data: Person[]) {
   const [loadAmount, setLoadAmount] = useState(LOAD);
-  const [displayedData, setDisplayedData] = useState<Person[]>([]);
 
-  useEffect(() => {
-    const newDisplayedData = data.slice(
-      0,
-      data.length > loadAmount ? loadAmount : data.length
-    );
-    setDisplayedData(newDisplayedData);
-  }, [data]);
+  const displayedData: Person[] = data.slice(
+    0,
+    data.length > loadAmount ? loadAmount : data.length
+  );
 
   const increaseLoadAmount = () => {
     if (loadAmount >= data.length) {
