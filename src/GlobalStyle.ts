@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
     word-break: keep-all;
   }
 
-  .App {
+  #root {
     display: flex;
     flex-direction: column;
     align-items: center;

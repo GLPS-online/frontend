@@ -1,10 +1,13 @@
 import { useEffect, useRef } from "react";
 
-export default function useInifiniteScroll(callback, isLoading) {
-  const ref = useRef();
+export default function useInifiniteScroll(
+  callback: () => void,
+  isLoading: boolean
+) {
+  const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
 
   useEffect(() => {
-    function onIntersection(entries) {
+    function onIntersection(entries: any) {
       const firstEntry = entries[0];
       if (firstEntry.isIntersecting) {
         callback();

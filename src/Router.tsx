@@ -5,9 +5,9 @@ import SignupPage from "./pages/SignupPage/SignupPage";
 import AdminPage from "./pages/AdminPage/AdminPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import TimetablePage from "./pages/TimetablePage/TimetablePage";
-import StudentPage from "./pages/StudentPage/StudentPage.jsx";
-import PtlaPage from "./pages/PtlaPage/PtlaPage.jsx";
-import Layout from "./Layout.jsx";
+import StudentPage from "./pages/StudentPage/StudentPage";
+import PtlaPage from "./pages/PtlaPage/PtlaPage";
+import Layout from "./Layout";
 
 const Router = () => (
   <BrowserRouter>

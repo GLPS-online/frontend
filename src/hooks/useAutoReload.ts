@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-export default function useAutoReload(callback) {
+export default function useAutoReload(callback: () => void) {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {

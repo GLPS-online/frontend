@@ -6,15 +6,27 @@ import Row from "../Row/Row";
 import SearchBar from "../SearchBar/SearchBar";
 import * as S from "./TableStyled";
 import { useEffect, useState } from "react";
+import SearchOption from "../../../interfaces/SearchOptions";
+import Person from "../../../interfaces/Person";
 
-export default function Table({ fetchFunction, searchOptions, onExpand }) {
+type Props = {
+  fetchFunction: (() => Person[]) | (() => Promise<any>);
+  searchOptions: SearchOption[];
+  onExpand: (arg0: Person) => React.ReactElement;
+};
+
+export default function Table({
+  fetchFunction,
+  searchOptions,
+  onExpand,
+}: Props) {
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [filteredData, searches, setSearches] = useSearches(
+  const [data, setData] = useState<Person[]>([]);
+  const { filteredData, searches, changeSearches } = useSearches(
     data,
     searchOptions
   );
-  const [displayedData, increaseLoadAmount, isThereMore] =
+  const { displayedData, increaseLoadAmount, isThereMore } =
     useLoadAmount(filteredData);
   const refresh = () => {
     handleFetch();
@@ -37,11 +49,11 @@ export default function Table({ fetchFunction, searchOptions, onExpand }) {
     <S.TableContainer>
       <SearchBar
         searches={searches}
-        setSearches={setSearches}
+        changeSearches={changeSearches}
         searchOptions={searchOptions}
       />
 
-      {displayedData.map((elem) => (
+      {displayedData.map((elem: Person) => (
         <Row
           key={elem._id}
           elem={elem}

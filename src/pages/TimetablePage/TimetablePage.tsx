@@ -5,25 +5,27 @@ import useClassList from "../../hooks/useClassList";
 import { useLocation } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
 import Nametag from "../../components/common/Nametag/Nametag";
+import { classInfo } from "../../interfaces/Timetable";
+import Ptla from "../../interfaces/Ptla";
 
 export default function TimetablePage() {
   const { state } = useLocation();
   const { className: defaultClass } = state || {};
-  const [val, setVal] = useState(null);
-  const [table, setTable] = useState([]);
+  const [val, setVal] = useState<string | null>(null);
+  const [table, setTable] = useState<classInfo[]>([]);
   const [advisor, setAdvisor] = useState("");
   const [office, setOffice] = useState("");
-  const [classPA, setClassPA] = useState(null);
+  const [classPA, setClassPA] = useState<Ptla | null>(null);
   const classList = useClassList();
 
-  async function handleFetchTable(className) {
+  async function handleFetchTable(className: string) {
     const newData = await fetchTimetable(className);
     setTable(newData?.table || []);
     setAdvisor(newData?.advisor || "");
     setOffice(newData?.office || "");
   }
 
-  async function handleFetchPa(params) {
+  async function handleFetchPa(params: { role?: string; area?: string }) {
     const res = await fetchPtla(params);
     return res;
   }
@@ -42,7 +44,7 @@ export default function TimetablePage() {
     if (val != null) {
       handleFetchTable(val);
       let role = "";
-      if (val < 10) {
+      if (Number(val) < 10) {
         role = `pa_class0${val}`;
       } else {
         role = `pa_class${val}`;

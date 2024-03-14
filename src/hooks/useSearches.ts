@@ -1,11 +1,22 @@
 import { useState, useEffect } from "react";
+import Person from "../interfaces/Person";
+import SearchOption from "../interfaces/SearchOptions";
 
-export default function useSearches(data, searchOptions) {
-  const [searches, setSearches] = useState({});
+export default function useSearches(
+  data: Person[],
+  searchOptions: SearchOption[]
+) {
+  const [searches, setSearches] = useState<{ [key: string]: string }>({});
+  function changeSearches(val: string, propName: string) {
+    setSearches((prev) => ({
+      ...prev,
+      [propName]: val,
+    }));
+  }
 
-  const filteredData = data?.filter((datum) => {
+  const filteredData = data.filter((datum: any) => {
     return searchOptions.every((searchOption) => {
-      switch (searchOption.realType) {
+      switch (searchOption.searchType) {
         case "string":
           return datum[searchOption.propName]
             .toString()
@@ -28,5 +39,5 @@ export default function useSearches(data, searchOptions) {
     });
   }, []);
 
-  return [filteredData, searches, setSearches];
+  return { filteredData, searches, changeSearches };
 }

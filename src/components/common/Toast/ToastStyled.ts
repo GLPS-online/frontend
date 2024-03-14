@@ -20,7 +20,7 @@ const slideDown = keyframes`
   }
 `;
 
-export const ToastContainer = styled.div`
+export const ToastContainer = styled.div<{ $isShown: boolean }>`
   position: fixed;
   width: 524px;
   height: 64px;

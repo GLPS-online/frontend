@@ -3,17 +3,19 @@ import { fetchPtla } from "../../api";
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
 import Nametag from "../common/Nametag/Nametag";
+import Student from "../../interfaces/Student";
+import Ptla from "../../interfaces/Ptla";
 
-export default function StudentExpanded({ student }) {
+export default function StudentExpanded({ student }: { student: Student }) {
   const navigate = useNavigate();
-  const [classPA, setClassPA] = useState(null);
-  const [floorLA, setFloorLA] = useState(null);
-  async function handleFetch(params) {
+  const [classPA, setClassPA] = useState<Ptla | null>(null);
+  const [floorLA, setFloorLA] = useState<Ptla | null>(null);
+  async function handleFetch(params: { role?: string; area?: string }) {
     const res = await fetchPtla(params);
     return res;
   }
   useEffect(() => {
-    let className = student.className;
+    let className: number = Number(student.className);
     let role = "";
     if (className < 10) {
       role = `pa_class0${className}`;
@@ -22,7 +24,7 @@ export default function StudentExpanded({ student }) {
     }
     handleFetch({ role }).then((res) => setClassPA(res));
     let area = "";
-    let floor = Math.floor(student.roomNum / 100);
+    let floor: number = Math.floor(student.roomNum / 100);
     area = `dorm_floor_${floor}`;
     handleFetch({ area }).then((res) => setFloorLA(res));
   }, [student]);

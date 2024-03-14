@@ -9,23 +9,24 @@ export default function StudentTable() {
       searchOptions={[
         {
           propName: "korName",
-          type: "string",
+          inputType: "string",
           placeholder: "이름",
-          realType: "string",
+          searchType: "string",
         },
         {
           propName: "className",
-          type: "string",
+          inputType: "string",
           placeholder: "학급",
-          realType: "string",
+          searchType: "string",
         },
         {
           propName: "roomNum",
-          type: "number", // 검색 시 입력 타입
+          inputType: "number", // 검색 시 입력 타입
           placeholder: "방",
-          realType: "string",
+          searchType: "number",
         },
       ]}
+      // @ts-expect-error
       onExpand={(elem) => <StudentExpanded student={elem} />}
     />
   );

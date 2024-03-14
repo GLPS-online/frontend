@@ -1,6 +1,12 @@
 import * as S from "./ModalStyled";
 
-export default function Modal({ text, onButtonClick, onClose }) {
+type Props = {
+  text: string;
+  onButtonClick: () => void;
+  onClose: () => void;
+};
+
+export default function Modal({ text, onButtonClick, onClose }: Props) {
   return (
     <>
       <S.ModalContainer>

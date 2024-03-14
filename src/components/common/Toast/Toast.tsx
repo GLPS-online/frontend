@@ -1,7 +1,13 @@
-import React from "react";
 import * as S from "./ToastStyled";
 
-const Toast = ({ shouldRender, isShown, message, startHidingToast }) => {
+type Props = {
+  shouldRender: boolean;
+  isShown: boolean;
+  message: string;
+  startHidingToast: () => void;
+};
+
+const Toast = ({ shouldRender, isShown, message, startHidingToast }: Props) => {
   return (
     shouldRender && (
       <S.ToastContainer $isShown={isShown}>

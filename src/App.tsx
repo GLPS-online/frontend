@@ -1,4 +1,3 @@
-import "./global.css";
 import GlobalStyle from "./GlobalStyle";
 import Router from "./Router";
 

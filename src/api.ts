@@ -18,7 +18,7 @@ export async function fetchStudents() {
   }
 }
 
-export async function fetchStudent(id) {
+export async function fetchStudent(id: string) {
   try {
     const response = await client.get(`/students/${id}`);
     const result = response.data;
@@ -38,7 +38,13 @@ export async function fetchPtlas() {
   }
 }
 
-export async function fetchPtla({ role, area }) {
+export async function fetchPtla({
+  role,
+  area,
+}: {
+  role?: string;
+  area?: string;
+}) {
   try {
     const response = await client.get("/ptlas", {
       params: {
@@ -67,7 +73,7 @@ export async function fetchTimetables() {
   }
 }
 
-export async function fetchTimetable(className) {
+export async function fetchTimetable(className: string) {
   try {
     const response = await client.get(`/timetables/${className}`);
     const result = response.data;
@@ -77,7 +83,12 @@ export async function fetchTimetable(className) {
   }
 }
 
-export async function createTimeTable(className, advisor, office, table) {
+export async function createTimeTable(
+  className: string,
+  advisor: string,
+  office: string,
+  table: string
+) {
   try {
     const response = await client.post(`/timetables/${className}`, {
       advisor,
@@ -91,7 +102,7 @@ export async function createTimeTable(className, advisor, office, table) {
   }
 }
 
-export async function deleteTimetable(className) {
+export async function deleteTimetable(className: string) {
   try {
     const response = await client.delete(`/timetables/${className}`);
     const result = response.data;
@@ -101,7 +112,7 @@ export async function deleteTimetable(className) {
   }
 }
 
-export async function initialize(body) {
+export async function initialize(body: string) {
   try {
     const response = await client.post("/students", body);
     const result = response.data;

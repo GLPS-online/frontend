@@ -2,12 +2,20 @@ import { useEffect, useState } from "react";
 import Nametag from "../common/Nametag/Nametag";
 import { fetchPtla } from "../../api";
 import * as S from "./TimetableItemStyled";
+import Ptla from "../../interfaces/Ptla";
+import { classInfo } from "../../interfaces/Timetable";
 
-export default function TimetableItem({ elem, selected, classPA }) {
+type Props = {
+  elem: classInfo;
+  selected: boolean;
+  classPA: Ptla;
+};
+
+export default function TimetableItem({ elem, selected, classPA }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [subjectTA, setSubjectTA] = useState(null);
+  const [subjectTA, setSubjectTA] = useState<Ptla | null>(null);
 
-  async function handleFetch(params) {
+  async function handleFetch(params: { role?: string; area?: string }) {
     const res = await fetchPtla(params);
     return res;
   }

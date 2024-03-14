@@ -5,7 +5,7 @@ export const Container = styled.button`
   align-items: center;
 `;
 
-export const Wave = styled.span`
+export const Wave = styled.span<{ $forTimetable: boolean }>`
   ${({ $forTimetable }) =>
     $forTimetable ? "font-size: 12px;" : "font-size: 16px;"}
 
@@ -13,13 +13,13 @@ export const Wave = styled.span`
   align-self: flex-end;
 `;
 
-export const Name = styled.span`
+export const Name = styled.span<{ $forTimetable: boolean }>`
   ${({ $forTimetable }) =>
     $forTimetable ? "font-size: 15px;" : "font-size: 20px;"}
   color: black;
 `;
 
-export const Division = styled.span`
+export const Division = styled.span<{ $forTimetable: boolean }>`
   ${({ $forTimetable }) =>
     $forTimetable ? "font-size: 14.25px;" : "font-size: 19px;"}
   letter-spacing: -0.05px;

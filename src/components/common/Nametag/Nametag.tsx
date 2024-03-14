@@ -1,18 +1,29 @@
 import { isMobile, isBrowser } from "react-device-detect";
 import * as S from "./NametagStyled";
+import Ptla from "../../../interfaces/Ptla";
 import Toast from "../Toast/Toast";
 import useToast from "../../../hooks/useToast";
+
+type Props = {
+  data: Ptla | null;
+  displayDivision?: boolean;
+  forTimetable?: boolean;
+};
 
 export default function Nametag({
   data,
   displayDivision = true,
   forTimetable = false,
-}) {
-  const { division, wave, korName, phone } = data || {};
+}: Props) {
   const { shouldRender, isShown, showToast, startHidingToast, message } =
     useToast();
 
-  async function handleClick(e) {
+  if (!data) {
+    return;
+  }
+  const { division, wave, korName, phone } = data;
+
+  async function handleClick(e: React.MouseEvent<HTMLElement>) {
     e.stopPropagation();
     if (isMobile) {
       window.location.href = `tel:${phone}`;

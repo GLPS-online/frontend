@@ -8,23 +8,24 @@ export default function PtlaTable() {
       searchOptions={[
         {
           propName: "korName",
-          type: "string",
+          inputType: "string",
           placeholder: "이름",
-          realType: "string",
+          searchType: "string",
         },
         {
           propName: "role",
-          type: "string",
+          inputType: "string",
           placeholder: "역할",
-          realType: "string",
+          searchType: "string",
         },
         {
           propName: "roomNum",
-          type: "number",
+          inputType: "number",
           placeholder: "방",
-          realType: "string",
+          searchType: "string",
         },
       ]}
+      onExpand={() => <div>expanded</div>}
     />
   );
 }

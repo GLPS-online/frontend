@@ -6,7 +6,7 @@ export default function useToast() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const showToast = (message) => {
+  const showToast = (message: string) => {
     if (isLoading) return;
     setIsLoading(true);
     setShouldRender(true);
