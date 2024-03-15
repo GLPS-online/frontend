@@ -15,6 +15,8 @@ interface Student {
   parent2Relation: string;
   parent2Phone: string;
   shirtSize: string;
+  allergy: string;
+  sibling: string;
   className: string;
   roomNum: number;
   club: string;
