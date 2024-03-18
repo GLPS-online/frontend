@@ -23,9 +23,10 @@ export default function StudentTable() {
           propName: "roomNum",
           inputType: "number", // 검색 시 입력 타입
           placeholder: "방",
-          searchType: "number",
+          searchType: "string",
         },
       ]}
+      selectable={true}
       // @ts-expect-error
       onExpand={(elem) => <StudentExpanded student={elem} />}
     />

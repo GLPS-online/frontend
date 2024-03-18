@@ -4,6 +4,7 @@ import SearchOption from "../interfaces/SearchOptions";
 
 export default function useSearches(
   data: Person[],
+  selectedItems: string[],
   searchOptions: SearchOption[]
 ) {
   const [searches, setSearches] = useState<{ [key: string]: string }>({});
@@ -15,6 +16,9 @@ export default function useSearches(
   }
 
   const filteredData = data.filter((datum: any) => {
+    if (selectedItems.includes(datum._id)) {
+      return true;
+    }
     return searchOptions.every((searchOption) => {
       switch (searchOption.searchType) {
         case "string":

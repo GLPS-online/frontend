@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchPtla } from "../../api";
+import { searchPtla } from "../../api";
 import { Link } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
 import Nametag from "../common/Nametag/Nametag";
@@ -10,7 +10,7 @@ export default function StudentExpanded({ student }: { student: Student }) {
   const [classPA, setClassPA] = useState<Ptla | null>(null);
   const [floorLA, setFloorLA] = useState<Ptla | null>(null);
   async function handleFetch(params: { role?: string; area?: string }) {
-    const res = await fetchPtla(params);
+    const res = await searchPtla(params);
     return res;
   }
   useEffect(() => {

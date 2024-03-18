@@ -8,29 +8,38 @@ import * as S from "./TableStyled";
 import { useEffect, useState } from "react";
 import SearchOption from "../../../interfaces/SearchOptions";
 import Person from "../../../interfaces/Person";
+import useCheckbox from "../../../hooks/useCheckbox";
 
 type Props = {
   fetchFunction: (() => Person[]) | (() => Promise<any>);
   searchOptions: SearchOption[];
-  onExpand: (arg0: Person) => React.ReactElement;
+  selectable?: boolean;
+  onExpand?: (arg0: Person) => React.ReactElement;
 };
 
 export default function Table({
   fetchFunction,
   searchOptions,
+  selectable = false,
   onExpand,
 }: Props) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState<Person[]>([]);
+  const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
+    useCheckbox();
   const { filteredData, searches, changeSearches } = useSearches(
     data,
+    selectedItems,
     searchOptions
   );
   const { displayedData, increaseLoadAmount, isThereMore } =
     useLoadAmount(filteredData);
+  const [action, setAction] = useState<string>("default");
+
   const refresh = () => {
     handleFetch();
   };
+
   useAutoReload(refresh);
   const ref = useInifiniteScroll(increaseLoadAmount, isLoading);
 
@@ -52,14 +61,46 @@ export default function Table({
         changeSearches={changeSearches}
         searchOptions={searchOptions}
       />
-
-      {displayedData.map((elem: Person) => (
-        <Row
-          key={elem._id}
-          elem={elem}
-          props={searchOptions}
-          onExpand={() => onExpand(elem)}
+      <S.ActionBar $visible={selectable}>
+        <S.CheckBox
+          type={action !== "default" ? "checkbox" : "hidden"}
+          disabled={isThereMore}
+          onChange={(e) => handleCheckAll(e, displayedData)}
         />
+        <select value={action} onChange={(e) => setAction(e.target.value)}>
+          <option value={"default"}>액션 선택</option>
+          <option value={"study"}>2자습신청</option>
+          <option value={"shuttle"}>목발셔틀신청</option>
+          <option value={"eop"}>EOP 적발</option>
+          <option value={"green"}>그린카드</option>
+          <option value={"yellow"}>옐로카드</option>
+          <option value={"red"}>레드카드</option>
+        </select>
+        <button
+          disabled={action === "default"}
+          onClick={() => {
+            clearItems();
+            setAction("default");
+          }}
+        >
+          취소
+        </button>
+      </S.ActionBar>
+      {displayedData.map((elem: Person) => (
+        <S.RowContainer key={elem._id}>
+          <S.CheckBox
+            type={selectable && action !== "default" ? "checkbox" : "hidden"}
+            value={elem._id}
+            checked={selectedItems.includes(elem._id)}
+            onChange={handleCheckboxChange}
+          />
+          <Row
+            elem={elem}
+            props={searchOptions}
+            selected={selectedItems.includes(elem._id) ? action : "default"}
+            onExpand={onExpand && (() => onExpand(elem))}
+          />
+        </S.RowContainer>
       ))}
 
       {!isLoading && isThereMore ? (

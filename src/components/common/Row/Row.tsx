@@ -5,21 +5,22 @@ import SearchOption from "../../../interfaces/SearchOptions.js";
 type Props = {
   elem: any;
   props: SearchOption[];
-  onExpand: () => React.ReactElement;
+  selected: string;
+  onExpand?: () => React.ReactElement | undefined;
 };
 
-export default function Row({ elem, props, onExpand }: Props) {
+export default function Row({ elem, props, selected, onExpand }: Props) {
   const [isExpanded, setIsExpanded] = useState(false);
   const handleExpand = () => setIsExpanded((prev) => !prev);
   return (
     <>
-      <S.RowContainer>
+      <S.RowContainer $selected={selected}>
         <S.Cells onClick={handleExpand}>
           {props.map((option: SearchOption, i: number) => (
             <S.Cell key={i}>{elem[option.propName]}</S.Cell>
           ))}
         </S.Cells>
-        {isExpanded && onExpand()}
+        {onExpand && isExpanded && onExpand()}
       </S.RowContainer>
     </>
   );

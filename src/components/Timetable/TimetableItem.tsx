@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Nametag from "../common/Nametag/Nametag";
-import { fetchPtla } from "../../api";
+import { searchPtla } from "../../api";
 import * as S from "./TimetableItemStyled";
 import Ptla from "../../interfaces/Ptla";
 import { classInfo } from "../../interfaces/Timetable";
@@ -16,7 +16,7 @@ export default function TimetableItem({ elem, selected, classPA }: Props) {
   const [subjectTA, setSubjectTA] = useState<Ptla | null>(null);
 
   async function handleFetch(params: { role?: string; area?: string }) {
-    const res = await fetchPtla(params);
+    const res = await searchPtla(params);
     return res;
   }
 

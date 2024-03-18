@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Timetable from "../../components/Timetable/Timetable";
-import { fetchPtla, fetchTimetable } from "../../api";
+import { searchPtla, fetchTimetable } from "../../api";
 import useClassList from "../../hooks/useClassList";
 import { useLocation } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
@@ -26,7 +26,7 @@ export default function TimetablePage() {
   }
 
   async function handleFetchPa(params: { role?: string; area?: string }) {
-    const res = await fetchPtla(params);
+    const res = await searchPtla(params);
     return res;
   }
 

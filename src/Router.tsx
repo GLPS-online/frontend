@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
@@ -9,21 +9,49 @@ import StudentPage from "./pages/StudentPage/StudentPage";
 import PtlaPage from "./pages/PtlaPage/PtlaPage";
 import Layout from "./Layout";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    errorElement: <NotFoundPage />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
+      {
+        path: "signup",
+        element: <SignupPage />,
+      },
+
+      {
+        path: "admin",
+        element: <AdminPage />,
+      },
+      {
+        path: "timetables",
+        element: <TimetablePage />,
+      },
+      {
+        path: "student/:id",
+        element: <StudentPage />,
+      },
+      {
+        path: "ptla/:id",
+        element: <PtlaPage />,
+      },
+    ],
+  },
+]);
+
 const Router = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="signup" element={<SignupPage />} />
-        <Route path="admin" element={<AdminPage />} />
-        <Route path="timetables" element={<TimetablePage />} />
-        <Route path="student/:id" element={<StudentPage />} />
-        <Route path="ptla/:id" element={<PtlaPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>
+  <>
+    <RouterProvider router={router} />
+  </>
 );
 
 export default Router;

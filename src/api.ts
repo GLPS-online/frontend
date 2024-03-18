@@ -47,7 +47,17 @@ export async function fetchPtlas() {
   }
 }
 
-export async function fetchPtla({
+export async function fetchPtla(id: string) {
+  try {
+    const response = await client.get(`/ptlas/${id}`);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
+}
+
+export async function searchPtla({
   role,
   area,
 }: {
@@ -72,7 +82,7 @@ export async function fetchPtla({
   }
 }
 
-export async function fetchTimetables() {
+export async function fetchClassList() {
   try {
     const response = await client.get("/timetables");
     const result = response.data;
@@ -139,8 +149,4 @@ export async function endOfCamp() {
   } catch (err) {
     alert(err);
   }
-}
-
-export async function fetchSampleUser() {
-  return "admin";
 }
