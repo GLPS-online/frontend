@@ -27,6 +27,15 @@ export async function fetchStudent(id: string) {
     alert(err);
   }
 }
+export async function updateStudent(id: string, body: Object) {
+  try {
+    const response = await client.put(`/students/${id}`, body);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    alert(err);
+  }
+}
 
 export async function fetchPtlas() {
   try {
