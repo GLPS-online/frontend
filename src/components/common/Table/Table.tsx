@@ -32,6 +32,19 @@ export default function Table({
     selectedItems,
     searchOptions
   );
+  if (selectedItems.length !== 0) {
+    filteredData.sort((a, b) => {
+      const a_inc = selectedItems.includes(a._id);
+      const b_inc = selectedItems.includes(b._id);
+      if (a_inc && b_inc) {
+        return a.korName.localeCompare(b.korName);
+      } else if (a_inc) {
+        return -1;
+      } else if (b_inc) {
+        return +1;
+      } else return 0;
+    });
+  }
   const { displayedData, increaseLoadAmount, isThereMore } =
     useLoadAmount(filteredData);
   const [action, setAction] = useState<string>("default");
@@ -65,7 +78,13 @@ export default function Table({
         <S.CheckBox
           type={action !== "default" ? "checkbox" : "hidden"}
           disabled={isThereMore}
-          onChange={(e) => handleCheckAll(e, displayedData)}
+          checked={
+            selectedItems.length !== 0 &&
+            displayedData.length === selectedItems.length
+          }
+          onClick={(e) => handleCheckAll(e, displayedData)}
+          value={"all"}
+          onChange={(e) => {}}
         />
         <select value={action} onChange={(e) => setAction(e.target.value)}>
           <option value={"default"}>액션 선택</option>

@@ -20,6 +20,9 @@ export default function useSearches(
       return true;
     }
     return searchOptions.every((searchOption) => {
+      if (searches[searchOption.propName] === "") {
+        return true;
+      }
       switch (searchOption.searchType) {
         case "string":
           return datum[searchOption.propName]

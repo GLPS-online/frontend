@@ -11,12 +11,11 @@ export default function useCheckbox() {
       setSelectedItems((prev) => prev.filter((item) => item !== val));
     }
   }
-  function handleCheckAll(
-    e: React.ChangeEvent<HTMLInputElement>,
-    data: Person[]
-  ) {
+  function handleCheckAll(e: any, data: Person[]) {
     if (e.target.checked) {
-      data.forEach((elem) => setSelectedItems((prev) => [...prev, elem._id]));
+      data.forEach((elem) =>
+        setSelectedItems((prev) => [...new Set([...prev, elem._id])])
+      );
     } else {
       setSelectedItems([]);
     }
