@@ -45,6 +45,11 @@ export const CheckBox = styled.input`
   height: 25px;
 `;
 
+export const RowBox = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 export const EndOfList = styled.div`
   height: 20px;
   display: flex;

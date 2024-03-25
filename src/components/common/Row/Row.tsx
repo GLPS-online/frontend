@@ -5,16 +5,14 @@ type Props = {
   elem: any;
   props: SearchOption[];
   selected: string;
-  expanded: boolean;
-  onExpand?: () => React.ReactElement | undefined;
+  onExpand: (() => React.ReactElement) | (() => null);
 };
 
 export default function Row({
   elem,
   props,
   selected,
-  expanded,
-  onExpand,
+  onExpand = () => <></>,
 }: Props) {
   return (
     <S.RowContainer $selected={selected}>
@@ -23,7 +21,7 @@ export default function Row({
           <S.Cell key={i}>{elem[option.propName]}</S.Cell>
         ))}
       </S.Cells>
-      {onExpand && expanded && onExpand()}
+      {onExpand()}
     </S.RowContainer>
   );
 }

@@ -146,13 +146,32 @@ export default function Table({
             checked={selectedItems.includes(elem._id)}
             onChange={handleCheckboxChange}
           />
-          <Row
-            elem={elem}
-            props={searchOptions}
-            selected={selectedItems.includes(elem._id) ? action : "default"}
-            expanded={searchParams.get("expanded") === elem._id}
-            onExpand={onExpand && (() => onExpand(elem))}
-          />
+          <S.RowBox
+            onClick={() => {
+              if (searchParams.get("expanded") === elem._id) {
+                searchParams.delete("expanded");
+                setSearchParams(searchParams, {
+                  replace: true,
+                });
+              } else {
+                searchParams.set("expanded", elem._id);
+                setSearchParams(searchParams, {
+                  replace: true,
+                });
+              }
+            }}
+          >
+            <Row
+              elem={elem}
+              props={searchOptions}
+              selected={selectedItems.includes(elem._id) ? action : "default"}
+              onExpand={
+                searchParams.get("expanded") === elem._id && onExpand
+                  ? () => onExpand(elem)
+                  : () => null
+              }
+            />
+          </S.RowBox>
         </S.RowContainer>
       ))}
     </S.TableContainer>
