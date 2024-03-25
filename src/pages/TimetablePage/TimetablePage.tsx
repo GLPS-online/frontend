@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Timetable from "../../components/Timetable/Timetable";
+import Timetable from "./timetable/Timetable";
 import { searchPtla, fetchTimetable } from "../../api";
 import useClassList from "../../hooks/useClassList";
 import { useLocation } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
-import Nametag from "../../components/common/Nametag/Nametag";
+import Nametag from "../../components/Nametag/Nametag";
 import { classInfo } from "../../interfaces/Timetable";
 import Ptla from "../../interfaces/Ptla";
 

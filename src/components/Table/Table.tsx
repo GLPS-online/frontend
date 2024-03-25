@@ -1,9 +1,9 @@
 import Row from "../Row/Row";
 import * as S from "./TableStyled";
 import { useState } from "react";
-import SearchOption from "../../../interfaces/SearchOptions";
-import Person from "../../../interfaces/Person";
-import useCheckbox from "../../../hooks/useCheckbox";
+import SearchOption from "../../interfaces/SearchOption";
+import Person from "../../interfaces/Person";
+import useCheckbox from "../../hooks/useCheckbox";
 
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
@@ -31,8 +31,6 @@ export default function Table({
     useCheckbox();
 
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // let filteredData: Person[] = data;
   const filteredData: Person[] = data.filter((datum: any) => {
     if (selectedItems.includes(datum._id)) {
       return true;
@@ -107,37 +105,50 @@ export default function Table({
           />
         ))}
       </S.SearchBarContainer>
-      <S.ActionBar $visible={selectable}>
-        <S.CheckBox
-          type={action !== "default" ? "checkbox" : "hidden"}
-          disabled={filteredData.length > 50}
-          checked={
-            selectedItems.length !== 0 &&
-            filteredData.length === selectedItems.length
-          }
-          onClick={(e) => handleCheckAll(e, filteredData)}
-          value={"all"}
-          onChange={(e) => {}}
-        />
-        <select value={action} onChange={(e) => setAction(e.target.value)}>
-          <option value={"default"}>액션 선택</option>
-          <option value={"study"}>2자습신청</option>
-          <option value={"shuttle"}>목발셔틀신청</option>
-          <option value={"eop"}>EOP 적발</option>
-          <option value={"green"}>그린카드</option>
-          <option value={"yellow"}>옐로카드</option>
-          <option value={"red"}>레드카드</option>
-        </select>
-        <button
-          disabled={action === "default"}
-          onClick={() => {
-            clearItems();
-            setAction("default");
-          }}
-        >
-          취소
-        </button>
-      </S.ActionBar>
+      {selectable && (
+        <S.ActionBar>
+          <S.CheckBox
+            type={action !== "default" ? "checkbox" : "hidden"}
+            disabled={filteredData.length > 50}
+            checked={
+              selectedItems.length !== 0 &&
+              filteredData.length === selectedItems.length
+            }
+            onClick={(e) => handleCheckAll(e, filteredData)}
+            value={"all"}
+            onChange={(e) => {}}
+          />
+          <select value={action} onChange={(e) => setAction(e.target.value)}>
+            <option value={"default"}>액션 선택</option>
+            <option value={"study"}>2자습신청</option>
+            <option value={"shuttle"}>목발셔틀신청</option>
+            <option value={"eop"}>EOP 적발</option>
+            <option value={"green"}>그린카드</option>
+            <option value={"yellow"}>옐로카드</option>
+            <option value={"red"}>레드카드</option>
+          </select>
+          <S.ActionButtons>
+            <button
+              disabled={selectedItems.length === 0}
+              onClick={() => {
+                alert("액션");
+                clearItems();
+              }}
+            >
+              확인
+            </button>
+            <button
+              disabled={action === "default"}
+              onClick={() => {
+                clearItems();
+                setAction("default");
+              }}
+            >
+              취소
+            </button>
+          </S.ActionButtons>
+        </S.ActionBar>
+      )}
       {filteredData.map((elem: Person) => (
         <S.RowContainer key={elem._id}>
           <S.CheckBox

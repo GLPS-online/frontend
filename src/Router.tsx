@@ -6,8 +6,9 @@ import AdminPage from "./pages/AdminPage/AdminPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import TimetablePage from "./pages/TimetablePage/TimetablePage";
 import StudentPage from "./pages/StudentPage/StudentPage";
-import PtlaPage from "./pages/PtlaPage/PtlaPage";
 import Layout from "./Layout";
+import PtlaSearchPage from "./pages/PtlaSearchPage/PtlaSearchPage";
+import PtlaPage from "./pages/PtlaPage/PtlaPage";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,6 @@ const router = createBrowserRouter([
         path: "signup",
         element: <SignupPage />,
       },
-
       {
         path: "admin",
         element: <AdminPage />,
@@ -39,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "student/:id",
         element: <StudentPage />,
+      },
+      {
+        path: "ptlas",
+        element: <PtlaSearchPage />,
       },
       {
         path: "ptla/:id",

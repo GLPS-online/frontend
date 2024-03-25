@@ -1,7 +1,7 @@
-import Table from "../common/Table/Table";
+import Table from "../../components/Table/Table";
 import { fetchPtlas } from "../../api";
 
-export default function PtlaTable() {
+export default function PtlaSearchPage() {
   return (
     <Table
       fetchFunction={fetchPtlas}

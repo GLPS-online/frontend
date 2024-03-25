@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { searchPtla } from "../../api";
 import { Link } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
-import Nametag from "../common/Nametag/Nametag";
 import Student from "../../interfaces/Student";
 import Ptla from "../../interfaces/Ptla";
+import Nametag from "../../components/Nametag/Nametag";
 
 export default function StudentExpanded({ student }: { student: Student }) {
   const [classPA, setClassPA] = useState<Ptla | null>(null);

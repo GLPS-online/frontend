@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import useAutoReload from "../../hooks/useAutoReload";
-import { getCurrentTimetableIndex } from "../../utils/time";
+import useAutoReload from "../../../hooks/useAutoReload";
+import { getCurrentTimetableIndex } from "../../../utils/time";
 import TimetableItem from "./TimetableItem";
 import * as S from "./TimetableStyled";
-import Ptla from "../../interfaces/Ptla";
-import { classInfo } from "../../interfaces/Timetable";
+import Ptla from "../../../interfaces/Ptla";
+import { classInfo } from "../../../interfaces/Timetable";
 
 type Props = {
   table: classInfo[];

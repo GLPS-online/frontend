@@ -8,11 +8,17 @@ export const TableContainer = styled.div`
   margin: 30px 0;
 `;
 
-export const ActionBar = styled.div<{ $visible: boolean }>`
+export const ActionBar = styled.div`
   position: relative;
-  display: ${({ $visible }) => ($visible ? "flex;" : "none;")};
+  display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+export const ActionButtons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 export const SearchBarContainer = styled.div`

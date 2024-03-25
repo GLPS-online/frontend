@@ -1,8 +1,8 @@
 import { isMobile, isBrowser } from "react-device-detect";
 import * as S from "./NametagStyled";
-import Ptla from "../../../interfaces/Ptla";
+import Ptla from "../../interfaces/Ptla";
+import useToast from "../../hooks/useToast";
 import Toast from "../Toast/Toast";
-import useToast from "../../../hooks/useToast";
 
 type Props = {
   data: Ptla | null;
