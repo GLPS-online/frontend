@@ -161,7 +161,7 @@ export default function Table({
       {filteredData.map((elem: Person, index) => (
         <S.RowContainer key={`${elem._id}${index}`}>
           <S.CheckBox
-            // name={elem._id}
+            name={elem._id}
             type={selectable && action !== "default" ? "checkbox" : "hidden"}
             value={elem._id}
             checked={selectedItems.has(elem._id)}
