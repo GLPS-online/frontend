@@ -1,14 +1,13 @@
-import useLoadAmount from "../../../hooks/useLoadAmount";
 import useSearches from "../../../hooks/useSearches";
-import useAutoReload from "../../../hooks/useAutoReload";
-import useInifiniteScroll from "../../../hooks/useInfiniteScroll";
 import Row from "../Row/Row";
 import SearchBar from "../SearchBar/SearchBar";
 import * as S from "./TableStyled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SearchOption from "../../../interfaces/SearchOptions";
 import Person from "../../../interfaces/Person";
 import useCheckbox from "../../../hooks/useCheckbox";
+
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   fetchFunction: (() => Person[]) | (() => Promise<any>);
@@ -23,15 +22,20 @@ export default function Table({
   selectable = false,
   onExpand,
 }: Props) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState<Person[]>([]);
+  const { data } = useQuery({
+    queryKey: ["repoData"],
+    queryFn: fetchFunction,
+    initialData: [],
+  });
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();
-  const { filteredData, searches, changeSearches } = useSearches(
-    data,
-    selectedItems,
-    searchOptions
-  );
+
+  // const { filteredData, searches, changeSearches } = useSearches(
+  //   data,
+  //   selectedItems,
+  //   searchOptions
+  // );
+  const filteredData: Person[] = data;
   if (selectedItems.length !== 0) {
     filteredData.sort((a, b) => {
       const a_inc = selectedItems.includes(a._id);
@@ -45,44 +49,39 @@ export default function Table({
       } else return 0;
     });
   }
-  const { displayedData, increaseLoadAmount, isThereMore } =
-    useLoadAmount(filteredData);
+  // const { displayedData, increaseLoadAmount, isThereMore } =
+  //   useLoadAmount(filteredData);
   const [action, setAction] = useState<string>("default");
 
-  const refresh = () => {
-    handleFetch();
-  };
+  // const ref = useInifiniteScroll(increaseLoadAmount, isPending);
 
-  useAutoReload(refresh);
-  const ref = useInifiniteScroll(increaseLoadAmount, isLoading);
+  // async function handleFetch() {
+  //   setIsLoading(true);
+  //   const newData = await fetchFunction();
+  //   setData(newData);
+  //   setIsLoading(false);
+  // }
 
-  async function handleFetch() {
-    setIsLoading(true);
-    const newData = await fetchFunction();
-    setData(newData);
-    setIsLoading(false);
-  }
-
-  useEffect(() => {
-    handleFetch();
-  }, []);
+  // useEffect(() => {
+  //   handleFetch();
+  // }, []);
 
   return (
     <S.TableContainer>
-      <SearchBar
+      {/* <SearchBar
         searches={searches}
         changeSearches={changeSearches}
         searchOptions={searchOptions}
-      />
+      /> */}
       <S.ActionBar $visible={selectable}>
         <S.CheckBox
           type={action !== "default" ? "checkbox" : "hidden"}
-          disabled={isThereMore}
+          disabled={filteredData.length > 50}
           checked={
             selectedItems.length !== 0 &&
-            displayedData.length === selectedItems.length
+            filteredData.length === selectedItems.length
           }
-          onClick={(e) => handleCheckAll(e, displayedData)}
+          onClick={(e) => handleCheckAll(e, filteredData)}
           value={"all"}
           onChange={(e) => {}}
         />
@@ -105,7 +104,7 @@ export default function Table({
           취소
         </button>
       </S.ActionBar>
-      {displayedData.map((elem: Person) => (
+      {filteredData.map((elem: Person) => (
         <S.RowContainer key={elem._id}>
           <S.CheckBox
             type={selectable && action !== "default" ? "checkbox" : "hidden"}
@@ -121,12 +120,6 @@ export default function Table({
           />
         </S.RowContainer>
       ))}
-
-      {!isLoading && isThereMore ? (
-        <S.EndOfList ref={ref}>-loadging more items-</S.EndOfList>
-      ) : (
-        <S.EndOfList>-end of list-</S.EndOfList>
-      )}
     </S.TableContainer>
   );
 }
