@@ -39,9 +39,7 @@ export default function StudentExpanded({ student }: { student: Student }) {
           <Nametag data={floorLA} />
         </S.Cell>
       </S.Cells>
-      <Link to={`/timetables`} state={{ className: student.className }}>
-        수업 시간표
-      </Link>
+      <Link to={`/timetables/${student.className}`}>수업 시간표</Link>
       <Link to={`/student/${student._id}`}>세부정보/수정</Link>
     </S.StudentExpandedContainer>
   );

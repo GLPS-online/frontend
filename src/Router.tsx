@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <AdminPage />,
       },
       {
-        path: "timetables",
+        path: "timetables/:className?",
         element: <TimetablePage />,
       },
       {

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Student from "../../interfaces/Student";
 import { fetchStudent, updateStudent } from "../../api";
 import * as S from "./StudentPageStyled";
@@ -15,6 +15,8 @@ export default function StudentPage() {
     const newStudent = await fetchStudent(id);
     setStudent(newStudent);
   }
+
+  const navigate = useNavigate();
 
   async function onEdit(body: Object) {
     if (id) {
@@ -35,6 +37,8 @@ export default function StudentPage() {
         <EditableInfo student={student} onEdit={onEdit} />
         <LifeInfo student={student} />
         <OtherInfo student={student} />
+        <button onClick={() => navigate(-1)}>돌아가기</button>
+        <button onClick={() => navigate("/")}>홈으로</button>
       </S.PageContainer>
     </>
   ) : (
@@ -42,7 +46,8 @@ export default function StudentPage() {
       cannot find a student with id : {id}
       <br />
       <br />
-      <Link to={"/"}>홈으로 돌아가기</Link>
+      <button onClick={() => navigate(-1)}>돌아가기</button>
+      <button onClick={() => navigate("/")}>홈으로</button>
     </S.PageContainer>
   );
 }
