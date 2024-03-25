@@ -119,28 +119,18 @@ export default function Table({
             value={"all"}
             onChange={(e) => {}}
           />
-          <select value={action} onChange={(e) => setAction(e.target.value)}>
-            <option id="1" value={"default"}>
-              액션 선택
-            </option>
-            <option id="2" value={"study"}>
-              2자습신청
-            </option>
-            <option id="3" value={"shuttle"}>
-              목발셔틀신청
-            </option>
-            <option id="4" value={"eop"}>
-              EOP 적발
-            </option>
-            <option id="5" value={"green"}>
-              그린카드
-            </option>
-            <option id="6" value={"yellow"}>
-              옐로카드
-            </option>
-            <option id="7" value={"red"}>
-              레드카드
-            </option>
+          <select
+            name="action"
+            value={action}
+            onChange={(e) => setAction(e.target.value)}
+          >
+            <option value={"default"}>액션 선택</option>
+            <option value={"study"}>2자습신청</option>
+            <option value={"shuttle"}>목발셔틀신청</option>
+            <option value={"eop"}>EOP 적발</option>
+            <option value={"green"}>그린카드</option>
+            <option value={"yellow"}>옐로카드</option>
+            <option value={"red"}>레드카드</option>
           </select>
           <S.ActionButtons>
             <button
@@ -160,7 +150,7 @@ export default function Table({
               onClick={() => {
                 clearItems();
                 setAction("default");
-                window.location.reload();
+                // window.location.reload();
               }}
             >
               취소
@@ -168,8 +158,8 @@ export default function Table({
           </S.ActionButtons>
         </S.ActionBar>
       )}
-      {filteredData.map((elem: Person) => (
-        <S.RowContainer key={elem._id}>
+      {filteredData.map((elem: Person, index) => (
+        <S.RowContainer key={`${elem._id}${index}`}>
           <S.CheckBox
             // name={elem._id}
             type={selectable && action !== "default" ? "checkbox" : "hidden"}
