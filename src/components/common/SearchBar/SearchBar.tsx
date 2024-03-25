@@ -1,3 +1,4 @@
+import { useSearchParams } from "react-router-dom";
 import SearchOption from "../../../interfaces/SearchOptions";
 import * as S from "./SearchBarStyled";
 
@@ -12,18 +13,32 @@ export default function SearchBar({
   changeSearches,
   searchOptions,
 }: Props) {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const name = searchParams.get("name") || "";
   return (
     <S.SearchBarContainer>
       {searchOptions.map((searchOption, i) => (
         <S.SearchBarInput
           autoFocus={i === 0}
+          autoComplete="off"
           key={i}
           name={searchOption.propName}
           type={searchOption.inputType}
+          //inputmode numeric
           placeholder={searchOption.placeholder}
-          value={searches[searchOption.propName] ?? ""}
+          value={name}
           onChange={(e) => {
-            changeSearches(e.target.value, searchOption.propName);
+            if (!e.target.value) {
+              searchParams.delete("name");
+              setSearchParams(searchParams);
+            } else {
+              setSearchParams(
+                { name: e.target.value },
+                {
+                  replace: true,
+                }
+              );
+            }
           }}
         />
       ))}

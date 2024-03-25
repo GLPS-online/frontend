@@ -15,6 +15,22 @@ export const ActionBar = styled.div<{ $visible: boolean }>`
   align-items: center;
 `;
 
+export const SearchBarContainer = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 15px;
+`;
+
+export const SearchBarInput = styled.input`
+  width: 33%;
+  font-size: 20px;
+  border: solid;
+  -webkit-ime-mode: active;
+  -moz-ime-mode: active;
+  -ms-ime-mode: active;
+  ime-mode: active;
+`;
+
 export const RowContainer = styled.div`
   position: relative;
   display: flex;

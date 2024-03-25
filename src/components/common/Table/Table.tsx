@@ -1,6 +1,4 @@
-import useSearches from "../../../hooks/useSearches";
 import Row from "../Row/Row";
-import SearchBar from "../SearchBar/SearchBar";
 import * as S from "./TableStyled";
 import { useState } from "react";
 import SearchOption from "../../../interfaces/SearchOptions";
@@ -8,6 +6,8 @@ import Person from "../../../interfaces/Person";
 import useCheckbox from "../../../hooks/useCheckbox";
 
 import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 
 type Props = {
   fetchFunction: (() => Person[]) | (() => Promise<any>);
@@ -22,7 +22,7 @@ export default function Table({
   selectable = false,
   onExpand,
 }: Props) {
-  const { data } = useQuery({
+  const { isPending, error, data } = useQuery({
     queryKey: ["repoData"],
     queryFn: fetchFunction,
     initialData: [],
@@ -30,12 +30,34 @@ export default function Table({
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();
 
-  // const { filteredData, searches, changeSearches } = useSearches(
-  //   data,
-  //   selectedItems,
-  //   searchOptions
-  // );
-  const filteredData: Person[] = data;
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // let filteredData: Person[] = data;
+  const filteredData: Person[] = data.filter((datum: any) => {
+    if (selectedItems.includes(datum._id)) {
+      return true;
+    }
+    return searchOptions.every((searchOption) => {
+      if (!searchParams.get(searchOption.propName)) {
+        return true;
+      }
+      switch (searchOption.searchType) {
+        case "string":
+          return datum[searchOption.propName]
+            .toString()
+            .includes(searchParams.get(searchOption.propName));
+        case "number":
+          return (
+            searchParams.get(searchOption.propName) === "" ||
+            datum[searchOption.propName] ===
+              Number(searchParams.get(searchOption.propName))
+          );
+        default:
+          return false;
+      }
+    });
+  });
+
   if (selectedItems.length !== 0) {
     filteredData.sort((a, b) => {
       const a_inc = selectedItems.includes(a._id);
@@ -49,30 +71,42 @@ export default function Table({
       } else return 0;
     });
   }
-  // const { displayedData, increaseLoadAmount, isThereMore } =
-  //   useLoadAmount(filteredData);
   const [action, setAction] = useState<string>("default");
 
-  // const ref = useInifiniteScroll(increaseLoadAmount, isPending);
+  if (isPending) return <Spinner />;
 
-  // async function handleFetch() {
-  //   setIsLoading(true);
-  //   const newData = await fetchFunction();
-  //   setData(newData);
-  //   setIsLoading(false);
-  // }
-
-  // useEffect(() => {
-  //   handleFetch();
-  // }, []);
+  if (error) return "An error has occurred: " + error.message;
 
   return (
     <S.TableContainer>
-      {/* <SearchBar
-        searches={searches}
-        changeSearches={changeSearches}
-        searchOptions={searchOptions}
-      /> */}
+      <S.SearchBarContainer>
+        {searchOptions.map((searchOption, i) => (
+          <S.SearchBarInput
+            key={i}
+            autoComplete="off"
+            type={searchOption.inputType}
+            inputMode={searchOption.inputType === "number" ? "numeric" : "text"}
+            placeholder={searchOption.placeholder}
+            value={searchParams.get(searchOption.propName) || ""}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                (document.activeElement as HTMLElement).blur();
+              }
+            }}
+            onChange={(e) => {
+              if (!e.target.value) {
+                searchParams.delete(searchOption.propName);
+                setSearchParams(searchParams);
+              } else {
+                searchParams.set(searchOption.propName, e.target.value);
+                setSearchParams(searchParams, {
+                  replace: true,
+                });
+              }
+            }}
+          />
+        ))}
+      </S.SearchBarContainer>
       <S.ActionBar $visible={selectable}>
         <S.CheckBox
           type={action !== "default" ? "checkbox" : "hidden"}
@@ -116,6 +150,7 @@ export default function Table({
             elem={elem}
             props={searchOptions}
             selected={selectedItems.includes(elem._id) ? action : "default"}
+            expanded={searchParams.get("expanded") === elem._id}
             onExpand={onExpand && (() => onExpand(elem))}
           />
         </S.RowContainer>
