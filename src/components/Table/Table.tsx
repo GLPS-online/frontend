@@ -1,12 +1,11 @@
-import Row from "../Row/Row";
 import * as S from "./TableStyled";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
 import SearchOption from "../../interfaces/SearchOption";
 import Person from "../../interfaces/Person";
 import useCheckbox from "../../hooks/useCheckbox";
-
-import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "react-router-dom";
+import Row from "../Row/Row";
 import Spinner from "../Spinner/Spinner";
 
 type Props = {
@@ -32,7 +31,7 @@ export default function Table({
 
   const [searchParams, setSearchParams] = useSearchParams();
   const filteredData: Person[] = data.filter((datum: any) => {
-    if (selectedItems.includes(datum._id)) {
+    if (selectedItems.has(datum._id)) {
       return true;
     }
     return searchOptions.every((searchOption) => {
@@ -56,10 +55,10 @@ export default function Table({
     });
   });
 
-  if (selectedItems.length !== 0) {
+  if (selectedItems.size !== 0) {
     filteredData.sort((a, b) => {
-      const a_inc = selectedItems.includes(a._id);
-      const b_inc = selectedItems.includes(b._id);
+      const a_inc = selectedItems.has(a._id);
+      const b_inc = selectedItems.has(b._id);
       if (a_inc && b_inc) {
         return a.korName.localeCompare(b.korName);
       } else if (a_inc) {
@@ -82,6 +81,7 @@ export default function Table({
           <S.SearchBarInput
             key={i}
             autoComplete="off"
+            name={searchOption.propName}
             type={searchOption.inputType}
             inputMode={searchOption.inputType === "number" ? "numeric" : "text"}
             placeholder={searchOption.placeholder}
@@ -108,31 +108,49 @@ export default function Table({
       {selectable && (
         <S.ActionBar>
           <S.CheckBox
+            name="all"
             type={action !== "default" ? "checkbox" : "hidden"}
             disabled={filteredData.length > 50}
             checked={
-              selectedItems.length !== 0 &&
-              filteredData.length === selectedItems.length
+              selectedItems.size !== 0 &&
+              filteredData.length === selectedItems.size
             }
             onClick={(e) => handleCheckAll(e, filteredData)}
             value={"all"}
             onChange={(e) => {}}
           />
           <select value={action} onChange={(e) => setAction(e.target.value)}>
-            <option value={"default"}>액션 선택</option>
-            <option value={"study"}>2자습신청</option>
-            <option value={"shuttle"}>목발셔틀신청</option>
-            <option value={"eop"}>EOP 적발</option>
-            <option value={"green"}>그린카드</option>
-            <option value={"yellow"}>옐로카드</option>
-            <option value={"red"}>레드카드</option>
+            <option id="1" value={"default"}>
+              액션 선택
+            </option>
+            <option id="2" value={"study"}>
+              2자습신청
+            </option>
+            <option id="3" value={"shuttle"}>
+              목발셔틀신청
+            </option>
+            <option id="4" value={"eop"}>
+              EOP 적발
+            </option>
+            <option id="5" value={"green"}>
+              그린카드
+            </option>
+            <option id="6" value={"yellow"}>
+              옐로카드
+            </option>
+            <option id="7" value={"red"}>
+              레드카드
+            </option>
           </select>
           <S.ActionButtons>
             <button
-              disabled={selectedItems.length === 0}
+              hidden={action === "default"}
+              disabled={selectedItems.size === 0}
               onClick={() => {
                 alert("액션");
-                clearItems();
+                window.location.reload();
+                // clearItems();
+                // setAction("default");
               }}
             >
               확인
@@ -142,6 +160,7 @@ export default function Table({
               onClick={() => {
                 clearItems();
                 setAction("default");
+                window.location.reload();
               }}
             >
               취소
@@ -152,9 +171,10 @@ export default function Table({
       {filteredData.map((elem: Person) => (
         <S.RowContainer key={elem._id}>
           <S.CheckBox
+            // name={elem._id}
             type={selectable && action !== "default" ? "checkbox" : "hidden"}
             value={elem._id}
-            checked={selectedItems.includes(elem._id)}
+            checked={selectedItems.has(elem._id)}
             onChange={handleCheckboxChange}
           />
           <S.RowBox
@@ -175,7 +195,7 @@ export default function Table({
             <Row
               elem={elem}
               props={searchOptions}
-              selected={selectedItems.includes(elem._id) ? action : "default"}
+              selected={selectedItems.has(elem._id) ? action : "default"}
               onExpand={
                 searchParams.get("expanded") === elem._id && onExpand
                   ? () => onExpand(elem)
