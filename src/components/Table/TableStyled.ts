@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as ClearSvg } from "../../assets/icons/clear.svg";
 
 export const TableContainer = styled.div`
   width: 460px;
@@ -27,14 +28,29 @@ export const SearchBarContainer = styled.div`
   gap: 15px;
 `;
 
-export const SearchBarInput = styled.input`
+export const SearchBarInputContainer = styled.div`
   width: 33%;
+  display: flex;
+  position: relative;
+  align-items: center;
+`;
+
+export const SearchBarInput = styled.input`
+  width: 100%;
   font-size: 20px;
   border: solid;
   -webkit-ime-mode: active;
   -moz-ime-mode: active;
   -ms-ime-mode: active;
   ime-mode: active;
+`;
+
+export const ClearIcon = styled(ClearSvg)`
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  width: 20px;
+  height: 20px;
 `;
 
 export const RowContainer = styled.div`

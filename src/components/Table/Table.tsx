@@ -78,31 +78,47 @@ export default function Table({
     <S.TableContainer>
       <S.SearchBarContainer>
         {searchOptions.map((searchOption, i) => (
-          <S.SearchBarInput
-            key={i}
-            autoComplete="off"
-            name={searchOption.propName}
-            type={searchOption.inputType}
-            inputMode={searchOption.inputType === "number" ? "numeric" : "text"}
-            placeholder={searchOption.placeholder}
-            value={searchParams.get(searchOption.propName) || ""}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                (document.activeElement as HTMLElement).blur();
+          <S.SearchBarInputContainer key={i}>
+            <S.SearchBarInput
+              autoComplete="off"
+              name={searchOption.propName}
+              type={searchOption.inputType}
+              inputMode={
+                searchOption.inputType === "number" ? "numeric" : "text"
               }
-            }}
-            onChange={(e) => {
-              if (!e.target.value) {
+              placeholder={searchOption.placeholder}
+              value={searchParams.get(searchOption.propName) || ""}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  (document.activeElement as HTMLElement).blur();
+                }
+              }}
+              onChange={(e) => {
+                if (!e.target.value) {
+                  if (
+                    e.nativeEvent instanceof InputEvent &&
+                    e.nativeEvent.isComposing
+                  ) {
+                    return;
+                  }
+                  searchParams.delete(searchOption.propName);
+                  setSearchParams(searchParams);
+                } else {
+                  searchParams.set(searchOption.propName, e.target.value);
+                  setSearchParams(searchParams, {
+                    replace: true,
+                  });
+                }
+              }}
+            />
+            <S.ClearIcon
+              display={searchParams.get(searchOption.propName) ? "" : "none"}
+              onClick={() => {
                 searchParams.delete(searchOption.propName);
                 setSearchParams(searchParams);
-              } else {
-                searchParams.set(searchOption.propName, e.target.value);
-                setSearchParams(searchParams, {
-                  replace: true,
-                });
-              }
-            }}
-          />
+              }}
+            />
+          </S.SearchBarInputContainer>
         ))}
       </S.SearchBarContainer>
       {selectable && (
