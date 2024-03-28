@@ -45,7 +45,9 @@ export default function TimetablePage() {
       <S.ClassSelect
         value={className}
         name="className"
-        onChange={(e) => navigate(`/timetables/${e.target.value}`)}
+        onChange={(e) =>
+          navigate(`/timetables/${e.target.value}`, { replace: true })
+        }
       >
         {classList?.map((className, i) => (
           <option key={i} value={className}>

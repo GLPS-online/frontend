@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const client = axios.create({
   baseURL: BASE_URL,
@@ -14,7 +14,7 @@ export async function fetchStudents() {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -24,7 +24,7 @@ export async function fetchStudent(id: string) {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 export async function updateStudent(id: string, body: Object) {
@@ -33,7 +33,7 @@ export async function updateStudent(id: string, body: Object) {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -43,7 +43,7 @@ export async function fetchPtlas() {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -53,7 +53,7 @@ export async function fetchPtla(id: string) {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -78,7 +78,7 @@ export async function searchPtla({
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -88,7 +88,7 @@ export async function fetchClassList() {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -98,7 +98,7 @@ export async function fetchTimetable(className: string) {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -117,7 +117,7 @@ export async function createTimeTable(
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -127,7 +127,7 @@ export async function deleteTimetable(className: string) {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -137,7 +137,7 @@ export async function initialize(body: string) {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }
 
@@ -147,6 +147,6 @@ export async function endOfCamp() {
     const result = response.data;
     return result;
   } catch (err) {
-    alert(err);
+    console.log(err);
   }
 }

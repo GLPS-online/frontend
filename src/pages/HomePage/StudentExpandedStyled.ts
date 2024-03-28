@@ -21,7 +21,9 @@ export const Cells = styled.div`
 
 export const Cell = styled.div`
   width: 120px;
+  height: 30px;
   text-align: center;
+  align-content: center;
 `;
 
 export const PtlaInfo = styled.div`

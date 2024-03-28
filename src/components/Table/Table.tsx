@@ -95,20 +95,18 @@ export default function Table({
               }}
               onChange={(e) => {
                 if (!e.target.value) {
-                  if (
-                    e.nativeEvent instanceof InputEvent &&
-                    e.nativeEvent.isComposing
-                  ) {
-                    return;
-                  }
                   searchParams.delete(searchOption.propName);
-                  setSearchParams(searchParams);
+                  setSearchParams(searchParams, {
+                    replace: true,
+                  });
                 } else {
                   searchParams.set(searchOption.propName, e.target.value);
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 }
+                console.log(e.target.value);
+                console.log(e.nativeEvent);
               }}
             />
             <S.ClearIcon
@@ -185,6 +183,9 @@ export default function Table({
           />
           <S.RowBox
             onClick={() => {
+              if (window.getSelection()?.toString().length) {
+                return;
+              }
               if (searchParams.get("expanded") === elem._id) {
                 searchParams.delete("expanded");
                 setSearchParams(searchParams, {
