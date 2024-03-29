@@ -19,7 +19,7 @@ export default function Nametag({
     useToast();
 
   if (!data) {
-    return;
+    return <div></div>;
   }
   const { division, wave, korName, phone } = data;
 

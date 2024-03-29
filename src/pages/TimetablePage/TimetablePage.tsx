@@ -9,14 +9,15 @@ import { classInfo } from "../../interfaces/Timetable";
 import Ptla from "../../interfaces/Ptla";
 
 export default function TimetablePage() {
-  const { className = "1" } = useParams();
+  const navigate = useNavigate();
+  const classList = useClassList();
+  const { className = classList[0] } = useParams();
   const [data, setData] = useState<{
     advisor: string;
     office: string;
     table: classInfo[];
   }>({ advisor: "", office: "", table: [] });
   const [classPA, setClassPA] = useState<Ptla | null>(null);
-  const classList = useClassList();
 
   async function handleFetchTable(className: string) {
     const newData = await fetchTimetable(className);
@@ -27,7 +28,6 @@ export default function TimetablePage() {
     const res = await searchPtla(params);
     return res;
   }
-  let navigate = useNavigate();
 
   useEffect(() => {
     handleFetchTable(className);

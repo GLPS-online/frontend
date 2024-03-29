@@ -1,7 +1,7 @@
 interface Ptla {
   _id: string;
   user_id: string;
-  password: number;
+  password: string;
   admin: boolean;
   korName: string;
   engName: string;

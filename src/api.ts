@@ -4,6 +4,7 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 console.log(BASE_URL);
 const client = axios.create({
   baseURL: BASE_URL,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
@@ -96,6 +97,35 @@ export async function fetchClassList() {
 export async function fetchTimetable(className: string) {
   try {
     const response = await client.get(`/timetables/${className}`);
+    const result = response.data;
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function signUp(data: object) {
+  try {
+    const response = await client.post(`/auth/signup`, data);
+    // if(!response.ok){
+
+    // }
+    const result = response.data;
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function logIn(data: object) {
+  try {
+    console.log(data);
+    const response = await client.post(`/auth/login`, data, {
+      withCredentials: true,
+    });
+    // if(!response.ok){
+
+    // }
     const result = response.data;
     return result;
   } catch (err) {

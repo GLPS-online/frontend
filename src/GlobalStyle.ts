@@ -48,10 +48,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  /* Firefox */
+  /* Firefox
   input[type=number] {
     -moz-appearance: textfield;
-  }
+  } */
 
   button {
     border: none;
