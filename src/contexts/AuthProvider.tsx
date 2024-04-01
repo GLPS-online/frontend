@@ -14,10 +14,12 @@ export default function AuthProvider({
 }) {
   function getUser() {
     const item = localStorage.getItem("user");
-    if (!item) {
-      return null;
-    }
-    return JSON.parse(item);
+    const parsed = item !== (undefined || null) ? JSON.parse(item) : null;
+    return parsed;
+    // if (!item) {
+    //   return null;
+    // }
+    // return JSON.parse(item);
   }
 
   async function login(data: { user_id: string; password: string }) {

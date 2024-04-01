@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { client } from "./api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./contexts/AuthProvider";
-// import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function LoginRedirector({ children }: { children: any }) {
   const navigate = useNavigate();
-  const { logout } = useAuth();
+  const { getUser, logout } = useAuth();
 
   useEffect(() => {
     const interceptor = client.interceptors.response.use(
@@ -26,8 +26,8 @@ export default function LoginRedirector({ children }: { children: any }) {
       client.interceptors.response.eject(interceptor);
     };
   }, [logout, navigate]);
-  // if (!getUser()) {
-  //   return <Navigate to="/login" />;
-  // }
+  if (!getUser()) {
+    return <Navigate to="/login" />;
+  }
   return <>{children}</>;
 }
