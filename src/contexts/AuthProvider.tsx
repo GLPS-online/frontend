@@ -14,6 +14,9 @@ export default function AuthProvider({
 }) {
   function getUser() {
     const item = localStorage.getItem("user");
+    if (item == undefined) {
+      return null;
+    }
     const parsed = item !== (undefined || null) ? JSON.parse(item) : null;
     return parsed;
     // if (!item) {
