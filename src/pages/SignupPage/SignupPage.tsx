@@ -30,6 +30,7 @@ export default function SignupPage() {
     <div>
       <h1>회원가입</h1>
       <input
+        name="id"
         type="text"
         autoCapitalize="none"
         value={data.user_id}
@@ -37,6 +38,7 @@ export default function SignupPage() {
         placeholder="아이디"
       />
       <input
+        name="password"
         type="password"
         autoCapitalize="none"
         value={data.password}
@@ -44,12 +46,14 @@ export default function SignupPage() {
         placeholder="비밀번호"
       />
       <input
+        name="korName"
         type="text"
         value={data.korName}
         onChange={(e) => setData({ ...data, korName: e.target.value })}
         placeholder="국문 이름"
       />
       <input
+        name="engName"
         type="text"
         autoCapitalize="words"
         value={data.engName}
@@ -57,6 +61,7 @@ export default function SignupPage() {
         placeholder="영문 이름"
       />
       <input
+        name="wave"
         type="number"
         inputMode="numeric"
         value={data.wave}
@@ -64,6 +69,7 @@ export default function SignupPage() {
         placeholder="기수"
       />
       <select
+        name="gender"
         value={data.gender}
         onChange={(e) => setData({ ...data, gender: e.target.value })}
       >
@@ -78,6 +84,7 @@ export default function SignupPage() {
         </option>
       </select>
       <input
+        name="phone"
         type="tel"
         pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
         value={data.phone}
@@ -85,6 +92,7 @@ export default function SignupPage() {
         placeholder="휴대전화"
       />
       <select
+        name="division"
         value={data.division}
         onChange={(e) => setData({ ...data, division: e.target.value })}
       >
@@ -102,18 +110,21 @@ export default function SignupPage() {
         </option>
       </select>
       <input // 나중에 select option으로 바꾸기
+        name="role"
         type="text"
         value={data.role}
         onChange={(e) => setData({ ...data, role: e.target.value })}
         placeholder="역할"
       />
       <input // 나중에 select option으로 바꾸기
+        name="area"
         type="text"
         value={data.area}
         onChange={(e) => setData({ ...data, area: e.target.value })}
         placeholder="담당구역"
       />
       <input
+        name="roomNum"
         type="number"
         inputMode="numeric"
         value={data.roomNum}

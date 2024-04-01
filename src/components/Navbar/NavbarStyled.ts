@@ -10,12 +10,18 @@ export const NavbarContainer = styled.nav`
   padding: 20px 200px;
 `;
 
+export const UserArea = styled.div`
+  position: relative;
+`;
+
 export const ArrowDownButton = styled(ArrowDownSvg)`
   width: 25px;
   height: 25px;
+  cursor: pointer;
 `;
 
 export const ArrowUpButton = styled(ArrowUpSvg)`
   width: 25px;
   height: 25px;
+  cursor: pointer;
 `;
