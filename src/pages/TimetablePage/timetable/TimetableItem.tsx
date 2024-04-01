@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Nametag from "../../../components/Nametag/Nametag";
-import { searchPtla } from "../../../api";
+import Ptla from "@/interfaces/Ptla";
+import { searchPtla } from "@/api";
+import { classInfo } from "@/interfaces/Timetable";
+import Nametag from "@/components/Nametag/Nametag";
 import * as S from "./TimetableItemStyled";
-import Ptla from "../../../interfaces/Ptla";
-import { classInfo } from "../../../interfaces/Timetable";
 
 type Props = {
   elem: classInfo;

@@ -1,5 +1,5 @@
 import * as S from "./RowStyled";
-import SearchOption from "../../interfaces/SearchOption.js";
+import SearchOption from "@/interfaces/SearchOption.js";
 
 type Props = {
   elem: any;

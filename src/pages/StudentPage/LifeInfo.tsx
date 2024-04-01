@@ -1,4 +1,4 @@
-import Student from "../../interfaces/Student";
+import Student from "@/interfaces/Student";
 import * as S from "./StudentPageStyled";
 
 export default function LifeInfo({ student }: { student: Student }) {

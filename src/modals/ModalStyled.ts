@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as closeSvg } from "../assets/images/close.svg";
+import { ReactComponent as closeSvg } from "@/assets/images/close.svg";
 
 export const ModalContainer = styled.div`
   width: 100% !important;

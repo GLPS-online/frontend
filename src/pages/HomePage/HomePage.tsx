@@ -1,5 +1,5 @@
-import { fetchStudents } from "../../api";
-import Table from "../../components/Table/Table";
+import { fetchStudents } from "@/api";
+import Table from "@/components/Table/Table";
 import StudentExpanded from "./StudentExpanded";
 
 export default function HomePage() {

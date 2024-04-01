@@ -2,11 +2,11 @@ import * as S from "./TableStyled";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import SearchOption from "../../interfaces/SearchOption";
-import Person from "../../interfaces/Person";
-import useCheckbox from "../../hooks/useCheckbox";
-import Row from "../Row/Row";
-import Spinner from "../Spinner/Spinner";
+import SearchOption from "@/interfaces/SearchOption";
+import Person from "@/interfaces/Person";
+import useCheckbox from "@/hooks/useCheckbox";
+import Row from "@/components/Row/Row";
+import Spinner from "@/components/Spinner/Spinner";
 
 type Props = {
   fetchFunction: (() => Person[]) | (() => Promise<any>);

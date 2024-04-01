@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import * as S from "./NavbarStyled";
-import { useAuth } from "../../contexts/AuthProvider";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthProvider";
 import Dropdown from "./Dropdown";
+import * as S from "./NavbarStyled";
 
 export default function Navbar() {
   const { getUser } = useAuth();

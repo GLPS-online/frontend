@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from "styled-components";
-import { ReactComponent as CompletedSvg } from "../../assets/icons/completed.svg";
-import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
+import { ReactComponent as CompletedSvg } from "@/assets/icons/completed.svg";
+import { ReactComponent as CloseSvg } from "@/assets/icons/close.svg";
 
 const slideUp = keyframes`
   from {

@@ -1,4 +1,4 @@
-import { logIn, logOut } from "../api";
+import { logIn, logOut } from "@/api";
 import { createContext, useContext } from "react";
 
 const AuthContext = createContext<{
@@ -18,7 +18,6 @@ export default function AuthProvider({
       return null;
     }
     const parsed = JSON.parse(item);
-    console.log(parsed);
     return parsed;
   }
 

@@ -1,5 +1,5 @@
-import Table from "../../components/Table/Table";
-import { fetchPtlas } from "../../api";
+import Table from "@/components/Table/Table";
+import { fetchPtlas } from "@/api";
 
 export default function PtlaSearchPage() {
   return (

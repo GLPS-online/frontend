@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { getCourse } from "../../utils/etc";
-import Student from "../../interfaces/Student";
-import editSvg from "../../assets/icons/edit.svg";
-import saveSvg from "../../assets/icons/save.svg";
+import { getCourse } from "@/utils/etc";
+import Student from "@/interfaces/Student";
+import editSvg from "@/assets/icons/edit.svg";
+import saveSvg from "@/assets/icons/save.svg";
+import useClassList from "@/hooks/useClassList";
 import * as S from "./StudentPageStyled";
-import useClassList from "../../hooks/useClassList";
 
 export default function EditableInfo({
   student,

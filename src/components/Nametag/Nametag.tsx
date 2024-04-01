@@ -1,7 +1,7 @@
 import { isMobile, isBrowser } from "react-device-detect";
 import * as S from "./NametagStyled";
-import Ptla from "../../interfaces/Ptla";
-import useToast from "../../hooks/useToast";
+import Ptla from "@/interfaces/Ptla";
+import useToast from "@/hooks/useToast";
 import Toast from "../Toast/Toast";
 
 type Props = {

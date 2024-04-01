@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchClassList } from "../api";
-import { Timetable } from "../interfaces/Timetable";
+import { fetchClassList } from "@/api";
+import { Timetable } from "@/interfaces/Timetable";
 
 export default function useClassList() {
   const [classList, setClassList] = useState<string[]>([]);

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as ClearSvg } from "../../assets/icons/clear.svg";
+import { ReactComponent as ClearSvg } from "@/assets/icons/clear.svg";
 
 export const TableContainer = styled.div`
   width: 460px;

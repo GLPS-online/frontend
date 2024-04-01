@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Timetable from "./timetable/Timetable";
-import { searchPtla, fetchTimetable } from "../../api";
-import useClassList from "../../hooks/useClassList";
+import { searchPtla, fetchTimetable } from "@/api";
+import useClassList from "@/hooks/useClassList";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
-import Nametag from "../../components/Nametag/Nametag";
-import { classInfo } from "../../interfaces/Timetable";
-import Ptla from "../../interfaces/Ptla";
+import Nametag from "@/components/Nametag/Nametag";
+import { classInfo } from "@/interfaces/Timetable";
+import Ptla from "@/interfaces/Ptla";
 
 export default function TimetablePage() {
   const navigate = useNavigate();

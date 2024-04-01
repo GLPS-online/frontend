@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Person from "../interfaces/Person";
+import Person from "@/interfaces/Person";
 
 export default function useCheckbox() {
   const [selectedItems, setSelectedItems] = useState(new Set<string>());

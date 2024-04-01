@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { signUp } from "../../api";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { signUp } from "@/api";
 
 export default function SignupPage() {
   const [data, setData] = useState({
