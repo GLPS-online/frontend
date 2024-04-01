@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { logIn } from "../../api";
 import { useState } from "react";
+import { useAuth } from "../../contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [data, setData] = useState({
@@ -8,20 +9,24 @@ export default function LoginPage() {
     password: "",
   });
 
-  function handleLogin() {
+  const { login } = useAuth();
+
+  const navigate = useNavigate();
+
+  async function handleLogin() {
     try {
-      const newUser = logIn(data);
-      console.log(newUser);
+      // const newUser = logIn(data);
+      // console.log(newUser);
+      await login(data);
+      navigate("/");
     } catch (err) {
       console.log(err);
-    } finally {
-      // navigate("/");
     }
   }
 
   return (
     <div>
-      <h1>회원가입</h1>
+      <h1>로그인</h1>
       <input
         type="text"
         value={data.user_id}

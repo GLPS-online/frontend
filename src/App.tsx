@@ -1,6 +1,7 @@
 import GlobalStyle from "./GlobalStyle";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Router from "./Router";
+import AuthProvider from "./contexts/AuthProvider";
 const queryClient = new QueryClient();
 
 function App() {
@@ -8,7 +9,9 @@ function App() {
     <>
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        <Router />
+        <AuthProvider>
+          <Router />
+        </AuthProvider>
       </QueryClientProvider>
     </>
   );

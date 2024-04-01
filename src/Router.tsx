@@ -20,14 +20,7 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
-      {
-        path: "login",
-        element: <LoginPage />,
-      },
-      {
-        path: "signup",
-        element: <SignupPage />,
-      },
+
       {
         path: "admin",
         element: <AdminPage />,
@@ -49,6 +42,14 @@ const router = createBrowserRouter([
         element: <PtlaPage />,
       },
     ],
+  },
+  {
+    path: "login",
+    element: <LoginPage />,
+  },
+  {
+    path: "signup",
+    element: <SignupPage />,
   },
 ]);
 

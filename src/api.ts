@@ -1,8 +1,7 @@
 import axios from "axios";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
-console.log(BASE_URL);
-const client = axios.create({
+export const client = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
   headers: {
@@ -15,8 +14,9 @@ export async function fetchStudents() {
     const response = await client.get("/students");
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -25,8 +25,9 @@ export async function fetchStudent(id: string) {
     const response = await client.get(`/students/${id}`);
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 export async function updateStudent(id: string, body: Object) {
@@ -34,8 +35,9 @@ export async function updateStudent(id: string, body: Object) {
     const response = await client.put(`/students/${id}`, body);
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -44,8 +46,9 @@ export async function fetchPtlas() {
     const response = await client.get("/ptlas");
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -54,8 +57,9 @@ export async function fetchPtla(id: string) {
     const response = await client.get(`/ptlas/${id}`);
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -79,8 +83,9 @@ export async function searchPtla({
     });
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -89,8 +94,9 @@ export async function fetchClassList() {
     const response = await client.get("/timetables");
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -99,8 +105,9 @@ export async function fetchTimetable(className: string) {
     const response = await client.get(`/timetables/${className}`);
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -112,24 +119,43 @@ export async function signUp(data: object) {
     // }
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
 export async function logIn(data: object) {
   try {
     console.log(data);
-    const response = await client.post(`/auth/login`, data, {
-      withCredentials: true,
-    });
+    const response = await client.post(`/auth/login`, data);
     // if(!response.ok){
 
     // }
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
+  }
+}
+
+export async function logOut() {
+  try {
+    await client.delete(`/auth/logout`);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
+  }
+}
+
+export async function me() {
+  try {
+    const response = await client.get(`/auth/me`);
+    return response.data;
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -147,8 +173,9 @@ export async function createTimeTable(
     });
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -157,8 +184,9 @@ export async function deleteTimetable(className: string) {
     const response = await client.delete(`/timetables/${className}`);
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -167,8 +195,9 @@ export async function initialize(body: string) {
     const response = await client.post("/students", body);
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
 
@@ -177,7 +206,8 @@ export async function endOfCamp() {
     const response = await client.delete("/students");
     const result = response.data;
     return result;
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
   }
 }
