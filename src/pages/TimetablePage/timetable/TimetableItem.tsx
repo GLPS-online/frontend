@@ -8,7 +8,7 @@ import { classInfo } from "../../../interfaces/Timetable";
 type Props = {
   elem: classInfo;
   selected: boolean;
-  classPA: Ptla;
+  classPA: Ptla | null;
 };
 
 export default function TimetableItem({ elem, selected, classPA }: Props) {

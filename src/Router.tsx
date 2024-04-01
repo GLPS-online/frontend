@@ -20,7 +20,6 @@ const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
-
       {
         path: "admin",
         element: <AdminPage />,

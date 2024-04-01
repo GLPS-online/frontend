@@ -6,10 +6,11 @@ import LoginRedirector from "./LoginRedirector";
 function Layout() {
   return (
     <>
-      <LoginRedirector />
-      <Navbar />
-      <Outlet />
-      <Footer />
+      <LoginRedirector>
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </LoginRedirector>
     </>
   );
 }

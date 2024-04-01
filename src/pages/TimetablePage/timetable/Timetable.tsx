@@ -8,7 +8,7 @@ import { classInfo } from "../../../interfaces/Timetable";
 
 type Props = {
   table: classInfo[];
-  classPA: Ptla;
+  classPA: Ptla | null;
 };
 
 export default function Timetable({ table, classPA }: Props) {
@@ -29,7 +29,7 @@ export default function Timetable({ table, classPA }: Props) {
     <S.Container>
       {table?.map((elem, i) => (
         <TimetableItem
-          key={classPA._id + i}
+          key={(classPA?._id || Math.random().toString(36).substring(2, 5)) + i}
           elem={elem}
           selected={currentIndex === i}
           classPA={classPA}

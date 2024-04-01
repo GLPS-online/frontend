@@ -1,41 +1,38 @@
-import { logIn, logOut, me } from "../api";
-import Ptla from "../interfaces/Ptla";
-import { createContext, useContext, useEffect, useState } from "react";
+import { logIn, logOut } from "../api";
+import { createContext, useContext } from "react";
 
 const AuthContext = createContext<{
-  user: null | Ptla;
+  getUser: any;
   login: (arg0: any) => void;
   logout: () => void;
-}>({ user: null, login: () => {}, logout: () => {} });
+}>({ getUser: () => {}, login: () => {}, logout: () => {} });
 
 export default function AuthProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [user, setUser] = useState<Ptla | null>(null);
-
-  async function getme() {
-    const newUser = await me();
-    setUser(newUser);
+  function getUser() {
+    const item = localStorage.getItem("user");
+    if (!item) {
+      return null;
+    }
+    return JSON.parse(item);
   }
 
   async function login(data: { user_id: string; password: string }) {
     const newUser = await logIn(data);
-    setUser(newUser);
+    const str = JSON.stringify(newUser);
+    localStorage.setItem("user", str);
   }
 
   async function logout() {
     await logOut();
-    setUser(null);
+    localStorage.removeItem("user");
   }
 
-  useEffect(() => {
-    getme();
-  }, []);
-
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ getUser, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

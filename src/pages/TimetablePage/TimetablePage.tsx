@@ -64,7 +64,7 @@ export default function TimetablePage() {
         </S.InformationItem>
         <S.InformationItem>Office: {data?.office}</S.InformationItem>
       </S.InformationRow>
-      {classPA && <Timetable table={data.table} classPA={classPA} />}
+      {<Timetable table={data?.table} classPA={classPA} />}
       <button onClick={() => navigate(-1)}>돌아가기</button>
       <button onClick={() => navigate("/")}>홈으로</button>
     </S.Container>
