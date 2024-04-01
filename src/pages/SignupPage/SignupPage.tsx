@@ -31,12 +31,14 @@ export default function SignupPage() {
       <h1>회원가입</h1>
       <input
         type="text"
+        autoCapitalize="none"
         value={data.user_id}
         onChange={(e) => setData({ ...data, user_id: e.target.value })}
         placeholder="아이디"
       />
       <input
         type="password"
+        autoCapitalize="none"
         value={data.password}
         onChange={(e) => setData({ ...data, password: e.target.value })}
         placeholder="비밀번호"
@@ -49,6 +51,7 @@ export default function SignupPage() {
       />
       <input
         type="text"
+        autoCapitalize="words"
         value={data.engName}
         onChange={(e) => setData({ ...data, engName: e.target.value })}
         placeholder="영문 이름"

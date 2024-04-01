@@ -27,13 +27,17 @@ export default function LoginPage() {
     <div>
       <h1>로그인</h1>
       <input
+        name="id"
         type="text"
+        autoCapitalize="none"
         value={data.user_id}
         onChange={(e) => setData({ ...data, user_id: e.target.value })}
         placeholder="아이디"
       />
       <input
+        name="password"
         type="password"
+        autoCapitalize="none"
         value={data.password}
         onChange={(e) => setData({ ...data, password: e.target.value })}
         placeholder="비밀번호"
