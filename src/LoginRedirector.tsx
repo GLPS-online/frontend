@@ -26,8 +26,8 @@ export default function LoginRedirector({ children }: { children: any }) {
       client.interceptors.response.eject(interceptor);
     };
   }, [logout, navigate]);
-  if (!getUser()) {
-    return <Navigate to="/login" />;
-  }
+  // if (!getUser()) {
+  //   return <Navigate to="/login" />;
+  // }
   return <>{children}</>;
 }
