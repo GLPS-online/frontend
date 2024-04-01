@@ -12,17 +12,14 @@ export default function AuthProvider({
 }: {
   children: React.ReactNode;
 }) {
-  async function getUser() {
-    const item = await localStorage.getItem("user");
-    if (item === undefined) {
+  function getUser() {
+    const item = localStorage.getItem("user");
+    if (item === undefined || item === null) {
       return null;
     }
-    const parsed = item !== (undefined || null) ? JSON.parse(item) : null;
+    const parsed = JSON.parse(item);
+    console.log(parsed);
     return parsed;
-    // if (!item) {
-    //   return null;
-    // }
-    // return JSON.parse(item);
   }
 
   async function login(data: { user_id: string; password: string }) {
