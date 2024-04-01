@@ -12,8 +12,8 @@ export default function AuthProvider({
 }: {
   children: React.ReactNode;
 }) {
-  function getUser() {
-    const item = localStorage.getItem("user");
+  async function getUser() {
+    const item = await localStorage.getItem("user");
     if (item === undefined) {
       return null;
     }
