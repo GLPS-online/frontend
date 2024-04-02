@@ -183,7 +183,8 @@ export default function Table({
           />
           <S.RowBox
             onClick={() => {
-              if (window.getSelection()?.toString().length) {
+              if (!window.getSelection()?.isCollapsed) {
+                console.log(window.getSelection());
                 return;
               }
               if (searchParams.get("expanded") === elem._id) {

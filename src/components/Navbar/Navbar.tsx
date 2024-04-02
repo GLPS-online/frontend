@@ -12,7 +12,11 @@ export default function Navbar() {
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (toggleRef.current && !toggleRef.current.contains(e.target as Node)) {
+      if (
+        toggleRef.current &&
+        isMenuOpen &&
+        !toggleRef.current.contains(e.target as Node)
+      ) {
         console.log("auto close");
         setIsMenuOpen(false);
       }
