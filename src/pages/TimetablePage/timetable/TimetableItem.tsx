@@ -15,7 +15,7 @@ export default function TimetableItem({ elem, selected, classPA }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [subjectTA, setSubjectTA] = useState<Ptla | null>(null);
 
-  async function handleFetch(params: { role?: string; area?: string }) {
+  async function handleFetch(params: { position?: string; area?: string }) {
     const res = await searchPtla(params);
     return res;
   }

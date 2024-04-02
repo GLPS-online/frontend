@@ -31,21 +31,21 @@ export default function StudentPage() {
     }
   }, [id]);
 
-  return student ? (
-    <>
-      <S.PageContainer>
-        <EditableInfo student={student} onEdit={onEdit} />
-        <LifeInfo student={student} />
-        <OtherInfo student={student} />
-        <button onClick={() => navigate(-1)}>돌아가기</button>
-        <button onClick={() => navigate("/")}>홈으로</button>
-      </S.PageContainer>
-    </>
-  ) : (
+  return (
     <S.PageContainer>
-      cannot find a student with id : {id}
-      <br />
-      <br />
+      {student ? (
+        <>
+          <EditableInfo student={student} onEdit={onEdit} />
+          <LifeInfo student={student} />
+          <OtherInfo student={student} />
+        </>
+      ) : (
+        <>
+          cannot find a student with id : {id}
+          <br />
+          <br />
+        </>
+      )}
       <button onClick={() => navigate(-1)}>돌아가기</button>
       <button onClick={() => navigate("/")}>홈으로</button>
     </S.PageContainer>

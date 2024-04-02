@@ -24,20 +24,16 @@ export default function TimetablePage() {
     setData(newData);
   }
 
-  async function handleFetchPa(params: { role?: string; area?: string }) {
+  async function handleFetchPa(params: { position?: string; area?: string }) {
     const res = await searchPtla(params);
     return res;
   }
 
   useEffect(() => {
     handleFetchTable(className);
-    let role = "";
-    if (Number(className) < 10) {
-      role = `pa_class0${className}`;
-    } else {
-      role = `pa_class${className}`;
-    }
-    handleFetchPa({ role }).then((res) => setClassPA(res));
+    let position = `${className}반 PA`;
+
+    handleFetchPa({ position }).then((res) => setClassPA(res));
   }, [className]);
 
   return (

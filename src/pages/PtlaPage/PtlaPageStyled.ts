@@ -25,6 +25,7 @@ export const SaveButton = styled(SaveSvg)`
   width: 16px;
   height: 16px;
 `;
+
 export const Button = styled.button`
   width: 16px;
   height: 16px;

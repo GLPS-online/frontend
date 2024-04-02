@@ -12,7 +12,7 @@ export default function SignupPage() {
     gender: "",
     phone: "",
     division: "",
-    role: "",
+    position: "",
     area: "",
     roomNum: "",
   });
@@ -63,10 +63,10 @@ export default function SignupPage() {
       <input
         name="wave"
         type="number"
-        inputMode="numeric"
+        inputMode="decimal"
         value={data.wave}
         onChange={(e) => setData({ ...data, wave: e.target.value })}
-        placeholder="기수"
+        placeholder="기수 19 / 23.5 / 26 / .."
       />
       <select
         name="gender"
@@ -110,11 +110,11 @@ export default function SignupPage() {
         </option>
       </select>
       <input // 나중에 select option으로 바꾸기
-        name="role"
+        name="position"
         type="text"
-        value={data.role}
-        onChange={(e) => setData({ ...data, role: e.target.value })}
-        placeholder="역할"
+        value={data.position}
+        onChange={(e) => setData({ ...data, position: e.target.value })}
+        placeholder="직책"
       />
       <input // 나중에 select option으로 바꾸기
         name="area"

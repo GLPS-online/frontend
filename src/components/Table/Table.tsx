@@ -105,8 +105,8 @@ export default function Table({
                     replace: true,
                   });
                 }
-                console.log(e.target.value);
-                console.log(e.nativeEvent);
+                // console.log(e.target.value);
+                // console.log(e.nativeEvent);
               }}
             />
             <S.ClearIcon

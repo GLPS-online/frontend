@@ -62,19 +62,28 @@ export async function fetchPtla(id: string) {
     console.log(err.response?.data.msg);
   }
 }
-
+export async function updatePtla(id: string, body: Object) {
+  try {
+    const response = await client.put(`/ptlas/${id}`, body);
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
+  }
+}
 export async function searchPtla({
-  role,
+  position,
   area,
 }: {
-  role?: string;
+  position?: string;
   area?: string;
 }) {
   try {
     const response = await client.get("/ptlas", {
       params: {
-        ...(role && {
-          role,
+        ...(position && {
+          position,
         }),
         ...(area && {
           area,
@@ -204,6 +213,17 @@ export async function initialize(body: string) {
 export async function endOfCamp() {
   try {
     const response = await client.delete("/students");
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
+  }
+}
+
+export async function grantAdmin(id: string) {
+  try {
+    const response = await client.put(`auth/grantAdmin/${id}`);
     const result = response.data;
     return result;
   } catch (err: any) {

@@ -1,5 +1,6 @@
 import Table from "@/components/Table/Table";
 import { fetchPtlas } from "@/api";
+import { Link } from "react-router-dom";
 
 export default function PtlaSearchPage() {
   return (
@@ -13,7 +14,7 @@ export default function PtlaSearchPage() {
           searchType: "string",
         },
         {
-          propName: "role",
+          propName: "position",
           inputType: "string",
           placeholder: "역할",
           searchType: "string",
@@ -25,7 +26,11 @@ export default function PtlaSearchPage() {
           searchType: "string",
         },
       ]}
-      onExpand={() => <div>expanded</div>}
+      onExpand={(elem) => (
+        <div>
+          <Link to={`/ptla/${elem._id}`}>자세히;</Link>
+        </div>
+      )}
     />
   );
 }

@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { getCourse } from "@/utils/etc";
 import Student from "@/interfaces/Student";
-import editSvg from "@/assets/icons/edit.svg";
-import saveSvg from "@/assets/icons/save.svg";
 import useClassList from "@/hooks/useClassList";
 import * as S from "./StudentPageStyled";
+import { useAuth } from "@/contexts/AuthProvider";
 
 export default function EditableInfo({
   student,
@@ -13,6 +12,8 @@ export default function EditableInfo({
   student: Student;
   onEdit: (arg0: Object) => void;
 }) {
+  const { getUser } = useAuth();
+  const isEditable = getUser()?.admin > 0;
   const [isEdit, setIsEdit] = useState(false);
   const classList = useClassList();
 
@@ -40,11 +41,19 @@ export default function EditableInfo({
     <S.InfoContainer>
       {isEdit ? (
         <S.Button onClick={handleEdit}>
-          <S.ButtonImg src={saveSvg} alt="save" />
+          <S.SaveButton />
         </S.Button>
       ) : (
-        <S.Button onClick={() => setIsEdit(true)}>
-          <S.ButtonImg src={editSvg} alt="edit" />
+        <S.Button
+          onClick={() => {
+            if (isEditable) {
+              setIsEdit(true);
+            } else {
+              alert("관리자 문의");
+            }
+          }}
+        >
+          <S.EditButton />
         </S.Button>
       )}
 

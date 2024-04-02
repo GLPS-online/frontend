@@ -4,18 +4,24 @@ import * as S from "./DropdownStyled";
 
 export default function Dropdown() {
   const { getUser, logout } = useAuth();
-  const user = getUser();
   const navigate = useNavigate();
   return (
-    <S.DropDownContianer onClick={(e) => e.stopPropagation()}>
+    <S.DropDownContianer>
       <S.DropDownItem onClick={() => {}}>관리보드</S.DropDownItem>
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/ptlas");
+        }}
+      >
+        P·T·LA 검색
+      </S.DropDownItem>
       <S.DropDownItem onClick={() => {}}>식단표</S.DropDownItem>
       <S.DropDownItem onClick={() => {}}>동아리/종교활동</S.DropDownItem>
       <S.DropDownItem onClick={() => {}}>VQ 장소신청</S.DropDownItem>
       <S.DropDownItem onClick={() => {}}>카드현황</S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
-          // const slug = user?.role.includes("class") 어쩌고 저쩌고
+          // const slug = user?.position.includes("class") 어쩌고 저쩌고
           const slug = "";
           navigate(`/timetables/${slug}`);
         }}
@@ -24,10 +30,10 @@ export default function Dropdown() {
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
-          navigate(`/ptla/${user?._id}`);
+          navigate(`/ptla/${getUser()?._id}`);
         }}
       >
-        내 정보 / 수정
+        내 정보/수정
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
