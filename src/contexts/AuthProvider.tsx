@@ -1,13 +1,12 @@
 import { logIn, logOut } from "@/api";
-import Ptla from "@/interfaces/Ptla";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
 
 const AuthContext = createContext<{
   getUser: () => any;
   login: (arg0: any) => void;
   logout: () => void;
 }>({
-  getUser: () => {},
+  getUser: () => null,
   login: () => {},
   logout: () => {},
 });

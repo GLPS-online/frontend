@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchPtla, updatePtla } from "@/api";
+import { deletePtla, fetchPtla, grantAdmin, updatePtla } from "@/api";
 import Ptla from "@/interfaces/Ptla";
 import * as S from "./PtlaPageStyled";
 import OtherInfo from "./OtherInfo";
@@ -27,6 +27,27 @@ export default function PtlaPage() {
     }
   }
 
+  async function handleDelete(id: string) {
+    if (id) {
+      try {
+        await deletePtla(id);
+      } catch (e) {
+        console.log("deletion failed");
+      }
+    }
+  }
+
+  async function handleGrantAdmin(id: string) {
+    if (id) {
+      try {
+        const newPtla = await grantAdmin(id);
+        setPtla(newPtla);
+      } catch (e) {
+        console.log("update failed");
+      }
+    }
+  }
+
   useEffect(() => {
     if (id) {
       handleFecth(id);
@@ -37,7 +58,12 @@ export default function PtlaPage() {
       {Ptla ? (
         <>
           <OtherInfo Ptla={Ptla} />
-          <AdminInfo Ptla={Ptla} onEdit={handleUpdate} />
+          <AdminInfo
+            Ptla={Ptla}
+            onEdit={handleUpdate}
+            onGrantAdmin={handleGrantAdmin}
+            onDelete={handleDelete}
+          />
         </>
       ) : (
         <>

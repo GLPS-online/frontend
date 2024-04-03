@@ -12,6 +12,8 @@ export const NavbarContainer = styled.nav`
 
 export const UserArea = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
 `;
 
 export const ArrowDownButton = styled(ArrowDownSvg)`

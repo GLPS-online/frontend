@@ -72,6 +72,16 @@ export async function updatePtla(id: string, body: Object) {
     console.log(err.response?.data.msg);
   }
 }
+export async function deletePtla(id: string) {
+  try {
+    const response = await client.delete(`/ptlas/${id}`);
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    console.log(err.response?.status);
+    console.log(err.response?.data.msg);
+  }
+}
 export async function searchPtla({
   position,
   area,

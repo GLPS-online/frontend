@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const DropDownContianer = styled.ul`
+  z-index: 1;
   position: absolute;
   top: 50px;
   right: 20px;

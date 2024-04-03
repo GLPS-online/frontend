@@ -10,14 +10,12 @@ export default function Navbar() {
   const user = getUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  //back drop component
+  //redux
+
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-      if (
-        toggleRef.current &&
-        isMenuOpen &&
-        !toggleRef.current.contains(e.target as Node)
-      ) {
-        console.log("auto close");
+      if (toggleRef.current && !toggleRef.current.contains(e.target as Node)) {
         setIsMenuOpen(false);
       }
     }
