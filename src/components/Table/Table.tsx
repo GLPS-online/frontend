@@ -6,7 +6,6 @@ import SearchOption from "@/interfaces/SearchOption";
 import Person from "@/interfaces/Person";
 import useCheckbox from "@/hooks/useCheckbox";
 import Row from "@/components/Row/Row";
-import Spinner from "@/components/Spinner/Spinner";
 
 type Props = {
   fetchFunction: (() => Person[]) | (() => Promise<any>);
@@ -70,7 +69,7 @@ export default function Table({
   }
   const [action, setAction] = useState<string>("default");
 
-  if (isPending) return <Spinner />;
+  if (isPending) return <div>로딩 중</div>;
 
   if (error) return "An error has occurred: " + error.message;
 
