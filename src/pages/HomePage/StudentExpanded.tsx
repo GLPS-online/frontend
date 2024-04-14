@@ -36,6 +36,8 @@ export default function StudentExpanded({ student }: { student: Student }) {
       </S.Cells>
       <Link to={`/timetables/${student.className}`}>수업 시간표</Link>
       <Link to={`/student/${student._id}`}>세부정보/수정</Link>
+      <Link to={``}>EOP 검사</Link>
+      <Link to={``}>카드 확인</Link>
     </S.StudentExpandedContainer>
   );
 }

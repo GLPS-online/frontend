@@ -1,51 +1,28 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import styles from "./LoginPage.module.css";
+import AuthPageLogo from "@/components/AuthPage/AuthPageLogo";
+import AuthPageRedirector from "@/components/AuthPage/AuthPageRedirector";
+import LoginForm from "@/components/AuthPage/LoginForm";
 import { useAuth } from "@/contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
-  const [data, setData] = useState({
-    user_id: "",
-    password: "",
-  });
-
   const { login } = useAuth();
-
   const navigate = useNavigate();
-
-  async function handleLogin() {
+  async function handleLogin(data: { email: string; password: string }) {
     try {
-      // const newUser = logIn(data);
-      // console.log(newUser);
       await login(data);
       navigate("/");
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (error: any) {}
   }
-
   return (
-    <div>
-      <h1>로그인</h1>
-      <input
-        name="id"
-        type="text"
-        autoCapitalize="none"
-        value={data.user_id}
-        onChange={(e) => setData({ ...data, user_id: e.target.value })}
-        placeholder="아이디"
+    <div className={styles.container}>
+      <AuthPageLogo welcomeText="오늘도 만나서 반가워요!" />
+      <LoginForm handleLogin={handleLogin} />
+      <AuthPageRedirector
+        text="회원이 아니신가요?"
+        redirectText="회원가입하기"
+        redirectLink="/signup"
       />
-      <input
-        name="password"
-        type="password"
-        autoCapitalize="none"
-        value={data.password}
-        onChange={(e) => setData({ ...data, password: e.target.value })}
-        placeholder="비밀번호"
-      />
-      <button onClick={handleLogin}>로그인</button>
-      <div>
-        회원이 아니신가요? <Link to="/signup">회원가입하기</Link>
-      </div>
     </div>
   );
 }

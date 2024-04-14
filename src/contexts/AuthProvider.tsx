@@ -25,10 +25,16 @@ export default function AuthProvider({
     return parsed;
   }
 
-  async function login(data: { user_id: string; password: string }) {
-    const newUser = await logIn(data);
-    const str = JSON.stringify(newUser);
-    localStorage.setItem("user", str);
+  async function login(data: { email: string; password: string }) {
+    try {
+      const newUser = await logIn(data);
+      const str = JSON.stringify(newUser);
+      localStorage.setItem("user", str);
+      alert(newUser.korName + "님 반갑습니다");
+    } catch (error: any) {
+      alert(error.response.data.msg);
+      throw new Error(error);
+    }
   }
 
   async function logout() {

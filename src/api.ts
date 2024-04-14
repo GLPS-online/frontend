@@ -145,18 +145,10 @@ export async function signUp(data: object) {
 }
 
 export async function logIn(data: object) {
-  try {
-    console.log(data);
-    const response = await client.post(`/auth/login`, data);
-    // if(!response.ok){
+  const response = await client.post(`/auth/login`, data);
 
-    // }
-    const result = response.data;
-    return result;
-  } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
-  }
+  const result = response.data;
+  return result;
 }
 
 export async function logOut() {

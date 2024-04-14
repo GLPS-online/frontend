@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { getCourse } from "@/utils/etc";
 import Student from "@/interfaces/Student";
-import useClassList from "@/hooks/useClassList";
 import * as S from "./StudentPageStyled";
 import { useAuth } from "@/contexts/AuthProvider";
+import { classList } from "@/constants/signup";
 
 export default function EditableInfo({
   student,
@@ -15,7 +15,6 @@ export default function EditableInfo({
   const { getUser } = useAuth();
   const isEditable = getUser()?.admin > 0;
   const [isEdit, setIsEdit] = useState(false);
-  const classList = useClassList();
 
   const [values, setValues] = useState({
     korName: student.korName,
