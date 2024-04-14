@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "./Forms.module.css";
+import * as S from "./FormStyled";
 import RevealSvg from "@/assets/icons/reveal.svg";
 import HideSvg from "@/assets/icons/hide.svg";
 import { useEffect, useState } from "react";
@@ -32,21 +32,14 @@ export default function LoginForm({
     setValue("area", "");
   }, [watchDivision, setValue]);
   return (
-    <form
-      className={styles.container}
-      autoComplete="off"
-      onSubmit={handleSubmit(handleSignup)}
-    >
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="email">
-          이메일
-        </label>
-        <input
+    <S.Container autoComplete="off" onSubmit={handleSubmit(handleSignup)}>
+      <S.Field>
+        <S.Label htmlFor="email">이메일</S.Label>
+        <S.Input
           id="email"
           type="email"
           autoCapitalize="none"
-          autoComplete="off"
-          className={`${styles.input} + ${errors.email ? styles.isError : ""}`}
+          $isError={errors.email ? true : false}
           placeholder="gdhong@gmail.com"
           {...register("email", {
             required: true,
@@ -57,24 +50,18 @@ export default function LoginForm({
           })}
         />
         {errors.email && (
-          <span className={styles.error}>
-            {errors.email.message?.toString()}
-          </span>
+          <S.ErrorText>{errors.email.message?.toString()}</S.ErrorText>
         )}
-      </div>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="password">
-          비밀번호
-        </label>
-        <input
+      <S.Field>
+        <S.Label htmlFor="password">비밀번호</S.Label>
+        <S.Input
           id="password"
           type={revealPw ? "text" : "password"}
           placeholder="••••••••"
           autoCapitalize="none"
-          className={`${styles.input} + ${
-            errors.password ? styles.isError : ""
-          }`}
+          $isError={errors.password ? true : false}
           {...register("password", {
             required: true,
             minLength: {
@@ -83,111 +70,75 @@ export default function LoginForm({
             },
           })}
         />
-        <img
+        <S.Reveal
           onClick={() => setRevealPw((prev) => !prev)}
           src={revealPw ? HideSvg : RevealSvg}
           alt="reveal"
-          className={styles.reveal}
         />
         {errors.password && (
-          <span className={styles.error}>
-            {errors.password.message?.toString()}
-          </span>
+          <S.ErrorText>{errors.password.message?.toString()}</S.ErrorText>
         )}
-      </div>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="confirmPassword">
-          비밀번호 확인
-        </label>
-        <input
+      <S.Field>
+        <S.Label htmlFor="confirmPassword">비밀번호 확인</S.Label>
+        <S.Input
           id="confirmPassword"
           type={revealConfirmPw ? "text" : "password"}
           placeholder="••••••••"
-          className={`${styles.input} + ${
-            errors.confirmPassword ? styles.isError : ""
-          }`}
+          $isError={errors.confirmPassword ? true : false}
           {...register("confirmPassword", {
             required: true,
             validate: (v) =>
               v === getValues("password") || "비밀번호가 일치하지 않습니다.",
           })}
         />
-        <img
+        <S.Reveal
           onClick={() => setRevealConfirmPw((prev) => !prev)}
           src={revealConfirmPw ? HideSvg : RevealSvg}
           alt="reveal"
-          className={styles.reveal}
         />
         {errors.confirmPassword && (
-          <span className={styles.error}>
+          <S.ErrorText>
             {errors.confirmPassword.message?.toString()}
-          </span>
+          </S.ErrorText>
         )}
-      </div>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="korName">
-          이름
-        </label>
-        <input
+      <S.Field>
+        <S.Label htmlFor="korName">이름</S.Label>
+        <S.Input
           id="korName"
           type="text"
-          className={`${styles.input} + ${
-            errors.korName ? styles.isError : ""
-          }`}
           placeholder="홍길동"
+          $isError={errors.korName ? true : false}
           {...register("korName", {
             required: true,
-            minLength: {
-              value: 2,
-              message: "2자 이상 입력해 주세요.",
-            },
           })}
         />
-        {errors.korName && (
-          <span className={styles.error}>
-            {errors.korName.message?.toString()}
-          </span>
-        )}
-      </div>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="engName">
-          영문 이름
-        </label>
-        <input
+      <S.Field>
+        <S.Label htmlFor="engName">영문 이름</S.Label>
+        <S.Input
           id="engName"
           type="text"
-          className={`${styles.input} + ${
-            errors.engName ? styles.isError : ""
-          }`}
           placeholder="Gildong Hong"
+          $isError={errors.engName ? true : false}
           {...register("engName", {
             required: true,
-            minLength: {
-              value: 2,
-              message: "2자 이상 입력해 주세요.",
-            },
           })}
         />
-        {errors.engName && (
-          <span className={styles.error}>
-            {errors.engName.message?.toString()}
-          </span>
-        )}
-      </div>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="wave">
-          기수
-        </label>
-        <input
+      <S.Field>
+        <S.Label htmlFor="wave">기수</S.Label>
+        <S.Input
           id="wave"
           type="number"
           inputMode="decimal"
-          className={`${styles.input} + ${errors.wave ? styles.isError : ""}`}
           placeholder="19 / 23.5 / 26 / .."
+          $isError={errors.wave ? true : false}
           {...register("wave", {
             required: true,
             min: {
@@ -201,22 +152,16 @@ export default function LoginForm({
           })}
         />
         {errors.wave && (
-          <span className={styles.error}>
-            {errors.wave.message?.toString()}
-          </span>
+          <S.ErrorText>{errors.wave.message?.toString()}</S.ErrorText>
         )}
-      </div>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="gender">
-          생물학적 성
-        </label>
-        <select
+      <S.Field>
+        <S.Label htmlFor="gender">생물학적 성</S.Label>
+        <S.Select
           id="gender"
           defaultValue="default"
-          className={`${styles.select} + ${
-            errors.gender ? styles.isError : ""
-          }`}
+          $isError={errors.gender ? true : false}
           {...register("gender", {
             required: true,
             validate: (v) => v === "F" || v === "M",
@@ -231,19 +176,15 @@ export default function LoginForm({
           <option id="male" value={"M"}>
             남
           </option>
-        </select>
-      </div>
+        </S.Select>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="division">
-          부서
-        </label>
-        <select
+      <S.Field>
+        <S.Label htmlFor="division">부서</S.Label>
+        <S.Select
           id="division"
           defaultValue="default"
-          className={`${styles.select} + ${
-            errors.gender ? styles.isError : ""
-          }`}
+          $isError={errors.division ? true : false}
           {...register("division", {
             required: true,
             validate: (v) => v !== "default",
@@ -264,16 +205,15 @@ export default function LoginForm({
           <option id="hq" value={"HQ"}>
             운영위원회
           </option>
-        </select>
-      </div>
+        </S.Select>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="position">
-          직책
-        </label>
-        <select
+      <S.Field>
+        <S.Label htmlFor="position">직책</S.Label>
+        <S.Select
           id="position"
           disabled={watchDivision === "default"}
+          $isError={errors.position ? true : false}
           {...register("position", { required: true })}
         >
           {(() => {
@@ -306,17 +246,16 @@ export default function LoginForm({
                 return <></>;
             }
           })()}
-        </select>
-      </div>
+        </S.Select>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="area">
-          담당 교실(TA만 해당)
-        </label>
-        <select
+      <S.Field>
+        <S.Label htmlFor="area">담당 교실(TA만 해당)</S.Label>
+        <S.Select
           id="area"
           disabled={watchDivision !== "TA"}
           defaultValue={""}
+          $isError={errors.area ? true : false}
           {...register("area", { required: false })}
         >
           <option id="default" value={""}>
@@ -327,26 +266,17 @@ export default function LoginForm({
               {classRoom}
             </option>
           ))}
-        </select>
-        {errors.roomNum && (
-          <span className={styles.error}>
-            {errors.roomNum.message?.toString()}
-          </span>
-        )}
-      </div>
+        </S.Select>
+      </S.Field>
 
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="roomNum">
-          기숙사 호실
-        </label>
-        <input
+      <S.Field>
+        <S.Label htmlFor="roomNum">기숙사 호실</S.Label>
+        <S.Input
           id="roomNum"
           type="number"
           inputMode="numeric"
-          className={`${styles.input} + ${
-            errors.roomNum ? styles.isError : ""
-          }`}
           placeholder="1002"
+          $isError={errors.roomNum ? true : false}
           {...register("roomNum", {
             required: true,
             min: {
@@ -360,14 +290,13 @@ export default function LoginForm({
           })}
         />
         {errors.roomNum && (
-          <span className={styles.error}>
-            {errors.roomNum.message?.toString()}
-          </span>
+          <S.ErrorText>{errors.roomNum.message?.toString()}</S.ErrorText>
         )}
-      </div>
-      <button type="submit" className={styles.submit} disabled={isSubmitting}>
+      </S.Field>
+
+      <S.SubmitButton type="submit" disabled={isSubmitting}>
         사용자 등록
-      </button>
-    </form>
+      </S.SubmitButton>
+    </S.Container>
   );
 }

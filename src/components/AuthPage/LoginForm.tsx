@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "./Forms.module.css";
+import * as S from "./FormStyled";
 import RevealSvg from "@/assets/icons/reveal.svg";
 import HideSvg from "@/assets/icons/hide.svg";
 import { useState } from "react";
@@ -18,20 +18,17 @@ export default function LoginForm({
   const [revealPw, setRevealPw] = useState(false);
 
   return (
-    <form
-      className={styles.container}
+    <S.Container
       autoComplete="off"
       onSubmit={handleSubmit((data) => handleLogin(data))}
     >
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="email">
-          이메일
-        </label>
-        <input
+      <S.Field>
+        <S.Label htmlFor="email">이메일</S.Label>
+        <S.Input
           id="email"
           type="email"
-          className={`${styles.input} + ${errors.email ? styles.isError : ""}`}
           placeholder="이메일을 입력해 주세요"
+          $isError={errors.email ? true : false}
           {...register("email", {
             required: true,
             pattern: {
@@ -41,41 +38,32 @@ export default function LoginForm({
           })}
         />
         {errors.email && (
-          <span className={styles.error}>
-            {errors.email.message?.toString()}
-          </span>
+          <S.ErrorText>{errors.email.message?.toString()}</S.ErrorText>
         )}
-      </div>
-      <div className={styles.field}>
-        <label className={styles.label} htmlFor="password">
-          비밀번호
-        </label>
-        <input
+      </S.Field>
+      <S.Field>
+        <S.Label htmlFor="password">비밀번호</S.Label>
+        <S.Input
           id="password"
           type={revealPw ? "text" : "password"}
           placeholder="비밀번호를 입력해 주세요"
-          className={`${styles.input} + ${
-            errors.password ? styles.isError : ""
-          }`}
+          $isError={errors.password ? true : false}
           {...register("password", {
             required: true,
           })}
         />
-        <img
+        <S.Reveal
           onClick={() => setRevealPw((prev) => !prev)}
           src={revealPw ? HideSvg : RevealSvg}
           alt="reveal"
-          className={styles.reveal}
         />
         {errors.password && (
-          <span className={styles.error}>
-            {errors.password.message?.toString()}
-          </span>
+          <S.ErrorText>{errors.password.message?.toString()}</S.ErrorText>
         )}
-      </div>
-      <button type="submit" className={styles.submit} disabled={isSubmitting}>
+      </S.Field>
+      <S.SubmitButton type="submit" disabled={isSubmitting}>
         로그인
-      </button>
-    </form>
+      </S.SubmitButton>
+    </S.Container>
   );
 }

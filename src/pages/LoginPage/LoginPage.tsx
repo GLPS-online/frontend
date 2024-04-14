@@ -1,4 +1,4 @@
-import styles from "./LoginPage.module.css";
+import * as S from "./LoginPageStyled";
 import AuthPageLogo from "@/components/AuthPage/AuthPageLogo";
 import AuthPageRedirector from "@/components/AuthPage/AuthPageRedirector";
 import LoginForm from "@/components/AuthPage/LoginForm";
@@ -15,7 +15,7 @@ export default function LoginPage() {
     } catch (error: any) {}
   }
   return (
-    <div className={styles.container}>
+    <S.Container>
       <AuthPageLogo welcomeText="오늘도 만나서 반가워요!" />
       <LoginForm handleLogin={handleLogin} />
       <AuthPageRedirector
@@ -23,6 +23,6 @@ export default function LoginPage() {
         redirectText="회원가입하기"
         redirectLink="/signup"
       />
-    </div>
+    </S.Container>
   );
 }

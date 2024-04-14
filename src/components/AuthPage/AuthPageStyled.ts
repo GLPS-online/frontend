@@ -1,11 +1,13 @@
-.container {
+import styled from "styled-components";
+
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
   cursor: pointer;
-}
+`;
 
-.logoImage {
+export const LogoImage = styled.img`
   align-self: flex-end;
   width: 164.557px;
   height: 189.796px;
@@ -14,9 +16,9 @@
     width: 98.734px;
     height: 113.878px;
   }
-}
+`;
 
-.logoText {
+export const LogoText = styled.img`
   width: 200px;
   height: 55.186px;
   flex-shrink: 0;
@@ -24,9 +26,9 @@
     width: 119.044px;
     height: 33.112px;
   }
-}
+`;
 
-.welcomeText {
+export const WelcomeText = styled.div`
   margin-top: 14px;
   color: var(--black-black_333236, #333236);
   text-align: center;
@@ -35,22 +37,22 @@
   font-style: normal;
   line-height: normal;
   margin-bottom: 30px;
-}
+`;
 
-.redirectors {
+export const Redirectors = styled.span`
   color: var(--black-black_333236, #333236);
   text-align: center;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-}
+`;
 
-.link {
-  color: var(--violet);
+export const RedirectLink = styled.span`
+  color: purple;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   text-decoration-line: underline;
-}
+`;

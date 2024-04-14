@@ -81,7 +81,6 @@ export const TApositions = [
   "RW TA",
   "ST TA",
   "RP TA",
-  "RP TA",
   "DB TA",
   "GA TA",
 ];

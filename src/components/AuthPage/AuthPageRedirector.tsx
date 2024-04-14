@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styles from "./AuthPage.module.css";
+import * as S from "./AuthPageStyled";
 
 export default function AuthPageRedirector({
   text,
@@ -11,11 +11,11 @@ export default function AuthPageRedirector({
   redirectLink: string;
 }) {
   return (
-    <span className={styles.redirectors}>
+    <S.Redirectors>
       {text + " "}
       <Link to={redirectLink}>
-        <span className={styles.link}>{redirectText}</span>
+        <S.RedirectLink>{redirectText}</S.RedirectLink>
       </Link>
-    </span>
+    </S.Redirectors>
   );
 }
