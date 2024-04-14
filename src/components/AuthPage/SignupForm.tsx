@@ -9,7 +9,7 @@ import {
   PApositions,
   TApositions,
   classRooms,
-} from "@/constants/signup";
+} from "@/constants";
 
 export default function LoginForm({
   handleSignup,

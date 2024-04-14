@@ -3,7 +3,7 @@ import { getCourse } from "@/utils/etc";
 import Student from "@/interfaces/Student";
 import * as S from "./StudentPageStyled";
 import { useAuth } from "@/contexts/AuthProvider";
-import { classList } from "@/constants/signup";
+import { classList } from "@/constants";
 
 export default function EditableInfo({
   student,

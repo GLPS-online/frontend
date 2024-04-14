@@ -6,7 +6,7 @@ import * as S from "./TimetablePageStyled";
 import Nametag from "@/components/Nametag/Nametag";
 import { classInfo } from "@/interfaces/Timetable";
 import Ptla from "@/interfaces/Ptla";
-import { classList } from "@/constants/signup";
+import { classList } from "@/constants";
 
 export default function TimetablePage() {
   const navigate = useNavigate();
