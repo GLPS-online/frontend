@@ -1,13 +1,13 @@
 import Table from "@/components/Table/Table";
-import { fetchPtlas } from "@/api";
+import { fetchUsers } from "@/api";
 import { Link } from "react-router-dom";
 
-export default function PtlaSearchPage() {
+export default function UserSearchPage() {
   return (
     <>
       <h1>P·T·LA 검색</h1>
       <Table
-        fetchFunction={fetchPtlas}
+        fetchFunction={fetchUsers}
         searchOptions={[
           {
             propName: "korName",
@@ -30,7 +30,7 @@ export default function PtlaSearchPage() {
         ]}
         onExpand={(elem) => (
           <div>
-            <Link to={`/ptla/${elem._id}`}>자세히;</Link>
+            <Link to={`/user/${elem._id}`}>자세히;</Link>
           </div>
         )}
       />

@@ -7,8 +7,8 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import TimetablePage from "./pages/TimetablePage/TimetablePage";
 import StudentPage from "./pages/StudentPage/StudentPage";
 import Layout from "./Layout";
-import PtlaSearchPage from "./pages/PtlaSearchPage/PtlaSearchPage";
-import PtlaPage from "./pages/PtlaPage/PtlaPage";
+import UserSearchPage from "./pages/UserSearchPage/UserSearchPage";
+import UserPage from "./pages/UserPage/UserPage";
 
 const router = createBrowserRouter([
   {
@@ -33,12 +33,12 @@ const router = createBrowserRouter([
         element: <StudentPage />,
       },
       {
-        path: "ptlas",
-        element: <PtlaSearchPage />,
+        path: "users",
+        element: <UserSearchPage />,
       },
       {
-        path: "ptla/:id",
-        element: <PtlaPage />,
+        path: "user/:id",
+        element: <UserPage />,
       },
     ],
   },

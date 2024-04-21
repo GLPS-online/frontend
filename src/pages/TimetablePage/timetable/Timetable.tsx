@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Ptla from "@/interfaces/Ptla";
+import User from "@/interfaces/User";
 import { classInfo } from "@/interfaces/Timetable";
 import useAutoReload from "@/hooks/useAutoReload";
 import { getCurrentTimetableIndex } from "@/utils/time";
@@ -8,7 +8,7 @@ import * as S from "./TimetableStyled";
 
 type Props = {
   table: classInfo[];
-  classPA: Ptla | null;
+  classPA: User | null;
 };
 
 export default function Timetable({ table, classPA }: Props) {

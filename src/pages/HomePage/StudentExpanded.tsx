@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { searchPtla } from "@/api";
+import { searchUser } from "@/api";
 import { Link } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
 import Student from "@/interfaces/Student";
-import Ptla from "@/interfaces/Ptla";
+import User from "@/interfaces/User";
 import Nametag from "@/components/Nametag/Nametag";
 
 export default function StudentExpanded({ student }: { student: Student }) {
-  const [classPA, setClassPA] = useState<Ptla | null>(null);
-  const [floorLA, setFloorLA] = useState<Ptla | null>(null);
+  const [classPA, setClassPA] = useState<User | null>(null);
+  const [floorLA, setFloorLA] = useState<User | null>(null);
   async function handleFetch(params: { position?: string; area?: string }) {
-    const res = await searchPtla(params);
+    const res = await searchUser(params);
     return res;
   }
   useEffect(() => {

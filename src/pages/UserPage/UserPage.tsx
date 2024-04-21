@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { deletePtla, fetchPtla, grantAdmin, updatePtla } from "@/api";
-import Ptla from "@/interfaces/Ptla";
-import * as S from "./PtlaPageStyled";
+import { deleteUser, fetchUser, grantAdmin, updateUser } from "@/api";
+import User from "@/interfaces/User";
+import * as S from "./UerPageStyled";
 import OtherInfo from "./OtherInfo";
 import AdminInfo from "./AdminInfo";
 
-export default function PtlaPage() {
+export default function UserPage() {
   const { id } = useParams();
 
-  const [Ptla, setPtla] = useState<Ptla | null>(null);
+  const [User, setUser] = useState<User | null>(null);
 
   async function handleFecth(id: string) {
-    const newPtla = await fetchPtla(id);
-    setPtla(newPtla);
+    const newUser = await fetchUser(id);
+    setUser(newUser);
   }
 
   async function handleUpdate(id: string, body: object) {
     if (id) {
       try {
-        const newPtla = await updatePtla(id, body);
-        setPtla(newPtla);
+        const newUser = await updateUser(id, body);
+        setUser(newUser);
       } catch (e) {
         console.log("update failed");
       }
@@ -30,7 +30,7 @@ export default function PtlaPage() {
   async function handleDelete(id: string) {
     if (id) {
       try {
-        await deletePtla(id);
+        await deleteUser(id);
       } catch (e) {
         console.log("deletion failed");
       }
@@ -40,8 +40,8 @@ export default function PtlaPage() {
   async function handleGrantAdmin(id: string) {
     if (id) {
       try {
-        const newPtla = await grantAdmin(id);
-        setPtla(newPtla);
+        const newUser = await grantAdmin(id);
+        setUser(newUser);
       } catch (e) {
         console.log("update failed");
       }
@@ -55,11 +55,11 @@ export default function PtlaPage() {
   }, [id]);
   return (
     <S.PageContainer>
-      {Ptla ? (
+      {User ? (
         <>
-          <OtherInfo Ptla={Ptla} />
+          <OtherInfo User={User} />
           <AdminInfo
-            Ptla={Ptla}
+            User={User}
             onEdit={handleUpdate}
             onGrantAdmin={handleGrantAdmin}
             onDelete={handleDelete}

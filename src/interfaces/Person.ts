@@ -1,6 +1,6 @@
-import Ptla from "./Ptla";
+import User from "./User";
 import Student from "./Student";
 
-type Person = Student | Ptla;
+type Person = Student | User;
 
 export default Person;

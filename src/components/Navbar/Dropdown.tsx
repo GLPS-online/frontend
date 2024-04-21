@@ -10,7 +10,7 @@ export default function Dropdown() {
       <S.DropDownItem onClick={() => {}}>관리보드</S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
-          navigate("/ptlas");
+          navigate("/users");
         }}
       >
         P·T·LA 검색
@@ -30,7 +30,7 @@ export default function Dropdown() {
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
-          navigate(`/ptla/${getUser()?._id}`);
+          navigate(`/user/${getUser()?._id}`);
         }}
       >
         내 정보/수정

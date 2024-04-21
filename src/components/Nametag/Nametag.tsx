@@ -1,9 +1,9 @@
 import * as S from "./NametagStyled";
-import Ptla from "@/interfaces/Ptla";
+import User from "@/interfaces/User";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
-  data: Ptla | null;
+  data: User | null;
   displayDivision?: boolean;
   forTimetable?: boolean;
 };
@@ -18,7 +18,7 @@ export default function Nametag({
 
   async function handleClick(e: React.MouseEvent<HTMLElement>) {
     e.stopPropagation();
-    navigate(`/ptla/${_id}`);
+    navigate(`/user/${_id}`);
   }
   if (!data) {
     return <div></div>;

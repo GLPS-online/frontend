@@ -26,7 +26,7 @@ export const Cell = styled.div`
   align-content: center;
 `;
 
-export const PtlaInfo = styled.div`
+export const UserInfo = styled.div`
   display: flex;
   align-items: center;
 `;

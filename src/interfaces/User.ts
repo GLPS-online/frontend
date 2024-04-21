@@ -1,4 +1,4 @@
-interface Ptla {
+interface User {
   _id: string;
   email: string;
   password: string;
@@ -15,4 +15,4 @@ interface Ptla {
   club: string;
 }
 
-export default Ptla;
+export default User;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import Ptla from "@/interfaces/Ptla";
-import { searchPtla } from "@/api";
+import User from "@/interfaces/User";
+import { searchUser } from "@/api";
 import { classInfo } from "@/interfaces/Timetable";
 import Nametag from "@/components/Nametag/Nametag";
 import * as S from "./TimetableItemStyled";
@@ -8,15 +8,15 @@ import * as S from "./TimetableItemStyled";
 type Props = {
   elem: classInfo;
   selected: boolean;
-  classPA: Ptla | null;
+  classPA: User | null;
 };
 
 export default function TimetableItem({ elem, selected, classPA }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [subjectTA, setSubjectTA] = useState<Ptla | null>(null);
+  const [subjectTA, setSubjectTA] = useState<User | null>(null);
 
   async function handleFetch(params: { position?: string; area?: string }) {
-    const res = await searchPtla(params);
+    const res = await searchUser(params);
     return res;
   }
 

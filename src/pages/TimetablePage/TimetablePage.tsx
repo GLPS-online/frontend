@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Timetable from "./timetable/Timetable";
-import { searchPtla, fetchTimetable } from "@/api";
+import { searchUser, fetchTimetable } from "@/api";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
 import Nametag from "@/components/Nametag/Nametag";
 import { classInfo } from "@/interfaces/Timetable";
-import Ptla from "@/interfaces/Ptla";
+import User from "@/interfaces/User";
 import { classList } from "@/constants";
 
 export default function TimetablePage() {
@@ -16,7 +16,7 @@ export default function TimetablePage() {
     office: string;
     table: classInfo[];
   }>({ advisor: "", office: "", table: [] });
-  const [classPA, setClassPA] = useState<Ptla | null>(null);
+  const [classPA, setClassPA] = useState<User | null>(null);
 
   async function handleFetchTable(className: string) {
     const newData = await fetchTimetable(className);
@@ -24,7 +24,7 @@ export default function TimetablePage() {
   }
 
   async function handleFetchPa(params: { position?: string; area?: string }) {
-    const res = await searchPtla(params);
+    const res = await searchUser(params);
     return res;
   }
 

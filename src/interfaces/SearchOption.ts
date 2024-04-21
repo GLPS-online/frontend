@@ -1,7 +1,7 @@
-import Ptla from "./Ptla";
+import User from "./User";
 import Student from "./Student";
 
-type PropName = keyof Student | keyof Ptla;
+type PropName = (keyof Student | keyof User) & string;
 
 interface SearchOption {
   propName: PropName;

@@ -41,9 +41,9 @@ export async function updateStudent(id: string, body: Object) {
   }
 }
 
-export async function fetchPtlas() {
+export async function fetchUsers() {
   try {
-    const response = await client.get("/ptlas");
+    const response = await client.get("/users");
     const result = response.data;
     return result;
   } catch (err: any) {
@@ -52,9 +52,9 @@ export async function fetchPtlas() {
   }
 }
 
-export async function fetchPtla(id: string) {
+export async function fetchUser(id: string) {
   try {
-    const response = await client.get(`/ptlas/${id}`);
+    const response = await client.get(`/users/${id}`);
     const result = response.data;
     return result;
   } catch (err: any) {
@@ -62,9 +62,9 @@ export async function fetchPtla(id: string) {
     console.log(err.response?.data.msg);
   }
 }
-export async function updatePtla(id: string, body: Object) {
+export async function updateUser(id: string, body: Object) {
   try {
-    const response = await client.put(`/ptlas/${id}`, body);
+    const response = await client.put(`/users/${id}`, body);
     const result = response.data;
     return result;
   } catch (err: any) {
@@ -72,9 +72,9 @@ export async function updatePtla(id: string, body: Object) {
     console.log(err.response?.data.msg);
   }
 }
-export async function deletePtla(id: string) {
+export async function deleteUser(id: string) {
   try {
-    const response = await client.delete(`/ptlas/${id}`);
+    const response = await client.delete(`/users/${id}`);
     const result = response.data;
     return result;
   } catch (err: any) {
@@ -82,7 +82,7 @@ export async function deletePtla(id: string) {
     console.log(err.response?.data.msg);
   }
 }
-export async function searchPtla({
+export async function searchUser({
   position,
   area,
 }: {
@@ -90,7 +90,7 @@ export async function searchPtla({
   area?: string;
 }) {
   try {
-    const response = await client.get("/ptlas", {
+    const response = await client.get("/users", {
       params: {
         ...(position && {
           position,

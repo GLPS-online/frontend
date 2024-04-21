@@ -1,16 +1,16 @@
-import Ptla from "@/interfaces/Ptla";
-import * as S from "./PtlaPageStyled";
+import User from "@/interfaces/User";
+import * as S from "./UerPageStyled";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function AdminInfo({
-  Ptla,
+  User,
   onEdit,
   onGrantAdmin,
   onDelete,
 }: {
-  Ptla: Ptla;
+  User: User;
   onEdit: (arg0: string, arg1: object) => void;
   onGrantAdmin: (arg0: string) => void;
   onDelete: (arg0: string) => void;
@@ -21,9 +21,9 @@ export default function AdminInfo({
   const isPowerAdmin = getUser()?.admin > 1;
   const [isEdit, setIsEdit] = useState(false);
   const [values, setValues] = useState({
-    division: Ptla.division,
-    position: Ptla.position,
-    area: Ptla.area,
+    division: User.division,
+    position: User.position,
+    area: User.area,
   });
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -35,7 +35,7 @@ export default function AdminInfo({
   };
   function handleEdit() {
     setIsEdit(false);
-    onEdit(Ptla._id, values);
+    onEdit(User._id, values);
   }
   return (
     <S.InfoContainer>
@@ -66,7 +66,7 @@ export default function AdminInfo({
             onChange={handleChange}
           />
         ) : (
-          Ptla.division
+          User.division
         )}
       </div>
       <div>
@@ -79,7 +79,7 @@ export default function AdminInfo({
             onChange={handleChange}
           />
         ) : (
-          Ptla.position
+          User.position
         )}
       </div>
       <div>
@@ -92,16 +92,16 @@ export default function AdminInfo({
             onChange={handleChange}
           />
         ) : (
-          Ptla.area
+          User.area
         )}
       </div>
 
-      <div>관리자 권한 수준[0-2]: {Ptla.admin}</div>
+      <div>관리자 권한 수준[0-2]: {User.admin}</div>
       {isPowerAdmin && (
         <>
           <button
             onClick={() => {
-              onGrantAdmin(Ptla._id);
+              onGrantAdmin(User._id);
             }}
           >
             관리자 권한 부여
@@ -109,9 +109,9 @@ export default function AdminInfo({
           <button
             onClick={() => {
               if (window.confirm("정말 삭제합니까?")) {
-                onDelete(Ptla._id);
+                onDelete(User._id);
                 alert("삭제되었습니다.");
-                navigate("/ptlas");
+                navigate("/users");
               }
             }}
           >
