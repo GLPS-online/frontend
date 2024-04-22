@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { searchUser } from "@/api/api";
+import { searchUser } from "@/api/userApi";
 import { Link } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
 import Student from "@/interfaces/Student";

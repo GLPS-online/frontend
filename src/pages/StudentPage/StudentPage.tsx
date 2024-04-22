@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Student from "@/interfaces/Student";
-import { fetchStudent, updateStudent } from "@/api/api";
+import { fetchStudent, updateStudent } from "@/api/studentApi";
 import * as S from "./StudentPageStyled";
 import EditableInfo from "./EditableInfo";
 import LifeInfo from "./LifeInfo";

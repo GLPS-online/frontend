@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Timetable from "./timetable/Timetable";
-import { searchUser, fetchTimetable } from "@/api/api";
+import { searchUser } from "@/api/userApi";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
 import Nametag from "@/components/Nametag/Nametag";
 import { classInfo } from "@/interfaces/Timetable";
 import User from "@/interfaces/User";
 import { classList } from "@/constants";
+import { fetchTimetable } from "@/api/otherApi";
 
 export default function TimetablePage() {
   const navigate = useNavigate();

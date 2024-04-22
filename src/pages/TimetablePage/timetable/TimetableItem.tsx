@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import User from "@/interfaces/User";
-import { searchUser } from "@/api/api";
+import { searchUser } from "@/api/userApi";
 import { classInfo } from "@/interfaces/Timetable";
 import Nametag from "@/components/Nametag/Nametag";
 import * as S from "./TimetableItemStyled";

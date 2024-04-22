@@ -1,4 +1,4 @@
-import { fetchStudents } from "@/api/api";
+import { fetchStudents } from "@/api/studentApi";
 import Table from "@/components/Table/Table";
 import StudentExpanded from "./StudentExpanded";
 

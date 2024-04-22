@@ -1,4 +1,4 @@
-import { logIn, logOut } from "@/api/api";
+import { logIn, logOut } from "@/api/authApi";
 import { createContext, useContext } from "react";
 
 const AuthContext = createContext<{

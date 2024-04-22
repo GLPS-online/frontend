@@ -6,7 +6,7 @@ import {
   initialize,
   createTimeTable,
   deleteTimetable,
-} from "@/api/api";
+} from "@/api/adminApi";
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);
