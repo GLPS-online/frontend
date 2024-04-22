@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { deleteUser, fetchUser, grantAdmin, updateUser } from "@/api";
+import { deleteUser, fetchUser, grantAdmin, updateUser } from "@/api/api";
 import User from "@/interfaces/User";
 import * as S from "./UerPageStyled";
 import OtherInfo from "./OtherInfo";

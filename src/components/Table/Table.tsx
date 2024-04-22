@@ -6,6 +6,11 @@ import SearchOption from "@/interfaces/SearchOption";
 import Person from "@/interfaces/Person";
 import useCheckbox from "@/hooks/useCheckbox";
 import Row from "@/components/Row/Row";
+import { useModal } from "@/hooks/useModal";
+import CardModal from "@/modals/CardModal";
+import { createPortal } from "react-dom";
+import ShuttleModal from "@/modals/ShuttleModal";
+import StudyModal from "@/modals/StudyModal";
 
 type Props = {
   fetchFunction: (() => Person[]) | (() => Promise<any>);
@@ -25,6 +30,8 @@ export default function Table({
     queryFn: fetchFunction,
     initialData: [],
   });
+
+  const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();
 
@@ -74,144 +81,186 @@ export default function Table({
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <S.TableContainer>
-      <S.SearchBarContainer>
-        {searchOptions.map((searchOption, i) => (
-          <S.SearchBarInputContainer key={i}>
-            <S.SearchBarInput
-              autoComplete="off"
-              name={searchOption.propName}
-              type={searchOption.inputType}
-              inputMode={
-                searchOption.inputType === "number" ? "numeric" : "text"
-              }
-              placeholder={searchOption.placeholder}
-              value={searchParams.get(searchOption.propName) || ""}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  (document.activeElement as HTMLElement).blur();
+    <>
+      {createPortal(
+        isModalOpen &&
+          (() => {
+            switch (action) {
+              case "red":
+              case "yellow":
+              case "green":
+              case "eop":
+                return (
+                  <CardModal
+                    action={action}
+                    items={Array.from(selectedItems)}
+                    clearItems={clearItems}
+                    handleModalClose={handleModalClose}
+                  />
+                );
+              case "shuttle":
+                return (
+                  <ShuttleModal
+                    items={Array.from(selectedItems)}
+                    clearItems={clearItems}
+                    handleModalClose={handleModalClose}
+                  />
+                );
+              case "study":
+                return (
+                  <StudyModal
+                    items={Array.from(selectedItems)}
+                    clearItems={clearItems}
+                    handleModalClose={handleModalClose}
+                  />
+                );
+              default:
+                return <></>;
+            }
+          })(),
+        document.body
+      )}
+      <S.TableContainer>
+        <S.SearchBarContainer>
+          {searchOptions.map((searchOption, i) => (
+            <S.SearchBarInputContainer key={i}>
+              <S.SearchBarInput
+                autoComplete="off"
+                name={searchOption.propName}
+                type={searchOption.inputType}
+                inputMode={
+                  searchOption.inputType === "number" ? "numeric" : "text"
                 }
-              }}
-              onChange={(e) => {
-                if (!e.target.value) {
+                placeholder={searchOption.placeholder}
+                value={searchParams.get(searchOption.propName) || ""}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    (document.activeElement as HTMLElement).blur();
+                  }
+                }}
+                onChange={(e) => {
+                  if (!e.target.value) {
+                    searchParams.delete(searchOption.propName);
+                    setSearchParams(searchParams, {
+                      replace: true,
+                    });
+                  } else {
+                    searchParams.set(searchOption.propName, e.target.value);
+                    setSearchParams(searchParams, {
+                      replace: true,
+                    });
+                  }
+                  // console.log(e.target.value);
+                  // console.log(e.nativeEvent);
+                }}
+              />
+              <S.ClearIcon
+                display={searchParams.get(searchOption.propName) ? "" : "none"}
+                onClick={() => {
                   searchParams.delete(searchOption.propName);
+                  setSearchParams(searchParams);
+                }}
+              />
+            </S.SearchBarInputContainer>
+          ))}
+        </S.SearchBarContainer>
+        {selectable && (
+          <S.ActionBar>
+            <S.CheckBox
+              name="all"
+              type={action !== "default" ? "checkbox" : "hidden"}
+              disabled={filteredData.length > 50}
+              checked={
+                selectedItems.size !== 0 &&
+                filteredData.length === selectedItems.size
+              }
+              onClick={(e) => handleCheckAll(e, filteredData)}
+              value={"all"}
+              onChange={(e) => {}}
+            />
+            <div>
+              <select
+                name="action"
+                value={action}
+                onChange={(e) => setAction(e.target.value)}
+              >
+                <option value={"default"} disabled>
+                  액션 선택
+                </option>
+                <option value={"attendance"}>(출석체크용)</option>
+                <option value={"eop"}>EOP 적발</option>
+                <option value={"green"}>그린카드</option>
+                <option value={"yellow"}>옐로카드</option>
+                <option value={"red"}>레드카드</option>
+                <option value={"study"}>2자습 신청</option>
+                <option value={"shuttle"}>목발셔틀 신청</option>
+              </select>
+              {` (${selectedItems.size}/${filteredData.length})`}
+            </div>
+            <S.ActionButtons>
+              <button
+                hidden={action === "default" || action === "attendance"}
+                disabled={selectedItems.size === 0}
+                onClick={() => {
+                  handleModalOpen();
+                }}
+              >
+                확인
+              </button>
+              <button
+                disabled={action === "default"}
+                onClick={() => {
+                  clearItems();
+                  setAction("default");
+                }}
+              >
+                취소
+              </button>
+            </S.ActionButtons>
+          </S.ActionBar>
+        )}
+        {filteredData.map((elem: Person, index) => (
+          <S.RowContainer key={`${elem._id}${index}`}>
+            <S.CheckBox
+              name={elem._id}
+              type={selectable && action !== "default" ? "checkbox" : "hidden"}
+              value={elem._id}
+              checked={selectedItems.has(elem._id)}
+              onChange={handleCheckboxChange}
+            />
+            <S.RowBox
+              onClick={() => {
+                if (!window.getSelection()?.isCollapsed) {
+                  console.log(window.getSelection());
+                  return;
+                }
+                if (searchParams.get("expanded") === elem._id) {
+                  searchParams.delete("expanded");
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 } else {
-                  searchParams.set(searchOption.propName, e.target.value);
+                  searchParams.set("expanded", elem._id);
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 }
-                // console.log(e.target.value);
-                // console.log(e.nativeEvent);
               }}
-            />
-            <S.ClearIcon
-              display={searchParams.get(searchOption.propName) ? "" : "none"}
-              onClick={() => {
-                searchParams.delete(searchOption.propName);
-                setSearchParams(searchParams);
-              }}
-            />
-          </S.SearchBarInputContainer>
+            >
+              <Row
+                elem={elem}
+                props={searchOptions}
+                selected={selectedItems.has(elem._id) ? action : "default"}
+                onExpand={
+                  searchParams.get("expanded") === elem._id && onExpand
+                    ? () => onExpand(elem)
+                    : () => null
+                }
+              />
+            </S.RowBox>
+          </S.RowContainer>
         ))}
-      </S.SearchBarContainer>
-      {selectable && (
-        <S.ActionBar>
-          <S.CheckBox
-            name="all"
-            type={action !== "default" ? "checkbox" : "hidden"}
-            disabled={filteredData.length > 50}
-            checked={
-              selectedItems.size !== 0 &&
-              filteredData.length === selectedItems.size
-            }
-            onClick={(e) => handleCheckAll(e, filteredData)}
-            value={"all"}
-            onChange={(e) => {}}
-          />
-          <select
-            name="action"
-            value={action}
-            onChange={(e) => setAction(e.target.value)}
-          >
-            <option value={"default"}>액션 선택</option>
-            <option value={"study"}>2자습신청</option>
-            <option value={"shuttle"}>목발셔틀신청</option>
-            <option value={"eop"}>EOP 적발</option>
-            <option value={"green"}>그린카드</option>
-            <option value={"yellow"}>옐로카드</option>
-            <option value={"red"}>레드카드</option>
-          </select>
-          <S.ActionButtons>
-            <button
-              hidden={action === "default"}
-              disabled={selectedItems.size === 0}
-              onClick={() => {
-                alert("액션");
-                window.location.reload();
-                // clearItems();
-                // setAction("default");
-              }}
-            >
-              확인
-            </button>
-            <button
-              disabled={action === "default"}
-              onClick={() => {
-                clearItems();
-                setAction("default");
-                // window.location.reload();
-              }}
-            >
-              취소
-            </button>
-          </S.ActionButtons>
-        </S.ActionBar>
-      )}
-      {filteredData.map((elem: Person, index) => (
-        <S.RowContainer key={`${elem._id}${index}`}>
-          <S.CheckBox
-            name={elem._id}
-            type={selectable && action !== "default" ? "checkbox" : "hidden"}
-            value={elem._id}
-            checked={selectedItems.has(elem._id)}
-            onChange={handleCheckboxChange}
-          />
-          <S.RowBox
-            onClick={() => {
-              if (!window.getSelection()?.isCollapsed) {
-                console.log(window.getSelection());
-                return;
-              }
-              if (searchParams.get("expanded") === elem._id) {
-                searchParams.delete("expanded");
-                setSearchParams(searchParams, {
-                  replace: true,
-                });
-              } else {
-                searchParams.set("expanded", elem._id);
-                setSearchParams(searchParams, {
-                  replace: true,
-                });
-              }
-            }}
-          >
-            <Row
-              elem={elem}
-              props={searchOptions}
-              selected={selectedItems.has(elem._id) ? action : "default"}
-              onExpand={
-                searchParams.get("expanded") === elem._id && onExpand
-                  ? () => onExpand(elem)
-                  : () => null
-              }
-            />
-          </S.RowBox>
-        </S.RowContainer>
-      ))}
-    </S.TableContainer>
+      </S.TableContainer>
+    </>
   );
 }

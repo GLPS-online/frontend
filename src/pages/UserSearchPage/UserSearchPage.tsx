@@ -1,5 +1,5 @@
 import Table from "@/components/Table/Table";
-import { fetchUsers } from "@/api";
+import { fetchUsers } from "@/api/api";
 import { Link } from "react-router-dom";
 
 export default function UserSearchPage() {

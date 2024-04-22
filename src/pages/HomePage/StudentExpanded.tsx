@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { searchUser } from "@/api";
+import { searchUser } from "@/api/api";
 import { Link } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
 import Student from "@/interfaces/Student";
@@ -19,7 +19,7 @@ export default function StudentExpanded({ student }: { student: Student }) {
     handleFetch({ position }).then((res) => setClassPA(res));
     let area = "";
     let floor: number = Math.floor(student.roomNum / 100);
-    area = `dorm${floor}f`;
+    area = `${floor}층`;
     handleFetch({ area }).then((res) => setFloorLA(res));
   }, [student]);
 
@@ -36,8 +36,8 @@ export default function StudentExpanded({ student }: { student: Student }) {
       </S.Cells>
       <Link to={`/timetables/${student.className}`}>수업 시간표</Link>
       <Link to={`/student/${student._id}`}>세부정보/수정</Link>
-      <Link to={``}>EOP 검사</Link>
-      <Link to={``}>카드 확인</Link>
+      {/* <Link to={``}>EOP 검사</Link>
+      <Link to={``}>카드 확인</Link> */}
     </S.StudentExpandedContainer>
   );
 }

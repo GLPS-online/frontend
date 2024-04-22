@@ -6,9 +6,9 @@ export const RowContainer = styled.div<{ $selected: string }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 3px;
+  padding: 5px 3px;
   border: solid;
-  border-radius: 5px;
+  border-radius: 6px;
   ${({ $selected }) => {
     switch ($selected) {
       case "default":

@@ -93,7 +93,7 @@ export const SubmitButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background: purple;
+  background: blue;
   color: white;
   text-align: center;
   font-size: 18px;

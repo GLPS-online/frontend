@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Timetable from "./timetable/Timetable";
-import { searchUser, fetchTimetable } from "@/api";
+import { searchUser, fetchTimetable } from "@/api/api";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
 import Nametag from "@/components/Nametag/Nametag";

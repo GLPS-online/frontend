@@ -1,7 +1,12 @@
 import { useState } from "react";
 import * as S from "./AdminPageStyled";
 import * as Placeholders from "./placeholders";
-import { endOfCamp, initialize, createTimeTable, deleteTimetable } from "@/api";
+import {
+  endOfCamp,
+  initialize,
+  createTimeTable,
+  deleteTimetable,
+} from "@/api/api";
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);

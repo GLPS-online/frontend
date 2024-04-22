@@ -2,7 +2,7 @@ import * as S from "./SignupPageStyled";
 import AuthPageLogo from "../../components/AuthPage/AuthPageLogo";
 import AuthPageRedirector from "../../components/AuthPage/AuthPageRedirector";
 import SignupForm from "../../components/AuthPage/SignupForm";
-import { signUp } from "@/api";
+import { signUp } from "@/api/api";
 import { useNavigate } from "react-router-dom";
 
 export default function SignupPage() {

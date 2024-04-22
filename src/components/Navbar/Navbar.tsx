@@ -4,6 +4,9 @@ import { useAuth } from "@/contexts/AuthProvider";
 import Dropdown from "./Dropdown";
 import * as S from "./NavbarStyled";
 
+import arrowDownIcon from "@/assets/icons/arrowDown.svg";
+import arrowUpIcon from "@/assets/icons/arrowUp.svg";
+
 export default function Navbar() {
   const toggleRef = useRef<HTMLDivElement>(null);
   const { getUser } = useAuth();
@@ -19,9 +22,9 @@ export default function Navbar() {
         setIsMenuOpen(false);
       }
     }
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 
@@ -33,9 +36,18 @@ export default function Navbar() {
           onClick={() => setIsMenuOpen((prev) => !prev)}
           ref={toggleRef}
         >
-          Welcome, {user?.korName}
-          {user?.division}님{" "}
-          {isMenuOpen ? <S.ArrowUpButton /> : <S.ArrowDownButton />}
+          {user ? (
+            <>
+              Welcome, {user.korName}
+              {user.division}님
+            </>
+          ) : (
+            <Link to={"/login"}>로그인</Link>
+          )}
+          <S.menuOpen
+            src={isMenuOpen ? arrowUpIcon : arrowDownIcon}
+            alt="togglemenu"
+          />
           {isMenuOpen && <Dropdown />}
         </S.UserArea>
       </S.NavbarContainer>

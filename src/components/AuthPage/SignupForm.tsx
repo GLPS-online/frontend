@@ -9,9 +9,10 @@ import {
   PApositions,
   TApositions,
   classRooms,
+  floorList,
 } from "@/constants";
 
-export default function LoginForm({
+export default function SignupForm({
   handleSignup,
 }: {
   handleSignup: (arg0: object) => void;
@@ -250,10 +251,10 @@ export default function LoginForm({
       </S.Field>
 
       <S.Field>
-        <S.Label htmlFor="area">담당 교실(TA만 해당)</S.Label>
+        <S.Label htmlFor="area">담당 교실/층(TA·LA만 해당)</S.Label>
         <S.Select
           id="area"
-          disabled={watchDivision !== "TA"}
+          disabled={watchDivision !== "TA" && watchDivision !== "LA"}
           defaultValue={""}
           $isError={errors.area ? true : false}
           {...register("area", { required: false })}
@@ -261,11 +262,24 @@ export default function LoginForm({
           <option id="default" value={""}>
             -
           </option>
-          {classRooms.map((classRoom) => (
-            <option key={classRoom} value={classRoom}>
-              {classRoom}
-            </option>
-          ))}
+          {(() => {
+            switch (watchDivision) {
+              case "LA":
+                return floorList.map((floor) => (
+                  <option key={floor} value={floor}>
+                    기숙사 {floor}
+                  </option>
+                ));
+              case "TA":
+                return classRooms.map((classRoom) => (
+                  <option key={classRoom} value={classRoom}>
+                    {classRoom}
+                  </option>
+                ));
+              default:
+                return <></>;
+            }
+          })()}
         </S.Select>
       </S.Field>
 
