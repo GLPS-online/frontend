@@ -21,26 +21,6 @@ export async function fetchUser(id: string) {
     console.log(err.response?.data.msg);
   }
 }
-export async function updateUser(id: string, body: Object) {
-  try {
-    const response = await client.put(`/users/${id}`, body);
-    const result = response.data;
-    return result;
-  } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
-  }
-}
-export async function deleteUser(id: string) {
-  try {
-    const response = await client.delete(`/users/${id}`);
-    const result = response.data;
-    return result;
-  } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
-  }
-}
 export async function searchUser({
   position,
   area,
@@ -65,4 +45,15 @@ export async function searchUser({
     console.log(err.response?.status);
     console.log(err.response?.data.msg);
   }
+}
+
+export async function updateUser(id: string, body: Object) {
+  const response = await client.put(`/users/${id}`, body);
+  const result = response.data;
+  return result;
+}
+export async function deleteUser(id: string) {
+  const response = await client.delete(`/users/${id}`);
+  const result = response.data;
+  return result;
 }

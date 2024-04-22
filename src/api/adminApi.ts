@@ -15,8 +15,8 @@ export async function createTimeTable(
     const result = response.data;
     return result;
   } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
   }
 }
 
@@ -26,8 +26,8 @@ export async function deleteTimetable(className: string) {
     const result = response.data;
     return result;
   } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
   }
 }
 
@@ -37,8 +37,8 @@ export async function initialize(body: string) {
     const result = response.data;
     return result;
   } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
   }
 }
 
@@ -48,8 +48,8 @@ export async function endOfCamp() {
     const result = response.data;
     return result;
   } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
   }
 }
 
@@ -59,7 +59,7 @@ export async function grantAdmin(id: string) {
     const result = response.data;
     return result;
   } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
   }
 }

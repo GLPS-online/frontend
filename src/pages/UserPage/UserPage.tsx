@@ -23,7 +23,8 @@ export default function UserPage() {
         const newUser = await updateUser(id, body);
         setUser(newUser);
       } catch (e) {
-        console.log("update failed");
+        console.log(e);
+        alert("update failed");
       }
     }
   }
@@ -33,7 +34,8 @@ export default function UserPage() {
       try {
         await deleteUser(id);
       } catch (e) {
-        console.log("deletion failed");
+        console.log(e);
+        alert("deletion failed");
       }
     }
   }
@@ -44,7 +46,8 @@ export default function UserPage() {
         const newUser = await grantAdmin(id);
         setUser(newUser);
       } catch (e) {
-        console.log("update failed");
+        console.log(e);
+        alert("update failed");
       }
     }
   }

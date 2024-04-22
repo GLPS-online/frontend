@@ -47,7 +47,7 @@ export default function Table({
       switch (searchOption.searchType) {
         case "string":
           return datum[searchOption.propName]
-            .toString()
+            ?.toString()
             .includes(searchParams.get(searchOption.propName));
         case "number":
           return (

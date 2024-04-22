@@ -12,16 +12,25 @@ export default function StudentPage() {
   const [student, setStudent] = useState<Student | null>(null);
 
   async function handleFecth(id: string) {
-    const newStudent = await fetchStudent(id);
-    setStudent(newStudent);
+    try {
+      const newStudent = await fetchStudent(id);
+      setStudent(newStudent);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   const navigate = useNavigate();
 
   async function onEdit(body: Object) {
-    if (id) {
-      const newStudent = await updateStudent(id, body);
-      setStudent(newStudent);
+    try {
+      if (id) {
+        const newStudent = await updateStudent(id, body);
+        setStudent(newStudent);
+      }
+    } catch (e) {
+      console.log(e);
+      alert("update failed");
     }
   }
 

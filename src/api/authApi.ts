@@ -1,17 +1,9 @@
 import client from "./";
 
 export async function signUp(data: object) {
-  try {
-    const response = await client.post(`/auth/signup`, data);
-    // if(!response.ok){
-
-    // }
-    const result = response.data;
-    return result;
-  } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
-  }
+  const response = await client.post(`/auth/signup`, data);
+  const result = response.data;
+  return result;
 }
 
 export async function logIn(data: object) {
