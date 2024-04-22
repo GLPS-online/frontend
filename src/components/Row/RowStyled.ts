@@ -25,6 +25,8 @@ export const RowContainer = styled.div<{ $selected: string }>`
         return "background-color: aqua;";
       case "eop":
         return "background-color: pink;";
+      case "attendance":
+        return "background-color: gray;";
       default:
         return;
     }
@@ -32,16 +34,24 @@ export const RowContainer = styled.div<{ $selected: string }>`
 `;
 
 export const Cells = styled.div`
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 35px;
-  font-size: 20px;
+  gap: 15px;
+  @media screen and (max-width: 620px) {
+    gap: 5px;
+  }
 `;
 
 export const Cell = styled.div`
-  width: 120px;
+  width: 33%;
   height: 30px;
+  font-size: 20px;
   text-align: center;
   align-content: center;
+  @media screen and (max-width: 620px) {
+    height: 30px;
+    font-size: 18px;
+  }
 `;

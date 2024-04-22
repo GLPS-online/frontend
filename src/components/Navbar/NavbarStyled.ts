@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const NavbarContainer = styled.nav`
-  width: 1200px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 20px 200px;
+  align-items: center;
+  padding: 20px 0;
+  margin: 0 auto;
+  @media screen and (max-width: 620px) {
+    width: 100%;
+    padding: 10px;
+  }
 `;
 
 export const UserArea = styled.div`

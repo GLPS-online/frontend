@@ -35,12 +35,14 @@ export default function StudentExpanded({ student }: { student: Student }) {
           <Nametag data={floorLA} />
         </S.Cell>
       </S.Cells>
-      <button onClick={() => navigate(`/timetables/${student.className}/`)}>
-        수업 시간표
-      </button>
-      <button onClick={() => navigate(`/student/${student._id}/`)}>
-        세부정보/수정
-      </button>
+      <S.Links>
+        <S.Link onClick={() => navigate(`/timetables/${student.className}/`)}>
+          시간표
+        </S.Link>
+        <S.Link onClick={() => navigate(`/student/${student._id}/`)}>
+          세부정보/수정
+        </S.Link>
+      </S.Links>
       {/* <Link to={``}>EOP 검사</Link>
       <Link to={``}>카드 확인</Link> */}
     </S.StudentExpandedContainer>

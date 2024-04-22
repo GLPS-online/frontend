@@ -9,9 +9,16 @@ const GlobalStyle = createGlobalStyle`
   }
 
   #root {
+    max-width: 520px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto;
+    padding: 10px;
+    @media screen and (max-width: 620px) {
+      max-width: 430px;
+    }
+
   }
 
   :root {

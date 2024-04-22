@@ -9,7 +9,7 @@ export const Container = styled.form`
 export const Label = styled.label`
   font-size: 18px;
   font-weight: 500;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     font-size: 16px;
   }
 `;
@@ -29,7 +29,7 @@ export const Select = styled.select<{ $isError: boolean }>`
     }
   }}
   font-size: 16px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     font-size: 14px;
   }
 `;
@@ -42,12 +42,12 @@ export const CheckboxArea = styled.div<{ $isError: boolean }>`
   font-size: 18px;
   font-weight: 500;
   line-height: 150%;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     font-size: 14px;
   }
   br {
     display: none;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 620px) {
       display: inline;
     }
   }
@@ -72,7 +72,7 @@ export const Textarea = styled.textarea<{ $isError: boolean }>`
     }
   }}
   font-size: 16px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     font-size: 14px;
   }
 `;
@@ -82,7 +82,7 @@ export const Buttons = styled.div`
   align-items: center;
   justify-content: flex-end;
   gap: 12px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     justify-content: center;
   }
 `;
@@ -112,7 +112,7 @@ export const Button = styled.button<{ $color?: string }>`
   }}
   font-size: 16px;
   font-weight: 500;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     width: 138px;
     font-size: 14px;
   }

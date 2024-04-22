@@ -120,7 +120,7 @@ export default function Table({
           })(),
         document.body
       )}
-      <S.TableContainer>
+      <S.TableContainer $selectable={action !== "default"}>
         <S.SearchBarContainer>
           {searchOptions.map((searchOption, i) => (
             <S.SearchBarInputContainer key={i}>

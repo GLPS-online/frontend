@@ -1,12 +1,18 @@
 import styled from "styled-components";
 import { ReactComponent as ClearSvg } from "@/assets/icons/clear.svg";
 
-export const TableContainer = styled.div`
-  width: 460px;
+export const TableContainer = styled.div<{ $selectable: boolean }>`
+  width: 480px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin: 30px 0;
+  @media screen and (max-width: 620px) {
+    max-width: 100%;
+    /* min-width: 300px; */
+    ${({ $selectable }) =>
+      $selectable ? "margin-left: 30px;max-width: 90%;" : ""}
+  }
 `;
 
 export const ActionBar = styled.div`
@@ -26,6 +32,9 @@ export const SearchBarContainer = styled.div`
   width: 100%;
   display: flex;
   gap: 15px;
+  @media screen and (max-width: 620px) {
+    gap: 5px;
+  }
 `;
 
 export const SearchBarInputContainer = styled.div`
@@ -37,12 +46,17 @@ export const SearchBarInputContainer = styled.div`
 
 export const SearchBarInput = styled.input`
   width: 100%;
+  height: 40px;
   font-size: 20px;
+  border-radius: 4px;
   border: solid;
   -webkit-ime-mode: active;
   -moz-ime-mode: active;
   -ms-ime-mode: active;
   ime-mode: active;
+  @media screen and (max-width: 620px) {
+    font-size: 18px;
+  }
 `;
 
 export const ClearIcon = styled(ClearSvg)`
@@ -62,9 +76,9 @@ export const RowContainer = styled.div`
 
 export const CheckBox = styled.input`
   position: absolute;
-  left: -30px;
-  width: 25px;
-  height: 25px;
+  left: -33px;
+  width: 28px;
+  height: 28px;
 `;
 
 export const RowBox = styled.div`

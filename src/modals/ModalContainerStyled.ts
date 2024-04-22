@@ -23,7 +23,7 @@ export const Container = styled.div`
   gap: 28px;
   background-color: white;
   border-radius: 8px;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     width: 320px;
     padding: 20px 24px;
     gap: 20x;
@@ -34,7 +34,7 @@ export const Title = styled.h2`
   color: #333236;
   font-size: 24px;
   font-weight: 700;
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 620px) {
     font-size: 20px;
   }
 `;

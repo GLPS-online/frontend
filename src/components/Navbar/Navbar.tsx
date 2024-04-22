@@ -38,8 +38,9 @@ export default function Navbar() {
         >
           {user ? (
             <>
-              Welcome, {user.korName}
-              {user.division}님
+              {" "}
+              {user.korName}
+              {user.division}
             </>
           ) : (
             <Link to={"/login"}>로그인</Link>
