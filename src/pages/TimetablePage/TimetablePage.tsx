@@ -56,13 +56,26 @@ export default function TimetablePage() {
       </S.InformationRow>
       <S.InformationRow>
         <S.InformationItem>
-          Class PA: <Nametag data={classPA} displayDivision={false}></Nametag>
+          Class PA:{" "}
+          <Nametag
+            data={classPA}
+            displayDivision={false}
+            forTimetable={true}
+          ></Nametag>
         </S.InformationItem>
         <S.InformationItem>Office: {data?.office}</S.InformationItem>
       </S.InformationRow>
+      <S.Days>
+        <S.Day>MON</S.Day>
+        <S.Day>TUE</S.Day>
+        <S.Day>WED</S.Day>
+        <S.Day>THU</S.Day>
+        <S.Day>FRI</S.Day>
+        <S.Day style={{ color: "darkblue" }}>SAT</S.Day>
+      </S.Days>
       {<Timetable table={data?.table} classPA={classPA} />}
-      <button onClick={() => navigate(-1)}>돌아가기</button>
-      <button onClick={() => navigate("/")}>홈으로</button>
+      <S.Link onClick={() => navigate(-1)}>돌아가기</S.Link>
+      <S.Link onClick={() => navigate("/")}>홈으로</S.Link>
     </S.Container>
   );
 }
