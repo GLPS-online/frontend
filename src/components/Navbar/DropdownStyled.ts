@@ -28,6 +28,6 @@ export const DropDownItem = styled.li`
   font-weight: 500;
   @media screen and (max-width: 620px) {
     height: 38px;
-    font-size: 14px;
+    /* font-size: 14px; */
   }
 `;

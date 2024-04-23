@@ -35,7 +35,11 @@ export default function TimetableItem({ elem, selected, classPA }: Props) {
       <S.Subject>{elem.subject}</S.Subject>
       {isFlipped ? (
         subjectTA ? (
-          <Nametag data={subjectTA} forTimetable={true} />
+          <Nametag
+            data={subjectTA}
+            displayDivision={false}
+            forTimetable={true}
+          />
         ) : (
           <S.TA>----</S.TA>
         )
