@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { searchUser } from "@/api/userApi";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as S from "./StudentExpandedStyled";
 import Student from "@/interfaces/Student";
 import User from "@/interfaces/User";

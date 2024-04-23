@@ -1,6 +1,5 @@
 import * as S from "./AuthPageStyled";
-import LogoImageSvg from "../../assets/logo-image.svg";
-import LogoTextSvg from "../../assets/logo-text.svg";
+
 import { useNavigate } from "react-router-dom";
 
 export default function AuthPageLogo({ welcomeText }: { welcomeText: string }) {

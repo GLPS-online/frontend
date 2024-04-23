@@ -16,9 +16,10 @@ export const Subject = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   @media screen and (max-width: 620px) {
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 500;
   }
 `;
 
@@ -30,7 +31,8 @@ export const Location = styled.div`
   font-size: 13px;
   font-weight: 500;
   @media screen and (max-width: 620px) {
-    font-size: 10px;
+    /* font-size: 10px; */
+    /* font-weight: 600; */
   }
 `;
 
@@ -42,6 +44,7 @@ export const TA = styled.div`
   font-size: 13px;
   font-weight: 500;
   @media screen and (max-width: 620px) {
-    font-size: 10px;
+    /* font-size: 10px; */
+    /* font-weight: 600; */
   }
 `;
