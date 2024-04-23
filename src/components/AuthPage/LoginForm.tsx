@@ -17,7 +17,7 @@ export default function LoginForm({
 
   return (
     <S.Container
-      autoComplete="nope"
+      autoComplete="new-password"
       onSubmit={handleSubmit((data) => handleLogin(data))}
     >
       <S.Field>

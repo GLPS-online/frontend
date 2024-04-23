@@ -42,7 +42,7 @@ export default function ShuttleModal({
     >
       <S.Container
         onSubmit={handleSubmit((data) => submit(data))}
-        autoComplete="nope"
+        autoComplete="new-password"
       >
         <S.Label htmlFor="etc">출발지</S.Label>
         <S.Select
