@@ -6,14 +6,14 @@ interface Props {
   handleModalClose: () => void;
   action: string;
   items: string[];
-  clearItems: () => void;
+  onSuccess: () => void;
 }
 
 export default function CardModal({
   handleModalClose,
   action,
   items,
-  clearItems,
+  onSuccess,
 }: Props) {
   const {
     register,
@@ -30,7 +30,7 @@ export default function CardModal({
     try {
       alert(items.length + "액션");
       handleModalClose();
-      clearItems();
+      onSuccess();
     } catch (err) {
       alert(err);
       handleModalClose();

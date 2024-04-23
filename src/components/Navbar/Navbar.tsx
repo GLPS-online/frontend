@@ -13,9 +13,6 @@ export default function Navbar() {
   const user = getUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  //back drop component
-  //redux
-
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (toggleRef.current && !toggleRef.current.contains(e.target as Node)) {
@@ -48,6 +45,7 @@ export default function Navbar() {
           <S.menuOpen
             src={isMenuOpen ? arrowUpIcon : arrowDownIcon}
             alt="togglemenu"
+            draggable={false}
           />
           {isMenuOpen && <Dropdown />}
         </S.UserArea>

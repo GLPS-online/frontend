@@ -20,7 +20,9 @@ export const UserArea = styled.div`
 `;
 
 export const menuOpen = styled.img`
-  width: 25px;
-  height: 25px;
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+  margin-left: 2px;
   cursor: pointer;
 `;

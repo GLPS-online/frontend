@@ -4,13 +4,13 @@ import { useForm } from "react-hook-form";
 
 interface Props {
   handleModalClose: () => void;
-  clearItems: () => void;
+  onSuccess: () => void;
   items: string[];
 }
 
 export default function ShuttleModal({
   handleModalClose,
-  clearItems,
+  onSuccess,
   items,
 }: Props) {
   const {
@@ -28,7 +28,7 @@ export default function ShuttleModal({
     try {
       alert("제출");
       handleModalClose();
-      clearItems();
+      onSuccess();
     } catch (err) {
       alert(err);
       handleModalClose();

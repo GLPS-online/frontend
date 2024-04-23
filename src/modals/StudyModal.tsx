@@ -5,13 +5,13 @@ import { useForm } from "react-hook-form";
 interface Props {
   handleModalClose: () => void;
   items: string[];
-  clearItems: () => void;
+  onSuccess: () => void;
 }
 
 export default function StudyModal({
   handleModalClose,
   items,
-  clearItems,
+  onSuccess,
 }: Props) {
   const {
     register,
@@ -28,7 +28,7 @@ export default function StudyModal({
     try {
       alert(items.length + "액션");
       handleModalClose();
-      clearItems();
+      onSuccess();
     } catch (err) {
       alert(err);
       handleModalClose();

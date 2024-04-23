@@ -30,7 +30,7 @@ export default function Table({
     queryFn: fetchFunction,
     initialData: [],
   });
-
+  const [rerenderer, setRerenderer] = useState<number>(0);
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();
@@ -94,7 +94,10 @@ export default function Table({
                   <CardModal
                     action={action}
                     items={Array.from(selectedItems)}
-                    clearItems={clearItems}
+                    onSuccess={() => {
+                      clearItems();
+                      setAction("default");
+                    }}
                     handleModalClose={handleModalClose}
                   />
                 );
@@ -102,7 +105,10 @@ export default function Table({
                 return (
                   <ShuttleModal
                     items={Array.from(selectedItems)}
-                    clearItems={clearItems}
+                    onSuccess={() => {
+                      clearItems();
+                      setAction("default");
+                    }}
                     handleModalClose={handleModalClose}
                   />
                 );
@@ -110,7 +116,10 @@ export default function Table({
                 return (
                   <StudyModal
                     items={Array.from(selectedItems)}
-                    clearItems={clearItems}
+                    onSuccess={() => {
+                      clearItems();
+                      setAction("default");
+                    }}
                     handleModalClose={handleModalClose}
                   />
                 );
@@ -219,14 +228,17 @@ export default function Table({
             </S.ActionButtons>
           </S.ActionBar>
         )}
-        {filteredData.map((elem: Person, index) => (
-          <S.RowContainer key={`${elem._id}${index}`}>
+        {filteredData.map((elem: Person) => (
+          <S.RowContainer key={`${rerenderer}${elem._id}`}>
             <S.CheckBox
               name={elem._id}
               type={selectable && action !== "default" ? "checkbox" : "hidden"}
               value={elem._id}
               checked={selectedItems.has(elem._id)}
-              onChange={handleCheckboxChange}
+              onChange={(e) => {
+                handleCheckboxChange(e);
+                setRerenderer((prev) => prev + 1);
+              }}
             />
             <S.RowBox
               onClick={() => {
