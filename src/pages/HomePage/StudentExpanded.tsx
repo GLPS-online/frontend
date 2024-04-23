@@ -36,14 +36,24 @@ export default function StudentExpanded({ student }: { student: Student }) {
         </S.Cell>
       </S.Cells>
       <S.Links>
-        <S.Link onClick={() => navigate(`/timetables/${student.className}/`)}>
+        <S.Link
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/timetables/${student.className}/`);
+          }}
+        >
           시간표
         </S.Link>
-        <S.Link onClick={() => navigate(`/student/${student._id}/`)}>
+        <S.Link
+          onClick={(e) => {
+            e.stopPropagation();
+            navigate(`/student/${student._id}/`);
+          }}
+        >
           세부정보/수정
         </S.Link>
       </S.Links>
-      {/* <Link to={``}>EOP 검사</Link>
+      {/* <Link to="/">EOP 검사</Link>
       <Link to={``}>카드 확인</Link> */}
     </S.StudentExpandedContainer>
   );

@@ -9,6 +9,7 @@ import OtherInfo from "./OtherInfo";
 
 export default function StudentPage() {
   const { id } = useParams();
+
   const [student, setStudent] = useState<Student | null>(null);
 
   async function handleFecth(id: string) {
