@@ -3,12 +3,15 @@ import styled from "styled-components";
 export const Item = styled.div<{ $selected: boolean }>`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  padding-top: 18px;
   align-items: center;
   gap: 7px;
   margin: 1px;
   border: 1px solid black;
   ${({ $selected }) => ($selected ? "border: 3px solid blue;" : "")}
+  @media screen and (max-width: 620px) {
+    padding-top: 10px;
+  }
 `;
 
 export const Subject = styled.div`
@@ -27,6 +30,8 @@ export const Location = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  white-space: pre-line;
   color: gray;
   font-size: 13px;
   font-weight: 500;

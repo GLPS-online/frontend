@@ -52,11 +52,11 @@ export default function TimetablePage() {
         ))}
       </S.ClassSelect>
       <S.InformationRow>
-        <S.InformationItem>Advisor: {data?.advisor}</S.InformationItem>
+        <S.InformationItem>Advisor: &nbsp;{data?.advisor}</S.InformationItem>
       </S.InformationRow>
       <S.InformationRow>
         <S.InformationItem>
-          Class PA:{" "}
+          Class PA: &nbsp;
           <Nametag data={classPA} displayDivision={false} forTimetable={true} />
         </S.InformationItem>
         <S.InformationItem>Office: {data?.office}</S.InformationItem>

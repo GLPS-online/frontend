@@ -44,7 +44,9 @@ export default function TimetableItem({ elem, selected, classPA }: Props) {
           <S.TA>----</S.TA>
         )
       ) : (
-        <S.Location>{elem.location === "-" ? "TBD" : elem.location}</S.Location>
+        <S.Location>
+          {elem.location === "-" ? "TBD" : elem.location.replace(" | ", "\n")}
+        </S.Location>
       )}
     </S.Item>
   );
