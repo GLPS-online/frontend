@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
-import Navbar from "./components/Navbar/Navbar";
+import Header from "./components/Header/Header";
 import LoginRedirector from "./LoginRedirector";
 
 function Layout() {
   return (
     <>
       <LoginRedirector>
-        <Navbar />
+        <Header />
         <Outlet />
         <Footer />
       </LoginRedirector>

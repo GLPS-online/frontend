@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as ClearSvg } from "@/assets/icons/clear.svg";
 
 export const TableContainer = styled.div<{ $selectable: boolean }>`
   width: 480px;
@@ -67,7 +66,7 @@ export const SearchBarInput = styled.input`
   }
 `;
 
-export const ClearIcon = styled(ClearSvg)`
+export const ClearIcon = styled.img`
   position: absolute;
   cursor: pointer;
   right: 10px;

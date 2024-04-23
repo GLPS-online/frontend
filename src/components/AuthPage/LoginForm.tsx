@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
 import * as S from "./FormStyled";
-import RevealSvg from "@/assets/icons/reveal.svg";
-import HideSvg from "@/assets/icons/hide.svg";
 import { useState } from "react";
 import { LoginFormValue } from "@/interfaces/Auth";
 
@@ -54,7 +52,7 @@ export default function LoginForm({
         />
         <S.Reveal
           onClick={() => setRevealPw((prev) => !prev)}
-          src={revealPw ? HideSvg : RevealSvg}
+          src={revealPw ? "/icons/hide.svg" : "/icons/reveal.svg"}
           alt="reveal"
         />
         {errors.password && (

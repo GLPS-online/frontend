@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-import { ReactComponent as EditSvg } from "@/assets/icons/edit.svg";
-import { ReactComponent as SaveSvg } from "@/assets/icons/save.svg";
-
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,12 +14,7 @@ export const InfoContainer = styled.div`
   gap: 10px;
 `;
 
-export const EditButton = styled(EditSvg)`
-  width: 16px;
-  height: 16px;
-`;
-
-export const SaveButton = styled(SaveSvg)`
+export const EditSave = styled.img`
   width: 16px;
   height: 16px;
 `;

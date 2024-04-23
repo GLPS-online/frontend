@@ -1,7 +1,5 @@
 import { useForm } from "react-hook-form";
 import * as S from "./FormStyled";
-import RevealSvg from "@/assets/icons/reveal.svg";
-import HideSvg from "@/assets/icons/hide.svg";
 import { useEffect, useState } from "react";
 import {
   HQpositions,
@@ -73,7 +71,7 @@ export default function SignupForm({
         />
         <S.Reveal
           onClick={() => setRevealPw((prev) => !prev)}
-          src={revealPw ? HideSvg : RevealSvg}
+          src={revealPw ? "/icons/hide.svg" : "/icons/reveal.svg"}
           alt="reveal"
         />
         {errors.password && (
@@ -96,7 +94,7 @@ export default function SignupForm({
         />
         <S.Reveal
           onClick={() => setRevealConfirmPw((prev) => !prev)}
-          src={revealConfirmPw ? HideSvg : RevealSvg}
+          src={revealConfirmPw ? "/icons/hide.svg" : "/icons/reveal.svg"}
           alt="reveal"
         />
         {errors.confirmPassword && (

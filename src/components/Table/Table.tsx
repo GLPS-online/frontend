@@ -164,7 +164,12 @@ export default function Table({
                 }}
               />
               <S.ClearIcon
-                display={searchParams.get(searchOption.propName) ? "" : "none"}
+                src="/icons/clear.svg"
+                style={{
+                  display: `${
+                    searchParams.get(searchOption.propName) ? "" : "none"
+                  }`,
+                }}
                 onClick={() => {
                   searchParams.delete(searchOption.propName);
                   setSearchParams(searchParams);

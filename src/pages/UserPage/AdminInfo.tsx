@@ -1,5 +1,5 @@
 import User from "@/interfaces/User";
-import * as S from "./UerPageStyled";
+import * as S from "./UserPageStyled";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ export default function AdminInfo({
     <S.InfoContainer>
       {isEdit ? (
         <S.Button onClick={handleEdit}>
-          <S.SaveButton />
+          <S.EditSave src="/icons/save.svg" />
         </S.Button>
       ) : (
         <S.Button
@@ -53,7 +53,7 @@ export default function AdminInfo({
             }
           }}
         >
-          <S.EditButton />
+          <S.EditSave src="/icons/edit.svg" />
         </S.Button>
       )}
       <div>

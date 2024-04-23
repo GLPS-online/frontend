@@ -1,5 +1,5 @@
 import User from "@/interfaces/User";
-import * as S from "./UerPageStyled";
+import * as S from "./UserPageStyled";
 
 export default function OtherInfo({ User }: { User: User }) {
   return (

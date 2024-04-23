@@ -2,12 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthProvider";
 import Dropdown from "./Dropdown";
-import * as S from "./NavbarStyled";
+import * as S from "./HeaderStyled";
 
-import arrowDownIcon from "@/assets/icons/arrowDown.svg";
-import arrowUpIcon from "@/assets/icons/arrowUp.svg";
-
-export default function Navbar() {
+export default function Header() {
   const toggleRef = useRef<HTMLDivElement>(null);
   const { getUser } = useAuth();
   const user = getUser();
@@ -43,7 +40,7 @@ export default function Navbar() {
             <Link to={"/login"}>로그인</Link>
           )}
           <S.menuOpen
-            src={isMenuOpen ? arrowUpIcon : arrowDownIcon}
+            src={isMenuOpen ? "/icons/arrowUp.svg" : "/icons/arrowDown.svg"}
             alt="togglemenu"
             draggable={false}
           />

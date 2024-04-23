@@ -40,7 +40,7 @@ export default function EditableInfo({
     <S.InfoContainer>
       {isEdit ? (
         <S.Button onClick={handleEdit}>
-          <S.SaveButton />
+          <S.EditSave src="/icons/save.svg" />
         </S.Button>
       ) : (
         <S.Button
@@ -52,7 +52,7 @@ export default function EditableInfo({
             }
           }}
         >
-          <S.EditButton />
+          <S.EditSave src="/icons/edit.svg" />
         </S.Button>
       )}
 

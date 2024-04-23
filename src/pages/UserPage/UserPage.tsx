@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { deleteUser, fetchUser, updateUser } from "@/api/userApi";
 import User from "@/interfaces/User";
-import * as S from "./UerPageStyled";
+import * as S from "./UserPageStyled";
 import OtherInfo from "./OtherInfo";
 import AdminInfo from "./AdminInfo";
 import { grantAdmin } from "@/api/adminApi";
