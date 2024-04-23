@@ -21,6 +21,8 @@ export const InformationRow = styled.div`
 `;
 
 export const InformationItem = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 16px;
 `;
 

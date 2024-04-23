@@ -7,7 +7,7 @@ export const RowContainer = styled.div<{ $selected: string }>`
   justify-content: center;
   align-items: center;
   padding: 5px 3px;
-  border: solid;
+  border: solid 1px black;
   border-radius: 6px;
   ${({ $selected }) => {
     switch ($selected) {
@@ -52,6 +52,6 @@ export const Cell = styled.div`
   align-content: center;
   @media screen and (max-width: 620px) {
     height: 30px;
-    font-size: 18px;
+    /* font-size: 18px; */
   }
 `;

@@ -57,11 +57,7 @@ export default function TimetablePage() {
       <S.InformationRow>
         <S.InformationItem>
           Class PA:{" "}
-          <Nametag
-            data={classPA}
-            displayDivision={false}
-            forTimetable={true}
-          ></Nametag>
+          <Nametag data={classPA} displayDivision={false} forTimetable={true} />
         </S.InformationItem>
         <S.InformationItem>Office: {data?.office}</S.InformationItem>
       </S.InformationRow>

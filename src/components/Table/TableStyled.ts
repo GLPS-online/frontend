@@ -20,12 +20,20 @@ export const ActionBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
 `;
 
 export const ActionButtons = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+`;
+
+export const ActionButton = styled.button`
+  width: 40px;
+  height: 20px;
+  font-size: 18px;
 `;
 
 export const SearchBarContainer = styled.div`
@@ -49,13 +57,13 @@ export const SearchBarInput = styled.input`
   height: 40px;
   font-size: 20px;
   border-radius: 4px;
-  border: solid;
+  border: solid 1px black;
   -webkit-ime-mode: active;
   -moz-ime-mode: active;
   -ms-ime-mode: active;
   ime-mode: active;
   @media screen and (max-width: 620px) {
-    font-size: 18px;
+    /* font-size: 18px; */
   }
 `;
 
@@ -65,6 +73,11 @@ export const ClearIcon = styled(ClearSvg)`
   right: 10px;
   width: 20px;
   height: 20px;
+`;
+
+export const ActionSelector = styled.select`
+  height: 30px;
+  font-size: 18px;
 `;
 
 export const RowContainer = styled.div`

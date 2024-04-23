@@ -188,7 +188,7 @@ export default function Table({
               onChange={(e) => {}}
             />
             <div>
-              <select
+              <S.ActionSelector
                 name="action"
                 value={action}
                 onChange={(e) => setAction(e.target.value)}
@@ -203,11 +203,11 @@ export default function Table({
                 <option value={"red"}>레드카드</option>
                 <option value={"study"}>2자습 신청</option>
                 <option value={"shuttle"}>목발셔틀 신청</option>
-              </select>
+              </S.ActionSelector>
               {` (${selectedItems.size}/${filteredData.length})`}
             </div>
             <S.ActionButtons>
-              <button
+              <S.ActionButton
                 hidden={action === "default" || action === "attendance"}
                 disabled={selectedItems.size === 0}
                 onClick={() => {
@@ -215,8 +215,8 @@ export default function Table({
                 }}
               >
                 확인
-              </button>
-              <button
+              </S.ActionButton>
+              <S.ActionButton
                 disabled={action === "default"}
                 onClick={() => {
                   clearItems();
@@ -224,7 +224,7 @@ export default function Table({
                 }}
               >
                 취소
-              </button>
+              </S.ActionButton>
             </S.ActionButtons>
           </S.ActionBar>
         )}
