@@ -16,10 +16,7 @@ export default function LoginForm({
   const [revealPw, setRevealPw] = useState(false);
 
   return (
-    <S.Container
-      autoComplete="new-password"
-      onSubmit={handleSubmit((data) => handleLogin(data))}
-    >
+    <S.Container onSubmit={handleSubmit((data) => handleLogin(data))}>
       <S.Field>
         <S.Label htmlFor="email">이메일</S.Label>
         <S.Input

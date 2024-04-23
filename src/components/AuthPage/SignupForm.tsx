@@ -31,10 +31,7 @@ export default function SignupForm({
     setValue("area", "");
   }, [watchDivision, setValue]);
   return (
-    <S.Container
-      autoComplete="new-password"
-      onSubmit={handleSubmit(handleSignup)}
-    >
+    <S.Container autoComplete="off" onSubmit={handleSubmit(handleSignup)}>
       <S.Field>
         <S.Label htmlFor="email">이메일</S.Label>
         <S.Input

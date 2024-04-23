@@ -134,8 +134,8 @@ export default function Table({
           {searchOptions.map((searchOption, i) => (
             <S.SearchBarInputContainer key={i}>
               <S.SearchBarInput
-                autoComplete="new-password"
-                name={searchOption.propName}
+                autoComplete="off"
+                name={searchOption.propName + "search"}
                 type={searchOption.inputType}
                 inputMode={
                   searchOption.inputType === "number" ? "numeric" : "text"
