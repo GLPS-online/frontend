@@ -56,7 +56,7 @@ export default function CardModal({
     >
       <S.Container
         onSubmit={handleSubmit((data) => submit(data))}
-        autoComplete="off"
+        autoComplete="nope"
       >
         <S.Label htmlFor="reason">
           {action === "eop" ? "적발 사유" : "발급 사유"}

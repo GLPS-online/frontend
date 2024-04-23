@@ -39,7 +39,7 @@ export default function StudyModal({
     <ModalContainer title="2자습 신청 ✏️" handleModalClose={handleModalClose}>
       <S.Container
         onSubmit={handleSubmit((data) => submit(data))}
-        autoComplete="off"
+        autoComplete="nope"
       >
         <S.CheckboxArea $isError={errors.agreement ? true : false}>
           <S.Checkbox
