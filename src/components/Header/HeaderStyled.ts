@@ -5,11 +5,11 @@ export const NavbarContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 20px 10px;
+  padding: 20px 0;
   margin: 0 auto;
   @media screen and (max-width: 620px) {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
   }
 `;
 
@@ -25,7 +25,7 @@ export const LogoContainer = styled.div`
 
 export const BigText = styled.span`
   font-size: 35px;
-  font-weight: 600;
+  font-weight: 800;
   color: darkblue;
 `;
 

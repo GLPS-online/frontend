@@ -4,7 +4,7 @@ export const DropDownContianer = styled.ul`
   z-index: 2;
   position: absolute;
   top: 30px;
-  right: 10px;
+  right: 0px;
   list-style: none;
   display: flex;
   flex-direction: column;

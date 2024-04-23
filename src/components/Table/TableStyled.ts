@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const TableContainer = styled.div<{ $selectable: boolean }>`
   width: 480px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;

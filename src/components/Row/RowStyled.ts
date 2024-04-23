@@ -6,7 +6,7 @@ export const RowContainer = styled.div<{ $selected: string }>`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5px 3px;
+  padding: 5px 2px;
   border: solid 1px black;
   border-radius: 6px;
   ${({ $selected }) => {
