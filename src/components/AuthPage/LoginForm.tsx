@@ -52,6 +52,7 @@ export default function LoginForm({
         />
         <S.Reveal
           onClick={() => setRevealPw((prev) => !prev)}
+          draggable={false}
           src={revealPw ? "/icons/hide.svg" : "/icons/reveal.svg"}
           alt="reveal"
         />

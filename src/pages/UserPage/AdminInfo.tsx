@@ -41,7 +41,7 @@ export default function AdminInfo({
     <S.InfoContainer>
       {isEdit ? (
         <S.Button onClick={handleEdit}>
-          <S.EditSave src="/icons/save.svg" />
+          <S.EditSave src="/icons/save.svg" draggable={false} />
         </S.Button>
       ) : (
         <S.Button
@@ -53,7 +53,7 @@ export default function AdminInfo({
             }
           }}
         >
-          <S.EditSave src="/icons/edit.svg" />
+          <S.EditSave src="/icons/edit.svg" draggable={false} />
         </S.Button>
       )}
       <div>

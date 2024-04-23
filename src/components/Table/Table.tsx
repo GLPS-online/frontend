@@ -165,6 +165,7 @@ export default function Table({
               />
               <S.ClearIcon
                 src="/icons/clear.svg"
+                draggable={false}
                 style={{
                   display: `${
                     searchParams.get(searchOption.propName) ? "" : "none"

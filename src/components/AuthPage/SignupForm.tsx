@@ -71,6 +71,7 @@ export default function SignupForm({
         />
         <S.Reveal
           onClick={() => setRevealPw((prev) => !prev)}
+          draggable={false}
           src={revealPw ? "/icons/hide.svg" : "/icons/reveal.svg"}
           alt="reveal"
         />
@@ -94,6 +95,7 @@ export default function SignupForm({
         />
         <S.Reveal
           onClick={() => setRevealConfirmPw((prev) => !prev)}
+          draggable={false}
           src={revealConfirmPw ? "/icons/hide.svg" : "/icons/reveal.svg"}
           alt="reveal"
         />
