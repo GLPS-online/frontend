@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, fetchUser, updateUser } from "@/api/userApi";
 import User from "@/interfaces/User";
 import * as S from "./UserPageStyled";
 import OtherInfo from "./OtherInfo";
 import AdminInfo from "./AdminInfo";
 import { grantAdmin } from "@/api/adminApi";
+import Navigator from "@/components/Navigator/Navigator";
 
 export default function UserPage() {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const [User, setUser] = useState<User | null>(null);
 
   async function handleFecth(id: string) {
@@ -76,6 +77,7 @@ export default function UserPage() {
           <br />
         </>
       )}
+      <Navigator />
     </S.PageContainer>
   );
 }

@@ -6,6 +6,7 @@ import * as S from "./StudentPageStyled";
 import EditableInfo from "./EditableInfo";
 import LifeInfo from "./LifeInfo";
 import OtherInfo from "./OtherInfo";
+import Navigator from "@/components/Navigator/Navigator";
 
 export default function StudentPage() {
   const { id } = useParams();
@@ -56,8 +57,7 @@ export default function StudentPage() {
           <br />
         </>
       )}
-      <button onClick={() => navigate(-1)}>돌아가기</button>
-      <button onClick={() => navigate("/")}>홈으로</button>
+      <Navigator />
     </S.PageContainer>
   );
 }

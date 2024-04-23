@@ -36,13 +36,3 @@ export const Day = styled.div`
   text-align: center;
   font-size: 14px;
 `;
-
-export const Link = styled.button`
-  padding: 5px;
-  color: darkblue;
-  text-decoration: underline;
-  font-size: 15px;
-  @media screen and (max-width: 620px) {
-    font-size: 13px;
-  }
-`;

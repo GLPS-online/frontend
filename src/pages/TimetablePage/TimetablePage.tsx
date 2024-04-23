@@ -8,6 +8,7 @@ import { classInfo } from "@/interfaces/Timetable";
 import User from "@/interfaces/User";
 import { classList } from "@/constants";
 import { fetchTimetable } from "@/api/otherApi";
+import Navigator from "@/components/Navigator/Navigator";
 
 export default function TimetablePage() {
   const navigate = useNavigate();
@@ -70,8 +71,7 @@ export default function TimetablePage() {
         <S.Day style={{ color: "darkblue" }}>SAT</S.Day>
       </S.Days>
       {<Timetable table={data?.table} classPA={classPA} />}
-      <S.Link onClick={() => navigate(-1)}>돌아가기</S.Link>
-      <S.Link onClick={() => navigate("/")}>홈으로</S.Link>
+      <Navigator />
     </S.Container>
   );
 }
