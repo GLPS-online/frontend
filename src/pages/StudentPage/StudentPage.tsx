@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Student from "@/interfaces/Student";
 import { fetchStudent, updateStudent } from "@/api/studentApi";
 import * as S from "./StudentPageStyled";
@@ -21,8 +21,6 @@ export default function StudentPage() {
       console.log(e);
     }
   }
-
-  const navigate = useNavigate();
 
   async function onEdit(body: Object) {
     try {

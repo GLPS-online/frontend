@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthProvider";
 import Dropdown from "./Dropdown";
 import * as S from "./HeaderStyled";
@@ -9,6 +9,8 @@ export default function Header() {
   const { getUser } = useAuth();
   const user = getUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -25,19 +27,21 @@ export default function Header() {
   return (
     user && (
       <S.NavbarContainer>
-        <Link to="/">로고</Link>
+        <S.LogoContainer onClick={() => navigate("/")}>
+          <S.BigText>GLPS</S.BigText>
+          <S.SmallText>online</S.SmallText>
+        </S.LogoContainer>
         <S.UserArea
           onClick={() => setIsMenuOpen((prev) => !prev)}
           ref={toggleRef}
         >
           {user ? (
-            <>
-              {" "}
+            <S.Profile>
               {user.korName}
               {user.division}
-            </>
+            </S.Profile>
           ) : (
-            <Link to={"/login"}>로그인</Link>
+            <button onClick={() => navigate("/login")}>로그인</button>
           )}
           <S.menuOpen
             src={isMenuOpen ? "/icons/arrowUp.svg" : "/icons/arrowDown.svg"}

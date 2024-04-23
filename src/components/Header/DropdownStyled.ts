@@ -25,7 +25,7 @@ export const DropDownItem = styled.li`
   padding: 10px;
   cursor: pointer;
   font-size: 16px;
-  font-weight: 500;
+  /* font-weight: 500; */
   @media screen and (max-width: 620px) {
     height: 38px;
     /* font-size: 14px; */
