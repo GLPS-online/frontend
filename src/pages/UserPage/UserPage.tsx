@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { deleteUser, fetchUser, updateUser } from "@/api/userApi";
+import UserForm from "./UserForm";
 import User from "@/interfaces/User";
 import * as S from "./UserPageStyled";
-import OtherInfo from "./OtherInfo";
-import AdminInfo from "./AdminInfo";
 import { grantAdmin } from "@/api/adminApi";
 import Navigator from "@/components/Navigator/Navigator";
 
@@ -61,8 +60,8 @@ export default function UserPage() {
     <S.PageContainer>
       {User ? (
         <>
-          <OtherInfo User={User} />
-          <AdminInfo
+          <h1>사용자 상세보기</h1>
+          <UserForm
             User={User}
             onEdit={handleUpdate}
             onGrantAdmin={handleGrantAdmin}

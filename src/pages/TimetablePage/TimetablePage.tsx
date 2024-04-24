@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Timetable from "./timetable/Timetable";
 import { searchUser } from "@/api/userApi";
 import { useNavigate, useParams } from "react-router-dom";
@@ -9,34 +8,27 @@ import User from "@/interfaces/User";
 import { classList } from "@/constants";
 import { fetchTimetable } from "@/api/otherApi";
 import Navigator from "@/components/Navigator/Navigator";
+import { useQuery } from "@tanstack/react-query";
 
 export default function TimetablePage() {
   const navigate = useNavigate();
   const { className = classList[0] } = useParams();
-  const [data, setData] = useState<{
+
+  const { data: classPA } = useQuery<User | null>({
+    queryKey: ["classPA", className],
+    queryFn: () => searchUser({ position: `${className}반 PA` }),
+    initialData: null,
+  });
+
+  const { data } = useQuery<{
     advisor: string;
     office: string;
     table: classInfo[];
-  }>({ advisor: "", office: "", table: [] });
-  const [classPA, setClassPA] = useState<User | null>(null);
-
-  async function handleFetchTable(className: string) {
-    const newData = await fetchTimetable(className);
-    setData(newData);
-  }
-
-  async function handleFetchPa(params: { position?: string; area?: string }) {
-    const res = await searchUser(params);
-    return res;
-  }
-
-  useEffect(() => {
-    handleFetchTable(className);
-    let position = `${className}반 PA`;
-
-    handleFetchPa({ position }).then((res) => setClassPA(res));
-  }, [className]);
-
+  } | null>({
+    queryKey: ["timetable", className],
+    queryFn: () => fetchTimetable(className),
+    initialData: null,
+  });
   return (
     <S.Container>
       <S.ClassSelect
@@ -70,7 +62,7 @@ export default function TimetablePage() {
         <S.Day>FRI</S.Day>
         <S.Day style={{ color: "darkblue" }}>SAT</S.Day>
       </S.Days>
-      {<Timetable table={data?.table} classPA={classPA} />}
+      {<Timetable table={data?.table || []} classPA={classPA} />}
       <Navigator />
     </S.Container>
   );

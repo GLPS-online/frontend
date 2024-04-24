@@ -215,9 +215,16 @@ export default function SignupForm({
         <S.Select
           id="position"
           disabled={watchDivision === "default"}
+          defaultValue={"default"}
           $isError={errors.position ? true : false}
-          {...register("position", { required: true })}
+          {...register("position", {
+            required: true,
+            validate: (v) => v !== "default",
+          })}
         >
+          <option id="default" value={"default"} disabled>
+            -
+          </option>
           {(() => {
             switch (watchDivision) {
               case "PA":

@@ -14,7 +14,7 @@ export default function UserExpanded({ user }: { user: User }) {
               navigate(`/user/${user._id}/`);
             }}
           >
-            세부정보
+            상세보기/정보수정
           </S.Link>
         </S.Links>
       </S.Container>

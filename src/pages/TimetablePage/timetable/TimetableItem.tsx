@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import User from "@/interfaces/User";
 import { searchUser } from "@/api/userApi";
 import { classInfo } from "@/interfaces/Timetable";
 import Nametag from "@/components/Nametag/Nametag";
 import * as S from "./TimetableItemStyled";
+import { useQuery } from "@tanstack/react-query";
 
 type Props = {
   elem: classInfo;
@@ -13,22 +14,15 @@ type Props = {
 
 export default function TimetableItem({ elem, selected, classPA }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
-  const [subjectTA, setSubjectTA] = useState<User | null>(null);
 
-  async function handleFetch(params: { position?: string; area?: string }) {
-    const res = await searchUser(params);
-    return res;
-  }
-
-  useEffect(() => {
-    if (elem.subject === "PE" || elem.subject === "VQ") {
-      setSubjectTA(classPA);
-      return;
-    }
-
-    const area = elem.location;
-    handleFetch({ area }).then((res) => setSubjectTA(res));
-  }, [classPA, elem]);
+  const { data: subjectTA } = useQuery<User | null>({
+    queryKey: ["subjectTA", elem.location],
+    queryFn:
+      elem.subject === "PE" || elem.subject === "VQ"
+        ? () => classPA
+        : () => searchUser({ area: elem.location }),
+    initialData: null,
+  });
 
   return (
     <S.Item $selected={selected} onClick={() => setIsFlipped((prev) => !prev)}>

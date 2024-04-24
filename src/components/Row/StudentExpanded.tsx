@@ -1,28 +1,24 @@
-import { useEffect, useState } from "react";
 import { searchUser } from "@/api/userApi";
 import { useNavigate } from "react-router-dom";
 import * as S from "./ExpandedStyled";
 import Student from "@/interfaces/Student";
 import User from "@/interfaces/User";
 import Nametag from "@/components/Nametag/Nametag";
+import { useQuery } from "@tanstack/react-query";
 
 export default function StudentExpanded({ student }: { student: Student }) {
   const navigate = useNavigate();
-  const [classPA, setClassPA] = useState<User | null>(null);
-  const [floorLA, setFloorLA] = useState<User | null>(null);
-  async function handleFetch(params: { position?: string; area?: string }) {
-    const res = await searchUser(params);
-    return res;
-  }
-
-  useEffect(() => {
-    let position = `${student.className}반 PA`;
-    handleFetch({ position }).then((res) => setClassPA(res));
-    let area = "";
-    let floor: number = Math.floor(student.roomNum / 100);
-    area = `${floor}층`;
-    handleFetch({ area }).then((res) => setFloorLA(res));
-  }, [student]);
+  const { data: classPA } = useQuery<User | null>({
+    queryKey: ["classPA", student.className],
+    queryFn: () => searchUser({ position: `${student.className}반 PA` }),
+    initialData: null,
+  });
+  const floor: number = Math.floor(student.roomNum / 100);
+  const { data: floorLA } = useQuery<User | null>({
+    queryKey: ["floorLA", floor],
+    queryFn: () => searchUser({ area: `${floor}층` }),
+    initialData: null,
+  });
 
   return (
     <S.Container>
