@@ -35,6 +35,7 @@ export const Cell = styled.div`
 
 export const Links = styled.div`
   width: 100%;
+  padding-right: 5px;
   display: flex;
   justify-content: flex-end;
   align-items: center;

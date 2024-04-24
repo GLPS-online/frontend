@@ -51,7 +51,8 @@ export const Cell = styled.div`
   text-align: center;
   align-content: center;
   @media screen and (max-width: 620px) {
-    height: 30px;
+    height: auto;
+    min-height: 30px;
     /* font-size: 18px; */
   }
 `;
