@@ -12,8 +12,8 @@ export const Link = styled.button`
   padding: 5px;
   color: darkblue;
   text-decoration: underline;
-  font-size: 15px;
-  @media screen and (max-width: 620px) {
-    font-size: 13px;
-  }
+  font-size: 16px;
+  /* @media screen and (max-width: 620px) {
+    font-size: 16px;
+  } */
 `;

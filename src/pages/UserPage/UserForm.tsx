@@ -257,7 +257,7 @@ export default function UserForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="area">담당 교실/층(TA·LA만 해당)</S.Label>
+          <S.Label htmlFor="area">담당 교실/층(TA·LA)</S.Label>
           {isEdit ? (
             <S.Select
               id="area"
@@ -332,27 +332,29 @@ export default function UserForm({
               setIsEdit(false);
             }}
           >
-            취소하기
+            취소
           </S.CancelButton>
           <S.EditSaveButton
             disabled={isSubmitting}
             onClick={handleSubmit(handleEdit)}
           >
-            저장하기
+            저장
           </S.EditSaveButton>
         </S.ButtonsContainer>
       ) : (
-        <S.EditSaveButton
-          onClick={() => {
-            if (isAdmin) {
-              setIsEdit(true);
-            } else {
-              toast.error("권한이 없습니다");
-            }
-          }}
-        >
-          수정하기
-        </S.EditSaveButton>
+        <S.ButtonsContainer>
+          <S.EditSaveButton
+            onClick={() => {
+              if (isAdmin) {
+                setIsEdit(true);
+              } else {
+                toast.error("권한이 없습니다");
+              }
+            }}
+          >
+            수정
+          </S.EditSaveButton>
+        </S.ButtonsContainer>
       )}
       {isPowerAdmin && (
         <div
