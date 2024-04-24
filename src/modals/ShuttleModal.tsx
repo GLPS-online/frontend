@@ -27,7 +27,7 @@ export default function ShuttleModal({
     //   // queryKey: ["columns", dashboardId + ""],
     // });
     try {
-      throw new Error();
+      // throw new Error();
       toast(items.length + "액션");
       handleModalClose();
       onSuccess();

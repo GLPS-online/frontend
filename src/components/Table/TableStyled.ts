@@ -57,6 +57,7 @@ export const SearchBarInput = styled.input`
   height: 40px;
   font-size: 20px;
   border-radius: 4px;
+  padding-left: 8px;
   border: solid 1px black;
   -webkit-ime-mode: active;
   -moz-ime-mode: active;
