@@ -13,7 +13,7 @@ import {
 export default function SignupForm({
   handleSignup,
 }: {
-  handleSignup: (arg0: object) => void;
+  handleSignup: (obj1: object) => void;
 }) {
   const {
     register,
