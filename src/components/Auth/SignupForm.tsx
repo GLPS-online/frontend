@@ -9,6 +9,7 @@ import {
   classRooms,
   floorList,
 } from "@/constants";
+import { phoneNumberAutoFormat } from "@/utils/etc";
 
 export default function SignupForm({
   handleSignup,
@@ -30,6 +31,7 @@ export default function SignupForm({
     setValue("position", "default");
     setValue("area", "");
   }, [watchDivision, setValue]);
+  console.log(errors);
   return (
     <S.Container autoComplete="off" onSubmit={handleSubmit(handleSignup)}>
       <S.Logo>회원가입</S.Logo>
@@ -179,6 +181,32 @@ export default function SignupForm({
             남
           </option>
         </S.Select>
+      </S.Field>
+
+      <S.Field>
+        <S.Label htmlFor="phone">휴대전화</S.Label>
+        <S.Input
+          id="phone"
+          type="tel"
+          inputMode="tel"
+          placeholder="010-1234-5678"
+          $isError={errors.phone ? true : false}
+          {...{
+            ...register("phone", {
+              required: true,
+              pattern: {
+                value: /^010-?([0-9]{4})-?([0-9]{4})$/,
+                message: "형식이 올바르지 않습니다",
+              },
+            }),
+            onChange: (e) =>
+              setValue("phone", phoneNumberAutoFormat(e.target.value)),
+          }}
+          maxLength={13}
+        />
+        {errors.phone && (
+          <S.ErrorText>{errors.phone.message?.toString()}</S.ErrorText>
+        )}
       </S.Field>
 
       <S.Field>

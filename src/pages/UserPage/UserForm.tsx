@@ -12,6 +12,7 @@ import {
   classRooms,
   floorList,
 } from "@/constants";
+import { phoneNumberAutoFormat } from "@/utils/etc";
 
 export default function UserForm({
   User,
@@ -141,7 +142,31 @@ export default function UserForm({
         <S.Field>
           <S.Label>연락처</S.Label>
           {isEdit ? (
-            <S.Phone href={`tel:${User.phone}`}>{User.phone}</S.Phone>
+            <>
+              <S.Input
+                id="phone"
+                type="tel"
+                inputMode="tel"
+                placeholder="010-1234-5678"
+                $isError={errors.phone ? true : false}
+                {...{
+                  ...register("phone", {
+                    required: true,
+                    pattern: {
+                      value: /^010-?([0-9]{4})-?([0-9]{4})$/,
+                      message: "형식이 올바르지 않습니다",
+                    },
+                  }),
+                  onChange: (e) =>
+                    setValue("phone", phoneNumberAutoFormat(e.target.value)),
+                }}
+                maxLength={13}
+              />
+
+              {errors.phone && (
+                <S.ErrorText>{errors.phone.message?.toString()}</S.ErrorText>
+              )}
+            </>
           ) : (
             <S.Data>
               <S.Phone href={`tel:${User.phone}`}>{User.phone}</S.Phone>
@@ -358,7 +383,7 @@ export default function UserForm({
               if (window.confirm("정말 삭제합니까?")) {
                 onDelete(User._id);
                 alert("삭제되었습니다.");
-                navigate("/users");
+                navigate(-1);
               }
             }}
           >
