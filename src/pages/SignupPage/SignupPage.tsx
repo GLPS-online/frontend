@@ -1,5 +1,4 @@
 import * as S from "./SignupPageStyled";
-import AuthPageLogo from "../../components/AuthPage/AuthPageLogo";
 import AuthPageRedirector from "../../components/AuthPage/AuthPageRedirector";
 import SignupForm from "../../components/AuthPage/SignupForm";
 import { signUp } from "@/api/authApi";
@@ -18,7 +17,6 @@ export default function SignupPage() {
   }
   return (
     <S.Container>
-      <AuthPageLogo welcomeText="첫 방문을 환영합니다!" />
       <SignupForm handleSignup={handleSignup} />
       <AuthPageRedirector
         text="이미 가입하셨나요?"

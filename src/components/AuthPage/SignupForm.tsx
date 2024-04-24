@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import * as S from "./FormStyled";
+import * as S from "./AuthPageStyled";
 import { useEffect, useState } from "react";
 import {
   HQpositions,
@@ -32,6 +32,7 @@ export default function SignupForm({
   }, [watchDivision, setValue]);
   return (
     <S.Container autoComplete="off" onSubmit={handleSubmit(handleSignup)}>
+      <S.Logo>회원가입</S.Logo>
       <S.Field>
         <S.Label htmlFor="email">이메일</S.Label>
         <S.Input
@@ -158,7 +159,7 @@ export default function SignupForm({
       </S.Field>
 
       <S.Field>
-        <S.Label htmlFor="gender">생물학적 성</S.Label>
+        <S.Label htmlFor="gender">성별</S.Label>
         <S.Select
           id="gender"
           defaultValue="default"
@@ -168,7 +169,7 @@ export default function SignupForm({
             validate: (v) => v === "F" || v === "M",
           })}
         >
-          <option id="default" value="default">
+          <option id="default" value="default" disabled>
             -
           </option>
           <option id="female" value={"F"}>

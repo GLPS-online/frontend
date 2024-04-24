@@ -1,5 +1,4 @@
 import * as S from "./LoginPageStyled";
-import AuthPageLogo from "@/components/AuthPage/AuthPageLogo";
 import AuthPageRedirector from "@/components/AuthPage/AuthPageRedirector";
 import LoginForm from "@/components/AuthPage/LoginForm";
 import { useAuth } from "@/contexts/AuthProvider";
@@ -16,7 +15,6 @@ export default function LoginPage() {
   }
   return (
     <S.Container>
-      <AuthPageLogo welcomeText="오늘도 만나서 반가워요!" />
       <LoginForm handleLogin={handleLogin} />
       <AuthPageRedirector
         text="회원이 아니신가요?"
