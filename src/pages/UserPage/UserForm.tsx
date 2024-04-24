@@ -2,7 +2,6 @@ import User from "@/interfaces/User";
 import * as S from "./UserPageStyled";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthProvider";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import {
   HQpositions,
@@ -25,7 +24,6 @@ export default function UserForm({
   onGrantAdmin: (arg0: string) => void;
   onDelete: (arg0: string) => void;
 }) {
-  const navigate = useNavigate();
   const { getUser } = useAuth();
   const isAdmin = getUser()?.admin > 0;
   const isPowerAdmin = getUser()?.admin > 1;
@@ -382,8 +380,6 @@ export default function UserForm({
             onClick={() => {
               if (window.confirm("정말 삭제합니까?")) {
                 onDelete(User._id);
-                alert("삭제되었습니다.");
-                navigate(-1);
               }
             }}
           >

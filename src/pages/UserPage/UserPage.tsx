@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, fetchUser, updateUser } from "@/api/userApi";
 import UserForm from "./UserForm";
 import User from "@/interfaces/User";
@@ -9,6 +9,7 @@ import Navigator from "@/components/Navigator/Navigator";
 
 export default function UserPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [User, setUser] = useState<User | null>(null);
 
   async function handleFecth(id: string) {
@@ -32,6 +33,8 @@ export default function UserPage() {
     if (id) {
       try {
         await deleteUser(id);
+        alert("삭제되었습니다.");
+        navigate(-1);
       } catch (e) {
         console.log(e);
         alert("deletion failed");

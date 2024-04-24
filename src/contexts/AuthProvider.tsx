@@ -1,5 +1,6 @@
 import { logIn, logOut } from "@/api/authApi";
 import { createContext, useContext } from "react";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext<{
   getUser: () => any;
@@ -30,9 +31,9 @@ export default function AuthProvider({
       const newUser = await logIn(data);
       const str = JSON.stringify(newUser);
       localStorage.setItem("user", str);
-      alert(newUser.korName + "님 반갑습니다");
+      toast.success(newUser.korName + "님 반갑습니다");
     } catch (error: any) {
-      alert(error.response.data.msg);
+      toast.error(error.response.data.msg);
       throw new Error(error);
     }
   }
