@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import * as S from "./AuthPageStyled";
+import * as S from "./AuthRedirectorStyled";
 
 export default function AuthPageRedirector({
   text,

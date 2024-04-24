@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
-export const StudentExpandedContainer = styled.div`
+export const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 10px;
   gap: 10px;
 `;
 
@@ -15,6 +14,7 @@ export const Cells = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
   gap: 15px;
   @media screen and (max-width: 620px) {
     gap: 5px;
@@ -26,11 +26,11 @@ export const Cell = styled.div`
   height: 30px;
   text-align: center;
   align-content: center;
-  font-size: 20px;
-  @media screen and (max-width: 620px) {
+  font-size: 18px;
+  /* @media screen and (max-width: 620px) {
     height: 30px;
     font-size: 18px;
-  }
+  } */
 `;
 
 export const Links = styled.div`

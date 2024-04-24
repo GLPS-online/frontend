@@ -1,6 +1,6 @@
 import * as S from "./SignupPageStyled";
-import AuthPageRedirector from "../../components/AuthPage/AuthPageRedirector";
-import SignupForm from "../../components/AuthPage/SignupForm";
+import AuthPageRedirector from "../../components/Auth/AuthRedirector";
+import SignupForm from "../../components/Auth/SignupForm";
 import { signUp } from "@/api/authApi";
 import { useNavigate } from "react-router-dom";
 

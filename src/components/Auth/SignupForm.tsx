@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import * as S from "./AuthPageStyled";
+import * as S from "./FormStyled";
 import { useEffect, useState } from "react";
 import {
   HQpositions,

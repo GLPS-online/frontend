@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { searchUser } from "@/api/userApi";
 import { useNavigate } from "react-router-dom";
-import * as S from "./StudentExpandedStyled";
+import * as S from "./ExpandedStyled";
 import Student from "@/interfaces/Student";
 import User from "@/interfaces/User";
 import Nametag from "@/components/Nametag/Nametag";
@@ -14,9 +14,9 @@ export default function StudentExpanded({ student }: { student: Student }) {
     const res = await searchUser(params);
     return res;
   }
+
   useEffect(() => {
     let position = `${student.className}반 PA`;
-
     handleFetch({ position }).then((res) => setClassPA(res));
     let area = "";
     let floor: number = Math.floor(student.roomNum / 100);
@@ -25,9 +25,9 @@ export default function StudentExpanded({ student }: { student: Student }) {
   }, [student]);
 
   return (
-    <S.StudentExpandedContainer>
+    <S.Container>
       <S.Cells>
-        <S.Cell>{student.school}</S.Cell>
+        <S.Cell>{student.school + student.grade}</S.Cell>
         <S.Cell>
           <Nametag data={classPA} />
         </S.Cell>
@@ -53,8 +53,6 @@ export default function StudentExpanded({ student }: { student: Student }) {
           세부정보/수정
         </S.Link>
       </S.Links>
-      {/* <Link to="/">EOP 검사</Link>
-      <Link to={``}>카드 확인</Link> */}
-    </S.StudentExpandedContainer>
+    </S.Container>
   );
 }

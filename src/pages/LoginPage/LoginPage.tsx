@@ -1,6 +1,6 @@
 import * as S from "./LoginPageStyled";
-import AuthPageRedirector from "@/components/AuthPage/AuthPageRedirector";
-import LoginForm from "@/components/AuthPage/LoginForm";
+import AuthPageRedirector from "@/components/Auth/AuthRedirector";
+import LoginForm from "@/components/Auth/LoginForm";
 import { useAuth } from "@/contexts/AuthProvider";
 import { useNavigate } from "react-router-dom";
 

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import * as S from "./AuthPageStyled";
+import * as S from "./FormStyled";
 import { useState } from "react";
 import { LoginFormValue } from "@/interfaces/Auth";
 
