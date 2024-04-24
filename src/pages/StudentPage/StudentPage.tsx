@@ -7,6 +7,7 @@ import EditableInfo from "./EditableInfo";
 import LifeInfo from "./LifeInfo";
 import OtherInfo from "./OtherInfo";
 import Navigator from "@/components/Navigator/Navigator";
+import { toast } from "react-toastify";
 
 export default function StudentPage() {
   const { id } = useParams();
@@ -28,9 +29,8 @@ export default function StudentPage() {
         const newStudent = await updateStudent(id, body);
         setStudent(newStudent);
       }
-    } catch (e) {
-      console.log(e);
-      alert("update failed");
+    } catch (err: any) {
+      toast.error(err.response?.msg);
     }
   }
 

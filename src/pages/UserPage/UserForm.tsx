@@ -12,6 +12,7 @@ import {
   floorList,
 } from "@/constants";
 import { phoneNumberAutoFormat } from "@/utils/etc";
+import { toast } from "react-toastify";
 
 export default function UserForm({
   User,
@@ -346,7 +347,7 @@ export default function UserForm({
             if (isAdmin) {
               setIsEdit(true);
             } else {
-              alert("관리자 문의");
+              toast.error("권한이 없습니다");
             }
           }}
         >

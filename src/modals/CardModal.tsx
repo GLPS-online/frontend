@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import ModalContainer from "./ModalContainer";
 import * as S from "./ModalStyled";
 import { useForm } from "react-hook-form";
@@ -28,11 +29,11 @@ export default function CardModal({
     //   // queryKey: ["columns", dashboardId + ""],
     // });
     try {
-      alert(items.length + "액션");
+      toast(items.length + "액션");
       handleModalClose();
       onSuccess();
-    } catch (err) {
-      alert(err);
+    } catch (err: any) {
+      toast.error(err.response?.msg);
       handleModalClose();
     }
   };

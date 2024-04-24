@@ -4,6 +4,7 @@ import Student from "@/interfaces/Student";
 import * as S from "./StudentPageStyled";
 import { useAuth } from "@/contexts/AuthProvider";
 import { classList } from "@/constants";
+import { toast } from "react-toastify";
 
 export default function EditableInfo({
   student,
@@ -48,7 +49,7 @@ export default function EditableInfo({
             if (isEditable) {
               setIsEdit(true);
             } else {
-              alert("관리자 문의");
+              toast.error("권한이 없습니다");
             }
           }}
         >

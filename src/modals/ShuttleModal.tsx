@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import ModalContainer from "./ModalContainer";
 import * as S from "./ModalStyled";
 import { useForm } from "react-hook-form";
@@ -26,11 +27,12 @@ export default function ShuttleModal({
     //   // queryKey: ["columns", dashboardId + ""],
     // });
     try {
-      alert("제출");
+      throw new Error();
+      toast(items.length + "액션");
       handleModalClose();
       onSuccess();
-    } catch (err) {
-      alert(err);
+    } catch (err: any) {
+      toast.error(err.response?.msg || "실패했습니다.");
       handleModalClose();
     }
   };

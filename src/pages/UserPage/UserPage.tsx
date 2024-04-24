@@ -6,6 +6,7 @@ import User from "@/interfaces/User";
 import * as S from "./UserPageStyled";
 import { grantAdmin } from "@/api/adminApi";
 import Navigator from "@/components/Navigator/Navigator";
+import { toast } from "react-toastify";
 
 export default function UserPage() {
   const { id } = useParams();
@@ -21,10 +22,10 @@ export default function UserPage() {
     if (id) {
       try {
         const newUser = await updateUser(id, body);
+        toast.success("업데이트에 성공했습니다.");
         setUser(newUser);
-      } catch (e) {
-        console.log(e);
-        alert("update failed");
+      } catch (err: any) {
+        toast.error(err.response?.msg);
       }
     }
   }
@@ -33,11 +34,10 @@ export default function UserPage() {
     if (id) {
       try {
         await deleteUser(id);
-        alert("삭제되었습니다.");
+        toast.success("삭제되었습니다.");
         navigate(-1);
-      } catch (e) {
-        console.log(e);
-        alert("deletion failed");
+      } catch (err: any) {
+        toast.error(err.response?.msg);
       }
     }
   }
@@ -46,10 +46,10 @@ export default function UserPage() {
     if (id) {
       try {
         const newUser = await grantAdmin(id);
+        toast.success("업데이트에 성공했습니다.");
         setUser(newUser);
-      } catch (e) {
-        console.log(e);
-        alert("update failed");
+      } catch (err: any) {
+        toast.error(err.response?.msg);
       }
     }
   }

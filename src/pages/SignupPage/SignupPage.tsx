@@ -4,6 +4,7 @@ import SignupForm from "../../components/Auth/SignupForm";
 import { signUp } from "@/api/authApi";
 import { useNavigate } from "react-router-dom";
 import { sortOrder } from "@/constants";
+import { toast } from "react-toastify";
 
 export default function SignupPage() {
   const navigate = useNavigate();
@@ -12,10 +13,10 @@ export default function SignupPage() {
     const order = sortOrder[data.position || "에러"] || 9999;
     try {
       await signUp({ ...data, sortOrder: order });
-      alert("회원가입 완료");
+      toast.success("회원가입 완료");
       navigate("/login");
     } catch (error: any) {
-      alert(error.response.data.msg);
+      toast.error(error.response.data.msg);
     }
   }
   return (
