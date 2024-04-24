@@ -53,10 +53,7 @@ export default function UserForm({
   });
   const watchDivision = watch("division");
   useEffect(() => {
-    if (getValues("division") === User.division) {
-      setValue("position", User.position);
-      setValue("area", User.area);
-    } else {
+    if (getValues("division") !== User.division) {
       setValue("position", "default");
       setValue("area", "");
     }

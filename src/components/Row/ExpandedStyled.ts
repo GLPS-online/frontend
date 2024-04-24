@@ -42,7 +42,7 @@ export const Links = styled.div`
 `;
 
 export const Link = styled.button`
-  padding: 5px;
+  /* padding: 5px; */
   color: darkblue;
   text-decoration: underline;
   font-size: 17px;
