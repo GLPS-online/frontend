@@ -1,42 +1,48 @@
 import * as S from "./TableStyled";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
-import SearchOption from "@/interfaces/SearchOption";
-import Person from "@/interfaces/Person";
 import useCheckbox from "@/hooks/useCheckbox";
-import Row from "@/components/Row/Row";
+import StudentRow from "@/components/Row/StudentRow";
 import { useModal } from "@/hooks/useModal";
 import CardModal from "@/modals/CardModal";
 import { createPortal } from "react-dom";
 import ShuttleModal from "@/modals/ShuttleModal";
 import StudyModal from "@/modals/StudyModal";
+import Student from "@/interfaces/Student";
 
 type Props = {
-  fetchFunction: (() => Person[]) | (() => Promise<any>);
-  searchOptions: SearchOption[];
-  selectable?: boolean;
-  onExpand?: (arg0: Person) => React.ReactElement;
+  data: Student[];
 };
 
-export default function Table({
-  fetchFunction,
-  searchOptions,
-  selectable = false,
-  onExpand,
-}: Props) {
-  const { isPending, error, data } = useQuery({
-    queryKey: ["repoData"],
-    queryFn: fetchFunction,
-    initialData: [],
-  });
+const searchOptions = [
+  {
+    propName: "korName",
+    inputType: "string",
+    placeholder: "이름",
+    searchType: "string",
+  },
+  {
+    propName: "className",
+    inputType: "string",
+    placeholder: "학급",
+    searchType: "string",
+  },
+  {
+    propName: "roomNum",
+    inputType: "number", // 검색 시 입력 타입
+    placeholder: "방",
+    searchType: "string",
+  },
+];
+
+export default function StudentTable({ data }: Props) {
   const [rerenderer, setRerenderer] = useState<number>(0);
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const filteredData: Person[] = data.filter((datum: any) => {
+  const filteredData: Student[] = data.filter((datum: any) => {
     if (selectedItems.has(datum._id)) {
       return true;
     }
@@ -75,10 +81,6 @@ export default function Table({
     });
   }
   const [action, setAction] = useState<string>("default");
-
-  if (isPending) return <div>로딩 중</div>;
-
-  if (error) return "An error has occurred: " + error.message;
 
   return (
     <>
@@ -159,8 +161,6 @@ export default function Table({
                       replace: true,
                     });
                   }
-                  // console.log(e.target.value);
-                  // console.log(e.nativeEvent);
                 }}
               />
               <S.ClearIcon
@@ -179,7 +179,7 @@ export default function Table({
             </S.SearchBarInputContainer>
           ))}
         </S.SearchBarContainer>
-        {selectable && (
+        {
           <S.ActionBar>
             <S.CheckBox
               name="all"
@@ -233,14 +233,14 @@ export default function Table({
               </S.ActionButton>
             </S.ActionButtons>
           </S.ActionBar>
-        )}
-        {filteredData.map((elem: Person) => (
-          <S.RowContainer key={`${rerenderer}${elem._id}`}>
+        }
+        {filteredData.map((student: Student) => (
+          <S.RowContainer key={`${rerenderer}${student._id}`}>
             <S.CheckBox
-              name={elem._id}
-              type={selectable && action !== "default" ? "checkbox" : "hidden"}
-              value={elem._id}
-              checked={selectedItems.has(elem._id)}
+              name={student._id}
+              type={action !== "default" ? "checkbox" : "hidden"}
+              value={student._id}
+              checked={selectedItems.has(student._id)}
               onChange={(e) => {
                 handleCheckboxChange(e);
                 setRerenderer((prev) => prev + 1);
@@ -252,28 +252,23 @@ export default function Table({
                   console.log(window.getSelection());
                   return;
                 }
-                if (searchParams.get("expanded") === elem._id) {
+                if (searchParams.get("expanded") === student._id) {
                   searchParams.delete("expanded");
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 } else {
-                  searchParams.set("expanded", elem._id);
+                  searchParams.set("expanded", student._id);
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 }
               }}
             >
-              <Row
-                elem={elem}
-                props={searchOptions}
-                selected={selectedItems.has(elem._id) ? action : "default"}
-                onExpand={
-                  searchParams.get("expanded") === elem._id && onExpand
-                    ? () => onExpand(elem)
-                    : () => null
-                }
+              <StudentRow
+                student={student}
+                selected={selectedItems.has(student._id) ? action : "default"}
+                isExpanded={searchParams.get("expanded") === student._id}
               />
             </S.RowBox>
           </S.RowContainer>

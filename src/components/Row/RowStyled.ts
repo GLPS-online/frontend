@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const RowContainer = styled.div<{ $selected: string }>`
+export const RowContainer = styled.div<{ $selected?: string }>`
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TableContainer = styled.div<{ $selectable: boolean }>`
+export const TableContainer = styled.div<{ $selectable?: boolean }>`
   width: 480px;
   width: 100%;
   display: flex;
@@ -10,7 +10,7 @@ export const TableContainer = styled.div<{ $selectable: boolean }>`
   @media screen and (max-width: 620px) {
     max-width: 100%;
     /* min-width: 300px; */
-    ${({ $selectable }) =>
+    ${({ $selectable = false }) =>
       $selectable ? "margin-left: 30px;max-width: 90%;" : ""}
   }
 `;

@@ -1,39 +1,20 @@
-import Table from "@/components/Table/Table";
 import { fetchUsers } from "@/api/userApi";
-import { Link } from "react-router-dom";
+import UserTable from "@/components/Table/UserTable";
+import { useQuery } from "@tanstack/react-query";
 
 export default function UserSearchPage() {
+  const { error, data } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+    initialData: [],
+  });
+
+  if (error) return "An error has occurred: " + error.message;
+
   return (
     <>
       <h1>P·T·LA 검색</h1>
-      <Table
-        fetchFunction={fetchUsers}
-        searchOptions={[
-          {
-            propName: "korName",
-            inputType: "string",
-            placeholder: "이름",
-            searchType: "string",
-          },
-          {
-            propName: "position",
-            inputType: "string",
-            placeholder: "직책",
-            searchType: "string",
-          },
-          {
-            propName: "roomNum",
-            inputType: "number",
-            placeholder: "방",
-            searchType: "string",
-          },
-        ]}
-        onExpand={(elem) => (
-          <div>
-            <Link to={`/user/${elem._id}`}>자세히;</Link>
-          </div>
-        )}
-      />
+      <UserTable data={data} />
     </>
   );
 }
