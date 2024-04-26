@@ -23,6 +23,7 @@ export default function StudentPage() {
 
   async function onEdit(body: Object) {
     if (id) {
+      const toastId = toast.loading("업데이트 중...");
       try {
         queryClient.setQueryData(["student", id], {
           ...queryClient.getQueriesData({
@@ -31,9 +32,19 @@ export default function StudentPage() {
           ...body,
         });
         await updateStudent(id, body);
-        toast.success("업데이트에 성공했습니다.");
+        toast.update(toastId, {
+          render: "업데이트 완료👌",
+          type: "success",
+          autoClose: 5000,
+          isLoading: false,
+        });
       } catch (err: any) {
-        toast.error(err.response?.msg);
+        toast.update(toastId, {
+          render: `${err.response?.data.msg}`,
+          type: "error",
+          autoClose: 5000,
+          isLoading: false,
+        });
       } finally {
         queryClient.invalidateQueries({ queryKey: ["student", id] });
       }

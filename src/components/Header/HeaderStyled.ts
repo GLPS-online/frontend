@@ -35,6 +35,7 @@ export const SmallText = styled.span`
 `;
 
 export const UserArea = styled.div`
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
@@ -49,5 +50,4 @@ export const menuOpen = styled.img`
   height: 20px;
   padding: 2px;
   margin-left: 2px;
-  cursor: pointer;
 `;

@@ -32,9 +32,9 @@ export default function AuthProvider({
       const str = JSON.stringify(newUser);
       localStorage.setItem("user", str);
       toast.success(newUser.korName + "님 반갑습니다");
-    } catch (error: any) {
-      toast.error(error.response.data.msg);
-      throw new Error(error);
+    } catch (err: any) {
+      toast.error(err.response?.data.msg);
+      throw new Error(err);
     }
   }
 

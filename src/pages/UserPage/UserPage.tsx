@@ -22,6 +22,7 @@ export default function UserPage() {
 
   async function handleUpdate(id: string, body: object) {
     if (id) {
+      const toastId = toast.loading("업데이트 중...");
       try {
         console.log(queryClient.getQueryData(["user", id]));
         queryClient.setQueryData(["user", id], {
@@ -29,9 +30,19 @@ export default function UserPage() {
           ...body,
         });
         await updateUser(id, body);
-        toast.success("업데이트에 성공했습니다.");
+        toast.update(toastId, {
+          render: "업데이트 완료👌",
+          type: "success",
+          autoClose: 5000,
+          isLoading: false,
+        });
       } catch (err: any) {
-        toast.error(err.response?.msg);
+        toast.update(toastId, {
+          render: `${err.response?.data.msg}`,
+          type: "error",
+          autoClose: 5000,
+          isLoading: false,
+        });
       } finally {
         queryClient.invalidateQueries({ queryKey: ["user", id] });
       }
@@ -40,12 +51,23 @@ export default function UserPage() {
 
   async function handleDelete(id: string) {
     if (id) {
+      const toastId = toast.loading("업데이트 중...");
       try {
         await deleteUser(id);
-        toast.success("삭제되었습니다.");
+        toast.update(toastId, {
+          render: "삭제 완료👌",
+          type: "success",
+          autoClose: 5000,
+          isLoading: false,
+        });
         navigate(-1);
       } catch (err: any) {
-        toast.error(err.response?.msg);
+        toast.update(toastId, {
+          render: `${err.response?.data.msg}`,
+          type: "error",
+          autoClose: 5000,
+          isLoading: false,
+        });
       } finally {
         queryClient.removeQueries({ queryKey: ["user", id] });
       }
@@ -54,11 +76,22 @@ export default function UserPage() {
 
   async function handleGrantAdmin(id: string) {
     if (id) {
+      const toastId = toast.loading("업데이트 중...");
       try {
         await grantAdmin(id);
-        toast.success("업데이트에 성공했습니다.");
+        toast.update(toastId, {
+          render: "삭제 완료👌",
+          type: "success",
+          autoClose: 5000,
+          isLoading: false,
+        });
       } catch (err: any) {
-        toast.error(err.response?.msg);
+        toast.update(toastId, {
+          render: `${err.response?.data.msg}`,
+          type: "error",
+          autoClose: 5000,
+          isLoading: false,
+        });
       } finally {
         queryClient.invalidateQueries({ queryKey: ["user", id] });
       }

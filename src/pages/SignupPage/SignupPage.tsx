@@ -15,8 +15,9 @@ export default function SignupPage() {
       await signUp({ ...data, sortOrder: order });
       toast.success("회원가입 완료");
       navigate("/login");
-    } catch (error: any) {
-      toast.error(error.response.data.msg);
+    } catch (err: any) {
+      console.log(err);
+      toast.error(err.response?.data.msg);
     }
   }
   return (

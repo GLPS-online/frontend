@@ -21,19 +21,24 @@ export default function StudyModal({
   } = useForm({ mode: "onBlur" });
 
   const submit = async (e: any) => {
-    // console.log(e);
-    // await createColumn(e.title, dashboardId);
-    // await queryClient.invalidateQueries({
-    //   // queryKey: ["columns", dashboardId + ""],
-    // });
+    const toastId = toast.loading("제출 중...");
     try {
-      // await fetchStudent("sdf");
-      toast(items.length + "액션");
+      // await fetchStudent("660bd0ae117db220f6d65ab7");
       onSuccess();
-    } catch (err: any) {
-      toast.error(err.response?.msg);
-    } finally {
       handleModalClose();
+      toast.update(toastId, {
+        render: "제출 완료👌",
+        type: "success",
+        autoClose: 5000,
+        isLoading: false,
+      });
+    } catch (err: any) {
+      toast.update(toastId, {
+        render: `${err.response?.data.msg}`,
+        type: "error",
+        autoClose: 5000,
+        isLoading: false,
+      });
     }
   };
 
