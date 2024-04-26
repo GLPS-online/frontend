@@ -6,6 +6,13 @@ export const Container = styled.form`
   gap: 10px;
 `;
 
+export const Fields = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+`;
+
 export const Label = styled.label`
   font-size: 18px;
   font-weight: 500;

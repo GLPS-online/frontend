@@ -27,12 +27,12 @@ export default function ShuttleModal({
     //   // queryKey: ["columns", dashboardId + ""],
     // });
     try {
-      // throw new Error();
+      // await fetchStudent("sdf");
       toast(items.length + "액션");
-      handleModalClose();
       onSuccess();
     } catch (err: any) {
-      toast.error(err.response?.msg || "실패했습니다.");
+      toast.error(err.response?.msg);
+    } finally {
       handleModalClose();
     }
   };
@@ -46,72 +46,72 @@ export default function ShuttleModal({
         onSubmit={handleSubmit((data) => submit(data))}
         autoComplete="off"
       >
-        <S.Label htmlFor="etc">출발지</S.Label>
-        <S.Select
-          id="departure"
-          defaultValue="default"
-          $isError={errors.departure ? true : false}
-          {...register("departure", {
-            required: true,
-            validate: (v) => v !== "default",
-          })}
-        >
-          <option disabled id="default" value="default">
-            -
-          </option>
-          <option id="덕고관" value={"덕고관"}>
-            덕고관
-          </option>
-          <option id="영교/민교관" value={"영교/민교관"}>
-            영교/민교관
-          </option>
-          <option id="다산/충무관" value={"다산/충무관"}>
-            다산/충무관
-          </option>
-          <option disabled id="other" value="other">
-            기타 장소는 HQ에 직접 문의
-          </option>
-        </S.Select>
-        <S.Select
-          id="destination"
-          defaultValue="default"
-          $isError={errors.destination ? true : false}
-          {...register("destination", {
-            required: true,
-            validate: (v) => v !== "default",
-          })}
-        >
-          <option disabled id="default" value="default">
-            -
-          </option>
-          <option id="덕고관" value={"덕고관"}>
-            덕고관
-          </option>
-          <option id="영교/민교관" value={"영교/민교관"}>
-            영교/민교관
-          </option>
-          <option id="다산/충무관" value={"다산/충무관"}>
-            다산/충무관
-          </option>
-          <option disabled id="other" value="other">
-            기타 장소는 HQ에 직접 문의
-          </option>
-        </S.Select>
-        <S.Label htmlFor="etc">기타 요청사항(선택)</S.Label>
-        <S.Textarea
-          id="etc"
-          placeholder="운전자에게 전달할 정보"
-          $isError={errors.etc ? true : false}
-          {...register("etc", {
-            required: false,
-          })}
-        />
-        <S.Buttons>
-          <S.Button onClick={handleModalClose}>취소</S.Button>
-          <S.Button disabled={isSubmitting} $color={"shuttle"}>
-            제출
-          </S.Button>
-        </S.Buttons>
+        <S.Fields disabled={isSubmitting}>
+          <S.Label htmlFor="etc">출발지</S.Label>
+          <S.Select
+            id="departure"
+            defaultValue="default"
+            $isError={errors.departure ? true : false}
+            {...register("departure", {
+              required: true,
+              validate: (v) => v !== "default",
+            })}
+          >
+            <option disabled id="default" value="default">
+              -
+            </option>
+            <option id="덕고관" value={"덕고관"}>
+              덕고관
+            </option>
+            <option id="영교/민교관" value={"영교/민교관"}>
+              영교/민교관
+            </option>
+            <option id="다산/충무관" value={"다산/충무관"}>
+              다산/충무관
+            </option>
+            <option disabled id="other" value="other">
+              기타 장소는 HQ에 직접 문의
+            </option>
+          </S.Select>
+          <S.Select
+            id="destination"
+            defaultValue="default"
+            $isError={errors.destination ? true : false}
+            {...register("destination", {
+              required: true,
+              validate: (v) => v !== "default",
+            })}
+          >
+            <option disabled id="default" value="default">
+              -
+            </option>
+            <option id="덕고관" value={"덕고관"}>
+              덕고관
+            </option>
+            <option id="영교/민교관" value={"영교/민교관"}>
+              영교/민교관
+            </option>
+            <option id="다산/충무관" value={"다산/충무관"}>
+              다산/충무관
+            </option>
+            <option disabled id="other" value="other">
+              기타 장소는 HQ에 직접 문의
+            </option>
+          </S.Select>
+          <S.Label htmlFor="etc">기타 요청사항(선택)</S.Label>
+          <S.Textarea
+            id="etc"
+            placeholder="운전자에게 전달할 정보"
+            $isError={errors.etc ? true : false}
+            {...register("etc", {
+              required: false,
+            })}
+          />
+          <S.Buttons>
+            <S.Button onClick={handleModalClose}>취소</S.Button>
+            <S.Button $color={"shuttle"}>제출</S.Button>
+          </S.Buttons>
+        </S.Fields>
       </S.Container>
     </ModalContainer>
   );

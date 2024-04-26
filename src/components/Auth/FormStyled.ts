@@ -21,6 +21,13 @@ export const Container = styled.form`
   gap: 12px;
 `;
 
+export const Fields = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+`;
+
 export const Field = styled.div`
   position: relative;
   width: 100%;
@@ -101,7 +108,7 @@ export const ErrorText = styled.div`
 
 export const SubmitButton = styled.button`
   display: flex;
-  margin: 22px;
+  margin: 22px 0;
   width: 100%;
   padding: 15px 0px 14px 0px;
   justify-content: center;

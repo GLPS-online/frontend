@@ -74,6 +74,13 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  input, select, textarea {
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+  }
+
   * {
     -ms-overflow-style: none;
   }

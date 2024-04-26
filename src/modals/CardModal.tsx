@@ -29,11 +29,12 @@ export default function CardModal({
     //   // queryKey: ["columns", dashboardId + ""],
     // });
     try {
+      // await fetchStudent("sdf");
       toast(items.length + "액션");
-      handleModalClose();
       onSuccess();
     } catch (err: any) {
       toast.error(err.response?.msg);
+    } finally {
       handleModalClose();
     }
   };
@@ -59,23 +60,23 @@ export default function CardModal({
         onSubmit={handleSubmit((data) => submit(data))}
         autoComplete="off"
       >
-        <S.Label htmlFor="reason">
-          {action === "eop" ? "적발 사유" : "발급 사유"}
-        </S.Label>
-        <S.Textarea
-          id="reason"
-          placeholder="상세히 작성해 주세요"
-          $isError={errors.reason ? true : false}
-          {...register("reason", {
-            required: true,
-          })}
-        />
-        <S.Buttons>
-          <S.Button onClick={handleModalClose}>취소</S.Button>
-          <S.Button disabled={isSubmitting} $color={action}>
-            제출
-          </S.Button>
-        </S.Buttons>
+        <S.Fields disabled={isSubmitting}>
+          <S.Label htmlFor="reason">
+            {action === "eop" ? "적발 사유" : "발급 사유"}
+          </S.Label>
+          <S.Textarea
+            id="reason"
+            placeholder="상세히 작성해 주세요"
+            $isError={errors.reason ? true : false}
+            {...register("reason", {
+              required: true,
+            })}
+          />
+          <S.Buttons>
+            <S.Button onClick={handleModalClose}>취소</S.Button>
+            <S.Button $color={action}>제출</S.Button>
+          </S.Buttons>
+        </S.Fields>
       </S.Container>
     </ModalContainer>
   );

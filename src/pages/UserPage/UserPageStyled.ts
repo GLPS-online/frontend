@@ -51,7 +51,14 @@ export const EditSaveButton = styled.button`
 
 export const Container = styled.form`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   padding-top: 10px;
+`;
+
+export const Fields = styled.fieldset`
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;

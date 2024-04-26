@@ -23,10 +23,9 @@ export default function UserPage() {
   async function handleUpdate(id: string, body: object) {
     if (id) {
       try {
+        console.log(queryClient.getQueryData(["user", id]));
         queryClient.setQueryData(["user", id], {
-          ...queryClient.getQueriesData({
-            queryKey: ["user", id],
-          }),
+          ...queryClient.getQueryData(["user", id]),
           ...body,
         });
         await updateUser(id, body);
