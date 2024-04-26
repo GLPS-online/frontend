@@ -5,30 +5,31 @@ import Student from "@/interfaces/Student";
 import User from "@/interfaces/User";
 import Nametag from "@/components/Nametag/Nametag";
 import { useQuery } from "@tanstack/react-query";
+import { SmallSpinner } from "../Spinner";
 
 export default function StudentExpanded({ student }: { student: Student }) {
   const navigate = useNavigate();
-  const { data: classPA } = useQuery<User | null>({
-    queryKey: ["classPA", student.className],
-    queryFn: () => searchUser({ position: `${student.className}반 PA` }),
-    initialData: null,
-  });
+  const { isLoading: isPALoading, data: classPA = null } =
+    useQuery<User | null>({
+      queryKey: ["classPA", student.className],
+      queryFn: () => searchUser({ position: `${student.className}반 PA` }),
+    });
   const floor: number = Math.floor(student.roomNum / 100);
-  const { data: floorLA } = useQuery<User | null>({
-    queryKey: ["floorLA", floor],
-    queryFn: () => searchUser({ area: `${floor}층` }),
-    initialData: null,
-  });
+  const { isLoading: isLALoading, data: floorLA = null } =
+    useQuery<User | null>({
+      queryKey: ["floorLA", floor],
+      queryFn: () => searchUser({ area: `${floor}층` }),
+    });
 
   return (
     <S.Container>
       <S.Cells>
         <S.Cell>{student.school + student.grade}</S.Cell>
         <S.Cell>
-          <Nametag data={classPA} />
+          {isPALoading ? <SmallSpinner /> : <Nametag data={classPA} />}
         </S.Cell>
         <S.Cell>
-          <Nametag data={floorLA} />
+          {isLALoading ? <SmallSpinner /> : <Nametag data={floorLA} />}
         </S.Cell>
       </S.Cells>
       <S.Links>

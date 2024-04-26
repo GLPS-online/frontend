@@ -11,6 +11,11 @@ const StyledSpinner = styled.svg`
   width: 40px;
   height: 40px;
 
+  -webkit-transition: opacity 2s linear;
+  -moz-transition: opacity 2s linear;
+  -o-transition: opacity 2s linear;
+  transition: opacity 2s linear;
+
   & .path {
     stroke: darkblue;
     stroke-linecap: round;
@@ -37,6 +42,21 @@ const StyledSpinner = styled.svg`
     }
   }
 `;
+
+export function SmallSpinner() {
+  return (
+    <StyledSpinner viewBox="0 0 50 50">
+      <circle
+        className="path"
+        cx="25"
+        cy="25"
+        r="10"
+        fill="none"
+        strokeWidth="2"
+      />
+    </StyledSpinner>
+  );
+}
 
 export default function Spinner() {
   return (

@@ -5,6 +5,7 @@ import { classInfo } from "@/interfaces/Timetable";
 import Nametag from "@/components/Nametag/Nametag";
 import * as S from "./TimetableItemStyled";
 import { useQuery } from "@tanstack/react-query";
+import { SmallSpinner } from "@/components/Spinner";
 
 type Props = {
   elem: classInfo;
@@ -15,20 +16,21 @@ type Props = {
 export default function TimetableItem({ elem, selected, classPA }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const { data: subjectTA } = useQuery<User | null>({
+  const { isLoading, data: subjectTA = null } = useQuery<User | null>({
     queryKey: ["subjectTA", elem.location],
     queryFn:
       elem.subject === "PE" || elem.subject === "VQ"
         ? () => classPA
         : () => searchUser({ area: elem.location }),
-    initialData: null,
   });
 
   return (
     <S.Item $selected={selected} onClick={() => setIsFlipped((prev) => !prev)}>
       <S.Subject>{elem.subject}</S.Subject>
       {isFlipped ? (
-        subjectTA ? (
+        isLoading ? (
+          <SmallSpinner />
+        ) : subjectTA ? (
           <Nametag
             data={subjectTA}
             displayDivision={false}
