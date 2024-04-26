@@ -13,7 +13,7 @@ export default function SignupPage() {
     const order = sortOrder[data.position || "에러"] || 9999;
     try {
       await signUp({ ...data, sortOrder: order });
-      toast.success("회원가입 완료");
+      toast.success("회원가입 완료👌");
       navigate("/login");
     } catch (err: any) {
       console.log(err);

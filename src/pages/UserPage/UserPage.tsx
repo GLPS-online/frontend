@@ -80,7 +80,7 @@ export default function UserPage() {
       try {
         await grantAdmin(id);
         toast.update(toastId, {
-          render: "삭제 완료👌",
+          render: "업데이트 완료👌",
           type: "success",
           autoClose: 5000,
           isLoading: false,
