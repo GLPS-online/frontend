@@ -60,8 +60,8 @@ export default function UserForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchDivision]);
 
-  function handleEdit() {
-    onEdit(User._id, getValues());
+  async function handleEdit() {
+    await onEdit(User._id, getValues());
     setIsEdit(false);
   }
   return (
@@ -327,6 +327,7 @@ export default function UserForm({
       {isAdmin && isEdit ? (
         <S.ButtonsContainer>
           <S.CancelButton
+            disabled={isSubmitting}
             onClick={() => {
               reset();
               setIsEdit(false);

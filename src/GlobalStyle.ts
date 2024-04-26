@@ -68,6 +68,10 @@ const GlobalStyle = createGlobalStyle`
     padding: unset;
     background-color: unset;
     cursor: pointer;
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
   }
 
   * {

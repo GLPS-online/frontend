@@ -10,7 +10,7 @@ export default function UserExpanded({ user }: { user: User }) {
         <S.Link
           onClick={(e) => {
             e.stopPropagation();
-            navigate(`/user/${user._id}/`);
+            navigate(`/user/${user._id}`);
           }}
         >
           세부정보/수정
