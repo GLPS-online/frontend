@@ -41,7 +41,9 @@ export default function StudentTable({ data }: Props) {
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();
 
+  const [action, setAction] = useState<string>("default");
   const [searchParams, setSearchParams] = useSearchParams();
+
   const filteredData: Student[] = data.filter((datum: any) => {
     if (selectedItems.has(datum._id)) {
       return true;
@@ -80,7 +82,6 @@ export default function StudentTable({ data }: Props) {
       } else return 0;
     });
   }
-  const [action, setAction] = useState<string>("default");
 
   return (
     <>
@@ -234,6 +235,7 @@ export default function StudentTable({ data }: Props) {
             </S.ActionButtons>
           </S.ActionBar>
         }
+
         {filteredData.map((student: Student) => (
           <S.RowContainer key={`${rerenderer}${student._id}`}>
             <S.CheckBox

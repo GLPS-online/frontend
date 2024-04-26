@@ -39,6 +39,7 @@ export const ActionButton = styled.button`
 export const SearchBarContainer = styled.div`
   width: 100%;
   display: flex;
+  justify-content: center;
   gap: 15px;
   @media screen and (max-width: 620px) {
     gap: 5px;

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, fetchUser, updateUser } from "@/api/userApi";
 import UserForm from "./UserForm";
@@ -7,25 +6,35 @@ import * as S from "./UserPageStyled";
 import { grantAdmin } from "@/api/adminApi";
 import Navigator from "@/components/Navigator/Navigator";
 import { toast } from "react-toastify";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import Spinner from "@/components/Spinner";
 
 export default function UserPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [User, setUser] = useState<User | null>(null);
+  const queryClient = useQueryClient();
 
-  async function handleFecth(id: string) {
-    const newUser = await fetchUser(id);
-    setUser(newUser);
-  }
+  const { isLoading, data: user = null } = useQuery<User | null>({
+    queryKey: ["user", id],
+    queryFn: () => fetchUser(id || ""),
+    enabled: id !== "",
+  });
 
   async function handleUpdate(id: string, body: object) {
     if (id) {
       try {
-        const newUser = await updateUser(id, body);
+        queryClient.setQueryData(["user", id], {
+          ...queryClient.getQueriesData({
+            queryKey: ["user", id],
+          }),
+          ...body,
+        });
+        await updateUser(id, body);
         toast.success("업데이트에 성공했습니다.");
-        setUser(newUser);
       } catch (err: any) {
         toast.error(err.response?.msg);
+      } finally {
+        queryClient.invalidateQueries({ queryKey: ["user", id] });
       }
     }
   }
@@ -38,6 +47,8 @@ export default function UserPage() {
         navigate(-1);
       } catch (err: any) {
         toast.error(err.response?.msg);
+      } finally {
+        queryClient.removeQueries({ queryKey: ["user", id] });
       }
     }
   }
@@ -45,27 +56,25 @@ export default function UserPage() {
   async function handleGrantAdmin(id: string) {
     if (id) {
       try {
-        const newUser = await grantAdmin(id);
+        await grantAdmin(id);
         toast.success("업데이트에 성공했습니다.");
-        setUser(newUser);
       } catch (err: any) {
         toast.error(err.response?.msg);
+      } finally {
+        queryClient.invalidateQueries({ queryKey: ["user", id] });
       }
     }
   }
 
-  useEffect(() => {
-    if (id) {
-      handleFecth(id);
-    }
-  }, [id]);
   return (
     <S.PageContainer>
-      {User ? (
+      {isLoading ? (
+        <Spinner />
+      ) : user ? (
         <>
           <h1>사용자 상세보기</h1>
           <UserForm
-            User={User}
+            user={user}
             onEdit={handleUpdate}
             onGrantAdmin={handleGrantAdmin}
             onDelete={handleDelete}

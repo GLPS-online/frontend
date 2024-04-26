@@ -1,12 +1,16 @@
 import { fetchUsers } from "@/api/userApi";
+import Spinner from "@/components/Spinner";
 import UserTable from "@/components/Table/UserTable";
 import { useQuery } from "@tanstack/react-query";
 
 export default function UserSearchPage() {
-  const { error, data } = useQuery({
+  const {
+    isLoading,
+    error,
+    data = [],
+  } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
-    initialData: [],
   });
 
   if (error) return "An error has occurred: " + error.message;
@@ -14,7 +18,7 @@ export default function UserSearchPage() {
   return (
     <>
       <h1>P·T·LA 검색</h1>
-      <UserTable data={data} />
+      {isLoading ? <Spinner /> : <UserTable data={data} />}
     </>
   );
 }

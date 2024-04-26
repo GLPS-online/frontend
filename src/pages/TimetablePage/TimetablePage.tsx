@@ -9,25 +9,24 @@ import { classList } from "@/constants";
 import { fetchTimetable } from "@/api/otherApi";
 import Navigator from "@/components/Navigator/Navigator";
 import { useQuery } from "@tanstack/react-query";
+import Spinner from "@/components/Spinner";
 
 export default function TimetablePage() {
   const navigate = useNavigate();
   const { className = classList[0] } = useParams();
 
-  const { data: classPA } = useQuery<User | null>({
+  const { data: classPA = null } = useQuery<User | null>({
     queryKey: ["classPA", className],
     queryFn: () => searchUser({ position: `${className}반 PA` }),
-    initialData: null,
   });
 
-  const { data } = useQuery<{
+  const { data = null } = useQuery<{
     advisor: string;
     office: string;
     table: classInfo[];
   } | null>({
     queryKey: ["timetable", className],
     queryFn: () => fetchTimetable(className),
-    initialData: null,
   });
   return (
     <S.Container>
@@ -44,25 +43,37 @@ export default function TimetablePage() {
           </option>
         ))}
       </S.ClassSelect>
-      <S.InformationRow>
-        <S.InformationItem>Advisor: &nbsp;{data?.advisor}</S.InformationItem>
-      </S.InformationRow>
-      <S.InformationRow>
-        <S.InformationItem>
-          Class PA: &nbsp;
-          <Nametag data={classPA} displayDivision={false} forTimetable={true} />
-        </S.InformationItem>
-        <S.InformationItem>Office: {data?.office}</S.InformationItem>
-      </S.InformationRow>
-      <S.Days>
-        <S.Day>MON</S.Day>
-        <S.Day>TUE</S.Day>
-        <S.Day>WED</S.Day>
-        <S.Day>THU</S.Day>
-        <S.Day>FRI</S.Day>
-        <S.Day style={{ color: "darkblue" }}>SAT</S.Day>
-      </S.Days>
-      {<Timetable table={data?.table || []} classPA={classPA} />}
+      {classPA && data ? (
+        <>
+          <S.InformationRow>
+            <S.InformationItem>
+              Advisor: &nbsp;{data?.advisor}
+            </S.InformationItem>
+          </S.InformationRow>
+          <S.InformationRow>
+            <S.InformationItem>
+              Class PA: &nbsp;
+              <Nametag
+                data={classPA}
+                displayDivision={false}
+                forTimetable={true}
+              />
+            </S.InformationItem>
+            <S.InformationItem>Office: {data?.office}</S.InformationItem>
+          </S.InformationRow>
+          <S.Days>
+            <S.Day>MON</S.Day>
+            <S.Day>TUE</S.Day>
+            <S.Day>WED</S.Day>
+            <S.Day>THU</S.Day>
+            <S.Day>FRI</S.Day>
+            <S.Day style={{ color: "darkblue" }}>SAT</S.Day>
+          </S.Days>
+          {<Timetable table={data?.table || []} classPA={classPA} />}
+        </>
+      ) : (
+        <Spinner />
+      )}
       <Navigator />
     </S.Container>
   );

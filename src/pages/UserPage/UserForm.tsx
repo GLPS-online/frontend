@@ -15,12 +15,12 @@ import { phoneNumberAutoFormat } from "@/utils/etc";
 import { toast } from "react-toastify";
 
 export default function UserForm({
-  User,
+  user,
   onEdit,
   onGrantAdmin,
   onDelete,
 }: {
-  User: User;
+  user: User;
   onEdit: (arg0: string, arg1: object) => void;
   onGrantAdmin: (arg0: string) => void;
   onDelete: (arg0: string) => void;
@@ -41,19 +41,19 @@ export default function UserForm({
   } = useForm({
     mode: "onBlur",
     defaultValues: {
-      korName: User.korName,
-      wave: User.wave,
-      gender: User.gender,
-      phone: User.phone,
-      division: User.division,
-      position: User.position,
-      area: User.area,
-      roomNum: User.roomNum,
+      korName: user.korName,
+      wave: user.wave,
+      gender: user.gender,
+      phone: user.phone,
+      division: user.division,
+      position: user.position,
+      area: user.area,
+      roomNum: user.roomNum,
     },
   });
   const watchDivision = watch("division");
   useEffect(() => {
-    if (getValues("division") !== User.division) {
+    if (getValues("division") !== user.division) {
       setValue("position", "default");
       setValue("area", "");
     }
@@ -61,7 +61,7 @@ export default function UserForm({
   }, [watchDivision]);
 
   async function handleEdit() {
-    await onEdit(User._id, getValues());
+    await onEdit(user._id, getValues());
     setIsEdit(false);
   }
   return (
@@ -73,14 +73,14 @@ export default function UserForm({
             <S.Input
               id="korName"
               type="text"
-              placeholder={User.korName}
+              placeholder={user.korName}
               $isError={errors.korName ? true : false}
               {...register("korName", {
                 required: true,
               })}
             />
           ) : (
-            <S.Data>{User.korName}</S.Data>
+            <S.Data>{user.korName}</S.Data>
           )}
         </S.Field>
         <S.Field>
@@ -91,7 +91,7 @@ export default function UserForm({
                 id="wave"
                 type="number"
                 inputMode="decimal"
-                placeholder={User.wave.toString()}
+                placeholder={user.wave.toString()}
                 $isError={errors.wave ? true : false}
                 {...register("wave", {
                   required: true,
@@ -110,7 +110,7 @@ export default function UserForm({
               )}
             </>
           ) : (
-            <S.Data>{User.wave}</S.Data>
+            <S.Data>{user.wave}</S.Data>
           )}
         </S.Field>
         <S.Field>
@@ -135,7 +135,7 @@ export default function UserForm({
               </option>
             </S.Select>
           ) : (
-            <S.Data>{User.gender === "M" ? "남" : "여"}</S.Data>
+            <S.Data>{user.gender === "M" ? "남" : "여"}</S.Data>
           )}
         </S.Field>
         <S.Field>
@@ -168,7 +168,7 @@ export default function UserForm({
             </>
           ) : (
             <S.Data>
-              <S.Phone href={`tel:${User.phone}`}>{User.phone}</S.Phone>
+              <S.Phone href={`tel:${user.phone}`}>{user.phone}</S.Phone>
             </S.Data>
           )}
         </S.Field>
@@ -201,7 +201,7 @@ export default function UserForm({
               </option>
             </S.Select>
           ) : (
-            <S.Data>{User.division}</S.Data>
+            <S.Data>{user.division}</S.Data>
           )}
         </S.Field>
 
@@ -252,7 +252,7 @@ export default function UserForm({
               })()}
             </S.Select>
           ) : (
-            <S.Data>{User.position}</S.Data>
+            <S.Data>{user.position}</S.Data>
           )}
         </S.Field>
 
@@ -289,7 +289,7 @@ export default function UserForm({
               })()}
             </S.Select>
           ) : (
-            <S.Data>{User.area}</S.Data>
+            <S.Data>{user.area}</S.Data>
           )}
         </S.Field>
 
@@ -301,7 +301,7 @@ export default function UserForm({
                 id="roomNum"
                 type="number"
                 inputMode="numeric"
-                placeholder={User.roomNum.toString()}
+                placeholder={user.roomNum.toString()}
                 $isError={errors.roomNum ? true : false}
                 {...register("roomNum", {
                   required: true,
@@ -320,7 +320,7 @@ export default function UserForm({
               )}
             </>
           ) : (
-            <S.Data>{User.roomNum}</S.Data>
+            <S.Data>{user.roomNum}</S.Data>
           )}
         </S.Field>
       </S.Container>
@@ -366,13 +366,13 @@ export default function UserForm({
             padding: "20px",
           }}
         >
-          <div>관리자 권한 수준[0-2]: {User.admin}</div>
+          <div>관리자 권한 수준[0-2]: {user.admin}</div>
           <button
             style={{
               border: "1px solid red",
             }}
             onClick={() => {
-              onGrantAdmin(User._id);
+              onGrantAdmin(user._id);
             }}
           >
             관리자 권한 부여
@@ -383,7 +383,7 @@ export default function UserForm({
             }}
             onClick={() => {
               if (window.confirm("정말 삭제합니까?")) {
-                onDelete(User._id);
+                onDelete(user._id);
               }
             }}
           >
