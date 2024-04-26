@@ -3,7 +3,12 @@ export function getCourse(grade: number, className: string) {
 }
 
 export function isBirthday(birthdate: number) {
-  return false;
+  const today = new Date();
+  const todayStr =
+    ("0" + (today.getMonth() + 1)).slice(-2) +
+    ("0" + today.getDate()).slice(-2);
+  const birthDateStr = ("0" + (birthdate % 10000)).slice(-4);
+  return todayStr === birthDateStr;
 }
 
 export function phoneNumberAutoFormat(phoneNumber: string) {

@@ -1,13 +1,15 @@
+import { isBirthday } from "@/utils/etc";
 import * as S from "./RowStyled";
 import StudentExpanded from "./StudentExpanded";
+import Student from "@/interfaces/Student";
 
 type Props = {
-  student: any;
+  student: Student;
   selected: string;
   isExpanded?: boolean;
 };
 
-const displayProps = ["korName", "className", "roomNum"];
+// const displayProps = ["korName", "className", "roomNum"];
 
 export default function StudentRow({
   student,
@@ -17,9 +19,19 @@ export default function StudentRow({
   return (
     <S.RowContainer $selected={selected}>
       <S.Cells>
-        {displayProps.map((option: string, i: number) => (
-          <S.Cell key={i}>{student[option]}</S.Cell>
-        ))}
+        <S.Cell>
+          <>
+            {isBirthday(student.birthDate) ? (
+              <S.Cake>&nbsp;&nbsp;</S.Cake>
+            ) : (
+              <></>
+            )}
+            {student["korName"]}
+            {isBirthday(student.birthDate) ? <S.Cake>🎂</S.Cake> : <></>}
+          </>
+        </S.Cell>
+        <S.Cell>{student["className"]}</S.Cell>
+        <S.Cell>{student["roomNum"]}</S.Cell>
       </S.Cells>
       {isExpanded && <StudentExpanded student={student} />}
     </S.RowContainer>

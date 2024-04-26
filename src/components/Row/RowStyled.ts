@@ -45,7 +45,8 @@ export const Cells = styled.div`
 `;
 
 export const Cell = styled.div`
-  width: 33%;
+  flex: 1;
+  width: auto;
   height: 30px;
   font-size: 20px;
   text-align: center;
@@ -54,5 +55,17 @@ export const Cell = styled.div`
     height: auto;
     min-height: 30px;
     /* font-size: 18px; */
+  }
+`;
+
+export const Space = styled.span`
+  @media screen and (max-width: 360px) {
+    display: none;
+  }
+`;
+
+export const Cake = styled.span`
+  @media screen and (max-width: 620px) {
+    font-size: 15px;
   }
 `;

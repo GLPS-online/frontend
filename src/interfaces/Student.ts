@@ -4,7 +4,7 @@ interface Student {
   korName: string;
   engName: string;
   status: string;
-  birthDate: Number;
+  birthDate: number;
   gender: string;
   school: string;
   grade: number;
