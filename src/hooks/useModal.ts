@@ -11,7 +11,7 @@ export const useModal = () => {
     root.style.overflow = "hidden";
     root.style.pointerEvents = "none";
     root.style.position = "fixed";
-    root.style.height = "100%";
+    root.style.height = "100dvh";
     root.style.top = `-${scrollPosition}px`;
     root.style.left = "0";
     root.style.right = "0";
