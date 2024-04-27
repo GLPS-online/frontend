@@ -2,17 +2,16 @@ import styled from "styled-components";
 
 export const Background = styled.div`
   position: fixed;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
   border: none;
   z-index: 100;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 export const Container = styled.div`
