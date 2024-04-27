@@ -14,6 +14,7 @@ export default function LoginRedirector({ children }: { children: any }) {
         return response;
       },
       function (error: any) {
+        console.log(error);
         const status = error.response?.status;
         if (status === 401) {
           logout();
@@ -29,5 +30,5 @@ export default function LoginRedirector({ children }: { children: any }) {
   if (!getUser()) {
     return <Navigate to="/login" />;
   }
-  return <>{children}</>;
+  return children;
 }

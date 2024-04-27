@@ -25,7 +25,6 @@ export default function LoginForm({
             id="email"
             type="email"
             placeholder="이메일을 입력해 주세요"
-            autoFocus
             $isError={errors.email ? true : false}
             {...register("email", {
               required: true,
