@@ -35,14 +35,14 @@ export default function StudentPage() {
         toast.update(toastId, {
           render: "업데이트 완료👌",
           type: "success",
-          autoClose: 5000,
+          autoClose: 2500,
           isLoading: false,
         });
       } catch (err: any) {
         toast.update(toastId, {
           render: `${err.response?.data.msg}`,
           type: "error",
-          autoClose: 5000,
+          autoClose: 2500,
           isLoading: false,
         });
       } finally {
