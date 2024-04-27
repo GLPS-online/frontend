@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Background = styled.div`
   position: fixed;
-  width: 120%;
-  height: 120%;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,8 +13,6 @@ export const Background = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
 `;
 
 export const Container = styled.div`
