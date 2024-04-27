@@ -8,40 +8,26 @@ import User from "@/interfaces/User";
 import { classList } from "@/constants";
 import { fetchTimetable } from "@/api/otherApi";
 import Navigator from "@/components/Navigator/Navigator";
+import { useQuery } from "@tanstack/react-query";
 import Spinner from "@/components/Spinner";
-import { useEffect, useState } from "react";
 
 export default function TimetablePage() {
   const navigate = useNavigate();
   const { className = classList[0] } = useParams();
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [classPA, setClassPA] = useState<User | null>(null);
-  const [data, setData] = useState<{
+  const { data: classPA = null } = useQuery<User | null>({
+    queryKey: ["classPA", className],
+    queryFn: () => searchUser({ position: `${className}반 PA` }),
+  });
+
+  const { data = null } = useQuery<{
     advisor: string;
     office: string;
     table: classInfo[];
-  } | null>(null);
-
-  async function handleFetch(className: string) {
-    setIsLoading(true);
-    try {
-      const newUser = await searchUser({ position: `${className}반 PA` });
-      const newData = await fetchTimetable(className);
-      setClassPA(newUser);
-      setData(newData);
-    } catch (err) {
-    } finally {
-      setIsLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    if (className) {
-      handleFetch(className);
-    }
-  }, [className]);
-
+  } | null>({
+    queryKey: ["timetable", className],
+    queryFn: () => fetchTimetable(className),
+  });
   return (
     <S.Container>
       <S.ClassSelect
@@ -57,9 +43,7 @@ export default function TimetablePage() {
           </option>
         ))}
       </S.ClassSelect>
-      {isLoading ? (
-        <Spinner />
-      ) : classPA && data ? (
+      {classPA && data ? (
         <>
           <S.InformationRow>
             <S.InformationItem>
@@ -88,11 +72,7 @@ export default function TimetablePage() {
           {<Timetable table={data?.table || []} classPA={classPA} />}
         </>
       ) : (
-        <>
-          cannot load timetable
-          <br />
-          <br />
-        </>
+        <Spinner />
       )}
       <Navigator />
     </S.Container>

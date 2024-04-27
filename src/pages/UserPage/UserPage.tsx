@@ -6,42 +6,30 @@ import * as S from "./UserPageStyled";
 import { grantAdmin } from "@/api/adminApi";
 import Navigator from "@/components/Navigator/Navigator";
 import { toast } from "react-toastify";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Spinner from "@/components/Spinner";
-import { useEffect, useState } from "react";
 
 export default function UserPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, data: user = null } = useQuery<User | null>({
+    queryKey: ["user", id],
+    queryFn: () => fetchUser(id || ""),
+    enabled: id !== "",
+  });
 
-  async function handlefetch(id: string) {
-    setIsLoading(true);
-    try {
-      const newStudent = await fetchUser(id);
-      setUser(newStudent);
-    } catch (err) {
-    } finally {
-      setIsLoading(false);
-    }
-  }
-  useEffect(() => {
-    if (id) {
-      handlefetch(id);
-    }
-  }, [id]);
-
-  async function handleUpdate(id: string, body: any) {
+  async function handleUpdate(id: string, body: object) {
     if (id) {
       const toastId = toast.loading("업데이트 중...");
       try {
-        setUser((prev) => ({
-          ...prev,
+        console.log(queryClient.getQueryData(["user", id]));
+        queryClient.setQueryData(["user", id], {
+          ...queryClient.getQueryData(["user", id]),
           ...body,
-        }));
-        const updated = await updateUser(id, body);
-        setUser(updated);
+        });
+        await updateUser(id, body);
         toast.update(toastId, {
           render: "업데이트 완료👌",
           type: "success",
@@ -55,6 +43,8 @@ export default function UserPage() {
           autoClose: 2500,
           isLoading: false,
         });
+      } finally {
+        queryClient.invalidateQueries({ queryKey: ["user", id] });
       }
     }
   }
@@ -78,6 +68,8 @@ export default function UserPage() {
           autoClose: 2500,
           isLoading: false,
         });
+      } finally {
+        queryClient.removeQueries({ queryKey: ["user", id] });
       }
     }
   }
@@ -86,8 +78,7 @@ export default function UserPage() {
     if (id) {
       const toastId = toast.loading("업데이트 중...");
       try {
-        const updated = await grantAdmin(id);
-        setUser(updated);
+        await grantAdmin(id);
         toast.update(toastId, {
           render: "업데이트 완료👌",
           type: "success",
@@ -101,6 +92,8 @@ export default function UserPage() {
           autoClose: 2500,
           isLoading: false,
         });
+      } finally {
+        queryClient.invalidateQueries({ queryKey: ["user", id] });
       }
     }
   }

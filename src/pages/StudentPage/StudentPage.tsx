@@ -7,40 +7,31 @@ import LifeInfo from "./LifeInfo";
 import OtherInfo from "./OtherInfo";
 import Navigator from "@/components/Navigator/Navigator";
 import { toast } from "react-toastify";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import Spinner from "@/components/Spinner";
-import { useEffect, useState } from "react";
 
 export default function StudentPage() {
   const { id } = useParams();
 
-  const [student, setStudent] = useState<Student | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  useEffect(() => {
-    async function handlefetch(id: string) {
-      setIsLoading(true);
-      try {
-        const newStudent = await fetchStudent(id);
-        setStudent(newStudent);
-      } catch (err) {
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    if (id) {
-      handlefetch(id);
-    }
-  }, [id]);
+  const queryClient = useQueryClient();
 
-  async function onEdit(body: any) {
+  const { isLoading, data: student = null } = useQuery<Student | null>({
+    queryKey: ["student", id],
+    queryFn: () => fetchStudent(id || ""),
+    enabled: id !== "",
+  });
+
+  async function onEdit(body: Object) {
     if (id) {
       const toastId = toast.loading("업데이트 중...");
       try {
-        setStudent((prev) => ({
-          ...prev,
+        queryClient.setQueryData(["student", id], {
+          ...queryClient.getQueriesData({
+            queryKey: ["student", id],
+          }),
           ...body,
-        }));
-        const updated = await updateStudent(id, body);
-        setStudent(updated);
+        });
+        await updateStudent(id, body);
         toast.update(toastId, {
           render: "업데이트 완료👌",
           type: "success",
@@ -54,6 +45,8 @@ export default function StudentPage() {
           autoClose: 2500,
           isLoading: false,
         });
+      } finally {
+        queryClient.invalidateQueries({ queryKey: ["student", id] });
       }
     }
   }
