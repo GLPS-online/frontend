@@ -11,6 +11,7 @@ export default function HomePage() {
   } = useQuery({
     queryKey: ["students"],
     queryFn: fetchStudents,
+    refetchOnWindowFocus: true,
   });
 
   if (error) return "An error has occurred: " + error.message;

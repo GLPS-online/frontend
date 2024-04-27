@@ -6,7 +6,13 @@ import AuthProvider from "./contexts/AuthProvider";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <>
       <GlobalStyle />

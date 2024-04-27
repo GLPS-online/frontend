@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.form`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 
 export const Fields = styled.fieldset`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
 `;
 
 export const Label = styled.label`
@@ -120,7 +121,7 @@ export const Button = styled.button<{ $color?: string }>`
   font-size: 16px;
   font-weight: 500;
   @media screen and (max-width: 620px) {
-    width: 138px;
+    width: 130px;
     font-size: 14px;
   }
 `;

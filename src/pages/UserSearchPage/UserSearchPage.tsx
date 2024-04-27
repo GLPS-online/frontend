@@ -11,6 +11,7 @@ export default function UserSearchPage() {
   } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
+    refetchOnWindowFocus: true,
   });
 
   if (error) return "An error has occurred: " + error.message;
