@@ -14,7 +14,7 @@ export const Fields = styled.fieldset`
   gap: 10px;
 `;
 
-export const Label = styled.label`
+export const Label = styled.div`
   font-size: 18px;
   font-weight: 500;
   @media screen and (max-width: 620px) {
@@ -47,12 +47,15 @@ export const CheckboxArea = styled.div<{ $isError: boolean }>`
   gap: 16px;
   align-items: center;
   margin-bottom: 16px;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 150%;
   @media screen and (max-width: 620px) {
     font-size: 14px;
   }
+`;
+
+export const ConfirmText = styled.label`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 150%;
   br {
     display: none;
     @media screen and (max-width: 620px) {

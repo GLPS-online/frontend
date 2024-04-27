@@ -51,13 +51,16 @@ export default function StudyModal({
         <S.Fields disabled={isSubmitting}>
           <S.CheckboxArea $isError={errors.agreement ? true : false}>
             <S.Checkbox
+              id="agreement"
               type="checkbox"
               value="yes"
               autoFocus
               {...register("agreement", { required: true })}
             />
-            2자습 관련 안내사항을 <br />
-            학생{items.length > 1 ? "들" : ""}에게 전달했습니다.
+            <S.ConfirmText htmlFor="agreement">
+              2자습 관련 안내사항을 <br />
+              학생{items.length > 1 ? "들" : ""}에게 전달했습니다.
+            </S.ConfirmText>
           </S.CheckboxArea>
           <S.Buttons>
             <S.Button onClick={handleModalClose}>취소</S.Button>

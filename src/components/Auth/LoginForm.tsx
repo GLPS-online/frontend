@@ -20,7 +20,7 @@ export default function LoginForm({
       <S.Fields disabled={isSubmitting}>
         <S.Logo>로그인</S.Logo>
         <S.Field>
-          <S.Label htmlFor="email">이메일</S.Label>
+          <S.Label>이메일</S.Label>
           <S.Input
             id="email"
             type="email"
@@ -39,7 +39,7 @@ export default function LoginForm({
           )}
         </S.Field>
         <S.Field>
-          <S.Label htmlFor="password">비밀번호</S.Label>
+          <S.Label>비밀번호</S.Label>
           <S.Input
             id="password"
             type={revealPw ? "text" : "password"}

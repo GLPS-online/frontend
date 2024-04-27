@@ -48,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
     color: black;
     outline: none;
     &:focus {
-      border: 1px solid black
+      border: 1px solid blue
     }
   }
 

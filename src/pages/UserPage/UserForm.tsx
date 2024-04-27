@@ -174,7 +174,7 @@ export default function UserForm({
             )}
           </S.Field>
           <S.Field>
-            <S.Label htmlFor="division">부서</S.Label>
+            <S.Label>부서</S.Label>
             {isEdit ? (
               <S.Select
                 id="division"
@@ -207,7 +207,7 @@ export default function UserForm({
           </S.Field>
 
           <S.Field>
-            <S.Label htmlFor="position">직책</S.Label>
+            <S.Label>직책</S.Label>
             {isEdit ? (
               <S.Select
                 id="position"
@@ -258,7 +258,7 @@ export default function UserForm({
           </S.Field>
 
           <S.Field>
-            <S.Label htmlFor="area">담당 교실/층(TA·LA)</S.Label>
+            <S.Label>담당 교실/층(TA·LA)</S.Label>
             {isEdit ? (
               <S.Select
                 id="area"
@@ -295,7 +295,7 @@ export default function UserForm({
           </S.Field>
 
           <S.Field>
-            <S.Label htmlFor="roomNum">기숙사 호실</S.Label>
+            <S.Label>기숙사 호실</S.Label>
             {isEdit ? (
               <>
                 <S.Input

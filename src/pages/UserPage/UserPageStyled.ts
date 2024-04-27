@@ -75,7 +75,7 @@ export const Field = styled.div`
   border-radius: 6px;
 `;
 
-export const Label = styled.label`
+export const Label = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-self: flex-start;

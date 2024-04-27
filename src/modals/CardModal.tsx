@@ -67,9 +67,7 @@ export default function CardModal({
         autoComplete="off"
       >
         <S.Fields disabled={isSubmitting}>
-          <S.Label htmlFor="reason">
-            {action === "eop" ? "적발 사유" : "발급 사유"}
-          </S.Label>
+          <S.Label>{action === "eop" ? "적발 사유" : "발급 사유"}</S.Label>
           <S.Textarea
             id="reason"
             autoFocus

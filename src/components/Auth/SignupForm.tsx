@@ -37,7 +37,7 @@ export default function SignupForm({
       <S.Fields disabled={isSubmitting}>
         <S.Logo>회원가입</S.Logo>
         <S.Field>
-          <S.Label htmlFor="email">이메일</S.Label>
+          <S.Label>이메일</S.Label>
           <S.Input
             id="email"
             type="email"
@@ -58,7 +58,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="password">비밀번호</S.Label>
+          <S.Label>비밀번호</S.Label>
           <S.Input
             id="password"
             type={revealPw ? "text" : "password"}
@@ -85,7 +85,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="confirmPassword">비밀번호 확인</S.Label>
+          <S.Label>비밀번호 확인</S.Label>
           <S.Input
             id="confirmPassword"
             type={revealConfirmPw ? "text" : "password"}
@@ -111,7 +111,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="korName">이름</S.Label>
+          <S.Label>이름</S.Label>
           <S.Input
             id="korName"
             type="text"
@@ -124,7 +124,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="engName">영문 이름</S.Label>
+          <S.Label>영문 이름</S.Label>
           <S.Input
             id="engName"
             type="text"
@@ -137,7 +137,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="wave">기수</S.Label>
+          <S.Label>기수</S.Label>
           <S.Input
             id="wave"
             type="number"
@@ -162,7 +162,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="gender">성별</S.Label>
+          <S.Label>성별</S.Label>
           <S.Select
             id="gender"
             defaultValue="default"
@@ -185,7 +185,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="phone">휴대전화</S.Label>
+          <S.Label>휴대전화</S.Label>
           <S.Input
             id="phone"
             type="tel"
@@ -211,7 +211,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="division">부서</S.Label>
+          <S.Label>부서</S.Label>
           <S.Select
             id="division"
             defaultValue="default"
@@ -240,7 +240,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="position">직책</S.Label>
+          <S.Label>직책</S.Label>
           <S.Select
             id="position"
             disabled={watchDivision === "default"}
@@ -288,7 +288,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="area">담당 교실/층(TA·LA만 해당)</S.Label>
+          <S.Label>담당 교실/층(TA·LA만 해당)</S.Label>
           <S.Select
             id="area"
             disabled={watchDivision !== "TA" && watchDivision !== "LA"}
@@ -321,7 +321,7 @@ export default function SignupForm({
         </S.Field>
 
         <S.Field>
-          <S.Label htmlFor="roomNum">기숙사 호실</S.Label>
+          <S.Label>기숙사 호실</S.Label>
           <S.Input
             id="roomNum"
             type="number"
