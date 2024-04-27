@@ -56,6 +56,7 @@ export default function ShuttleModal({
           <S.Select
             id="departure"
             defaultValue="default"
+            autoFocus
             $isError={errors.departure ? true : false}
             {...register("departure", {
               required: true,

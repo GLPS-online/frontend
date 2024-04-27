@@ -53,6 +53,7 @@ export default function StudyModal({
             <S.Checkbox
               type="checkbox"
               value="yes"
+              autoFocus
               {...register("agreement", { required: true })}
             />
             2자습 관련 안내사항을 <br />

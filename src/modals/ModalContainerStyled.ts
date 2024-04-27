@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Background = styled.div`
+  position: fixed;
   width: 120%;
   height: 120%;
   display: flex;
@@ -8,11 +9,12 @@ export const Background = styled.div`
   align-items: center;
   background: rgba(0, 0, 0, 0.7);
   border: none;
-  position: fixed;
   z-index: 100;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 `;
 
 export const Container = styled.div`
