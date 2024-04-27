@@ -29,13 +29,11 @@ export default function AuthProvider({
   async function login(data: { email: string; password: string }) {
     try {
       const res = await logIn(data);
-      console.log(res);
       localStorage.setItem("user", JSON.stringify(res.user));
       localStorage.setItem("token", res.token);
       toast.success(res.user.korName + "님 반갑습니다");
       return res.user;
     } catch (err: any) {
-      console.log(err);
       toast.error(err.response?.data.msg);
       throw new Error(err);
     }

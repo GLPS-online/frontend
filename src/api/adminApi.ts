@@ -54,12 +54,7 @@ export async function endOfCamp() {
 }
 
 export async function grantAdmin(id: string) {
-  try {
-    const response = await client.put(`auth/grantAdmin/${id}`);
-    const result = response.data;
-    return result;
-  } catch (err: any) {
-    alert(err.response?.status);
-    alert(err.response?.data.msg);
-  }
+  const response = await client.put(`auth/grantAdmin/${id}`);
+  const result = response.data;
+  return result;
 }
