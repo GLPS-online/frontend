@@ -1,4 +1,4 @@
-import { logIn, logOut } from "@/api/authApi";
+import { logIn } from "@/api/authApi";
 import { createContext, useContext } from "react";
 import { toast } from "react-toastify";
 
@@ -28,11 +28,11 @@ export default function AuthProvider({
 
   async function login(data: { email: string; password: string }) {
     try {
-      const newUser = await logIn(data);
-      const str = JSON.stringify(newUser);
-      localStorage.setItem("user", str);
-      toast.success(newUser.korName + "님 반갑습니다");
-      return newUser;
+      const res = await logIn(data);
+      localStorage.setItem("user", JSON.stringify(res.user));
+      localStorage.setItem("token", res.token);
+      toast.success(res.user.korName + "님 반갑습니다");
+      return res.user;
     } catch (err: any) {
       toast.error(err.response?.data.msg);
       throw new Error(err);
@@ -40,8 +40,15 @@ export default function AuthProvider({
   }
 
   async function logout() {
-    await logOut();
-    localStorage.removeItem("user");
+    try {
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
+
+      toast.success("로그아웃 되었습니다");
+    } catch (e) {
+      console.log(e);
+      toast.error("로그아웃에 실패했습니다");
+    }
   }
 
   return (

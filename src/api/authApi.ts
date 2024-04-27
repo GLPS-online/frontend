@@ -12,14 +12,14 @@ export async function logIn(data: object) {
   return result;
 }
 
-export async function logOut() {
-  try {
-    await client.delete(`/auth/logout`);
-  } catch (err: any) {
-    console.log(err.response?.status);
-    console.log(err.response?.data.msg);
-  }
-}
+// export async function logOut() {
+//   try {
+//     await client.delete(`/auth/logout`);
+//   } catch (err: any) {
+//     console.log(err.response?.status);
+//     console.log(err.response?.data.msg);
+//   }
+// }
 
 // export async function me() {
 //   try {
