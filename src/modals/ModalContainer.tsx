@@ -1,6 +1,7 @@
-import { KeyboardEvent, ReactNode } from "react";
+import { KeyboardEvent, ReactNode, useEffect } from "react";
 import * as S from "./ModalContainerStyled";
 
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 interface Props {
   children: ReactNode;
   title: string;
@@ -16,13 +17,16 @@ function ModalContainer({ children, title, handleModalClose }: Props) {
       return;
     }
   };
+  useEffect(() => {
+    const body = document.querySelector("body") as HTMLElement;
+    disableBodyScroll(body);
+    return () => {
+      enableBodyScroll(body);
+    };
+  }, []);
 
   return (
-    <S.Background
-      onKeyDown={escCloseModal}
-      onClick={() => handleModalClose()}
-      tabIndex={0}
-    >
+    <S.Background onKeyDown={escCloseModal} tabIndex={0} id="modal">
       <S.Container onClick={(e) => e.stopPropagation()}>
         <S.Title>{title}</S.Title>
         {children}

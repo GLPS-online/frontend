@@ -92,8 +92,8 @@ export const RowContainer = styled.div`
 export const CheckBox = styled.input`
   position: absolute;
   left: -33px;
-  width: 28px;
-  height: 28px;
+  width: 25px;
+  height: 25px;
 `;
 
 export const RowBox = styled.div`

@@ -62,8 +62,8 @@ export const CheckboxArea = styled.div<{ $isError: boolean }>`
 `;
 
 export const Checkbox = styled.input`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 `;
 
 export const Textarea = styled.textarea<{ $isError: boolean }>`

@@ -52,7 +52,7 @@ export default function ShuttleModal({
         autoComplete="off"
       >
         <S.Fields disabled={isSubmitting}>
-          <S.Label htmlFor="etc">출발지</S.Label>
+          <S.Label htmlFor="departure">출발지</S.Label>
           <S.Select
             id="departure"
             defaultValue="default"
@@ -79,6 +79,8 @@ export default function ShuttleModal({
               기타 장소는 HQ에 직접 문의
             </option>
           </S.Select>
+
+          <S.Label htmlFor="destination">목적지</S.Label>
           <S.Select
             id="destination"
             defaultValue="default"

@@ -24,13 +24,6 @@ const GlobalStyle = createGlobalStyle`
 
   }
 
-  :root {
-    --blue: #6d6afe;
-    --yellow: #ff5b56;
-    --black: #111322;
-    --white: #ffffff;
-  }
-
   a {
     color: inherit;
     text-decoration: none;
@@ -49,6 +42,14 @@ const GlobalStyle = createGlobalStyle`
   input[type="search"]::-webkit-search-results-button,
   input[type="search"]::-webkit-search-results-decoration {
     display: none;
+  }
+
+  input, select, textarea {
+    color: black;
+    outline: none;
+    &:focus {
+      border: 1px solid black
+    }
   }
 
     /* Chrome, Safari, Edge, Opera */
