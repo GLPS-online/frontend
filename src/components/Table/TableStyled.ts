@@ -78,9 +78,10 @@ export const ClearIcon = styled.img`
 `;
 
 export const ActionSelector = styled.select`
+  width: auto;
   height: 30px;
   font-size: 18px;
-  padding: 2px 5px;
+  padding: 2px 14px 2px 5px;
 `;
 
 export const RowContainer = styled.div`
