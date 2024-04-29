@@ -4,7 +4,7 @@
     "jsx": "preserve",
     "module": "esnext",
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "strict": true,
     "skipLibCheck": true,
     "lib": ["dom", "dom.iterable", "esnext"],

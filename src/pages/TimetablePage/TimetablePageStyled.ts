@@ -9,7 +9,8 @@ export const Container = styled.div`
 `;
 
 export const ClassSelect = styled.select`
-  font-size: 16px;
+  font-size: 18px;
+  padding: 3px 12px 3px 5px;
   font-weight: 500;
 `;
 

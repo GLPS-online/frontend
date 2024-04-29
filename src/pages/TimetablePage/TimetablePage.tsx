@@ -1,4 +1,4 @@
-import Timetable from "./timetable/Timetable";
+import Timetable from "@/components/Timetable/Timetable";
 import { searchUser } from "@/api/userApi";
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./TimetablePageStyled";
