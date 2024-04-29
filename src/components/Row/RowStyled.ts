@@ -46,11 +46,14 @@ export const Cells = styled.div`
 
 export const Cell = styled.div`
   flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: auto;
   height: 30px;
   font-size: 20px;
-  text-align: center;
-  align-content: center;
+  // text-align: center;
+  // align-content: center;
   @media screen and (max-width: 620px) {
     height: auto;
     min-height: 30px;
