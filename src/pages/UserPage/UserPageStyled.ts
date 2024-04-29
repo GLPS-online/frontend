@@ -133,7 +133,6 @@ export const Select = styled.select<{ $isError: boolean }>`
       return "border: 1px solid red;";
     }
   }}
-  background: var(--white-white_FFFFFF, #fff);
   outline: 0px;
 `;
 

@@ -80,6 +80,7 @@ export const ClearIcon = styled.img`
 export const ActionSelector = styled.select`
   height: 30px;
   font-size: 18px;
+  padding: 2px 5px;
 `;
 
 export const RowContainer = styled.div`
