@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 type Props = {
   data: User | null;
+  displayWave?: boolean;
   displayDivision?: boolean;
   forTimetable?: boolean;
 };
@@ -11,6 +12,7 @@ type Props = {
 export default function Nametag({
   data,
   displayDivision = true,
+  displayWave = true,
   forTimetable = false,
 }: Props) {
   const { _id, division, wave, korName } = data || {};
@@ -25,12 +27,14 @@ export default function Nametag({
   }
   return (
     <>
-      <S.Container onClick={handleClick}>
+      <S.Container $forTimetable={forTimetable} onClick={handleClick}>
         {displayDivision && (
           <S.Division $forTimetable={forTimetable}>{division}</S.Division>
         )}
         <S.Name $forTimetable={forTimetable}>{korName} </S.Name>
-        <S.Wave $forTimetable={forTimetable}>{wave}</S.Wave>
+        {displayWave && (
+          <S.Wave $forTimetable={forTimetable}>{wave}</S.Wave>
+        )}
       </S.Container>
     </>
   );
