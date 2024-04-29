@@ -237,7 +237,7 @@ export default function StudentTable({ data }: Props) {
         }
 
         {filteredData.map((student: Student) => (
-          <S.RowContainer key={`${rerenderer}${student._id}`}>
+          <S.RowContainer key={`${student._id}${selectedItems.has(student._id)?"1":""}`}>
             <S.CheckBox
               name={student._id}
               type={action !== "default" ? "checkbox" : "hidden"}
