@@ -16,7 +16,7 @@ export default function Dropdown() {
         P·T·LA 검색
       </S.DropDownItem>
       <S.DropDownItem onClick={() => {}}>식단표</S.DropDownItem>
-      <S.DropDownItem onClick={() => {}}>동아리/종교활동</S.DropDownItem>
+      <S.DropDownItem disabled onClick={() => {}}>동아리/종교활동</S.DropDownItem>
       <S.DropDownItem onClick={() => {}}>VQ 장소신청</S.DropDownItem>
       <S.DropDownItem onClick={() => {}}>카드현황</S.DropDownItem>
       <S.DropDownItem

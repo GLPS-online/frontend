@@ -178,7 +178,7 @@ export default function StudentForm({
                   validate: (v)=> !v || clubList.includes(v),
                 })}
               >
-                <option value="" />
+                <option value="-" />
                 {clubList?.map((club, i) => (
                   <option key={i} id={club} value={club}>
                     {club}

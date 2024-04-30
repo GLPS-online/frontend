@@ -99,7 +99,7 @@ export const ReadOnlyData = styled.div`
   padding: 5px 0;
 `;
 
-export const Phone = styled.a`
+export const Phone = styled.span`
   text-decoration: underline;
   color: darkblue;
 `;

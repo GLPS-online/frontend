@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DropDownContianer = styled.ul`
+export const DropDownContianer = styled.div`
   z-index: 2;
   position: absolute;
   top: 30px;
@@ -16,7 +16,7 @@ export const DropDownContianer = styled.ul`
   box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 `;
 
-export const DropDownItem = styled.li`
+export const DropDownItem = styled.button`
   z-index: 1;
   display: flex;
   align-items: cetner;

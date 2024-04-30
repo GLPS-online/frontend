@@ -9,6 +9,7 @@ import {
   PApositions,
   TApositions,
   classRooms,
+  clubList,
   floorList,
 } from "@/constants";
 import { phoneNumberAutoFormat } from "@/utils/etc";
@@ -49,6 +50,7 @@ export default function UserForm({
       position: user.position,
       area: user.area,
       roomNum: user.roomNum,
+      club: user.club,
     },
   });
   const watchDivision = watch("division");
@@ -169,7 +171,7 @@ export default function UserForm({
               </>
             ) : (
               <S.Data>
-                <S.Phone href={`tel:${user.phone}`}>{user.phone}</S.Phone>
+                <S.Phone as="a" href={`tel:${user.phone}`}>{user.phone}</S.Phone>
               </S.Data>
             )}
           </S.Field>
@@ -324,6 +326,27 @@ export default function UserForm({
               </>
             ) : (
               <S.Data>{user.roomNum}</S.Data>
+            )}
+          </S.Field>
+          <S.Field>
+            <S.Label>동아리</S.Label>
+            {isEdit ? (
+              <S.Select
+                id="club"
+                $isError={errors.club ? true : false}
+                {...register("club", {
+                  validate: (v)=> !v || clubList.includes(v),
+                })}
+              >
+                <option value="-" />
+                {clubList?.map((club, i) => (
+                  <option key={i} id={club} value={club}>
+                    {club}
+                  </option>
+                ))}
+              </S.Select>
+            ) : (
+              <S.Data>{user.club}</S.Data>
             )}
           </S.Field>
         </S.Fields>
