@@ -20,6 +20,9 @@ interface Student {
   className: string;
   roomNum: number;
   club: string;
+  clubChoice1: string;
+  clubChoice2: string;
+  clubChoice3: string;
 }
 
 export default Student;

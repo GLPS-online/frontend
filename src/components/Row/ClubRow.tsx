@@ -1,6 +1,7 @@
 import { isBirthday } from "@/utils/etc";
 import * as S from "./RowStyled";
 import Student from "@/interfaces/Student";
+import ClubExpanded from "./ClubExpanded";
 
 type Props = {
   student: Student;
@@ -27,7 +28,7 @@ export default function ClubRow({ student, isExpanded = false }: Props) {
         <S.Cell>{student["className"]}</S.Cell>
         <S.Cell>{student["club"]}</S.Cell>
       </S.Cells>
-      {isExpanded && <div>Expanded</div>}
+      {isExpanded && <ClubExpanded student={student} />}
     </S.RowContainer>
   );
 }
