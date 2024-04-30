@@ -44,6 +44,7 @@ export default function TimetablePage() {
 
   return (
     <S.Container>
+      <h1>시간표</h1>
       <S.ClassSelect
         value={className}
         name="className"
@@ -69,10 +70,7 @@ export default function TimetablePage() {
           <S.InformationRow>
             <S.InformationItem>
               Class PA: &nbsp;
-              <Nametag
-                data={classPA}
-                displayDivision={false}
-              />
+              <Nametag data={classPA} displayDivision={false} />
             </S.InformationItem>
             <S.InformationItem>Office: {data?.office}</S.InformationItem>
           </S.InformationRow>

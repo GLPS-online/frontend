@@ -9,8 +9,7 @@ export const Container = styled.button<{ $forTimetable: boolean }>`
   padding: 3px;
   border-radius: 3px;
 
-  ${({ $forTimetable }) =>
-  $forTimetable ? "padding: 3px 0;" : ""}
+  ${({ $forTimetable }) => ($forTimetable ? "padding: 3px 0;" : "")}
 `;
 
 export const Wave = styled.span<{ $forTimetable: boolean }>`
@@ -18,29 +17,29 @@ export const Wave = styled.span<{ $forTimetable: boolean }>`
     $forTimetable ? "font-size: 12px;" : "font-size: 16px;"}
   color: gray;
   align-self: flex-end;
-  @media screen and (max-width: 620px) {
+  /* @media screen and (max-width: 620px) {
     ${({ $forTimetable }) =>
-      $forTimetable ? "font-size: 10px;" : "font-size: 14px;"}
-  }
+    $forTimetable ? "font-size: 10px;" : "font-size: 14px;"}
+  } */
 `;
 
 export const Name = styled.span<{ $forTimetable: boolean }>`
   ${({ $forTimetable }) =>
-    $forTimetable ? "font-size: 15px;" : "font-size: 20px;"}
+    $forTimetable ? "font-size: 15px;" : "font-size: 18px;"}
   color: black;
-  @media screen and (max-width: 620px) {
+  /* @media screen and (max-width: 620px) {
     ${({ $forTimetable }) =>
-      $forTimetable ? "font-size: 15px;" : "font-size: 18px;"}
-  }
+    $forTimetable ? "font-size: 15px;" : "font-size: 18px;"}
+  } */
 `;
 
 export const Division = styled.span<{ $forTimetable: boolean }>`
   ${({ $forTimetable }) =>
-    $forTimetable ? "font-size: 14.25px;" : "font-size: 19px;"}
+    $forTimetable ? "font-size: 14.25px;" : "font-size: 17px;"}
   letter-spacing: -0.05px;
   color: black;
-  @media screen and (max-width: 620px) {
+  /* @media screen and (max-width: 620px) {
     ${({ $forTimetable }) =>
-      $forTimetable ? "font-size: 14.25px;" : "font-size: 17px;"}
-  }
+    $forTimetable ? "font-size: 14.25px;" : "font-size: 17px;"}
+  } */
 `;

@@ -171,7 +171,9 @@ export default function UserForm({
               </>
             ) : (
               <S.Data>
-                <S.Phone as="a" href={`tel:${user.phone}`}>{user.phone}</S.Phone>
+                <S.Phone as="a" href={`tel:${user.phone}`}>
+                  {user.phone}
+                </S.Phone>
               </S.Data>
             )}
           </S.Field>
@@ -269,7 +271,7 @@ export default function UserForm({
                 $isError={errors.area ? true : false}
                 {...register("area", { required: false })}
               >
-                <option id="default" value={""}>
+                <option id="" value={""}>
                   -
                 </option>
                 {(() => {
@@ -334,19 +336,17 @@ export default function UserForm({
               <S.Select
                 id="club"
                 $isError={errors.club ? true : false}
-                {...register("club", {
-                  required: true,
-                })}
+                {...register("club")}
               >
-                <option value="-" />
+                <option value=""></option>
                 {clubList?.map((club, i) => (
-                  <option key={i} id={club.value} value={club.value}>
-                    {club.label}
+                  <option key={i} id={club} value={club}>
+                    {club}
                   </option>
                 ))}
               </S.Select>
             ) : (
-              <S.Data>{user.club}</S.Data>
+              <S.Data>club</S.Data>
             )}
           </S.Field>
         </S.Fields>

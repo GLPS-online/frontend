@@ -69,6 +69,18 @@ export const SearchBarInput = styled.input`
   }
 `;
 
+export const SearchBarSelect = styled.select`
+  width: 100%;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 4px;
+  padding-left: 8px;
+  border: solid 1px black;
+  @media screen and (max-width: 620px) {
+    /* font-size: 18px; */
+  }
+`;
+
 export const ClearIcon = styled.img`
   position: absolute;
   cursor: pointer;
@@ -108,4 +120,14 @@ export const EndOfList = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const InformationItem = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 19px;
+  font-weight: 500;
 `;

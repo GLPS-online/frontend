@@ -15,10 +15,22 @@ export default function Dropdown() {
       >
         P·T·LA 검색
       </S.DropDownItem>
-      <S.DropDownItem disabled onClick={() => {}}>식단표</S.DropDownItem>
-      <S.DropDownItem onClick={() => {navigate("/club")}}>동아리/종교활동</S.DropDownItem>
-      <S.DropDownItem disabled onClick={() => {}}>VQ 장소신청</S.DropDownItem>
-      <S.DropDownItem disabled onClick={() => {}}>카드현황</S.DropDownItem>
+      <S.DropDownItem disabled onClick={() => {}}>
+        식단표
+      </S.DropDownItem>
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/club");
+        }}
+      >
+        동아리/종교활동
+      </S.DropDownItem>
+      <S.DropDownItem disabled onClick={() => {}}>
+        VQ 장소신청
+      </S.DropDownItem>
+      <S.DropDownItem disabled onClick={() => {}}>
+        카드현황
+      </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
           // const slug = user?.position.includes("class") 어쩌고 저쩌고

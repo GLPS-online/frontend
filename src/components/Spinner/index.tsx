@@ -1,15 +1,11 @@
 import styled from "styled-components";
 
-const StyledSpinner = styled.svg`
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
+const StyledSpinner = styled.svg<{ $small?: boolean }>`
   align-self: center;
   animation: rotate 2s linear infinite;
-  /* margin: -25px 0 0 -25px; */
-  margin: 25px;
   width: 40px;
   height: 40px;
+  ${({ $small = false }) => ($small ? "margin: 0;" : "margin: 25px;")}
 
   & .path {
     stroke: darkblue;
@@ -40,7 +36,7 @@ const StyledSpinner = styled.svg`
 
 export function SmallSpinner() {
   return (
-    <StyledSpinner viewBox="0 0 50 50">
+    <StyledSpinner $small={true} viewBox="0 0 50 50">
       <circle
         className="path"
         cx="25"

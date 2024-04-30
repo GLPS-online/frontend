@@ -214,14 +214,14 @@ export default function SignupForm({
           <S.Label>부서</S.Label>
           <S.Select
             id="division"
-            defaultValue="default"
+            defaultValue="-"
             $isError={errors.division ? true : false}
             {...register("division", {
               required: true,
-              validate: (v) => v !== "default",
+              validate: (v) => v !== "-",
             })}
           >
-            <option disabled id="default" value="default">
+            <option disabled id="-" value="-">
               -
             </option>
             <option id="pa" value={"PA"}>
@@ -292,11 +292,11 @@ export default function SignupForm({
           <S.Select
             id="area"
             disabled={watchDivision !== "TA" && watchDivision !== "LA"}
-            defaultValue={""}
+            defaultValue=""
             $isError={errors.area ? true : false}
             {...register("area", { required: false })}
           >
-            <option id="default" value={""}>
+            <option id="" value={""}>
               -
             </option>
             {(() => {

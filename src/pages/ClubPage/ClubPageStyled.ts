@@ -13,16 +13,3 @@ export const ClubSelect = styled.select`
   padding: 3px 12px 3px 5px;
   font-weight: 500;
 `;
-
-export const InformationRow = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const InformationItem = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 16px;
-`;

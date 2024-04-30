@@ -30,7 +30,7 @@ export default function StudentPage() {
     }
   }, [id]);
 
-  async function onEdit(body: any) {
+  async function handleUpdate(id: string, body: any) {
     if (id) {
       const toastId = toast.loading("업데이트 중...");
       try {
@@ -64,7 +64,7 @@ export default function StudentPage() {
       ) : student ? (
         <>
           <h1>학생 상세보기</h1>
-          <StudentForm student={student} onEdit={onEdit} />
+          <StudentForm student={student} onEdit={handleUpdate} />
           <h1>상담 기록</h1>
           <LifeInfo student={student} />
         </>

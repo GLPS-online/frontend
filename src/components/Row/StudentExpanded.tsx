@@ -36,7 +36,7 @@ export default function StudentExpanded({ student }: { student: Student }) {
         <S.Link
           onClick={(e) => {
             e.stopPropagation();
-            navigate(`/timetables/${student.className}/`);
+            navigate(`/timetables/${student.className}`);
           }}
         >
           시간표
@@ -44,7 +44,7 @@ export default function StudentExpanded({ student }: { student: Student }) {
         <S.Link
           onClick={(e) => {
             e.stopPropagation();
-            navigate(`/student/${student._id}/`);
+            navigate(`/student/${student._id}`);
           }}
         >
           세부정보/수정

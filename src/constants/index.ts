@@ -184,13 +184,15 @@ export const sortOrder = {
   "RP TA": 60,
   "DB TA": 61,
   "GA TA": 62,
-  "선생님": 999,
+  선생님: 999,
 };
 
 export const clubList = [
-  {value: "origami", label: "종이접기", location: "10층 공강"},
-  {value: "basketball", label: "농구", location: "운동장"},
-  {value: "baduk", label: "바둑", location: "10층 공강"},
-  {value: "protestant", label: "개신교(교회)", location: "횡성감리교회"},
-  {value: "catholic", label: "가톨릭(성당)", location: "성당"},
-]
+  "바둑",
+  "종이접기",
+  "개신교(교회)",
+  "가톨릭(성당)",
+  "그림그리기",
+  "코딩",
+  "태권도",
+];
