@@ -2,13 +2,14 @@ import { useParams } from "react-router-dom";
 import Student from "@/interfaces/Student";
 import { fetchStudent, updateStudent } from "@/api/studentApi";
 import * as S from "./StudentPageStyled";
-import EditableInfo from "./EditableInfo";
+import EditableInfo from "../../components/Forms/StudentForm";
 import LifeInfo from "./LifeInfo";
 import OtherInfo from "./OtherInfo";
 import Navigator from "@/components/Navigator/Navigator";
 import { toast } from "react-toastify";
 import Spinner from "@/components/Spinner";
 import { useEffect, useState } from "react";
+import StudentForm from "../../components/Forms/StudentForm";
 
 export default function StudentPage() {
   const { id } = useParams();
@@ -65,7 +66,7 @@ export default function StudentPage() {
       ) : student ? (
         <>
           <h1>학생 상세보기</h1>
-          <EditableInfo student={student} onEdit={onEdit} />
+          <StudentForm student={student} onEdit={onEdit} />
           <LifeInfo student={student} />
           <OtherInfo student={student} />
         </>

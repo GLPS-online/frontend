@@ -1,5 +1,5 @@
 import User from "@/interfaces/User";
-import * as S from "./UserPageStyled";
+import * as S from "./FormStyled";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/contexts/AuthProvider";
 import { useForm } from "react-hook-form";

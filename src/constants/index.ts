@@ -184,5 +184,9 @@ export const sortOrder = {
   "RP TA": 60,
   "DB TA": 61,
   "GA TA": 62,
-  선생님: 999,
+  "선생님": 999,
 };
+
+export const clubList = [
+  "종이접기", "농구", "바둑"
+]

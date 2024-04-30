@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { deleteUser, fetchUser, updateUser } from "@/api/userApi";
-import UserForm from "./UserForm";
+import UserForm from "../../components/Forms/UserForm";
 import User from "@/interfaces/User";
 import * as S from "./UserPageStyled";
 import { grantAdmin } from "@/api/adminApi";
