@@ -36,7 +36,6 @@ const searchOptions = [
 ];
 
 export default function StudentTable({ data }: Props) {
-  const [rerenderer, setRerenderer] = useState<number>(0);
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();
@@ -245,7 +244,6 @@ export default function StudentTable({ data }: Props) {
               checked={selectedItems.has(student._id)}
               onChange={(e) => {
                 handleCheckboxChange(e);
-                setRerenderer((prev) => prev + 1);
               }}
             />
             <S.RowBox

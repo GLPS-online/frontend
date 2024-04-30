@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getCourse, isBirthday } from "@/utils/etc";
+import { isBirthday } from "@/utils/etc";
 import Student from "@/interfaces/Student";
 import * as S from "./FormStyled";
 import { useAuth } from "@/contexts/AuthProvider";
