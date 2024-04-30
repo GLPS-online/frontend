@@ -188,5 +188,5 @@ export const sortOrder = {
 };
 
 export const clubList = [
-  "종이접기", "농구", "바둑"
+  "종이접기", "농구", "바둑", "개신교(교회)", "가톨릭(성당)"
 ]

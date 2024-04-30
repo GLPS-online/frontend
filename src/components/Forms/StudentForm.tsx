@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getCourse } from "@/utils/etc";
+import { getCourse, isBirthday } from "@/utils/etc";
 import Student from "@/interfaces/Student";
 import * as S from "./FormStyled";
 import { useAuth } from "@/contexts/AuthProvider";
@@ -41,6 +41,7 @@ export default function StudentForm({
     setIsEdit(false);
   }
   return (
+    <>
     <S.InfoContainer>
       <S.Container autoComplete="off">
         <S.Fields disabled={isSubmitting}>
@@ -188,8 +189,35 @@ export default function StudentForm({
               <S.Data>{student.club}</S.Data>
             )}
           </S.Field>
-        </S.Fields>
-        {isEdit ? (
+        <S.Field>
+          <S.Label>학적</S.Label>
+          <S.ReadOnlyData>{student.school + " " + student.grade + "학년"}</S.ReadOnlyData>
+        </S.Field>
+        <S.Field>
+          <S.Label>생년월일</S.Label>
+          <S.ReadOnlyData>{student.birthDate + (isBirthday(student.birthDate)?"🎂":"")}</S.ReadOnlyData>
+        </S.Field>
+        <S.Field>
+          <S.Label>알레르기</S.Label>
+          <S.ReadOnlyData>{student.allergy}</S.ReadOnlyData>
+        </S.Field>
+        <S.Field>
+          <S.Label>상의 사이즈</S.Label>
+          <S.ReadOnlyData>{student.shirtSize}</S.ReadOnlyData>
+        </S.Field>
+      </S.Fields>
+      <S.Field>
+        <S.Label>자택 주소</S.Label>
+        <S.ReadOnlyData>{student.address + " (" + student.postNum + ")"}</S.ReadOnlyData>
+      </S.Field>
+      <S.Field>
+        <S.Label>보호자 연락처</S.Label>
+        <S.ReadOnlyData>{student.parent1Relation + ": " + student.parent1Phone}</S.ReadOnlyData>
+        {student.parent2Relation &&
+          <S.ReadOnlyData>{ student.parent2Relation + ": " + student.parent2Phone}</S.ReadOnlyData>
+        }
+      </S.Field>
+      {isEdit ? (
           <S.ButtonsContainer>
             <S.CancelButton
               disabled={isSubmitting}
@@ -223,84 +251,7 @@ export default function StudentForm({
           </S.ButtonsContainer>
         )}
       </S.Container>
-      {/* {isEdit ? (
-        <S.Button onClick={handleEdit}>
-          <S.EditSave src="/icons/save.svg" draggable={false} />
-        </S.Button>
-      ) : (
-        <S.Button
-          onClick={() => {
-            if (isEditable) {
-              setIsEdit(true);
-            } else {
-              toast.error("권한이 없습니다");
-            }
-          }}
-        >
-          <S.EditSave src="/icons/edit.svg" draggable={false} />
-        </S.Button>
-      )}
-
-      <div>
-        이름:{" "}
-        {isEdit ? (
-          <input
-            type="text"
-            name="korName"
-            value={values.korName}
-            onChange={handleChange}
-          />
-        ) : (
-          student.korName
-        )}
-      </div>
-      <div>
-        버튼 2개: 귀가처리 / 귀교처리 / 퇴소처리 하기 상태:{" "}
-        {isEdit ? (
-          <input
-            type="text"
-            name="status"
-            value={values.status}
-            onChange={handleChange}
-          />
-        ) : (
-          student.status
-        )}
-      </div>
-      <div>
-        학급:{" "}
-        {isEdit ? (
-          <select
-            value={values.className}
-            name="className"
-            onChange={handleChange}
-          >
-            {classList?.map((className, i) => (
-              <option key={i} value={className}>
-                {className} 반
-              </option>
-            ))}
-          </select>
-        ) : (
-          student.className +
-          "반 " +
-          getCourse(student.grade, student.className)
-        )}
-      </div>
-      <div>
-        방:{" "}
-        {isEdit ? (
-          <input
-            type="text"
-            name="roomNum"
-            value={values.roomNum}
-            onChange={handleChange}
-          />
-        ) : (
-          student.roomNum
-        )}
-      </div>
-      <div>동아리: </div> */}
     </S.InfoContainer>
+  </>
   );
 }

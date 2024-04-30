@@ -2,9 +2,7 @@ import { useParams } from "react-router-dom";
 import Student from "@/interfaces/Student";
 import { fetchStudent, updateStudent } from "@/api/studentApi";
 import * as S from "./StudentPageStyled";
-import EditableInfo from "../../components/Forms/StudentForm";
 import LifeInfo from "./LifeInfo";
-import OtherInfo from "./OtherInfo";
 import Navigator from "@/components/Navigator/Navigator";
 import { toast } from "react-toastify";
 import Spinner from "@/components/Spinner";
@@ -67,8 +65,8 @@ export default function StudentPage() {
         <>
           <h1>학생 상세보기</h1>
           <StudentForm student={student} onEdit={onEdit} />
+          <h1>상담 기록</h1>
           <LifeInfo student={student} />
-          <OtherInfo student={student} />
         </>
       ) : (
         <>

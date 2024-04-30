@@ -68,6 +68,16 @@ export const Field = styled.div`
   border-radius: 6px;
 `;
 
+export const ReadOnlyField = styled.div`
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  padding: 5px 10px;
+  border-radius: 6px;
+`;
+
 export const Label = styled.div`
   display: inline-flex;
   flex-direction: column;
@@ -82,6 +92,11 @@ export const Label = styled.div`
 export const Data = styled.div`
   font-size: 18px;
   padding: 10px 0;
+`;
+
+export const ReadOnlyData = styled.div`
+  font-size: 18px;
+  padding: 5px 0;
 `;
 
 export const Phone = styled.a`
