@@ -28,7 +28,7 @@ const searchOptions = [
   },
 ];
 
-export default function UserTable({ data }: Props) {
+export default function UserTable({ data = [] }: Props) {
   const [searchParams, setSearchParams] = useSearchParams();
   const filteredData: User[] = data.filter((datum: any) => {
     return searchOptions.every((searchOption) => {

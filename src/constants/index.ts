@@ -188,5 +188,9 @@ export const sortOrder = {
 };
 
 export const clubList = [
-  "종이접기", "농구", "바둑", "개신교(교회)", "가톨릭(성당)"
+  {value: "origami", label: "종이접기", location: "10층 공강"},
+  {value: "basketball", label: "농구", location: "운동장"},
+  {value: "baduk", label: "바둑", location: "10층 공강"},
+  {value: "protestant", label: "개신교(교회)", location: "횡성감리교회"},
+  {value: "catholic", label: "가톨릭(성당)", location: "성당"},
 ]

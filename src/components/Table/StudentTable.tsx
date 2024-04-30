@@ -35,7 +35,7 @@ const searchOptions = [
   },
 ];
 
-export default function StudentTable({ data }: Props) {
+export default function StudentTable({ data = [] }: Props) {
   const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   const { selectedItems, clearItems, handleCheckAll, handleCheckboxChange } =
     useCheckbox();

@@ -335,13 +335,13 @@ export default function UserForm({
                 id="club"
                 $isError={errors.club ? true : false}
                 {...register("club", {
-                  validate: (v)=> !v || clubList.includes(v),
+                  required: true,
                 })}
               >
                 <option value="-" />
                 {clubList?.map((club, i) => (
-                  <option key={i} id={club} value={club}>
-                    {club}
+                  <option key={i} id={club.value} value={club.value}>
+                    {club.label}
                   </option>
                 ))}
               </S.Select>
