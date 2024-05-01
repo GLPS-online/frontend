@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./AdminPageStyled";
 import * as Placeholders from "./placeholders";
 import {
@@ -6,26 +6,36 @@ import {
   initialize,
   createTimeTable,
   deleteTimetable,
+  InsertUsers,
+  DeleteUsers,
+  fetchClubChoices,
+  updateClubAssignment,
 } from "@/api/adminApi";
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const [students, setStudents] = useState("");
-  const [className, setClassName] = useState("");
-  const [advisor, setAdvisor] = useState("");
-  const [office, setOffice] = useState("");
-  const [classNameToDelete, setClassNameToDelete] = useState("");
-  const [table, setTable] = useState("");
+
+  const [state, setState] = useState({
+    students: "",
+    users: "",
+    clubChoices: "",
+    clubAssignment: "",
+    className: "",
+    advisor: "",
+    office: "",
+    classNameToDelete: "",
+    table: "",
+  });
 
   async function handleInitializeStudents() {
     try {
       setIsLoading(true);
-      const res = await initialize(students);
-      alert(res.msg);
+      const res = await initialize(state.students);
+      console.log(res);
     } catch (err) {
-      alert(err);
+      console.log(err);
     } finally {
-      setStudents("");
+      setState((prev) => ({ ...prev, students: "" }));
       setIsLoading(false);
     }
   }
@@ -33,9 +43,33 @@ export default function AdminPage() {
     try {
       setIsLoading(true);
       const res = await endOfCamp();
-      alert(res);
+      console.log(res);
     } catch (err) {
-      alert(err);
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function handleInsertUsers() {
+    try {
+      setIsLoading(true);
+      const res = await InsertUsers(state.users);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setState((prev) => ({ ...prev, users: "" }));
+      setIsLoading(false);
+    }
+  }
+  async function handleDeleteUsers() {
+    try {
+      setIsLoading(true);
+      const res = await DeleteUsers();
+      console.log(res);
+    } catch (err) {
+      console.log(err);
     } finally {
       setIsLoading(false);
     }
@@ -44,15 +78,19 @@ export default function AdminPage() {
   async function handleTimetableCreation() {
     try {
       setIsLoading(true);
+      const { className, advisor, office, table } = state;
       const res = await createTimeTable(className, advisor, office, table);
-      alert(res);
+      console.log(res);
     } catch (err) {
-      alert(err);
+      console.log(err);
     } finally {
-      setClassName("");
-      setAdvisor("");
-      setOffice("");
-      setTable("");
+      setState((prev) => ({
+        ...prev,
+        className: "",
+        advisor: "",
+        office: "",
+        table: "",
+      }));
       setIsLoading(false);
     }
   }
@@ -60,75 +98,167 @@ export default function AdminPage() {
   async function handleTimetableDeletion() {
     try {
       setIsLoading(true);
-      const res = await deleteTimetable(classNameToDelete);
-      alert(res);
+      const res = await deleteTimetable(state.classNameToDelete);
+      console.log(res);
     } catch (err) {
-      alert(err);
+      console.log(err);
     } finally {
-      setClassNameToDelete("");
+      setState((prev) => ({ ...prev, classNameToDelete: "" }));
       setIsLoading(false);
     }
   }
+
+  async function handleClubAssignment() {
+    try {
+      setIsLoading(true);
+      const res = await updateClubAssignment(state.clubAssignment);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setState((prev) => ({ ...prev, clubAssignment: "" }));
+      setIsLoading(false);
+    }
+  }
+  async function handlefetch() {
+    try {
+      setIsLoading(true);
+      const res = await fetchClubChoices();
+      console.log(res);
+      setState((prev) => ({ ...prev, clubChoices: JSON.stringify(res) }));
+    } catch (err) {
+      console.log(err);
+      alert(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    handlefetch();
+  }, []);
 
   return (
     <S.Container>
       <S.Header>관리자용 페이지 입니다</S.Header>
       <S.Content>
-        학생 정보 추가
+        학생 삽입
         <S.Textarea
-          placeholder={Placeholders.studentInitializer}
-          value={students}
-          onChange={(e) => setStudents(e.target.value)}
+          placeholder={Placeholders.studentsInitializer}
+          value={state.students}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, students: e.target.value }))
+          }
           rows={30}
           cols={70}
         />
         <S.Button disabled={isLoading} onClick={handleInitializeStudents}>
-          추가하기
+          삽입하기
         </S.Button>
       </S.Content>
       <S.Content>
-        학생 정보 전체 삭제
+        학생 전체 삭제
         <S.DangerButton disabled={isLoading} onClick={handleDeleteStudents}>
           삭제하기
         </S.DangerButton>
       </S.Content>
       <S.Content>
-        시간표 추가
+        유저 삽입 (개발용)
+        <S.Textarea
+          placeholder={Placeholders.usersInitializer}
+          value={state.users}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, users: e.target.value }))
+          }
+          rows={30}
+          cols={70}
+        />
+        <S.Button disabled={isLoading} onClick={handleInsertUsers}>
+          삽입하기
+        </S.Button>
+      </S.Content>
+      <S.Content>
+        관리자를 제외한 유저 전체 삭제
+        <S.DangerButton disabled={isLoading} onClick={handleDeleteUsers}>
+          삭제하기
+        </S.DangerButton>
+      </S.Content>
+      <S.Content>
+        학생 동아리 배정을 위한 JSON
+        <S.Textarea
+          value={state.clubChoices}
+          onChange={(e) => {}}
+          rows={20}
+          cols={70}
+        />
+      </S.Content>
+      <S.Content>
+        학생 동아리 배정 업로드
+        <S.Textarea
+          value={state.clubAssignment}
+          onChange={(e) => {
+            setState((prev) => ({ ...prev, clubAssignment: e.target.value }));
+          }}
+          rows={30}
+          cols={70}
+          placeholder={Placeholders.clubAssignment}
+        />
+        <S.Button
+          disabled={isLoading}
+          onClick={(e) => {
+            handleClubAssignment();
+          }}
+        >
+          업로드
+        </S.Button>
+      </S.Content>
+      <S.Content>
+        시간표 삽입
         <S.TextInput
           type="text"
-          value={className}
-          onChange={(e) => setClassName(e.target.value)}
+          value={state.className}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, className: e.target.value }))
+          }
           placeholder="학급 이름"
         />
         <S.TextInput
           type="text"
-          value={advisor}
-          onChange={(e) => setAdvisor(e.target.value)}
+          value={state.advisor}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, advisor: e.target.value }))
+          }
           placeholder="어드바이저 이름"
         />
         <S.TextInput
           type="text"
-          value={office}
-          onChange={(e) => setOffice(e.target.value)}
+          value={state.office}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, office: e.target.value }))
+          }
           placeholder="어드바이저 오피스"
         />
         <S.Textarea
           placeholder={Placeholders.timetable}
-          value={table}
-          onChange={(e) => setTable(e.target.value)}
+          value={state.table}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, table: e.target.value }))
+          }
           rows={18}
           cols={70}
         />
         <S.Button disabled={isLoading} onClick={handleTimetableCreation}>
-          추가하기
+          삽입하기
         </S.Button>
       </S.Content>
       <S.Content>
         시간표 삭제
         <S.TextInput
           type="text"
-          value={classNameToDelete}
-          onChange={(e) => setClassNameToDelete(e.target.value)}
+          value={state.classNameToDelete}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, classNameToDelete: e.target.value }))
+          }
           placeholder="삭제할 학급 이름"
         />
         <S.DangerButton disabled={isLoading} onClick={handleTimetableDeletion}>

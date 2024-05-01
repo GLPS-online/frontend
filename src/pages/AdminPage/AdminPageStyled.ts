@@ -20,6 +20,8 @@ export const Content = styled.div`
   gap: 10px;
   font-size: 20px;
   font-weight: 600;
+  border: 1px solid black;
+  padding: 5px;
 `;
 
 export const TextInput = styled.input`

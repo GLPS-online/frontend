@@ -181,7 +181,7 @@ export default function StudentForm({
                   ))}
                 </S.Select>
               ) : (
-                <S.Data>club</S.Data>
+                <S.Data>{student.club}</S.Data>
               )}
             </S.Field>
             <S.Field>

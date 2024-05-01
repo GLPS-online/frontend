@@ -1,4 +1,4 @@
-export const studentInitializer = `Paste a JSON array like below:
+export const studentsInitializer = `Paste a JSON array like below:
 [
   {
     "glpsId": "39000",
@@ -33,6 +33,69 @@ export const studentInitializer = `Paste a JSON array like below:
   ...
 ]
     `;
+
+export const usersInitializer = `Paste a JSON array like below:
+[
+  {
+    "email": "glps01@gmail.com",
+    "password": "12345678",
+    "korName": "박용성",
+    "engName": "Yongsung Park",
+    "wave": "19",
+    "gender": "M",
+    "phone": "010-1234-5678",
+    "division": "PA",
+    "position": "헤드 PA",
+    "sortOrder": "1",
+    "area": "",
+    "roomNum": "304"
+  },
+  {
+    "email": "glps02@gmail.com",
+    "password": "12345678",
+    "korName": "박윤영",
+    "engName": "Yunyoung Park",
+    "wave": "22",
+    "gender": "F",
+    ...
+    ...
+    ...
+  },
+  ...,
+  ...
+]
+    `;
+
+export const clubAssignment = `
+  [
+    {
+        "_id": "6631db4fc953419c6a075772",
+        "korName": "강성윤",
+        "clubChoice1": "바둑",
+        "clubChoice2": "코딩",
+        "clubChoice3": "태권도",
+        "club": "바둑"
+    },
+    {
+        "_id": "6631db4fc953419c6a075774",
+        "korName": "강소담",
+        "clubChoice1": "그림그리기",
+        "clubChoice2": "태권도",
+        "clubChoice3": "개신교(교회)",
+        "club": "그림그리기"
+    },
+    {
+        "_id": "6631db4fc953419c6a075776",
+        "korName": "강승현",
+        "clubChoice1": "종이접기",
+      ...
+      ...
+      ...
+    },
+    ...
+    ...
+  ]
+`;
 
 export const timetable = `Paste a JSON array like below:
 [

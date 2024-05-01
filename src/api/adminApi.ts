@@ -53,6 +53,50 @@ export async function endOfCamp() {
   }
 }
 
+export async function InsertUsers(body: string) {
+  try {
+    const response = await client.post("/users", body);
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
+  }
+}
+
+export async function DeleteUsers() {
+  try {
+    const response = await client.delete("/users");
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
+  }
+}
+
+export async function fetchClubChoices() {
+  try {
+    const response = await client.get("/clubs/choices");
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
+  }
+}
+
+export async function updateClubAssignment(body: string) {
+  try {
+    const response = await client.put("/clubs", body);
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
+  }
+}
+
 export async function grantAdmin(id: string) {
   const response = await client.put(`auth/grantAdmin/${id}`);
   const result = response.data;
