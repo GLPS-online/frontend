@@ -36,10 +36,6 @@ export default function UserPage() {
     if (id) {
       const toastId = toast.loading("업데이트 중...");
       try {
-        setUser((prev) => ({
-          ...prev,
-          ...body,
-        }));
         const updated = await updateUser(id, body);
         setUser(updated);
         toast.update(toastId, {

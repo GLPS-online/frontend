@@ -34,10 +34,6 @@ export default function StudentPage() {
     if (id) {
       const toastId = toast.loading("업데이트 중...");
       try {
-        setStudent((prev) => ({
-          ...prev,
-          ...body,
-        }));
         const updated = await updateStudent(id, body);
         setStudent(updated);
         toast.update(toastId, {

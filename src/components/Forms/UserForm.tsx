@@ -346,7 +346,7 @@ export default function UserForm({
                 ))}
               </S.Select>
             ) : (
-              <S.Data>club</S.Data>
+              <S.Data>{user.club}</S.Data>
             )}
           </S.Field>
         </S.Fields>

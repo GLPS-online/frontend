@@ -82,7 +82,20 @@ export default function StudentForm({
                   </option>
                 </S.Select>
               ) : (
-                <S.Data>{student.status}</S.Data>
+                <S.Data>
+                  {(() => {
+                    switch (student.status) {
+                      case "active":
+                        return "재적";
+                      case "absent":
+                        return "임시귀가";
+                      case "discharged":
+                        return "퇴소";
+                      default:
+                        return "오류입니다.";
+                    }
+                  })()}
+                </S.Data>
               )}
             </S.Field>
             <S.Field>

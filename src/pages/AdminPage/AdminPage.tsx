@@ -11,6 +11,7 @@ import {
   fetchClubChoices,
   updateClubAssignment,
 } from "@/api/adminApi";
+import { classList } from "@/constants";
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -214,14 +215,18 @@ export default function AdminPage() {
       </S.Content>
       <S.Content>
         시간표 삽입
-        <S.TextInput
-          type="text"
+        <select
           value={state.className}
           onChange={(e) =>
             setState((prev) => ({ ...prev, className: e.target.value }))
           }
-          placeholder="학급 이름"
-        />
+        >
+          {classList.map((item) => (
+            <option key={item} value={item}>
+              {item}반
+            </option>
+          ))}
+        </select>
         <S.TextInput
           type="text"
           value={state.advisor}
