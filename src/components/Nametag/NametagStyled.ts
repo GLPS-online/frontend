@@ -25,7 +25,7 @@ export const Wave = styled.span<{ $forTimetable: boolean }>`
 
 export const Name = styled.span<{ $forTimetable: boolean }>`
   ${({ $forTimetable }) =>
-    $forTimetable ? "font-size: 15px;" : "font-size: 18px;"}
+    $forTimetable ? "font-size: 15px;" : "font-size: 19px;"}
   color: black;
   /* @media screen and (max-width: 620px) {
     ${({ $forTimetable }) =>

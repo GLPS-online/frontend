@@ -103,7 +103,7 @@ export const Phone = styled.span`
   color: darkblue;
 `;
 
-export const Input = styled.input<{ $isError: boolean }>`
+export const Input = styled.input<{ $isError?: boolean }>`
   display: flex;
   margin-top: 8px;
   width: 100%;
@@ -123,7 +123,7 @@ export const Input = styled.input<{ $isError: boolean }>`
   background: var(--white-white_FFFFFF, #fff);
 `;
 
-export const Select = styled.select<{ $isError: boolean }>`
+export const Select = styled.select<{ $isError?: boolean }>`
   display: flex;
   margin-top: 8px;
   width: 100%;

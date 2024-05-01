@@ -52,7 +52,7 @@ export const Cell = styled.div`
   width: auto;
   height: 30px;
   font-size: 20px;
-  // text-align: center;
+  text-align: center;
   // align-content: center;
   @media screen and (max-width: 620px) {
     height: auto;
