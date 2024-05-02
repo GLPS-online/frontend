@@ -122,12 +122,12 @@ export const EndOfList = styled.div`
   align-items: center;
 `;
 
-export const InformationItem = styled.div`
+export const InformationRow = styled.div`
   width: 100%;
-  height: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  font-size: 19px;
+  justify-content: space-between;
+  font-size: 17px;
   font-weight: 500;
 `;

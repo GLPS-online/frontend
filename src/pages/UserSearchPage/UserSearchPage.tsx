@@ -18,7 +18,7 @@ export default function UserSearchPage() {
 
   return (
     <>
-      <h1 style={{ alignSelf: "flex-start" }}>P·T·LA 검색</h1>
+      <h1 style={{ alignSelf: "flex-start" }}>사용자 검색</h1>
       {isLoading ? <Spinner /> : <UserTable data={data} />}
     </>
   );

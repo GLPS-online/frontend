@@ -12,10 +12,10 @@ export default function Dropdown() {
           navigate("/users");
         }}
       >
-        P·T·LA 검색
+        사용자 검색
       </S.DropDownItem>
       <S.DropDownItem disabled onClick={() => {}}>
-        식단표
+        EOP 검사
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
@@ -27,10 +27,10 @@ export default function Dropdown() {
       <S.DropDownItem disabled onClick={() => {}}>
         VQ 장소신청
       </S.DropDownItem>
-      <S.DropDownItem disabled onClick={() => {}}>
-        카드현황
+      <S.DropDownItem onClick={() => {}}>
+        관리보드
+        {/* 테이블.  (카드현황, 셔틀신청, 2자신청목록) */}
       </S.DropDownItem>
-      <S.DropDownItem onClick={() => {}}>관리보드</S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
           // const slug = user?.position.includes("class") 어쩌고 저쩌고
@@ -38,14 +38,18 @@ export default function Dropdown() {
           navigate(`/timetables/${slug}`);
         }}
       >
-        시간표
+        수업 시간표
+      </S.DropDownItem>
+
+      <S.DropDownItem disabled onClick={() => {}}>
+        식단표
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
           navigate(`/user/${getUser()?._id}`);
         }}
       >
-        내 정보/수정
+        내 정보
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {

@@ -73,21 +73,29 @@ export default function ClubTable({ data = [] }: Props) {
     });
   });
 
-  filteredData = filteredData.filter(
-    (datum: any) =>
-      !searchParams.get("club") || datum["club"] === searchParams.get("club")
-  );
+  filteredData = filteredData.filter((datum: any) => {
+    if (!searchParams.get("club")) {
+      return true;
+    }
+    if (searchParams.get("club") === "unassigned") {
+      return datum["club"] === "";
+    }
+    return datum["club"] === searchParams.get("club");
+  });
 
   return (
     <>
       <S.TableContainer>
-        <S.InformationItem>
-          <span>지도교사: &nbsp;</span>
-          {isPALoading &&
-            clubPAs.map((PA, i) => (
-              <Nametag key={i} data={PA} displayDivision={true} />
-            ))}
-        </S.InformationItem>
+        <S.InformationRow>
+          <span>
+            지도교사: &nbsp;
+            {isPALoading &&
+              clubPAs.map((PA, i) => (
+                <Nametag key={i} data={PA} displayDivision={true} />
+              ))}
+          </span>
+          <span>인원: &nbsp;{filteredData.length}</span>
+        </S.InformationRow>
         <S.SearchBarContainer>
           {searchOptions.map((searchOption, i) => (
             <S.SearchBarInputContainer key={i}>
@@ -146,12 +154,13 @@ export default function ClubTable({ data = [] }: Props) {
                 setSearchParams(searchParams, { replace: true });
               }}
             >
-              <option value="all">(전체)</option>
+              <option value="all">-전체-</option>
               {clubList?.map((club, i) => (
                 <option key={i} id={club} value={club}>
                   {club}
                 </option>
               ))}
+              <option value="unassigned">-미배정-</option>
             </S.SearchBarSelect>
           </S.SearchBarInputContainer>
         </S.SearchBarContainer>

@@ -17,7 +17,7 @@ export default function ClubPage() {
 
   return (
     <>
-      <h1 style={{ alignSelf: "flex-start" }}>동아리/종교활동 배정</h1>
+      <h1 style={{ alignSelf: "flex-start" }}>동아리/종교활동</h1>
       {isLoading ? <Spinner /> : <ClubTable data={data} />}
     </>
   );
