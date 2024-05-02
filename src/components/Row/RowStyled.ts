@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-export const RowContainer = styled.div<{ $selected?: string }>`
+export const RowContainer = styled.div<{
+  $selected?: string;
+  $disabled?: boolean;
+}>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -29,6 +32,11 @@ export const RowContainer = styled.div<{ $selected?: string }>`
         return "background-color: gray;";
       default:
         return;
+    }
+  }}
+  ${({ $disabled = false }) => {
+    if ($disabled) {
+      return "opacity: 0.3;";
     }
   }}
 `;

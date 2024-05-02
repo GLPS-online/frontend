@@ -3,8 +3,8 @@ import styled from "styled-components";
 const StyledSpinner = styled.svg<{ $small?: boolean }>`
   align-self: center;
   animation: rotate 2s linear infinite;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   ${({ $small = false }) => ($small ? "margin: 0;" : "margin: 25px;")}
 
   & .path {
@@ -41,7 +41,7 @@ export function SmallSpinner() {
         className="path"
         cx="25"
         cy="25"
-        r="10"
+        r="15"
         fill="none"
         strokeWidth="2"
       />

@@ -8,9 +8,11 @@ import { toast } from "react-toastify";
 import Spinner from "@/components/Spinner";
 import { useEffect, useState } from "react";
 import StudentForm from "../../components/Forms/StudentForm";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function StudentPage() {
   const { id } = useParams();
+  const queryClient = useQueryClient();
 
   const [student, setStudent] = useState<Student | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +38,7 @@ export default function StudentPage() {
       try {
         const updated = await updateStudent(id, body);
         setStudent(updated);
+        queryClient.invalidateQueries({ queryKey: ["students"] });
         toast.update(toastId, {
           render: "업데이트 완료👌",
           type: "success",

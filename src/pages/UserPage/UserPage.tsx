@@ -8,10 +8,12 @@ import Navigator from "@/components/Navigator/Navigator";
 import { toast } from "react-toastify";
 import Spinner from "@/components/Spinner";
 import { useEffect, useState } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function UserPage() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,6 +40,7 @@ export default function UserPage() {
       try {
         const updated = await updateUser(id, body);
         setUser(updated);
+        queryClient.invalidateQueries({ queryKey: ["users"] });
         toast.update(toastId, {
           render: "업데이트 완료👌",
           type: "success",
@@ -60,6 +63,7 @@ export default function UserPage() {
       const toastId = toast.loading("업데이트 중...");
       try {
         await deleteUser(id);
+        queryClient.invalidateQueries({ queryKey: ["users"] });
         toast.update(toastId, {
           render: "삭제 완료👌",
           type: "success",
@@ -84,6 +88,7 @@ export default function UserPage() {
       try {
         const updated = await grantAdmin(id);
         setUser(updated);
+        queryClient.invalidateQueries({ queryKey: ["users"] });
         toast.update(toastId, {
           render: "업데이트 완료👌",
           type: "success",

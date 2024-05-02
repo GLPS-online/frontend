@@ -17,7 +17,10 @@ export default function StudentRow({
   isExpanded = false,
 }: Props) {
   return (
-    <S.RowContainer $selected={selected}>
+    <S.RowContainer
+      $selected={selected}
+      $disabled={student.status === "absent"}
+    >
       <S.Cells>
         <S.Cell>
           <>

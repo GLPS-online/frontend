@@ -2,6 +2,7 @@ import { toast } from "react-toastify";
 import ModalContainer from "./ModalContainer";
 import * as S from "./ModalStyled";
 import { useForm } from "react-hook-form";
+import { getCurrentTime } from "@/utils/time";
 
 interface Props {
   handleModalClose: () => void;
@@ -14,6 +15,7 @@ export default function StudyModal({
   items,
   onSuccess,
 }: Props) {
+  const { month, date, yoil } = getCurrentTime();
   const {
     register,
     handleSubmit,
@@ -43,7 +45,10 @@ export default function StudyModal({
   };
 
   return (
-    <ModalContainer title="2자습 신청 ✏️" handleModalClose={handleModalClose}>
+    <ModalContainer
+      title={`${month}/${date}(${yoil}) 2자습 신청 ✏️`}
+      handleModalClose={handleModalClose}
+    >
       <S.Container
         onSubmit={handleSubmit((data) => submit(data))}
         autoComplete="off"

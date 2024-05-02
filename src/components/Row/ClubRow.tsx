@@ -12,7 +12,7 @@ type Props = {
 
 export default function ClubRow({ student, isExpanded = false }: Props) {
   return (
-    <S.RowContainer>
+    <S.RowContainer $disabled={student.status === "absent"}>
       <S.Cells>
         <S.Cell>
           <>
