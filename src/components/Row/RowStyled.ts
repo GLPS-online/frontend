@@ -17,19 +17,19 @@ export const RowContainer = styled.div<{
       case "default":
         return;
       case "red":
-        return "background-color: red;";
+        return "background-color: #F60000;";
       case "yellow":
-        return "background-color: yellow;";
+        return "background-color: #FFEE00";
       case "green":
-        return "background-color: green;";
-      case "shuttle":
-        return "background-color: orange;";
-      case "study":
-        return "background-color: aqua;";
+        return "background-color: #4DE94C";
       case "eop":
-        return "background-color: pink;";
+        return "background-color: #e79aff;";
+      case "study":
+        return "background-color: #FF8C00;";
+      case "shuttle":
+        return "background-color: #3783FF;";
       case "attendance":
-        return "background-color: gray;";
+        return "background-color: var(--lightgray);";
       default:
         return;
     }

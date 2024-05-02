@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Redirectors = styled.span`
   padding-bottom: 50px;
-  color: var(--black-black_333236, #333236);
+  color: var(--grayblack);
   text-align: center;
   font-size: 16px;
   font-style: normal;
@@ -11,7 +11,7 @@ export const Redirectors = styled.span`
 `;
 
 export const RedirectLink = styled.span`
-  color: purple;
+  color: var(--darkblue);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

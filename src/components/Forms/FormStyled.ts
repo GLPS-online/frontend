@@ -25,7 +25,7 @@ export const CancelButton = styled.button`
   border-radius: 6px;
   justify-content: center;
   align-items: center;
-  border: 1px solid gray;
+  border: 1px solid var(--gray);
 `;
 
 export const EditSaveButton = styled.button`
@@ -37,7 +37,7 @@ export const EditSaveButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: darkblue;
+  background-color: var(--darkblue);
   color: white;
 `;
 
@@ -62,7 +62,7 @@ export const Field = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid lightgray;
+  border: 1px solid var(--lightgray);
   padding: 10px;
   border-radius: 6px;
 `;
@@ -72,7 +72,7 @@ export const ReadOnlyField = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  border: 1px solid lightgray;
+  border: 1px solid var(--lightgray);
   padding: 5px 10px;
   border-radius: 6px;
 `;
@@ -81,7 +81,7 @@ export const Label = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-self: flex-start;
-  color: var(--black-black_333236, #333236);
+  color: var(--grayblack);
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -100,7 +100,7 @@ export const ReadOnlyData = styled.div`
 
 export const Phone = styled.span`
   text-decoration: underline;
-  color: darkblue;
+  color: var(--darkblue);
 `;
 
 export const Input = styled.input<{ $isError?: boolean }>`
@@ -114,13 +114,12 @@ export const Input = styled.input<{ $isError?: boolean }>`
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid var(--gray-gray_D9D9D9, #d9d9d9);
+  border: 1px solid var(--lightgray);
   ${({ $isError }) => {
     if ($isError) {
-      return "border: 1px solid red;";
+      return "border: 1px solid var(--red);";
     }
   }}
-  background: var(--white-white_FFFFFF, #fff);
 `;
 
 export const Select = styled.select<{ $isError?: boolean }>`
@@ -134,10 +133,10 @@ export const Select = styled.select<{ $isError?: boolean }>`
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid var(--gray-gray_D9D9D9, #d9d9d9);
+  border: 1px solid var(--lightgray);
   ${({ $isError }) => {
     if ($isError) {
-      return "border: 1px solid red;";
+      return "border: 1px solid var(--red);";
     }
   }}
   outline: 0px;
@@ -145,7 +144,7 @@ export const Select = styled.select<{ $isError?: boolean }>`
 
 export const ErrorText = styled.div`
   align-self: flex-start;
-  color: red;
+  color: var(--red);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

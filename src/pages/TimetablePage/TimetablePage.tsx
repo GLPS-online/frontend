@@ -80,7 +80,7 @@ export default function TimetablePage() {
             <S.Day>WED</S.Day>
             <S.Day>THU</S.Day>
             <S.Day>FRI</S.Day>
-            <S.Day style={{ color: "darkblue" }}>SAT</S.Day>
+            <S.Day style={{ color: "var(--darkblue)" }}>SAT</S.Day>
           </S.Days>
           {<Timetable table={data?.table || []} classPA={classPA} />}
         </>

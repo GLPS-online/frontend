@@ -11,6 +11,14 @@ const GlobalStyle = createGlobalStyle`
     word-break: keep-all;
   }
 
+  html {
+    --darkblue: #0a2472;
+    --red: #e60000;
+    --gray: #6f6f6f;
+    --lightgray: #d9d9d9;
+    --grayblack: #333236;
+  }
+
   #root {
     max-width: 520px;
     display: flex;
@@ -56,7 +64,7 @@ const GlobalStyle = createGlobalStyle`
     appearance: none;
     -webkit-appearance: none;
     background-color: #fff;
-    border: 1px solid #caced1;
+    border: 1px solid var(--lightgray);
     border-radius: 4px;
     color: #000;
     cursor: pointer;
@@ -68,9 +76,9 @@ const GlobalStyle = createGlobalStyle`
 
 
 [type="checkbox"] {
-  width: 30px;
-  height: 30px;
-  color: dodgerblue;
+  width: 27px;
+  height: 27px;
+  color: #4285f4;;
   vertical-align: middle;
   appearance: none;
   -webkit-appearance: none;
@@ -78,7 +86,7 @@ const GlobalStyle = createGlobalStyle`
   border: 0;
   outline: 0;
   flex-grow: 0;
-  border-radius: 8px;
+  border-radius: 7px;
   background-color: #ffffff;
   transition: background 150ms;
   cursor: pointer;
@@ -97,7 +105,7 @@ const GlobalStyle = createGlobalStyle`
   border-radius: inherit;
   background-color: transparent;
   background-size: contain;
-  box-shadow: inset 0 0 0 1px #ccd3d8;
+  box-shadow: inset 0 0 0 1px var(--lightgray);
 }
 
 
@@ -110,7 +118,7 @@ const GlobalStyle = createGlobalStyle`
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
 }
 [type="checkbox"]:disabled {
-  background-color: #ccd3d8;
+  background-color: var(--lightgray);
   opacity: 0.84;
   cursor: not-allowed;
 }
@@ -124,7 +132,7 @@ const GlobalStyle = createGlobalStyle`
   border-radius: inherit;
   background-color: transparent;
   background-size: contain;
-  box-shadow: inset 0 0 0 1px #ccd3d8;
+  box-shadow: inset 0 0 0 1px var(--lightgray);
 }
 
 [type="checkbox"]:checked::-ms-check {

@@ -32,7 +32,7 @@ export const Location = styled.div`
   align-items: center;
   text-align: center;
   white-space: pre-line;
-  color: gray;
+  color: var(--gray);
   font-size: 13px;
   font-weight: 500;
   @media screen and (max-width: 620px) {

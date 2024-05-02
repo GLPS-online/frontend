@@ -5,7 +5,7 @@ export const Container = styled.button<{ $forTimetable: boolean }>`
   justify-content: center;
   align-items: center;
   background-color: white;
-  border: 1px solid lightgray;
+  border: 1px solid var(--lightgray);
   padding: 3px;
   border-radius: 3px;
 
@@ -15,7 +15,7 @@ export const Container = styled.button<{ $forTimetable: boolean }>`
 export const Wave = styled.span<{ $forTimetable: boolean }>`
   ${({ $forTimetable }) =>
     $forTimetable ? "font-size: 12px;" : "font-size: 16px;"}
-  color: gray;
+  color: var(--gray);
   align-self: flex-end;
   /* @media screen and (max-width: 620px) {
     ${({ $forTimetable }) =>

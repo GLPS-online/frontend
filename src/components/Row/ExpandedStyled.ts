@@ -58,10 +58,10 @@ export const ClubChoiceSelect = styled.select<{ $isError?: boolean }>`
   font-size: 18px;
   border-radius: 4px;
   padding-left: 8px;
-  border: solid 1px gray;
+  border: solid 1px var(--gray);
   ${({ $isError = false }) => {
     if ($isError) {
-      return "border: 1px solid red;";
+      return "border: 1px solid var(--red);";
     }
   }}
 `;
@@ -85,7 +85,7 @@ export const CancelButton = styled.button`
   border-radius: 6px;
   justify-content: center;
   align-items: center;
-  border: 1px solid gray;
+  border: 1px solid var(--gray);
 `;
 
 export const EditSaveButton = styled.button`
@@ -97,7 +97,7 @@ export const EditSaveButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: darkblue;
+  background-color: var(--darkblue);
   color: white;
 `;
 
@@ -112,7 +112,7 @@ export const Links = styled.div`
 
 export const Link = styled.button`
   /* padding: 5px; */
-  color: darkblue;
+  color: var(--darkblue);
   text-decoration: underline;
   font-size: 17px;
   @media screen and (max-width: 620px) {

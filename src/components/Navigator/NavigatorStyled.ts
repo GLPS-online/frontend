@@ -10,7 +10,7 @@ export const Container = styled.div`
 
 export const Link = styled.button`
   padding: 5px 0;
-  color: darkblue;
+  color: var(--darkblue);
   text-decoration: underline;
   font-size: 16px;
   /* @media screen and (max-width: 620px) {

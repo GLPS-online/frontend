@@ -8,7 +8,7 @@ const StyledSpinner = styled.svg<{ $small?: boolean }>`
   ${({ $small = false }) => ($small ? "margin: 0;" : "margin: 25px;")}
 
   & .path {
-    stroke: darkblue;
+    stroke: var(--darkblue);
     stroke-linecap: round;
     animation: dash 1.5s ease-in-out infinite;
   }

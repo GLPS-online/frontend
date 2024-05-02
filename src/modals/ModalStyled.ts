@@ -30,10 +30,10 @@ export const Select = styled.select<{ $isError: boolean }>`
   padding: 10px 12px;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid var(--gray-gray_D9D9D9, #d9d9d9);
+  border: 1px solid var(--lightgray);
   ${({ $isError }) => {
     if ($isError) {
-      return "border: 1px solid red;";
+      return "border: 1px solid var(--red);";
     }
   }}
   font-size: 16px;
@@ -76,10 +76,10 @@ export const Textarea = styled.textarea<{ $isError: boolean }>`
   padding: 10px 12px;
   align-items: center;
   border-radius: 8px;
-  border: 1px solid var(--gray-gray_D9D9D9, #d9d9d9);
+  border: 1px solid var(--lightgray);
   ${({ $isError }) => {
     if ($isError) {
-      return "border: 1px solid red;";
+      return "border: 1px solid var(--red);";
     }
   }}
   font-size: 16px;
@@ -106,19 +106,19 @@ export const Button = styled.button<{ $color?: string }>`
   ${({ $color }) => {
     switch ($color) {
       case "red":
-        return "background: red; color: white;";
+        return "background: #F60000; color: white;";
       case "yellow":
-        return "background: yellow; color: black;";
+        return "background: #FFEE00; color: black;";
       case "green":
-        return "background: green; color: white;";
+        return "background: #4DE94C;";
       case "eop":
-        return "background: blue; color: white;";
+        return "background: var(--darkblue); color: white;";
       case "shuttle":
-        return "background: blue; color: white;";
+        return "background: var(--darkblue); color: white;";
       case "study":
-        return "background: blue; color: white;";
+        return "background: var(--darkblue); color: white;";
       default:
-        return "background: white; color: black;";
+        return "background: white;";
     }
   }}
   font-size: 16px;

@@ -387,7 +387,7 @@ export default function UserForm({
       {isPowerAdmin && (
         <div
           style={{
-            border: "1px solid red",
+            border: "1px solid var(--red)",
             display: "flex",
             flexDirection: "column",
             padding: "20px",
@@ -397,7 +397,7 @@ export default function UserForm({
           <div>관리자 권한 수준[0-2]: {user.admin}</div>
           <button
             style={{
-              border: "1px solid red",
+              border: "1px solid var(--red)",
             }}
             onClick={() => {
               onGrantAdmin(user._id);
@@ -407,7 +407,7 @@ export default function UserForm({
           </button>
           <button
             style={{
-              border: "1px solid red",
+              border: "1px solid var(--red)",
             }}
             onClick={() => {
               if (window.confirm("정말 삭제합니까?")) {

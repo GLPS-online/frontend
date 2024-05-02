@@ -26,7 +26,7 @@ export const LogoContainer = styled.div`
 export const BigText = styled.span`
   font-size: 35px;
   font-weight: 800;
-  color: darkblue;
+  color: var(--darkblue);
 `;
 
 export const SmallText = styled.span`
