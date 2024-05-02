@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 import Student from "@/interfaces/Student";
 import ClubRow from "../Row/ClubRow";
 import { clubList } from "@/constants";
-import { SmallSpinner } from "@/components/Spinner";
 import { searchClubPAs } from "@/api/clubAPI";
 import { useEffect, useState } from "react";
 import User from "@/interfaces/User";
@@ -84,13 +83,10 @@ export default function ClubTable({ data = [] }: Props) {
       <S.TableContainer>
         <S.InformationItem>
           <span>지도교사: &nbsp;</span>
-          {isPALoading ? (
-            <SmallSpinner />
-          ) : (
+          {isPALoading &&
             clubPAs.map((PA, i) => (
               <Nametag key={i} data={PA} displayDivision={true} />
-            ))
-          )}
+            ))}
         </S.InformationItem>
         <S.SearchBarContainer>
           {searchOptions.map((searchOption, i) => (

@@ -1,13 +1,17 @@
-function getCurrentTime() {
+export function getCurrentTime() {
   const now = new Date();
+  const month = now.getMonth() + 1;
+  const date = now.getDate();
   const day = now.getDay();
   const hour = now.getHours();
   const minutes = now.getMinutes();
-  return [day, hour, minutes];
+  var week = ["일", "월", "화", "수", "목", "금", "토"];
+  var yoil = week[day];
+  return { month, date, day, yoil, hour, minutes };
 }
 
 export function getCurrentTimetableIndex() {
-  const [day, hour, minutes] = getCurrentTime();
+  const { day, hour, minutes } = getCurrentTime();
   let index = 0;
   switch (day) {
     case 1:

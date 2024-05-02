@@ -7,7 +7,6 @@ export default function Dropdown() {
   const navigate = useNavigate();
   return (
     <S.DropDownContianer>
-      <S.DropDownItem onClick={() => {}}>관리보드</S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
           navigate("/users");
@@ -31,6 +30,7 @@ export default function Dropdown() {
       <S.DropDownItem disabled onClick={() => {}}>
         카드현황
       </S.DropDownItem>
+      <S.DropDownItem onClick={() => {}}>관리보드</S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
           // const slug = user?.position.includes("class") 어쩌고 저쩌고
