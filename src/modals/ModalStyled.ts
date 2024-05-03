@@ -42,7 +42,7 @@ export const Select = styled.select<{ $isError: boolean }>`
   }
 `;
 
-export const CheckboxArea = styled.div<{ $isError: boolean }>`
+export const CheckboxArea = styled.div<{ $isError?: boolean }>`
   display: flex;
   gap: 16px;
   align-items: center;
@@ -64,9 +64,14 @@ export const ConfirmText = styled.label`
   }
 `;
 
-export const Checkbox = styled.input`
+export const Checkbox = styled.input<{ $isError?: boolean }>`
   width: 25px;
   height: 25px;
+  ${({ $isError = false }) => {
+    if ($isError) {
+      return "border: 1px solid var(--red);";
+    }
+  }}
 `;
 
 export const Textarea = styled.textarea<{ $isError: boolean }>`

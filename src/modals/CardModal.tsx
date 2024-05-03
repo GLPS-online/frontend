@@ -35,16 +35,16 @@ export default function CardModal({
       ) {
         await postCard({ students: items, type: action, reason: e.reason });
       } else {
-        alert("오류. 관리자문의");
+        throw new Error("오류. 관리자문의");
       }
-      onSuccess();
-      handleModalClose();
       toast.update(toastId, {
         render: "제출 완료👌",
         type: "success",
         autoClose: 2500,
         isLoading: false,
       });
+      onSuccess();
+      handleModalClose();
     } catch (err: any) {
       toast.update(toastId, {
         render: `${err.response?.data.msg}`,

@@ -1,12 +1,3 @@
-export const actions = [
-  { value: "eop", label: "EOP 🔤" },
-  { value: "green", label: "그린카드 🟩" },
-  { value: "yellow", label: "옐로카드 🟨" },
-  { value: "red", label: "레드카드 🟥" },
-  { value: "study", label: "2자습 ✏️" },
-  { value: "shuttle", label: "목발셔틀 🚐" },
-];
-
 export const classRooms = [
   "E104",
   "E105",
@@ -93,7 +84,7 @@ export const TApositions = [
   "DB TA",
   "GA TA",
 ];
-export const HQpositions = ["선생님"];
+export const HQpositions = ["선생님", "ETC"];
 
 export const classList = [
   "1",

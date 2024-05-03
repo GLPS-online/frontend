@@ -4,6 +4,7 @@ import * as S from "./ModalStyled";
 import { useForm } from "react-hook-form";
 import { getCurrentTime } from "@/utils/time";
 import { useEffect } from "react";
+import { postShuttle } from "@/api/actionApi";
 
 interface Props {
   handleModalClose: () => void;
@@ -43,15 +44,21 @@ export default function ShuttleModal({
   const submit = async (e: any) => {
     const toastId = toast.loading("제출 중...");
     try {
-      // await fetchStudent("660bd0ae117db220f6d65ab7");
-      onSuccess();
-      handleModalClose();
+      await postShuttle({
+        students: items,
+        date: `${month}/${date}`,
+        time: e.time,
+        departure: e.departure,
+        destination: e.destination,
+      });
       toast.update(toastId, {
         render: "제출 완료👌",
         type: "success",
         autoClose: 2500,
         isLoading: false,
       });
+      onSuccess();
+      handleModalClose();
     } catch (err: any) {
       toast.update(toastId, {
         render: `${err.response?.data.msg}`,
@@ -133,8 +140,11 @@ export default function ShuttleModal({
             <option id="다산/충무관" value={"다산/충무관"}>
               다산/충무관
             </option>
-            <option id="체육관/국궁장" value={"체육관/국궁장"}>
-              체육관/국궁장
+            <option id="체육관" value={"체육관"}>
+              체육관
+            </option>
+            <option id="국궁장" value={"국궁장"}>
+              국궁장
             </option>
           </S.Select>
 
@@ -159,9 +169,14 @@ export default function ShuttleModal({
               다산/충무관
             </option>
             {watchTime !== "6 ➔ 7 교시" && watchTime !== "자습수업" && (
-              <option id="체육관/국궁장" value={"체육관/국궁장"}>
-                체육관/국궁장
-              </option>
+              <>
+                <option id="체육관" value={"체육관"}>
+                  체육관
+                </option>
+                <option id="국궁장" value={"국궁장"}>
+                  국궁장
+                </option>
+              </>
             )}
           </S.Select>
           <S.Label

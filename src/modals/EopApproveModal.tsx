@@ -2,21 +2,19 @@ import { toast } from "react-toastify";
 import ModalContainer from "./ModalContainer";
 import * as S from "./ModalStyled";
 import { useForm } from "react-hook-form";
-import { getCurrentTime } from "@/utils/time";
-import { postStudy } from "@/api/actionApi";
+import { approveEop } from "@/api/actionApi";
 
 interface Props {
   handleModalClose: () => void;
-  items: string[];
+  id: string;
   onSuccess: () => void;
 }
 
-export default function StudyModal({
+export default function EopApproveModal({
   handleModalClose,
-  items,
+  id,
   onSuccess,
 }: Props) {
-  const { month, date, yoil } = getCurrentTime();
   const {
     register,
     handleSubmit,
@@ -26,9 +24,9 @@ export default function StudyModal({
   const submit = async (e: any) => {
     const toastId = toast.loading("제출 중...");
     try {
-      await postStudy({ students: items, date: `${month}/${date}` });
+      await approveEop(id);
       toast.update(toastId, {
-        render: "제출 완료👌",
+        render: "EOP 통과👌",
         type: "success",
         autoClose: 2500,
         isLoading: false,
@@ -46,10 +44,7 @@ export default function StudyModal({
   };
 
   return (
-    <ModalContainer
-      title={`${month}/${date}(${yoil}) 2자습 신청 ✏️`}
-      handleModalClose={handleModalClose}
-    >
+    <ModalContainer title="EOP 검사 🔤" handleModalClose={handleModalClose}>
       <S.Container
         onSubmit={handleSubmit((data) => submit(data))}
         autoComplete="off"
@@ -57,16 +52,28 @@ export default function StudyModal({
         <S.Fields disabled={isSubmitting}>
           <S.CheckboxArea>
             <S.Checkbox
-              id="agreement"
+              id="valid"
               type="checkbox"
               value="yes"
               autoFocus
-              $isError={errors.agreement ? true : false}
-              {...register("agreement", { required: true })}
+              $isError={errors.valid ? true : false}
+              {...register("valid", { required: true })}
             />
-            <S.ConfirmText htmlFor="agreement">
-              2자습 관련 안내사항을 <br />
-              학생{items.length > 1 ? "들" : ""}에게 전달했습니다.
+            <S.ConfirmText htmlFor="valid">
+              요일에 맞는 EOP 페이퍼를 암기했습니다
+            </S.ConfirmText>
+          </S.CheckboxArea>
+          <S.CheckboxArea>
+            <S.Checkbox
+              id="memorized"
+              type="checkbox"
+              value="yes"
+              autoFocus
+              $isError={errors.memorized ? true : false}
+              {...register("memorized", { required: true })}
+            />
+            <S.ConfirmText htmlFor="memorized">
+              EOP 페이퍼의 내용을 모두 암기했습니다
             </S.ConfirmText>
           </S.CheckboxArea>
           <S.Buttons>

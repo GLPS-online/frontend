@@ -9,7 +9,6 @@ import { createPortal } from "react-dom";
 import ShuttleModal from "@/modals/ShuttleModal";
 import StudyModal from "@/modals/StudyModal";
 import Student from "@/interfaces/Student";
-import { actions } from "@/constants";
 
 type Props = {
   data: Student[];
@@ -204,11 +203,12 @@ export default function StudentTable({ data = [] }: Props) {
                   액션 선택
                 </option>
                 <option value={"attendance"}>(출석체크용)</option>
-                {actions.map((action) => (
-                  <option key={action.value} value={action.value}>
-                    {action.label}
-                  </option>
-                ))}
+                <option value={"eop"}>EOP 🔤</option>
+                <option value={"green"}>그린카드 🟩</option>
+                <option value={"yellow"}>옐로카드 🟨</option>
+                <option value={"red"}>레드카드 🟥</option>
+                <option value={"study"}>2자습 ✏️</option>
+                <option value={"shuttle"}>목발셔틀 🚐</option>
               </S.ActionSelector>
               {` (${selectedItems.size}/${filteredData.length})`}
             </div>
