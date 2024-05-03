@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import ModalContainer from "./ModalContainer";
 import * as S from "./ModalStyled";
 import { useForm } from "react-hook-form";
-import { fetchStudent } from "@/api/studentApi";
+import { postCard, postEop } from "@/api/actionApi";
 
 interface Props {
   handleModalClose: () => void;
@@ -26,7 +26,17 @@ export default function CardModal({
   const submit = async (e: any) => {
     const toastId = toast.loading("제출 중...");
     try {
-      await fetchStudent("660bd0ae117db220f6d65ab7");
+      if (action === "eop") {
+        await postEop({ students: items, reason: e.reason });
+      } else if (
+        action === "red" ||
+        action === "yellow" ||
+        action === "green"
+      ) {
+        await postCard({ students: items, type: action, reason: e.reason });
+      } else {
+        alert("오류. 관리자문의");
+      }
       onSuccess();
       handleModalClose();
       toast.update(toastId, {
