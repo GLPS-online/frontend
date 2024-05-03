@@ -9,6 +9,7 @@ import { createPortal } from "react-dom";
 import ShuttleModal from "@/modals/ShuttleModal";
 import StudyModal from "@/modals/StudyModal";
 import Student from "@/interfaces/Student";
+import { actions } from "@/constants";
 
 type Props = {
   data: Student[];
@@ -203,12 +204,11 @@ export default function StudentTable({ data = [] }: Props) {
                   액션 선택
                 </option>
                 <option value={"attendance"}>(출석체크용)</option>
-                <option value={"eop"}>EOP 적발</option>
-                <option value={"green"}>그린카드</option>
-                <option value={"yellow"}>옐로카드</option>
-                <option value={"red"}>레드카드</option>
-                <option value={"study"}>2자습 신청</option>
-                <option value={"shuttle"}>목발셔틀 신청</option>
+                {actions.map((action) => (
+                  <option key={action.value} value={action.value}>
+                    {action.label}
+                  </option>
+                ))}
               </S.ActionSelector>
               {` (${selectedItems.size}/${filteredData.length})`}
             </div>
@@ -236,7 +236,9 @@ export default function StudentTable({ data = [] }: Props) {
         }
 
         {filteredData.map((student: Student) => (
-          <S.RowContainer key={student._id+(selectedItems.has(student._id)?"1":"")}>
+          <S.RowContainer
+            key={student._id + (selectedItems.has(student._id) ? "1" : "")}
+          >
             <S.CheckBox
               name={student._id}
               type={action !== "default" ? "checkbox" : "hidden"}

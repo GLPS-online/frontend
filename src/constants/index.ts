@@ -1,3 +1,12 @@
+export const actions = [
+  { value: "eop", label: "EOP 🔤" },
+  { value: "green", label: "그린카드 🟩" },
+  { value: "yellow", label: "옐로카드 🟨" },
+  { value: "red", label: "레드카드 🟥" },
+  { value: "study", label: "2자습 ✏️" },
+  { value: "shuttle", label: "목발셔틀 🚐" },
+];
+
 export const classRooms = [
   "E104",
   "E105",
@@ -188,8 +197,8 @@ export const sortOrder = {
 };
 
 export const clubList = [
-  "개신교(교회)",
-  "가톨릭(성당)",
+  "개신교(교회)", // 교회 방문 <- 이런식으로 고치기
+  "가톨릭(성당)", // 성당 방문
   "바둑",
   "체스",
   "종이접기",

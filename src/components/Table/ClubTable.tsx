@@ -7,6 +7,7 @@ import { searchClubPAs } from "@/api/clubAPI";
 import { useEffect, useState } from "react";
 import User from "@/interfaces/User";
 import Nametag from "../Nametag/Nametag";
+import { SmallSpinner } from "../Spinner";
 
 type Props = {
   data: Student[];
@@ -83,18 +84,26 @@ export default function ClubTable({ data = [] }: Props) {
     return datum["club"] === searchParams.get("club");
   });
 
+  console.log(isPALoading);
+  console.log(clubPAs);
+
   return (
     <>
       <S.TableContainer>
         <S.InformationRow>
-          <span>
+          <span style={{ display: "flex", alignItems: "center" }}>
             지도교사: &nbsp;
-            {isPALoading &&
+            {isPALoading ? (
+              <SmallSpinner />
+            ) : (
               clubPAs.map((PA, i) => (
                 <Nametag key={i} data={PA} displayDivision={true} />
-              ))}
+              ))
+            )}
           </span>
-          <span>인원: &nbsp;{filteredData.length}</span>
+          <span style={{ display: "flex", alignItems: "center" }}>
+            인원: &nbsp;{filteredData.length}
+          </span>
         </S.InformationRow>
         <S.SearchBarContainer>
           {searchOptions.map((searchOption, i) => (

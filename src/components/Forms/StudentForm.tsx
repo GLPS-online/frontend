@@ -194,7 +194,17 @@ export default function StudentForm({
                   ))}
                 </S.Select>
               ) : (
-                <S.Data>{student.club}</S.Data>
+                <S.Data>
+                  {student.club ? (
+                    <S.Phone>
+                      <Link to={"/clubs/?club=" + student.club}>
+                        {student.club}
+                      </Link>
+                    </S.Phone>
+                  ) : (
+                    <></>
+                  )}
+                </S.Data>
               )}
             </S.Field>
             <S.Field>

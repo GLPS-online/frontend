@@ -16,5 +16,10 @@ export default function HomePage() {
 
   if (error) return "An error has occurred: " + error.message;
 
-  return <>{isLoading ? <Spinner /> : <StudentTable data={data} />}</>;
+  return (
+    <>
+      <h1 style={{ alignSelf: "flex-start" }}>홈 페이지</h1>
+      {isLoading ? <Spinner /> : <StudentTable data={data} />}
+    </>
+  );
 }

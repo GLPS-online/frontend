@@ -8,9 +8,11 @@ export const Item = styled.div<{ $selected: boolean }>`
   gap: 7px;
   margin: 1px;
   border: 1px solid black;
-  ${({ $selected }) => ($selected ? "border: 3px solid blue;" : "")}
+  ${({ $selected }) =>
+    $selected ? "border: 3px solid blue; padding-top: 16px;" : ""}
   @media screen and (max-width: 620px) {
     padding-top: 10px;
+    ${({ $selected }) => ($selected ? "padding-top: 8px;" : "")}
   }
 `;
 

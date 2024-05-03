@@ -10,6 +10,7 @@ import Layout from "./Layout";
 import UserSearchPage from "./pages/UserSearchPage/UserSearchPage";
 import UserPage from "./pages/UserPage/UserPage";
 import ClubPage from "./pages/ClubPage/ClubPage";
+import BoardPage from "./pages/BoardPage/BoardPage";
 
 const router = createBrowserRouter([
   {
@@ -42,8 +43,12 @@ const router = createBrowserRouter([
         element: <UserPage />,
       },
       {
-        path: "club/:clubName?",
+        path: "clubs/:clubName?",
         element: <ClubPage />,
+      },
+      {
+        path: "board",
+        element: <BoardPage />,
       },
     ],
   },

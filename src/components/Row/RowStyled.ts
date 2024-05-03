@@ -16,20 +16,20 @@ export const RowContainer = styled.div<{
     switch ($selected) {
       case "default":
         return;
-      case "red":
-        return "background-color: #F60000;";
-      case "yellow":
-        return "background-color: #FFEE00";
-      case "green":
-        return "background-color: #4DE94C";
+      case "attendance":
+        return "background-color: var(--lightgray);";
       case "eop":
         return "background-color: #e79aff;";
+      case "green":
+        return "background-color: #4DE94C;";
+      case "yellow":
+        return "background-color: #FFEE00;";
+      case "red":
+        return "background-color: #F60000;";
       case "study":
         return "background-color: #FF8C00;";
       case "shuttle":
-        return "background-color: #3783FF;";
-      case "attendance":
-        return "background-color: var(--lightgray);";
+        return "background-color: #00A6ED;";
       default:
         return;
     }

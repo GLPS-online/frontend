@@ -8,8 +8,8 @@ export const Container = styled.div`
   gap: 10px;
 `;
 
-export const ClubSelect = styled.select`
+export const ActionSelect = styled.select`
   font-size: 18px;
-  padding: 3px 12px 3px 5px;
+  padding: 3px 15px 3px 5px;
   font-weight: 500;
 `;

@@ -105,18 +105,18 @@ export const Button = styled.button<{ $color?: string }>`
   border: 1px solid #d9d9d9;
   ${({ $color }) => {
     switch ($color) {
-      case "red":
-        return "background: #F60000; color: white;";
-      case "yellow":
-        return "background: #FFEE00; color: black;";
-      case "green":
-        return "background: #4DE94C;";
       case "eop":
-        return "background: var(--darkblue); color: white;";
-      case "shuttle":
-        return "background: var(--darkblue); color: white;";
+        return "background-color: #e79aff; color: white;";
+      case "green":
+        return "background-color: #4DE94C; color: white;";
+      case "yellow":
+        return "background-color: #FFEE00;";
+      case "red":
+        return "background-color: #F60000; color: white;";
       case "study":
-        return "background: var(--darkblue); color: white;";
+        return "background-color: #FF8C00; color: white;";
+      case "shuttle":
+        return "background-color: #00A6ED; color: white;";
       default:
         return "background: white;";
     }

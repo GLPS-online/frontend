@@ -27,7 +27,7 @@ export default function Header() {
   return (
     user && (
       <S.NavbarContainer>
-        <S.LogoContainer onClick={() => navigate("/")}>
+        <S.LogoContainer title="홈으로 이동" onClick={() => navigate("/")}>
           <S.BigText>GLPS</S.BigText>
           <S.SmallText>online</S.SmallText>
         </S.LogoContainer>

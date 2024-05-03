@@ -14,22 +14,22 @@ export default function Dropdown() {
       >
         사용자 검색
       </S.DropDownItem>
-      <S.DropDownItem disabled onClick={() => {}}>
-        EOP 검사
-      </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
-          navigate("/club");
+          navigate("/clubs");
         }}
       >
         동아리/종교활동
       </S.DropDownItem>
-      <S.DropDownItem disabled onClick={() => {}}>
+      {/* <S.DropDownItem disabled onClick={() => {}}>
         VQ 장소신청
-      </S.DropDownItem>
-      <S.DropDownItem onClick={() => {}}>
-        관리보드
-        {/* 테이블.  (카드현황, 셔틀신청, 2자신청목록) */}
+      </S.DropDownItem> */}
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/board");
+        }}
+      >
+        EOP/카드/현황판
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {

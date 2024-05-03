@@ -32,9 +32,7 @@ export default function Nametag({
           <S.Division $forTimetable={forTimetable}>{division}</S.Division>
         )}
         <S.Name $forTimetable={forTimetable}>{korName} </S.Name>
-        {displayWave && (
-          <S.Wave $forTimetable={forTimetable}>{wave}</S.Wave>
-        )}
+        {displayWave && <S.Wave $forTimetable={forTimetable}>{wave}</S.Wave>}
       </S.Container>
     </>
   );

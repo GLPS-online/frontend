@@ -14,6 +14,7 @@ import {
 } from "@/constants";
 import { phoneNumberAutoFormat } from "@/utils/etc";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 export default function UserForm({
   user,
@@ -346,7 +347,15 @@ export default function UserForm({
                 ))}
               </S.Select>
             ) : (
-              <S.Data>{user.club}</S.Data>
+              <S.Data>
+                {user.club ? (
+                  <S.Phone>
+                    <Link to={"/clubs/?club=" + user.club}>{user.club}</Link>
+                  </S.Phone>
+                ) : (
+                  <></>
+                )}
+              </S.Data>
             )}
           </S.Field>
         </S.Fields>

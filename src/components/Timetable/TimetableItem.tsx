@@ -31,11 +31,7 @@ export default function TimetableItem({ elem, selected, classPA }: Props) {
         isLoading ? (
           <SmallSpinner />
         ) : subjectTA ? (
-          <Nametag
-            data={subjectTA}
-            displayDivision={false}
-            forTimetable={true}
-          />
+          <Nametag data={subjectTA} forTimetable={true} />
         ) : (
           <S.TA>----</S.TA>
         )
