@@ -1,9 +1,9 @@
 import { toast } from "react-toastify";
 import ModalContainer from "./ModalContainer";
-import * as S from "./ModalStyled";
-import { useForm } from "react-hook-form";
-import { getCurrentTime } from "@/utils/time";
-import { postStudy } from "@/api/actionApi";
+// import * as S from "./ModalStyled";
+// import { useForm } from "react-hook-form";
+// import { getCurrentTime } from "@/utils/time";
+// import { postStudy } from "@/api/actionApi";
 import Student from "@/interfaces/Student";
 import { useEffect, useState } from "react";
 import { fetchStudent, updateStudent } from "@/api/studentApi";
