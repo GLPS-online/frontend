@@ -27,13 +27,13 @@ export default function CardModal({
     const toastId = toast.loading("제출 중...");
     try {
       if (action === "eop") {
-        await postEop({ students: items, reason: e.reason });
+        await postEop({ students: items, note: e.note });
       } else if (
         action === "red" ||
         action === "yellow" ||
         action === "green"
       ) {
-        await postCard({ students: items, type: action, reason: e.reason });
+        await postCard({ students: items, type: action, note: e.note });
       } else {
         throw new Error("오류. 관리자문의");
       }
@@ -79,11 +79,11 @@ export default function CardModal({
         <S.Fields disabled={isSubmitting}>
           <S.Label>{action === "eop" ? "적발 사유" : "발급 사유"}</S.Label>
           <S.Textarea
-            id="reason"
+            id="note"
             autoFocus
             placeholder="상세히 작성해 주세요"
-            $isError={errors.reason ? true : false}
-            {...register("reason", {
+            $isError={errors.note ? true : false}
+            {...register("note", {
               required: true,
             })}
           />

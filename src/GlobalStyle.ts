@@ -169,12 +169,12 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  * {
+  /* * {
     -ms-overflow-style: none;
   }
   ::-webkit-scrollbar {
     display: none;
-  }
+  } */
 
     
   html, body, div, span, applet, object, iframe,

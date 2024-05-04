@@ -9,7 +9,7 @@ export async function fetchCards(type: string) {
 export async function postCard(data: {
   students: string[];
   type: string;
-  reason: string;
+  note: string;
 }) {
   const response = await client.post(`/actions/card`, data);
   const result = response.data;
@@ -28,7 +28,7 @@ export async function fetchEops() {
   return result;
 }
 
-export async function postEop(data: { students: string[]; reason: string }) {
+export async function postEop(data: { students: string[]; note: string }) {
   const response = await client.post(`/actions/eop`, data);
   const result = response.data;
   return result;

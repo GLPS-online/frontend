@@ -1,7 +1,7 @@
 import { KeyboardEvent, ReactNode, useEffect } from "react";
 import * as S from "./ModalContainerStyled";
-
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+
 interface Props {
   children: ReactNode;
   title: string;

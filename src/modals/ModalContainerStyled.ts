@@ -18,6 +18,8 @@ export const Background = styled.div`
 
 export const Container = styled.div`
   width: 540px;
+  max-height: 700px;
+  overflow-y: scroll;
   padding: 28px 32px;
   display: flex;
   flex-direction: column;

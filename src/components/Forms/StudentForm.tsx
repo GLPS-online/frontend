@@ -72,13 +72,16 @@ export default function StudentForm({
                   })}
                 >
                   <option id="active" value="active">
-                    재적
+                    재적✅
                   </option>
                   <option id="absent" value="absent">
-                    임시귀가
+                    임시귀가🏠
+                  </option>
+                  <option id="hospital" value="hospital">
+                    병원진료🏥
                   </option>
                   <option id="discharged" value="discharged">
-                    퇴소
+                    퇴소❌
                   </option>
                 </S.Select>
               ) : (
@@ -86,11 +89,13 @@ export default function StudentForm({
                   {(() => {
                     switch (student.status) {
                       case "active":
-                        return "재적";
+                        return "재적✅";
                       case "absent":
-                        return "임시귀가";
+                        return "임시귀가🏠";
+                      case "hospital":
+                        return "병원진료🏥";
                       case "discharged":
-                        return "퇴소";
+                        return "퇴소❌";
                       default:
                         return "오류입니다.";
                     }

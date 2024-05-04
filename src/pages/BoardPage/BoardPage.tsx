@@ -8,8 +8,12 @@ import {
   fetchShuttles,
   fetchStudies,
 } from "@/api/actionApi";
+import StudentModal from "@/modals/StudentModal";
+import { useModal } from "@/hooks/useModal";
 
 export default function BoardPage() {
+  const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
+
   const { month, date, yoil } = getCurrentTime();
   const [action, setAction] = useState("eop");
   const [isLoading, setIsLoading] = useState(false);
@@ -90,6 +94,11 @@ export default function BoardPage() {
 
   return (
     <>
+      <StudentModal
+        onSuccess={handleModalClose}
+        id="6631db4fc953419c6a075772"
+        handleModalClose={handleModalClose}
+      />
       <S.Container>
         <h1>{`현황판${
           action === "shuttle" || action === "study"
@@ -101,12 +110,16 @@ export default function BoardPage() {
           name="action"
           onChange={(e) => setAction(e.target.value)}
         >
-          <option value={"eop"}>EOP 🔤</option>
+          <option value={"eop"}>EOP 🔤</option>{" "}
+          {/* 발급시각, 이름, 통과여부(X 혹은 V) 확장 시 적발자네임태그/검사자네임태그 사유와 취소버튼*/}
           <option value={"green"}>그린카드 🟩</option>
           <option value={"yellow"}>옐로카드 🟨</option>
-          <option value={"red"}>레드카드 🟥</option>
-          <option value={"study"}>2자습 ✏️</option>
-          <option value={"shuttle"}>목발셔틀 🚐</option>
+          <option value={"red"}>레드카드 🟥</option>{" "}
+          {/* 발급시각, 이름, 적발자, 확장시 사유와 취소버튼*/}
+          <option value={"study"}>2자습 ✏️</option>{" "}
+          {/* 이름, 학급, 방, 확장시 -> 신청pa 네임태그, 삭제버튼*/}
+          <option value={"shuttle"}>목발셔틀 🚐</option>{" "}
+          {/* 교시 선택가능하게 따로 뺌, 출발지, 도착지, 이름, 교시대로 정렬, 이후 출발지 기준 정렬, 이후 도착지 기준 정렬 확장시 -> 신청pa 네임태그, 삭제버튼*/}
         </S.ActionSelect>
         {isLoading ? (
           <Spinner />
