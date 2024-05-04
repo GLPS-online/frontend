@@ -7,7 +7,7 @@ import Navigator from "@/components/Navigator/Navigator";
 import { toast } from "react-toastify";
 import Spinner from "@/components/Spinner";
 import { useEffect, useState } from "react";
-import StudentForm from "../../components/Forms/StudentForm";
+// import StudentForm from "../../components/Forms/StudentForm";
 import { useQueryClient } from "@tanstack/react-query";
 
 export default function StudentPage() {
@@ -63,7 +63,7 @@ export default function StudentPage() {
       ) : student ? (
         <>
           <h1>학생 상세보기</h1>
-          <StudentForm student={student} onEdit={handleUpdate} />
+          {/* <StudentForm student={student} onEdit={handleUpdate} /> */}
           <h1>상담 기록</h1>
           <LifeInfo student={student} />
         </>

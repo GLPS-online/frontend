@@ -6,6 +6,9 @@ import User from "@/interfaces/User";
 import Nametag from "@/components/Nametag/Nametag";
 import { useQuery } from "@tanstack/react-query";
 import { SmallSpinner } from "../Spinner";
+import { useModal } from "@/hooks/useModal";
+import { createPortal } from "react-dom";
+import StudentModal from "@/modals/StudentModal";
 
 export default function StudentExpanded({ student }: { student: Student }) {
   const navigate = useNavigate();
@@ -21,35 +24,45 @@ export default function StudentExpanded({ student }: { student: Student }) {
       queryFn: () => searchUser({ area: `${floor}층` }),
     });
 
+  const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   return (
-    <S.Container>
-      <S.Cells>
-        <S.Cell>{student.school + student.grade}</S.Cell>
-        <S.Cell>
-          {isPALoading ? <SmallSpinner /> : <Nametag data={classPA} />}
-        </S.Cell>
-        <S.Cell>
-          {isLALoading ? <SmallSpinner /> : <Nametag data={floorLA} />}
-        </S.Cell>
-      </S.Cells>
-      <S.Links>
-        <S.Link
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate(`/timetables/${student.className}`);
-          }}
-        >
-          시간표
-        </S.Link>
-        <S.Link
-          onClick={(e) => {
-            e.stopPropagation();
-            navigate(`/student/${student._id}`);
-          }}
-        >
-          세부정보/수정
-        </S.Link>
-      </S.Links>
-    </S.Container>
+    <>
+      {createPortal(
+        isModalOpen && (
+          <StudentModal id={student._id} handleModalClose={handleModalClose} />
+        ),
+        document.body
+      )}
+      <S.Container>
+        <S.Cells>
+          <S.Cell>{student.school + student.grade}</S.Cell>
+          <S.Cell>
+            {isPALoading ? <SmallSpinner /> : <Nametag data={classPA} />}
+          </S.Cell>
+          <S.Cell>
+            {isLALoading ? <SmallSpinner /> : <Nametag data={floorLA} />}
+          </S.Cell>
+        </S.Cells>
+        <S.Links>
+          <S.Link
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate(`/timetables/${student.className}`);
+            }}
+          >
+            시간표
+          </S.Link>
+          <S.Link
+            onClick={(e) => {
+              e.stopPropagation();
+              handleModalOpen();
+              // navigate(`/student/${student._id}`);
+            }}
+          >
+            세부정보 열람
+          </S.Link>
+        </S.Links>
+      </S.Container>
+    </>
   );
 }

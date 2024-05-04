@@ -6,9 +6,15 @@ interface Props {
   children: ReactNode;
   title: string;
   handleModalClose: () => void;
+  isScrollable?: boolean;
 }
 
-function ModalContainer({ children, title, handleModalClose }: Props) {
+function ModalContainer({
+  children,
+  title,
+  handleModalClose,
+  isScrollable = false,
+}: Props) {
   const escCloseModal = (e: KeyboardEvent) => {
     if (e.key === "Escape") {
       e.preventDefault();
@@ -18,16 +24,37 @@ function ModalContainer({ children, title, handleModalClose }: Props) {
     }
   };
   useEffect(() => {
-    const body = document.querySelector("body") as HTMLElement;
-    disableBodyScroll(body);
+    document.body.style.overflow = "hidden";
+    if (!isScrollable) {
+      disableBodyScroll(document.body, {
+        // @ts-ignore
+        allowTouchMove: (el) => {
+          while (el && el !== document.body) {
+            if (el.id === "lock") {
+              return true;
+            }
+            // @ts-ignore
+            el = el.parentElement;
+          }
+        },
+      });
+    }
     return () => {
-      enableBodyScroll(body);
+      document.body.style.removeProperty("overflow");
+      if (!isScrollable) {
+        enableBodyScroll(document.body);
+      }
     };
-  }, []);
+  }, [isScrollable]);
 
   return (
-    <S.Background onKeyDown={escCloseModal} tabIndex={0} id="modal">
-      <S.Container onClick={(e) => e.stopPropagation()}>
+    <S.Background
+      onKeyDown={escCloseModal}
+      onClick={(e) => e.stopPropagation()}
+      tabIndex={0}
+      id="modal"
+    >
+      <S.Container id="lock" onClick={(e) => e.stopPropagation()}>
         <S.Title>{title}</S.Title>
         {children}
       </S.Container>

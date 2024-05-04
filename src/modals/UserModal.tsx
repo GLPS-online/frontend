@@ -18,7 +18,7 @@ interface Props {
   id: string;
 }
 
-export default function StudentModal({ handleModalClose, id }: Props) {
+export default function UserModal({ handleModalClose, id }: Props) {
   const queryClient = useQueryClient();
 
   const { getUser } = useAuth();
@@ -86,13 +86,12 @@ export default function StudentModal({ handleModalClose, id }: Props) {
     <ModalContainer
       title={"학생 상세보기👶🧑‍🍼"}
       handleModalClose={handleModalClose}
-      isScrollable={true}
     >
       {isLoading ? (
         <Spinner />
       ) : student ? (
         <>
-          <F.InfoContainer autoFocus>
+          <F.InfoContainer>
             <F.Container autoComplete="off">
               <F.Fields disabled={isSubmitting}>
                 <F.Field>

@@ -2,11 +2,10 @@ import styled from "styled-components";
 
 export const Background = styled.div`
   position: fixed;
-  top: -50%;
-  bottom: -50%;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  height: 200%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -18,8 +17,7 @@ export const Background = styled.div`
 
 export const Container = styled.div`
   width: 540px;
-  max-height: 700px;
-  overflow-y: scroll;
+  max-height: 600px;
   padding: 28px 32px;
   display: flex;
   flex-direction: column;
@@ -28,6 +26,7 @@ export const Container = styled.div`
   border-radius: 8px;
   @media screen and (max-width: 620px) {
     width: 320px;
+    max-height: 500px;
     padding: 20px 24px;
     gap: 20x;
   }

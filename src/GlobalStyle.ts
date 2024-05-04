@@ -155,6 +155,7 @@ const GlobalStyle = createGlobalStyle`
     border: none;
     padding: unset;
     background-color: unset;
+    color: black;
     cursor: pointer;
     &:disabled {
       opacity: 0.3;
@@ -169,12 +170,12 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  /* * {
+  * {
     -ms-overflow-style: none;
   }
   ::-webkit-scrollbar {
     display: none;
-  } */
+  }
 
     
   html, body, div, span, applet, object, iframe,

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Spinner from "@/components/Spinner";
 import * as S from "./BoardPageStyled";
 import { useEffect, useState } from "react";
@@ -8,12 +9,8 @@ import {
   fetchShuttles,
   fetchStudies,
 } from "@/api/actionApi";
-import StudentModal from "@/modals/StudentModal";
-import { useModal } from "@/hooks/useModal";
 
 export default function BoardPage() {
-  const { handleModalClose } = useModal();
-
   const { month, date, yoil } = getCurrentTime();
   const [action, setAction] = useState("eop");
   const [isLoading, setIsLoading] = useState(false);
@@ -94,11 +91,6 @@ export default function BoardPage() {
 
   return (
     <>
-      <StudentModal
-        onSuccess={handleModalClose}
-        id="6631db4fc953419c6a075772"
-        handleModalClose={handleModalClose}
-      />
       <S.Container>
         <h1>{`현황판${
           action === "shuttle" || action === "study"
