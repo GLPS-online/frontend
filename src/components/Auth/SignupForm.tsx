@@ -33,7 +33,7 @@ export default function SignupForm({
   }, [watchDivision, setValue]);
   console.log(errors);
   return (
-    <S.Container autoComplete="off" onSubmit={handleSubmit(handleSignup)}>
+    <S.Form autoComplete="off" onSubmit={handleSubmit(handleSignup)}>
       <S.Fields disabled={isSubmitting}>
         <S.Logo>회원가입</S.Logo>
         <S.Field>
@@ -168,7 +168,7 @@ export default function SignupForm({
             defaultValue="default"
             $isError={errors.gender ? true : false}
             {...register("gender", {
-              required: true,
+              required: watchDivision === "HQ" ? false : true,
               validate: (v) => v === "F" || v === "M",
             })}
           >
@@ -347,6 +347,6 @@ export default function SignupForm({
 
         <S.SubmitButton type="submit">사용자 등록</S.SubmitButton>
       </S.Fields>
-    </S.Container>
+    </S.Form>
   );
 }

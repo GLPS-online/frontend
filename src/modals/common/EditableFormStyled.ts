@@ -9,52 +9,18 @@ export const InfoContainer = styled.div`
   gap: 10px;
 `;
 
-export const ButtonsContainer = styled.div`
-  align-self: flex-end;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-`;
-
-export const CancelButton = styled.button`
-  width: 90px;
-  height: 30px;
-  padding: 10px;
-  font-size: 14px;
-  display: flex;
-  border-radius: 6px;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid var(--gray);
-`;
-
-export const EditSaveButton = styled.button`
-  width: 90px;
-  height: 30px;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--darkblue);
-  color: white;
-`;
-
-export const Container = styled.form`
+export const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding-top: 10px;
 `;
 
 export const Fields = styled.fieldset`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  /* grid-template-rows: 1fr 1fr; */
   gap: 12px;
 `;
 
@@ -83,25 +49,50 @@ export const Label = styled.div`
   flex-direction: column;
   align-self: flex-start;
   color: var(--grayblack);
-  font-size: 16px;
+  font-size: 17px;
+  @media screen and (max-width: 620px) {
+    font-size: 16px;
+  }
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  word-wrap: break-word;
 `;
 
 export const Data = styled.div`
   font-size: 18px;
   padding: 10px 0;
+  @media screen and (max-width: 620px) {
+    font-size: 17px;
+    padding: 7px 0;
+  }
+
+  word-wrap: break-word;
 `;
 
 export const ReadOnlyData = styled.div`
   font-size: 18px;
-  padding: 5px 0;
+  padding: 10px 0;
+  @media screen and (max-width: 620px) {
+    font-size: 17px;
+    padding: 7px 0;
+  }
+  word-wrap: break-word;
 `;
 
 export const Phone = styled.span`
   text-decoration: underline;
   color: var(--darkblue);
+  @media screen and (max-width: 620px) {
+    font-size: 14.5px;
+  }
+  word-wrap: break-word;
+`;
+
+export const Link = styled.span`
+  text-decoration: underline;
+  color: var(--darkblue);
+  word-wrap: break-word;
 `;
 
 export const Input = styled.input<{ $isError?: boolean }>`
@@ -112,6 +103,10 @@ export const Input = styled.input<{ $isError?: boolean }>`
   padding: 5px 10px;
 
   font-size: 17px;
+  @media screen and (max-width: 620px) {
+    margin-top: 4px;
+    font-size: 15px;
+  }
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;
@@ -131,6 +126,10 @@ export const Select = styled.select<{ $isError?: boolean }>`
   padding: 5px 10px;
 
   font-size: 17px;
+  @media screen and (max-width: 620px) {
+    margin-top: 4px;
+    font-size: 15px;
+  }
   justify-content: space-between;
   align-items: center;
   border-radius: 8px;

@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
-import ModalContainer from "./ModalContainer";
-import * as S from "./ModalStyled";
-import * as F from "./FormStyled";
+import ModalContainer from "./common/ModalContainer";
+import * as S from "./common/ModalStyled";
+import * as F from "./common/EditableFormStyled";
 import Student from "@/interfaces/Student";
 import { useEffect, useState } from "react";
 import { fetchStudent, updateStudent } from "@/api/studentApi";
@@ -84,7 +84,7 @@ export default function StudentModal({ handleModalClose, id }: Props) {
 
   return (
     <ModalContainer
-      title={"학생 상세보기👶🧑‍🍼"}
+      title={"학생 상세보기 👶"}
       handleModalClose={handleModalClose}
       isScrollable={true}
     >
@@ -93,7 +93,7 @@ export default function StudentModal({ handleModalClose, id }: Props) {
       ) : student ? (
         <>
           <F.InfoContainer autoFocus>
-            <F.Container autoComplete="off">
+            <F.Form autoComplete="off">
               <F.Fields disabled={isSubmitting}>
                 <F.Field>
                   <F.Label>이름</F.Label>
@@ -222,11 +222,11 @@ export default function StudentModal({ handleModalClose, id }: Props) {
                   ) : (
                     <F.Data>
                       {student.sibling ? (
-                        <F.Phone>
+                        <F.Link>
                           <Link to={"/?korName=" + student.sibling}>
                             {student.sibling}
                           </Link>
-                        </F.Phone>
+                        </F.Link>
                       ) : (
                         <></>
                       )}
@@ -251,11 +251,11 @@ export default function StudentModal({ handleModalClose, id }: Props) {
                   ) : (
                     <F.Data>
                       {student.club ? (
-                        <F.Phone>
+                        <F.Link>
                           <Link to={"/clubs/?club=" + student.club}>
                             {student.club}
                           </Link>
-                        </F.Phone>
+                        </F.Link>
                       ) : (
                         <></>
                       )}
@@ -294,14 +294,25 @@ export default function StudentModal({ handleModalClose, id }: Props) {
                 <F.Label>보호자 연락처</F.Label>
                 <F.ReadOnlyData>
                   <>
-                    {student.parent1Relation + ": " + student.parent1Phone}
+                    <span style={{ fontSize: "15px", lineHeight: "140%" }}>
+                      {student.parent1Relation + ": "}
+                      <F.Phone as="a" href={`tel:${student.parent1Phone}`}>
+                        {student.parent1Phone}
+                      </F.Phone>
+                    </span>
                     <br />
-                    {student.parent2Relation &&
-                      student.parent2Relation + ": " + student.parent2Phone}
+                    {student.parent2Relation && (
+                      <span style={{ fontSize: "15px" }}>
+                        {student.parent2Relation + ": "}
+                        <F.Phone as="a" href={`tel:${student.parent2Phone}`}>
+                          {student.parent2Phone}
+                        </F.Phone>
+                      </span>
+                    )}
                   </>
                 </F.ReadOnlyData>
               </F.Field>
-            </F.Container>
+            </F.Form>
           </F.InfoContainer>
         </>
       ) : (

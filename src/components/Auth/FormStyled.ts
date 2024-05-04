@@ -12,7 +12,7 @@ export const Logo = styled.div`
   cursor: pointer;
 `;
 
-export const Container = styled.form`
+export const Form = styled.form`
   width: 100%;
   padding-top: 50px;
   display: flex;

@@ -1,6 +1,6 @@
 import { KeyboardEvent, ReactNode, useEffect } from "react";
 import * as S from "./ModalContainerStyled";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
 interface Props {
   children: ReactNode;
@@ -24,7 +24,6 @@ function ModalContainer({
     }
   };
   useEffect(() => {
-    document.body.style.overflow = "hidden";
     if (!isScrollable) {
       disableBodyScroll(document.body, {
         // @ts-ignore
@@ -39,11 +38,10 @@ function ModalContainer({
         },
       });
     }
+    document.body.style.overflow = "hidden";
     return () => {
+      clearAllBodyScrollLocks();
       document.body.style.removeProperty("overflow");
-      if (!isScrollable) {
-        enableBodyScroll(document.body);
-      }
     };
   }, [isScrollable]);
 

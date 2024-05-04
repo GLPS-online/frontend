@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import ModalContainer from "./ModalContainer";
-import * as S from "./ModalStyled";
+import ModalContainer from "./common/ModalContainer";
+import * as S from "./common/ModalStyled";
 import { useForm } from "react-hook-form";
 import { approveEop } from "@/api/actionApi";
 
@@ -45,7 +45,7 @@ export default function EopApproveModal({
 
   return (
     <ModalContainer title="EOP 검사 🔤" handleModalClose={handleModalClose}>
-      <S.Container
+      <S.Form
         onSubmit={handleSubmit((data) => submit(data))}
         autoComplete="off"
       >
@@ -81,7 +81,7 @@ export default function EopApproveModal({
             <S.Button $color="study">제출</S.Button>
           </S.Buttons>
         </S.Fields>
-      </S.Container>
+      </S.Form>
     </ModalContainer>
   );
 }

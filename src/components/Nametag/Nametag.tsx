@@ -1,6 +1,8 @@
+import { useModal } from "@/hooks/useModal";
 import * as S from "./NametagStyled";
 import User from "@/interfaces/User";
-import { useNavigate } from "react-router-dom";
+import { createPortal } from "react-dom";
+import UserModal from "@/modals/UserModal";
 
 type Props = {
   data: User | null;
@@ -16,17 +18,23 @@ export default function Nametag({
   forTimetable = false,
 }: Props) {
   const { _id, division, wave, korName } = data || {};
-  const navigate = useNavigate();
 
+  const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
   async function handleClick(e: React.MouseEvent<HTMLElement>) {
     e.stopPropagation();
-    navigate(`/user/${_id}`);
+    handleModalOpen();
   }
   if (!data) {
     return <div></div>;
   }
   return (
     <>
+      {createPortal(
+        isModalOpen && _id && (
+          <UserModal id={_id} handleModalClose={handleModalClose} />
+        ),
+        document.body
+      )}
       <S.Container $forTimetable={forTimetable} onClick={handleClick}>
         {displayDivision && (
           <S.Division $forTimetable={forTimetable}>{division}</S.Division>

@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import ModalContainer from "./ModalContainer";
-import * as S from "./ModalStyled";
+import ModalContainer from "./common/ModalContainer";
+import * as S from "./common/ModalStyled";
 import { useForm } from "react-hook-form";
 import { getCurrentTime } from "@/utils/time";
 import { postStudy } from "@/api/actionApi";
@@ -50,7 +50,7 @@ export default function StudyModal({
       title={`${month}/${date}(${yoil}) 2자습 신청 ✏️`}
       handleModalClose={handleModalClose}
     >
-      <S.Container
+      <S.Form
         onSubmit={handleSubmit((data) => submit(data))}
         autoComplete="off"
       >
@@ -74,7 +74,7 @@ export default function StudyModal({
             <S.Button $color="study">제출</S.Button>
           </S.Buttons>
         </S.Fields>
-      </S.Container>
+      </S.Form>
     </ModalContainer>
   );
 }

@@ -16,7 +16,7 @@ export default function LoginForm({
   const [revealPw, setRevealPw] = useState(false);
 
   return (
-    <S.Container onSubmit={handleSubmit((data) => handleLogin(data))}>
+    <S.Form onSubmit={handleSubmit((data) => handleLogin(data))}>
       <S.Fields disabled={isSubmitting}>
         <S.Logo>로그인</S.Logo>
         <S.Field>
@@ -61,6 +61,6 @@ export default function LoginForm({
         </S.Field>
         <S.SubmitButton type="submit">로그인</S.SubmitButton>
       </S.Fields>
-    </S.Container>
+    </S.Form>
   );
 }

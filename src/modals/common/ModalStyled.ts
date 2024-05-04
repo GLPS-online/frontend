@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.form`
+export const Form = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -122,6 +122,8 @@ export const Button = styled.button<{ $color?: string }>`
         return "background-color: #FF8C00; color: white;";
       case "shuttle":
         return "background-color: #00A6ED; color: white;";
+      case "edit":
+        return "background-color: var(--darkblue); color: white;";
       default:
         return "background: white;";
     }

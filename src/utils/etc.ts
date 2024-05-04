@@ -21,3 +21,22 @@ export function phoneNumberAutoFormat(phoneNumber: string) {
 
   return number.replace(/(\d{3})(\d{4})(\d{4})/, "$1-$2-$3");
 }
+
+export function getFloorGender(floor: number) {
+  switch (Math.floor(floor / 100)) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 9:
+    case 10:
+      return " ♂";
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+      return " ♀";
+    default:
+      return " ⚥";
+  }
+}

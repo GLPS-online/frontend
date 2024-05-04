@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
-import ModalContainer from "./ModalContainer";
-import * as S from "./ModalStyled";
+import ModalContainer from "./common/ModalContainer";
+import * as S from "./common/ModalStyled";
 import { useForm } from "react-hook-form";
 import { getCurrentTime } from "@/utils/time";
 import { useEffect } from "react";
@@ -74,7 +74,7 @@ export default function ShuttleModal({
       title={`${month}/${date}(${yoil}) 목발 셔틀 신청 🚐`}
       handleModalClose={handleModalClose}
     >
-      <S.Container
+      <S.Form
         onSubmit={handleSubmit((data) => submit(data))}
         autoComplete="off"
       >
@@ -202,7 +202,7 @@ export default function ShuttleModal({
             <S.Button $color={"shuttle"}>제출</S.Button>
           </S.Buttons>
         </S.Fields>
-      </S.Container>
+      </S.Form>
     </ModalContainer>
   );
 }
