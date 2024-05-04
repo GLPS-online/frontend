@@ -12,7 +12,7 @@ import StudentModal from "@/modals/StudentModal";
 import { useModal } from "@/hooks/useModal";
 
 export default function BoardPage() {
-  const { isModalOpen, handleModalOpen, handleModalClose } = useModal();
+  const { handleModalClose } = useModal();
 
   const { month, date, yoil } = getCurrentTime();
   const [action, setAction] = useState("eop");
