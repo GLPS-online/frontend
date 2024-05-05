@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const ActionSelect = styled.select`
+  width: 115px;
   font-size: 18px;
   padding: 3px 15px 3px 5px;
   font-weight: 500;

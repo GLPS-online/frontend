@@ -33,7 +33,7 @@ export default function UserModal({ handleModalClose, id }: Props) {
   const isAdmin = getUser()?.admin > 0;
   const isPowerAdmin = getUser()?.admin > 1;
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
 
   const {

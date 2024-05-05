@@ -96,14 +96,14 @@ export default function ShuttleModal({
             <option id="오전등교" value={"오전등교"}>
               오전등교
             </option>
-            <option id="2 ➔ 3 교시" value={"2 ➔ 3 교시"}>
-              2 ➔ 3 교시
+            <option id="3교시 이동" value={"3교시 이동"}>
+              3교시 이동
             </option>
             <option id="오후등교" value={"오후등교"}>
               오후등교
             </option>
-            <option id="6 ➔ 7 교시" value={"6 ➔ 7 교시"}>
-              6 ➔ 7 교시
+            <option id="7교시 이동" value={"7교시 이동"}>
+              7교시 이동
             </option>
             <option id="자습수업" value={"자습수업"}>
               자습수업
@@ -168,7 +168,7 @@ export default function ShuttleModal({
             <option id="다산/충무관" value={"다산/충무관"}>
               다산/충무관
             </option>
-            {watchTime !== "6 ➔ 7 교시" && watchTime !== "자습수업" && (
+            {watchTime !== "7교시 이동" && watchTime !== "자습수업" && (
               <>
                 <option id="체육관" value={"체육관"}>
                   체육관

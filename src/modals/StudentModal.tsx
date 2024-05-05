@@ -24,7 +24,7 @@ export default function StudentModal({ handleModalClose, id }: Props) {
   const { getUser } = useAuth();
   const isAdmin = getUser()?.admin > 0;
   const [student, setStudent] = useState<Student | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
 
   const {

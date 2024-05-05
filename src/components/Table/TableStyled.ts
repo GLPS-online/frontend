@@ -6,7 +6,7 @@ export const TableContainer = styled.div<{ $selectable?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 30px 0;
+  margin: 15px 0;
   @media screen and (max-width: 620px) {
     max-width: 100%;
     /* min-width: 300px; */
@@ -79,6 +79,12 @@ export const SearchBarSelect = styled.select`
   @media screen and (max-width: 620px) {
     /* font-size: 18px; */
   }
+`;
+
+export const ActionSelect = styled.select`
+  font-size: 18px;
+  padding: 3px 15px 3px 5px;
+  font-weight: 500;
 `;
 
 export const ClearIcon = styled.img`
