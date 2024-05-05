@@ -1,6 +1,6 @@
 import User from "@/interfaces/User";
 import { useNavigate } from "react-router-dom";
-import * as S from "./ExpandedStyled";
+import * as S from "../ExpandedStyled";
 
 export default function UserExpanded({ user }: { user: User }) {
   const navigate = useNavigate();

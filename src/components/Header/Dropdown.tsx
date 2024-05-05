@@ -26,10 +26,31 @@ export default function Dropdown() {
       </S.DropDownItem> */}
       <S.DropDownItem
         onClick={() => {
-          navigate("/board");
+          navigate("/eop");
         }}
       >
-        EOP/카드/현황판
+        EOP 검사
+      </S.DropDownItem>
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/cards");
+        }}
+      >
+        카드 발급현황
+      </S.DropDownItem>
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/shuttle");
+        }}
+      >
+        목발셔틀
+      </S.DropDownItem>
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/study");
+        }}
+      >
+        2자습 신청현황
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
@@ -38,18 +59,11 @@ export default function Dropdown() {
           navigate(`/timetables/${slug}`);
         }}
       >
-        수업 시간표
+        시간표(자습수업)
       </S.DropDownItem>
 
       <S.DropDownItem disabled onClick={() => {}}>
         식단표
-      </S.DropDownItem>
-      <S.DropDownItem
-        onClick={() => {
-          navigate(`/user/${getUser()?._id}`);
-        }}
-      >
-        내 정보
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {

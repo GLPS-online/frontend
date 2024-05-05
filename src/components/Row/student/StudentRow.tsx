@@ -1,5 +1,5 @@
 import { isBirthday } from "@/utils/etc";
-import * as S from "./RowStyled";
+import * as S from "../RowStyled";
 import StudentExpanded from "./StudentExpanded";
 import Student from "@/interfaces/Student";
 

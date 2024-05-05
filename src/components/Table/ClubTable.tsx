@@ -1,7 +1,7 @@
 import * as S from "./TableStyled";
 import { useSearchParams } from "react-router-dom";
 import Student from "@/interfaces/Student";
-import ClubRow from "../Row/ClubRow";
+import ClubRow from "../Row/club/ClubRow";
 import { clubList } from "@/constants";
 import { searchClubPAs } from "@/api/clubAPI";
 import { useEffect, useState } from "react";
@@ -83,9 +83,6 @@ export default function ClubTable({ data = [] }: Props) {
     }
     return datum["club"] === searchParams.get("club");
   });
-
-  console.log(isPALoading);
-  console.log(clubPAs);
 
   return (
     <>

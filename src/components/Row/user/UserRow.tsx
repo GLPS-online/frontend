@@ -1,4 +1,4 @@
-import * as S from "./RowStyled";
+import * as S from "../RowStyled";
 import UserExpanded from "./UserExpanded";
 
 type Props = {

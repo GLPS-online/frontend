@@ -8,7 +8,10 @@ import TimetablePage from "./pages/TimetablePage/TimetablePage";
 import Layout from "./Layout";
 import UserSearchPage from "./pages/UserSearchPage/UserSearchPage";
 import ClubPage from "./pages/ClubPage/ClubPage";
-import BoardPage from "./pages/BoardPage/BoardPage";
+import ShuttlePage from "./pages/ShuttlePage/ShuttlePage";
+import StudyPage from "./pages/StudyPage/StudyPage";
+import CardsPage from "./pages/CardsPage/CardsPage";
+import EopPage from "./pages/EopPage/EopPage";
 
 const router = createBrowserRouter([
   {
@@ -37,8 +40,20 @@ const router = createBrowserRouter([
         element: <ClubPage />,
       },
       {
-        path: "board",
-        element: <BoardPage />,
+        path: "eop",
+        element: <EopPage />,
+      },
+      {
+        path: "cards",
+        element: <CardsPage />,
+      },
+      {
+        path: "shuttle",
+        element: <ShuttlePage />,
+      },
+      {
+        path: "study",
+        element: <StudyPage />,
       },
     ],
   },

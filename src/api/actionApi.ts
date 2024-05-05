@@ -1,7 +1,7 @@
 import client from ".";
 
-export async function fetchCards(type: string) {
-  const response = await client.get(`/actions/card`, { params: { type } });
+export async function fetchCards() {
+  const response = await client.get(`/actions/card`);
   const result = response.data;
   return result;
 }

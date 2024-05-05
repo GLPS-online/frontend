@@ -521,7 +521,7 @@ export default function UserModal({ handleModalClose, id }: Props) {
           </S.Button>
           <S.Button
             $color="edit"
-            disabled={(isAdmin ? false : true) || isSubmitting}
+            disabled={(isAdmin ? false : true) || isSubmitting || isLoading}
             onClick={() => {
               setIsEdit(true);
             }}

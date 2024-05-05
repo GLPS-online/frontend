@@ -2,7 +2,7 @@ import * as S from "./TableStyled";
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import useCheckbox from "@/hooks/useCheckbox";
-import StudentRow from "@/components/Row/StudentRow";
+import StudentRow from "@/components/Row/student/StudentRow";
 import { useModal } from "@/hooks/useModal";
 import CardModal from "@/modals/CardModal";
 import { createPortal } from "react-dom";

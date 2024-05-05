@@ -1,6 +1,6 @@
 import * as S from "./TableStyled";
 import { useSearchParams } from "react-router-dom";
-import ShuttleRow from "../Row/ShuttleRow";
+import ShuttleRow from "../Row/shuttle/ShuttleRow";
 
 export default function ShuttleTable({ data = [] }: { data: any[] }) {
   const [searchParams, setSearchParams] = useSearchParams();

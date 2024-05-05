@@ -1,11 +1,11 @@
 import { searchUser } from "@/api/userApi";
 import { useNavigate } from "react-router-dom";
-import * as S from "./ExpandedStyled";
+import * as S from "../ExpandedStyled";
 import Student from "@/interfaces/Student";
 import User from "@/interfaces/User";
 import Nametag from "@/components/Nametag/Nametag";
 import { useQuery } from "@tanstack/react-query";
-import { SmallSpinner } from "../Spinner";
+import { SmallSpinner } from "../../Spinner";
 import { useModal } from "@/hooks/useModal";
 import { createPortal } from "react-dom";
 import StudentModal from "@/modals/StudentModal";

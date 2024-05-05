@@ -6,7 +6,7 @@ export const TableContainer = styled.div<{ $selectable?: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin: 15px 0;
+  margin: 30px 0;
   @media screen and (max-width: 620px) {
     max-width: 100%;
     /* min-width: 300px; */

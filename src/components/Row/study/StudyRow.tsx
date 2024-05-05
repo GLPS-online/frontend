@@ -1,4 +1,4 @@
-import * as S from "./RowStyled";
+import * as S from "../RowStyled";
 type Props = {
   shuttle: any;
   isExpanded?: boolean;

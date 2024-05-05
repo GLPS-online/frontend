@@ -1,5 +1,5 @@
-import Nametag from "../Nametag/Nametag";
-import * as S from "./RowStyled";
+import Nametag from "../../Nametag/Nametag";
+import * as S from "../RowStyled";
 
 type Props = {
   shuttle: any;

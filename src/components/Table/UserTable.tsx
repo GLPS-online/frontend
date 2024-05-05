@@ -1,7 +1,7 @@
 import * as S from "./TableStyled";
 import { useSearchParams } from "react-router-dom";
 import User from "@/interfaces/User";
-import UserRow from "../Row/UserRow";
+import UserRow from "../Row/user/UserRow";
 
 type Props = {
   data: User[];

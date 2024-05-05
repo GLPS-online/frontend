@@ -1,5 +1,5 @@
 import { clubList } from "@/constants";
-import * as S from "./ExpandedStyled";
+import * as S from "../ExpandedStyled";
 import Student from "@/interfaces/Student";
 import { useForm } from "react-hook-form";
 import { useState } from "react";

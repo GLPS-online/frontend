@@ -334,6 +334,7 @@ export default function StudentModal({ handleModalClose, id }: Props) {
             취소
           </S.Button>
           <S.Button
+            $color="edit"
             disabled={isSubmitting}
             onClick={handleSubmit(handleUpdate)}
           >
@@ -346,7 +347,8 @@ export default function StudentModal({ handleModalClose, id }: Props) {
             닫기
           </S.Button>
           <S.Button
-            disabled={(isAdmin ? false : true) || isSubmitting}
+            $color="edit"
+            disabled={(isAdmin ? false : true) || isSubmitting || isLoading}
             onClick={() => {
               setIsEdit(true);
             }}
