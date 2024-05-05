@@ -18,6 +18,8 @@ export default function CardsPage() {
     <>
       <h1 style={{ alignSelf: "flex-start" }}>{"카드현황 🟩🟨🟥"}</h1>
       {isLoading ? <Spinner /> : <ShuttleTable data={data} />}
+
+      {/* 발급시각, 이름, 적발자, 확장시 사유와 취소버튼*/}
     </>
   );
 }

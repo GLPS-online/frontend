@@ -21,6 +21,7 @@ export default function StudyPage() {
         style={{ alignSelf: "flex-start" }}
       >{`2자습 ✏️ ${` - ${month}/${date}(${yoil})`}`}</h1>
       {isLoading ? <Spinner /> : <ShuttleTable data={data} />}
+      {/* 이름, 학급, 방, 확장시 -> 신청pa 네임태그, 삭제버튼 */}
     </>
   );
 }

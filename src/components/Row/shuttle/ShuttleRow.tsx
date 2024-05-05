@@ -1,5 +1,8 @@
+import { deleteShuttle } from "@/api/actionApi";
 import Nametag from "../../Nametag/Nametag";
 import * as S from "../RowStyled";
+import { toast } from "react-toastify";
+import { useQueryClient } from "@tanstack/react-query";
 
 type Props = {
   shuttle: any;
@@ -7,6 +10,28 @@ type Props = {
 };
 
 export default function ShuttleRow({ shuttle, isExpanded = false }: Props) {
+  const queryClient = useQueryClient();
+
+  async function handleDelete() {
+    const toastId = toast.loading("취소 중...");
+    try {
+      await deleteShuttle(shuttle._id);
+      await queryClient.invalidateQueries({ queryKey: ["shuttles"] });
+      toast.update(toastId, {
+        render: "취소 완료👌",
+        type: "success",
+        autoClose: 2500,
+        isLoading: false,
+      });
+    } catch (err: any) {
+      toast.update(toastId, {
+        render: "신청자 본인만 취소 가능합니다.",
+        type: "error",
+        autoClose: 2500,
+        isLoading: false,
+      });
+    }
+  }
   return (
     <S.RowContainer>
       <S.Cells>
@@ -25,7 +50,7 @@ export default function ShuttleRow({ shuttle, isExpanded = false }: Props) {
             textDecoration: "underline",
             cursor: "pointer",
           }}
-          onClick={() => {}}
+          onClick={handleDelete}
         >
           취소하기
         </S.Cell>
