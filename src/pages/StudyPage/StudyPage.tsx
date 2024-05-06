@@ -1,8 +1,8 @@
 import Spinner from "@/components/Spinner";
 import { getCurrentTime } from "@/utils/time";
 import { fetchStudies } from "@/api/actionApi";
-import ShuttleTable from "@/components/Table/ShuttleTable";
 import { useQuery } from "@tanstack/react-query";
+import StudyTable from "@/components/Table/StudyTable";
 
 export default function StudyPage() {
   const { month, date, yoil } = getCurrentTime();
@@ -11,7 +11,7 @@ export default function StudyPage() {
     error,
     data = [],
   } = useQuery({
-    queryKey: ["studies", month, date],
+    queryKey: ["studies"],
     queryFn: () => fetchStudies(`${month}/${date}`),
   });
   if (error) return "An error has occurred: " + error.message;
@@ -20,7 +20,7 @@ export default function StudyPage() {
       <h1
         style={{ alignSelf: "flex-start" }}
       >{`2자습 ✏️ ${` - ${month}/${date}(${yoil})`}`}</h1>
-      {isLoading ? <Spinner /> : <ShuttleTable data={data} />}
+      {isLoading ? <Spinner /> : <StudyTable data={data} />}
       {/* 이름, 학급, 방, 확장시 -> 신청pa 네임태그, 삭제버튼 */}
     </>
   );

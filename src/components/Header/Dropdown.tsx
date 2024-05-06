@@ -40,17 +40,17 @@ export default function Dropdown() {
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
-          navigate("/shuttle");
-        }}
-      >
-        목발셔틀
-      </S.DropDownItem>
-      <S.DropDownItem
-        onClick={() => {
           navigate("/study");
         }}
       >
         2자습 신청현황
+      </S.DropDownItem>
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/shuttle");
+        }}
+      >
+        목발셔틀
       </S.DropDownItem>
       <S.DropDownItem
         onClick={() => {
@@ -59,7 +59,7 @@ export default function Dropdown() {
           navigate(`/timetables/${slug}`);
         }}
       >
-        시간표(자습수업)
+        수업 시간표
       </S.DropDownItem>
 
       <S.DropDownItem disabled onClick={() => {}}>

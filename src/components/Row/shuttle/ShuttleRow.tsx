@@ -1,5 +1,4 @@
 import { deleteShuttle } from "@/api/actionApi";
-import Nametag from "../../Nametag/Nametag";
 import * as S from "../RowStyled";
 import { toast } from "react-toastify";
 import { useQueryClient } from "@tanstack/react-query";
@@ -25,7 +24,7 @@ export default function ShuttleRow({ shuttle, isExpanded = false }: Props) {
       });
     } catch (err: any) {
       toast.update(toastId, {
-        render: "신청자 본인만 취소 가능합니다.",
+        render: "제출자 본인만 취소 가능합니다.",
         type: "error",
         autoClose: 2500,
         isLoading: false,
@@ -39,22 +38,26 @@ export default function ShuttleRow({ shuttle, isExpanded = false }: Props) {
         <S.Cell>{shuttle.departure}</S.Cell>
         <S.Cell>{shuttle.destination}</S.Cell>
       </S.Cells>
-      <S.Cells style={{ marginTop: "5px" }}>
-        <S.Cell style={{ fontWeight: "600" }}>{shuttle.time}</S.Cell>
-        <S.Cell>
-          <Nametag data={shuttle.user} />
-        </S.Cell>
-        <S.Cell
-          style={{
-            color: "var(--darkblue)",
-            textDecoration: "underline",
-            cursor: "pointer",
-          }}
-          onClick={handleDelete}
-        >
-          취소하기
-        </S.Cell>
-      </S.Cells>
+      {isExpanded && (
+        <S.Cells>
+          <S.Cell>{/* {shuttle.time} */}</S.Cell>
+          <S.Cell>{/* <Nametag data={shuttle.user} /> */}</S.Cell>
+          <S.Cell>
+            <span
+              style={{
+                color: "var(--darkblue)",
+                textDecoration: "underline",
+                fontSize: "17px",
+                cursor: "pointer",
+                alignSelf: "flex-end",
+              }}
+              onClick={handleDelete}
+            >
+              취소하기
+            </span>
+          </S.Cell>
+        </S.Cells>
+      )}
     </S.RowContainer>
   );
 }

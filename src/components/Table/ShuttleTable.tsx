@@ -26,39 +26,112 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
     return datum["destination"] === searchParams.get("destination");
   });
   console.log(filteredData);
+
+  const timeIndex = [
+    "오전등교",
+    "3교시 이동",
+    "오후등교",
+    "7교시 이동",
+    "자습수업",
+  ];
+  const placeIndex = [
+    "덕고관",
+    "영교/민교관",
+    "다산/충무관",
+    "체육관",
+    "국궁장",
+  ];
+  if (filteredData.length > 0) {
+    filteredData.sort((a, b) => {
+      const a_time = timeIndex.indexOf(a.departure);
+      const b_time = timeIndex.indexOf(b.departure);
+      if (a_time !== b_time) {
+        return a_time - b_time;
+      }
+      const a_departure = placeIndex.indexOf(a.departure);
+      const b_departure = placeIndex.indexOf(b.departure);
+      if (a_departure !== b_departure) {
+        return a_departure - b_departure;
+      }
+      const a_destination = placeIndex.indexOf(a.destination);
+      const b_destination = placeIndex.indexOf(b.destination);
+      if (a_destination !== b_destination) {
+        return a_destination - b_destination;
+      }
+      return a.student.korName.localeCompare(b.student.korName);
+    });
+  }
   return (
     <>
       <S.TableContainer>
+        <S.ActionSelector
+          value={searchParams.get("time") || "all"}
+          onChange={(e) => {
+            if (e.target.value === "all") {
+              searchParams.delete("time");
+            } else {
+              searchParams.set("time", e.target.value);
+            }
+            setSearchParams(searchParams, { replace: true });
+          }}
+          autoFocus
+        >
+          <option value="all">-시간-</option>
+          <option id="오전등교" value={"오전등교"}>
+            오전등교
+          </option>
+          <option id="3교시 이동" value={"3교시 이동"}>
+            3교시 이동
+          </option>
+          <option id="오후등교" value={"오후등교"}>
+            오후등교
+          </option>
+          <option id="7교시 이동" value={"7교시 이동"}>
+            7교시 이동
+          </option>
+          <option id="자습수업" value={"자습수업"}>
+            자습수업
+          </option>
+        </S.ActionSelector>
         <S.SearchBarContainer>
           <S.SearchBarInputContainer>
-            <S.SearchBarSelect
-              value={searchParams.get("time") || "all"}
-              onChange={(e) => {
-                if (e.target.value === "all") {
-                  searchParams.delete("time");
-                } else {
-                  searchParams.set("time", e.target.value);
+            <S.SearchBarInput
+              autoComplete="off"
+              name="namesearch"
+              type="text"
+              inputMode="text"
+              placeholder="이름"
+              value={searchParams.get("name") || ""}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  (document.activeElement as HTMLElement).blur();
                 }
-                setSearchParams(searchParams, { replace: true });
               }}
-            >
-              <option value="all">-시간-</option>
-              <option id="오전등교" value={"오전등교"}>
-                오전등교
-              </option>
-              <option id="3교시 이동" value={"3교시 이동"}>
-                3교시 이동
-              </option>
-              <option id="오후등교" value={"오후등교"}>
-                오후등교
-              </option>
-              <option id="7교시 이동" value={"7교시 이동"}>
-                7교시 이동
-              </option>
-              <option id="자습수업" value={"자습수업"}>
-                자습수업
-              </option>
-            </S.SearchBarSelect>
+              onChange={(e) => {
+                if (!e.target.value) {
+                  searchParams.delete("name");
+                  setSearchParams(searchParams, {
+                    replace: true,
+                  });
+                } else {
+                  searchParams.set("name", e.target.value);
+                  setSearchParams(searchParams, {
+                    replace: true,
+                  });
+                }
+              }}
+            />
+            <S.ClearIcon
+              src="/icons/clear.svg"
+              draggable={false}
+              style={{
+                display: `${searchParams.get("name") ? "" : "none"}`,
+              }}
+              onClick={() => {
+                searchParams.delete("name");
+                setSearchParams(searchParams);
+              }}
+            />
           </S.SearchBarInputContainer>
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
@@ -121,16 +194,56 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
             </S.SearchBarSelect>
           </S.SearchBarInputContainer>
         </S.SearchBarContainer>
-        {filteredData.map((shuttle: any) => (
-          <S.RowContainer key={shuttle._id}>
-            <S.RowBox>
-              <ShuttleRow
-                shuttle={shuttle}
-                isExpanded={searchParams.get("expanded") === shuttle._id}
-              />
-            </S.RowBox>
-          </S.RowContainer>
-        ))}
+        {searchParams.get("time") ? (
+          filteredData.length > 0 ? (
+            filteredData.map((shuttle: any) => (
+              <S.RowContainer key={shuttle._id}>
+                <S.RowBox
+                  onClick={() => {
+                    if (!window.getSelection()?.isCollapsed) {
+                      console.log(window.getSelection());
+                      return;
+                    }
+                    if (searchParams.get("expanded") === shuttle._id) {
+                      searchParams.delete("expanded");
+                      setSearchParams(searchParams, {
+                        replace: true,
+                      });
+                    } else {
+                      searchParams.set("expanded", shuttle._id);
+                      setSearchParams(searchParams, {
+                        replace: true,
+                      });
+                    }
+                  }}
+                >
+                  <ShuttleRow
+                    shuttle={shuttle}
+                    isExpanded={searchParams.get("expanded") === shuttle._id}
+                  />
+                </S.RowBox>
+              </S.RowContainer>
+            ))
+          ) : (
+            <div
+              style={{
+                alignSelf: "center",
+                fontSize: "18px",
+              }}
+            >
+              검색 결과가 없습니다
+            </div>
+          )
+        ) : (
+          <div
+            style={{
+              alignSelf: "center",
+              fontSize: "18px",
+            }}
+          >
+            셔틀 시간을 선택하세요
+          </div>
+        )}
       </S.TableContainer>
     </>
   );

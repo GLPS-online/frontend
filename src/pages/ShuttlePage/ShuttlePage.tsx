@@ -11,7 +11,7 @@ export default function ShuttlePage() {
     error,
     data = [],
   } = useQuery({
-    queryKey: ["shuttles", month, date],
+    queryKey: ["shuttles"],
     queryFn: () => fetchShuttles(`${month}/${date}`),
     refetchOnWindowFocus: true,
   });

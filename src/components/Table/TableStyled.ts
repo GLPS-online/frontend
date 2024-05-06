@@ -96,7 +96,7 @@ export const ClearIcon = styled.img`
 `;
 
 export const ActionSelector = styled.select`
-  width: auto;
+  width: 110px;
   height: 30px;
   font-size: 18px;
   padding: 2px 14px 2px 5px;
