@@ -73,6 +73,8 @@ export const NoteArea = styled.div`
   width: 100%;
   padding: 7px 17px 3px;
   display: flex;
+  flex-direction: column;
+  gap: 5px;
   justify-content: center;
   align-items: center;
   font-size: 16px;

@@ -81,7 +81,11 @@ export default function CardModal({
           <S.Textarea
             id="note"
             autoFocus
-            placeholder="상세히 작성해 주세요"
+            placeholder={
+              action === "eop"
+                ? "한국어로 어떤 말을 했는지 작성해 주세요"
+                : "상황을 상세히 작성해 주세요"
+            }
             $isError={errors.note ? true : false}
             {...register("note", {
               required: true,

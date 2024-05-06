@@ -1,7 +1,7 @@
 import Spinner from "@/components/Spinner";
 import { fetchEops } from "@/api/actionApi";
-import ShuttleTable from "@/components/Table/ShuttleTable";
 import { useQuery } from "@tanstack/react-query";
+import EopTable from "@/components/Table/EopTable";
 
 export default function EopPage() {
   const {
@@ -17,7 +17,7 @@ export default function EopPage() {
   return (
     <>
       <h1 style={{ alignSelf: "flex-start" }}>{"EOP 🔤"}</h1>
-      {isLoading ? <Spinner /> : <ShuttleTable data={data} />}
+      {isLoading ? <Spinner /> : <EopTable data={data} />}
 
       {/*  이름, 통과여부(X 혹은 V), 발급시각, 확장 시 적발자네임태그/검사자네임태그 사유와 검사버튼*/}
     </>

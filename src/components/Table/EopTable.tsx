@@ -1,12 +1,12 @@
 import * as S from "./TableStyled";
 import { useSearchParams } from "react-router-dom";
-import CardRow from "../Row/card/CardRow";
+import EopRow from "../Row/eop/EopRow";
 
 type Props = {
   data: any[];
 };
 
-export default function CardTable({ data = [] }: Props) {
+export default function EopTable({ data = [] }: Props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
   let filteredData: any[] = data.filter((datum: any) => {
@@ -22,7 +22,14 @@ export default function CardTable({ data = [] }: Props) {
     if (!searchParams.get("type")) {
       return true;
     }
-    return datum["type"] === searchParams.get("type"); // red green yellow
+    switch (searchParams.get("type")) {
+      case "approved":
+        return datum.isApproved;
+      case "not":
+        return !datum.isApproved;
+      default:
+        return true;
+    }
   });
 
   return (
@@ -81,9 +88,8 @@ export default function CardTable({ data = [] }: Props) {
               }}
             >
               <option value="all">-전체-</option>
-              <option value={"green"}>그린🟩</option>
-              <option value={"yellow"}>옐로🟨</option>
-              <option value={"red"}>레드🟥</option>
+              <option value={"approved"}>통과🆗</option>
+              <option value={"not"}>미검사❌</option>
             </S.SearchBarSelect>
           </S.SearchBarInputContainer>
           <S.SearchBarInputContainer
@@ -99,30 +105,30 @@ export default function CardTable({ data = [] }: Props) {
           </S.SearchBarInputContainer>
         </S.SearchBarContainer>
 
-        {filteredData.map((card: any) => (
-          <S.RowContainer key={card._id}>
+        {filteredData.map((eop: any) => (
+          <S.RowContainer key={eop._id}>
             <S.RowBox
               onClick={() => {
                 if (!window.getSelection()?.isCollapsed) {
                   console.log(window.getSelection());
                   return;
                 }
-                if (searchParams.get("expanded") === card._id) {
+                if (searchParams.get("expanded") === eop._id) {
                   searchParams.delete("expanded");
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 } else {
-                  searchParams.set("expanded", card._id);
+                  searchParams.set("expanded", eop._id);
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 }
               }}
             >
-              <CardRow
-                card={card}
-                isExpanded={searchParams.get("expanded") === card._id}
+              <EopRow
+                eop={eop}
+                isExpanded={searchParams.get("expanded") === eop._id}
               />
             </S.RowBox>
           </S.RowContainer>

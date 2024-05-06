@@ -5,8 +5,6 @@ type Props = {
   isExpanded?: boolean;
 };
 
-// const displayProps = ["korName", "className", "roomNum"];
-
 export default function CardRow({ card, isExpanded = false }: Props) {
   const { student, user } = card;
   const date = new Date(card.createdAt);

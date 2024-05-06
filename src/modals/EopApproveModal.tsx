@@ -3,35 +3,32 @@ import ModalContainer from "./common/ModalContainer";
 import * as S from "./common/ModalStyled";
 import { useForm } from "react-hook-form";
 import { approveEop } from "@/api/actionApi";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface Props {
   handleModalClose: () => void;
   id: string;
-  onSuccess: () => void;
 }
 
-export default function EopApproveModal({
-  handleModalClose,
-  id,
-  onSuccess,
-}: Props) {
+export default function EopApproveModal({ handleModalClose, id }: Props) {
   const {
     register,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm({ mode: "onBlur" });
+  const queryClient = useQueryClient();
 
   const submit = async (e: any) => {
     const toastId = toast.loading("제출 중...");
     try {
       await approveEop(id);
+      await queryClient.invalidateQueries({ queryKey: ["eops"] });
       toast.update(toastId, {
         render: "EOP 통과👌",
         type: "success",
         autoClose: 2500,
         isLoading: false,
       });
-      onSuccess();
       handleModalClose();
     } catch (err: any) {
       toast.update(toastId, {
