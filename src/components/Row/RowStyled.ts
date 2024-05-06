@@ -69,6 +69,18 @@ export const Cell = styled.div`
   }
 `;
 
+export const NoteArea = styled.div`
+  width: 100%;
+  padding: 7px 17px 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+`;
+
 export const Space = styled.span`
   @media screen and (max-width: 360px) {
     display: none;

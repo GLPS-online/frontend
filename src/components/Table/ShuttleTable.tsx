@@ -14,6 +14,12 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
     return datum["time"] === searchParams.get("time");
   });
   filteredData = filteredData.filter((datum: any) => {
+    if (!searchParams.get("korName")) {
+      return true;
+    }
+    return datum.student.korName === searchParams.get("korName");
+  });
+  filteredData = filteredData.filter((datum: any) => {
     if (!searchParams.get("departure")) {
       return true;
     }
@@ -101,7 +107,7 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
               type="text"
               inputMode="text"
               placeholder="이름"
-              value={searchParams.get("name") || ""}
+              value={searchParams.get("korName") || ""}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
                   (document.activeElement as HTMLElement).blur();
@@ -109,12 +115,12 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
               }}
               onChange={(e) => {
                 if (!e.target.value) {
-                  searchParams.delete("name");
+                  searchParams.delete("korName");
                   setSearchParams(searchParams, {
                     replace: true,
                   });
                 } else {
-                  searchParams.set("name", e.target.value);
+                  searchParams.set("korName", e.target.value);
                   setSearchParams(searchParams, {
                     replace: true,
                   });
@@ -125,10 +131,10 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
               src="/icons/clear.svg"
               draggable={false}
               style={{
-                display: `${searchParams.get("name") ? "" : "none"}`,
+                display: `${searchParams.get("korName") ? "" : "none"}`,
               }}
               onClick={() => {
-                searchParams.delete("name");
+                searchParams.delete("korName");
                 setSearchParams(searchParams);
               }}
             />

@@ -1,7 +1,7 @@
 import Spinner from "@/components/Spinner";
 import { fetchCards } from "@/api/actionApi";
-import ShuttleTable from "@/components/Table/ShuttleTable";
 import { useQuery } from "@tanstack/react-query";
+import CardTable from "@/components/Table/CardTable";
 
 export default function CardsPage() {
   const {
@@ -16,10 +16,10 @@ export default function CardsPage() {
   if (error) return "An error has occurred: " + error.message;
   return (
     <>
-      <h1 style={{ alignSelf: "flex-start" }}>{"카드현황 🟩🟨🟥"}</h1>
-      {isLoading ? <Spinner /> : <ShuttleTable data={data} />}
+      <h1 style={{ alignSelf: "flex-start" }}>{"카드 발급 현황"}</h1>
+      {isLoading ? <Spinner /> : <CardTable data={data} />}
 
-      {/* 발급시각, 이름, 적발자, 확장시 사유와 취소버튼*/}
+      {/* 발급시각, 이름, 카드종류 확장시 적발자와 사유*/}
     </>
   );
 }

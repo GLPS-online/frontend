@@ -38,7 +38,7 @@ export const Division = styled.span<{ $forTimetable: boolean }>`
     $forTimetable ? "font-size: 14.25px;" : "font-size: 17px;"}
   letter-spacing: -0.05px;
   color: black;
-  @media screen and (max-width: 620px) {
+  /* @media screen and (max-width: 620px) {
     ${({ $forTimetable }) => ($forTimetable ? "display: none;" : "")}
-  }
+  } */
 `;
