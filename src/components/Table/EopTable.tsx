@@ -77,6 +77,7 @@ export default function EopTable({ data = [] }: Props) {
           </S.SearchBarInputContainer>
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
+              name="typeselect"
               value={searchParams.get("type") || "all"}
               onChange={(e) => {
                 if (e.target.value === "all") {

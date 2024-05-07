@@ -31,7 +31,6 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
     }
     return datum["destination"] === searchParams.get("destination");
   });
-  console.log(filteredData);
 
   const timeIndex = [
     "오전등교",
@@ -71,6 +70,7 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
     <>
       <S.TableContainer>
         <S.ActionSelector
+          name="timeselect"
           value={searchParams.get("time") || "all"}
           onChange={(e) => {
             if (e.target.value === "all") {
@@ -141,6 +141,7 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
           </S.SearchBarInputContainer>
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
+              name="departureselect"
               value={searchParams.get("departure") || "all"}
               onChange={(e) => {
                 if (e.target.value === "all") {
@@ -171,6 +172,7 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
           </S.SearchBarInputContainer>
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
+              name="destinationselect"
               value={searchParams.get("destination") || "all"}
               onChange={(e) => {
                 if (e.target.value === "all") {

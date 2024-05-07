@@ -17,9 +17,14 @@ export default function StudyPage() {
   if (error) return "An error has occurred: " + error.message;
   return (
     <>
-      <h1
-        style={{ alignSelf: "flex-start" }}
-      >{`2자습 ✏️ ${` - ${month}/${date}(${yoil})`}`}</h1>
+      <h1 style={{ alignSelf: "flex-start" }}>
+        2자습 ✏️
+        <span style={{ fontWeight: "500" }}>
+          {" - "}
+          {`${month}/${date}(${yoil})`}
+        </span>
+      </h1>
+
       {isLoading ? <Spinner /> : <StudyTable data={data} />}
       {/* 이름, 학급, 방, 확장시 -> 신청pa 네임태그, 삭제버튼 */}
     </>

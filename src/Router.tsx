@@ -12,6 +12,7 @@ import ShuttlePage from "./pages/ShuttlePage/ShuttlePage";
 import StudyPage from "./pages/StudyPage/StudyPage";
 import CardsPage from "./pages/CardsPage/CardsPage";
 import EopPage from "./pages/EopPage/EopPage";
+import MealsPage from "./pages/MealsPage/MealsPage";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "study",
         element: <StudyPage />,
+      },
+      {
+        path: "meals",
+        element: <MealsPage />,
       },
     ],
   },

@@ -150,6 +150,7 @@ export default function ClubTable({ data = [] }: Props) {
           ))}
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
+              name="clubselect"
               value={searchParams.get("club") || "all"}
               onChange={(e) => {
                 if (e.target.value === "all") {

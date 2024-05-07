@@ -62,7 +62,11 @@ export default function Dropdown() {
         수업 시간표
       </S.DropDownItem>
 
-      <S.DropDownItem disabled onClick={() => {}}>
+      <S.DropDownItem
+        onClick={() => {
+          navigate("/meals");
+        }}
+      >
         식단표
       </S.DropDownItem>
       <S.DropDownItem

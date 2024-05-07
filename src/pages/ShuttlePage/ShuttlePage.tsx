@@ -18,9 +18,13 @@ export default function ShuttlePage() {
   if (error) return "An error has occurred: " + error.message;
   return (
     <>
-      <h1
-        style={{ alignSelf: "flex-start" }}
-      >{`목발셔틀 🚐 ${` - ${month}/${date}(${yoil})`}`}</h1>
+      <h1 style={{ alignSelf: "flex-start" }}>
+        목발셔틀 🚐
+        <span style={{ fontWeight: "500" }}>
+          {" - "}
+          {`${month}/${date}(${yoil})`}
+        </span>
+      </h1>
       {isLoading ? <Spinner /> : <ShuttleTable data={data} />}
     </>
   );
