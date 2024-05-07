@@ -42,5 +42,5 @@ export const Button = styled.button`
 `;
 
 export const DangerButton = styled(Button)`
-  background-color var(--red);
+  background-color: var(--red);
 `;

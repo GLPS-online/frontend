@@ -118,3 +118,5 @@ export const timetable = `Paste a JSON array like below:
     ...
   ]
     `;
+
+export const menu = `백미밥, 김치볶음<sup>5.9</sup>, 낙지수제비<sup>5.6</sup>, 연두부/양념장<sup>5.6</sup>, 모듬소시지볶음<sup>2.5.6.10.12.13.15.16.18</sup>, 시리얼/우유/토스트/주스/김/크림치즈<sup>2.5.6.13</sup>, 그릭요거트<sup>2</sup>`;

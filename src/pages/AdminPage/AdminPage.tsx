@@ -12,6 +12,7 @@ import {
   updateClubAssignment,
 } from "@/api/adminApi";
 import { classList } from "@/constants";
+import { createMeal, deleteMeals } from "@/api/mealApi";
 
 export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,9 @@ export default function AdminPage() {
     office: "",
     classNameToDelete: "",
     table: "",
+    dayIndex: 0,
+    timeIndex: 0,
+    menu: "",
   });
 
   async function handleInitializeStudents() {
@@ -130,6 +134,30 @@ export default function AdminPage() {
     } catch (err) {
       console.log(err);
       alert(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  async function handleMenuCreation() {
+    try {
+      setIsLoading(true);
+      const { dayIndex, timeIndex, menu } = state;
+      const res = await createMeal(dayIndex, timeIndex, menu);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setState((prev) => ({ ...prev, menu: "" }));
+      setIsLoading(false);
+    }
+  }
+  async function handleMenuDeletion() {
+    try {
+      setIsLoading(true);
+      const res = await deleteMeals();
+      console.log(res);
+    } catch (err) {
+      console.log(err);
     } finally {
       setIsLoading(false);
     }
@@ -267,6 +295,53 @@ export default function AdminPage() {
           placeholder="삭제할 학급 이름"
         />
         <S.DangerButton disabled={isLoading} onClick={handleTimetableDeletion}>
+          삭제하기
+        </S.DangerButton>
+      </S.Content>
+      <S.Content>
+        식단표 삽입. (주의: 이미 존재하는 요일/시간에 대해서는 덮어쓰기가
+        됩니다)
+        <select
+          value={state.dayIndex}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, dayIndex: Number(e.target.value) }))
+          }
+        >
+          <option value={0}>월요일</option>
+          <option value={1}>화요일</option>
+          <option value={2}>수요일</option>
+          <option value={3}>목요일</option>
+          <option value={4}>금요일</option>
+          <option value={5}>토요일</option>
+          <option value={6}>일요일</option>
+        </select>
+        <select
+          value={state.timeIndex}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, timeIndex: Number(e.target.value) }))
+          }
+        >
+          <option value={0}>아침</option>
+          <option value={1}>점심</option>
+          <option value={2}>저녁</option>
+          <option value={3}>혼정빵</option>
+        </select>
+        <S.Textarea
+          placeholder={Placeholders.menu}
+          value={state.menu}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, menu: e.target.value }))
+          }
+          rows={18}
+          cols={70}
+        />
+        <S.Button disabled={isLoading} onClick={handleMenuCreation}>
+          삽입하기
+        </S.Button>
+      </S.Content>
+      <S.Content>
+        식단표 전체 삭제
+        <S.DangerButton disabled={isLoading} onClick={handleMenuDeletion}>
           삭제하기
         </S.DangerButton>
       </S.Content>
