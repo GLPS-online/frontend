@@ -61,7 +61,7 @@ export const MealTitle = styled.div`
   font-weight: 500;
 `;
 
-export const VoteButton = styled.div`
+export const VoteButton = styled.div<{ $selected?: boolean }>`
   height: 28px;
   display: flex;
   align-items: center;
@@ -69,14 +69,15 @@ export const VoteButton = styled.div`
   gap: 2px;
   padding: 2px 8px;
   border-radius: 32px;
-  background: rgba(0, 0, 0, 0.34);
-  &:hover {
-    background: rgba(0, 0, 0, 0.54);
-  }
   font-size: 14px;
   font-weight: 400;
   color: white;
+  background: rgba(0, 0, 0, 0.34);
+  ${({ $selected = false }) => $selected && "background: rgba(0, 0, 0, 0.54);"}
   cursor: pointer;
+  &:hover {
+    background: rgba(0, 0, 0, 0.54);
+  }
 `;
 
 export const MenuArea = styled.div`

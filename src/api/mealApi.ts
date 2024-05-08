@@ -1,13 +1,13 @@
 import client from ".";
 
-export const fetchMeals = async (dayIndex: number) => {
-  const response = await client.get("/meals", {});
+export const fetchMeals = async () => {
+  const response = await client.get("/meals");
   const result = response.data;
   return result;
 };
 
 export const voteMeal = async (mealId: string) => {
-  const response = await client.post(`/meals/vote/${mealId}`);
+  const response = await client.put(`/meals/vote/${mealId}`);
   const result = response.data;
   return result;
 };
