@@ -98,7 +98,21 @@ export async function updateClubAssignment(body: string) {
 }
 
 export async function grantAdmin(id: string) {
-  const response = await client.put(`auth/grantAdmin/${id}`);
+  const response = await client.put(`/auth/grantAdmin/${id}`);
+  const result = response.data;
+  return result;
+}
+
+export async function revokeAdmin(id: string) {
+  const response = await client.put(`/auth/revokeAdmin/${id}`);
+  const result = response.data;
+  return result;
+}
+
+export async function changePassword(id: string, newPassword: string) {
+  const response = await client.put(`/auth/changePassword/${id}`, {
+    newPassword,
+  });
   const result = response.data;
   return result;
 }

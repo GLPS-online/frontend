@@ -53,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
 
   input, select, textarea {
     color: black;
+    background-color: white;
     outline: none;
     &:focus {
       border: 1px solid blue

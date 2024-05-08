@@ -20,7 +20,7 @@ import { Link } from "react-router-dom";
 import { getFloorGender, phoneNumberAutoFormat } from "@/utils/etc";
 import { deleteUser, fetchUser, updateUser } from "@/api/userApi";
 import User from "@/interfaces/User";
-import { grantAdmin } from "@/api/adminApi";
+import { changePassword, grantAdmin, revokeAdmin } from "@/api/adminApi";
 
 interface Props {
   handleModalClose: () => void;
@@ -35,6 +35,7 @@ export default function UserModal({ handleModalClose, id }: Props) {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
 
   const {
     register,
@@ -136,7 +137,7 @@ export default function UserModal({ handleModalClose, id }: Props) {
         setUser(updated);
         queryClient.invalidateQueries({ queryKey: ["users"] });
         toast.update(toastId, {
-          render: "업데이트 완료👌",
+          render: "관리자 권한 부여👌",
           type: "success",
           autoClose: 2500,
           isLoading: false,
@@ -152,29 +153,53 @@ export default function UserModal({ handleModalClose, id }: Props) {
     }
   }
 
-  // async function handleChangePassworkd() {
-  //   const id = user?._id;
-  //   if (id) {
-  //     const toastId = toast.loading("업데이트 중...");
-  //     try {
-  //       // const updated = await changePassword(id, newPassword);
-  //       // setUser(updated);
-  //       toast.update(toastId, {
-  //         render: "업데이트 완료👌",
-  //         type: "success",
-  //         autoClose: 2500,
-  //         isLoading: false,
-  //       });
-  //     } catch (err: any) {
-  //       toast.update(toastId, {
-  //         render: `${err.response?.data.msg}`,
-  //         type: "error",
-  //         autoClose: 2500,
-  //         isLoading: false,
-  //       });
-  //     }
-  //   }
-  // }
+  async function handleRevokeAdmin() {
+    const id = user?._id;
+    if (id) {
+      const toastId = toast.loading("업데이트 중...");
+      try {
+        const updated = await revokeAdmin(id);
+        setUser(updated);
+        queryClient.invalidateQueries({ queryKey: ["users"] });
+        toast.update(toastId, {
+          render: "관리자 권한 회수👌",
+          type: "success",
+          autoClose: 2500,
+          isLoading: false,
+        });
+      } catch (err: any) {
+        toast.update(toastId, {
+          render: `${err.response?.data.msg}`,
+          type: "error",
+          autoClose: 2500,
+          isLoading: false,
+        });
+      }
+    }
+  }
+
+  async function handleChangePw() {
+    const id = user?._id;
+    if (id) {
+      const toastId = toast.loading("업데이트 중...");
+      try {
+        await changePassword(id, newPassword);
+        toast.update(toastId, {
+          render: "업데이트 완료👌",
+          type: "success",
+          autoClose: 2500,
+          isLoading: false,
+        });
+      } catch (err: any) {
+        toast.update(toastId, {
+          render: `${err.response?.data.msg}`,
+          type: "error",
+          autoClose: 2500,
+          isLoading: false,
+        });
+      }
+    }
+  }
   return (
     <ModalContainer
       title={"사용자 상세보기🧑‍🍼"}
@@ -471,6 +496,33 @@ export default function UserModal({ handleModalClose, id }: Props) {
                   onClick={handleGrantAdmin}
                 >
                   관리자 권한 부여
+                </button>
+                <button
+                  style={{
+                    border: "1px solid var(--red)",
+                  }}
+                  onClick={handleRevokeAdmin}
+                >
+                  관리자 권한 회수
+                </button>
+                <input
+                  name="pwSearch"
+                  placeholder="새 비밀번호 입력"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  style={{
+                    padding: "10px",
+                  }}
+                />
+                <button
+                  style={{
+                    border: "1px solid black",
+                  }}
+                  onClick={() => {
+                    handleChangePw();
+                  }}
+                >
+                  비밀번호 바꾸기
                 </button>
                 <button
                   style={{
