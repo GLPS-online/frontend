@@ -27,9 +27,10 @@ export default function MealsPage() {
     queryKey: ["meals"],
     queryFn: () => fetchMeals(),
   });
-  const meals = data.filter((meal) => meal.dayIndex === days.indexOf(selected));
-
   const queryClient = useQueryClient();
+  const meals =
+    data.filter((meal) => meal.dayIndex === days.indexOf(selected)) || [];
+
   const { mutate: handleVote } = useMutation({
     mutationFn: async (mealId: string) => {
       await voteMeal(mealId);
@@ -89,8 +90,8 @@ export default function MealsPage() {
       ) : meals.length > 0 ? (
         meals.map((meal) => (
           <S.MealContainer key={meal._id + meal.upVotes.length}>
-            <S.MealTitle>
-              <span>
+            <S.MealTitleArea>
+              <S.MealTitle>
                 {(() => {
                   switch (meal.timeIndex) {
                     case 0:
@@ -103,7 +104,16 @@ export default function MealsPage() {
                       return "혼정빵";
                   }
                 })()}
-              </span>
+                &nbsp;
+                {[...Array(Math.floor(meal.upVotes.length))].map((x, i) => (
+                  <img
+                    key={i}
+                    draggable={false}
+                    src="/icons/MichelinStar.svg"
+                    alt="Michelin Star"
+                  />
+                ))}
+              </S.MealTitle>
               <S.VoteButton
                 $selected={meal.upVotes.includes(getUser()._id)}
                 onClick={() => {
@@ -115,7 +125,7 @@ export default function MealsPage() {
                   {meal.upVotes.length === 0 ? "" : meal.upVotes.length}
                 </span>
               </S.VoteButton>
-            </S.MealTitle>
+            </S.MealTitleArea>
             <S.MenuArea>
               <span
                 dangerouslySetInnerHTML={{

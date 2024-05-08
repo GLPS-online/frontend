@@ -112,7 +112,7 @@ export const SubmitButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 8px;
-  background: var(--darkblue);
+  background-color: var(--darkblue);
   color: white;
   text-align: center;
   font-size: 18px;

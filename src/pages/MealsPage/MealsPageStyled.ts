@@ -53,12 +53,22 @@ export const MealContainer = styled.div`
   width: 100%;
 `;
 
-export const MealTitle = styled.div`
+export const MealTitleArea = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 18px;
   font-weight: 500;
+`;
+
+export const MealTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  img {
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 export const VoteButton = styled.div<{ $selected?: boolean }>`
@@ -72,11 +82,12 @@ export const VoteButton = styled.div<{ $selected?: boolean }>`
   font-size: 14px;
   font-weight: 400;
   color: white;
-  background: rgba(0, 0, 0, 0.34);
-  ${({ $selected = false }) => $selected && "background: rgba(0, 0, 0, 0.54);"}
+  background-color: rgba(0, 0, 0, 0.34);
+  ${({ $selected = false }) =>
+    $selected && "background-color:  rgba(0, 0, 0, 0.54);"}
   cursor: pointer;
   &:hover {
-    background: rgba(0, 0, 0, 0.54);
+    background-color: rgba(0, 0, 0, 0.54);
   }
 `;
 

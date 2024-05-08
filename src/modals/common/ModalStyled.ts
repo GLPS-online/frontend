@@ -125,7 +125,7 @@ export const Button = styled.button<{ $color?: string }>`
       case "edit":
         return "background-color: var(--darkblue); color: white;";
       default:
-        return "background: white;";
+        return "background-color:  white;";
     }
   }}
   font-size: 16px;
