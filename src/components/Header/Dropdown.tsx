@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as S from "./DropdownStyled";
 
 export default function Dropdown() {
-  const { getUser, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
   return (
     <S.DropDownContianer>

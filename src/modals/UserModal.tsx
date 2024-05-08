@@ -91,6 +91,7 @@ export default function UserModal({ handleModalClose, id }: Props) {
           isLoading: false,
         });
       } catch (err: any) {
+        reset(user);
         toast.update(toastId, {
           render: `${err.response?.data.msg}`,
           type: "error",
@@ -143,6 +144,7 @@ export default function UserModal({ handleModalClose, id }: Props) {
           isLoading: false,
         });
       } catch (err: any) {
+        reset(user);
         toast.update(toastId, {
           render: `${err.response?.data.msg}`,
           type: "error",
@@ -168,6 +170,7 @@ export default function UserModal({ handleModalClose, id }: Props) {
           isLoading: false,
         });
       } catch (err: any) {
+        reset(user);
         toast.update(toastId, {
           render: `${err.response?.data.msg}`,
           type: "error",
