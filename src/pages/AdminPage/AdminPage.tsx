@@ -311,14 +311,18 @@ export default function AdminPage() {
       </S.Content>
       <S.Content>
         시간표 삭제
-        <S.TextInput
-          type="text"
+        <select
           value={state.classNameToDelete}
           onChange={(e) =>
             setState((prev) => ({ ...prev, classNameToDelete: e.target.value }))
           }
-          placeholder="삭제할 학급 이름"
-        />
+        >
+          {classList.map((item) => (
+            <option key={item} value={item}>
+              {item}반
+            </option>
+          ))}
+        </select>
         <S.DangerButton disabled={isLoading} onClick={handleTimetableDeletion}>
           삭제하기
         </S.DangerButton>
