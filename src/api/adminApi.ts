@@ -116,3 +116,15 @@ export async function changePassword(id: string, newPassword: string) {
   const result = response.data;
   return result;
 }
+
+export async function signupOpen() {
+  const response = await client.put("/auth/signupOpen");
+  const result = response.data;
+  return result;
+}
+
+export async function signupClose() {
+  const response = await client.put("/auth/signupClose");
+  const result = response.data;
+  return result;
+}

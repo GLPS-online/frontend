@@ -10,6 +10,8 @@ import {
   DeleteUsers,
   fetchClubChoices,
   updateClubAssignment,
+  signupOpen,
+  signupClose,
 } from "@/api/adminApi";
 import { classList } from "@/constants";
 import { createMeal, deleteMeals } from "@/api/mealApi";
@@ -155,6 +157,29 @@ export default function AdminPage() {
     try {
       setIsLoading(true);
       const res = await deleteMeals();
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  async function handleSignupOpen() {
+    try {
+      setIsLoading(true);
+      const res = await signupOpen();
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function handleSignupClose() {
+    try {
+      setIsLoading(true);
+      const res = await signupClose();
       console.log(res);
     } catch (err) {
       console.log(err);
@@ -343,6 +368,14 @@ export default function AdminPage() {
         식단표 전체 삭제
         <S.DangerButton disabled={isLoading} onClick={handleMenuDeletion}>
           삭제하기
+        </S.DangerButton>
+      </S.Content>
+      <S.Content>
+        <S.DangerButton disabled={isLoading} onClick={handleSignupOpen}>
+          회원가입 열기
+        </S.DangerButton>
+        <S.DangerButton disabled={isLoading} onClick={handleSignupClose}>
+          회원가입 닫기
         </S.DangerButton>
       </S.Content>
     </S.Container>
