@@ -9,29 +9,32 @@ import { createPortal } from "react-dom";
 import ShuttleModal from "@/modals/ShuttleModal";
 import StudyModal from "@/modals/StudyModal";
 import Student from "@/interfaces/Student";
+import useSearches from "@/hooks/useSearches";
+import SearchOption from "@/interfaces/SearchOption";
+import Inputs from "./Inputs";
 
 type Props = {
   data: Student[];
 };
 
-const searchOptions = [
+const searchOptions: SearchOption[] = [
   {
     propName: "korName",
     inputType: "string",
     placeholder: "이름",
-    searchType: "string",
+    searchType: "hangul",
   },
   {
     propName: "className",
     inputType: "string",
     placeholder: "학급",
-    searchType: "string",
+    searchType: "text",
   },
   {
     propName: "roomNum",
     inputType: "number", // 검색 시 입력 타입
     placeholder: "방",
-    searchType: "string",
+    searchType: "text",
   },
 ];
 
@@ -43,30 +46,7 @@ export default function StudentTable({ data = [] }: Props) {
   const [action, setAction] = useState<string>("default");
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const filteredData: Student[] = data.filter((datum: any) => {
-    if (selectedItems.has(datum._id)) {
-      return true;
-    }
-    return searchOptions.every((searchOption) => {
-      if (!searchParams.get(searchOption.propName)) {
-        return true;
-      }
-      switch (searchOption.searchType) {
-        case "string":
-          return datum[searchOption.propName]
-            ?.toString()
-            .includes(searchParams.get(searchOption.propName));
-        case "number":
-          return (
-            searchParams.get(searchOption.propName) === "" ||
-            datum[searchOption.propName] ===
-              Number(searchParams.get(searchOption.propName))
-          );
-        default:
-          return false;
-      }
-    });
-  });
+  const filteredData = useSearches(data, searchOptions, selectedItems);
 
   if (selectedItems.size !== 0) {
     filteredData.sort((a, b) => {
@@ -133,51 +113,7 @@ export default function StudentTable({ data = [] }: Props) {
       )}
       <S.TableContainer $selectable={action !== "default"}>
         <S.SearchBarContainer>
-          {searchOptions.map((searchOption, i) => (
-            <S.SearchBarInputContainer key={i}>
-              <S.SearchBarInput
-                autoComplete="off"
-                name={searchOption.propName + "search"}
-                type={searchOption.inputType}
-                inputMode={
-                  searchOption.inputType === "number" ? "numeric" : "text"
-                }
-                placeholder={searchOption.placeholder}
-                value={searchParams.get(searchOption.propName) || ""}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    (document.activeElement as HTMLElement).blur();
-                  }
-                }}
-                onChange={(e) => {
-                  if (!e.target.value) {
-                    searchParams.delete(searchOption.propName);
-                    setSearchParams(searchParams, {
-                      replace: true,
-                    });
-                  } else {
-                    searchParams.set(searchOption.propName, e.target.value);
-                    setSearchParams(searchParams, {
-                      replace: true,
-                    });
-                  }
-                }}
-              />
-              <S.ClearIcon
-                src="/icons/clear.svg"
-                draggable={false}
-                style={{
-                  display: `${
-                    searchParams.get(searchOption.propName) ? "" : "none"
-                  }`,
-                }}
-                onClick={() => {
-                  searchParams.delete(searchOption.propName);
-                  setSearchParams(searchParams);
-                }}
-              />
-            </S.SearchBarInputContainer>
-          ))}
+          <Inputs searchOptions={searchOptions} />
         </S.SearchBarContainer>
         {
           <S.ActionBar>
@@ -234,7 +170,6 @@ export default function StudentTable({ data = [] }: Props) {
             </S.ActionButtons>
           </S.ActionBar>
         }
-
         {filteredData.map((student: Student) => (
           <S.RowContainer
             key={student._id + (selectedItems.has(student._id) ? "1" : "")}

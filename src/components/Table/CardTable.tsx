@@ -1,22 +1,27 @@
 import * as S from "./TableStyled";
 import { useSearchParams } from "react-router-dom";
 import CardRow from "../Row/card/CardRow";
+import useSearches from "@/hooks/useSearches";
+import SearchOption from "@/interfaces/SearchOption";
+import Inputs from "./Inputs";
 
 type Props = {
   data: any[];
 };
 
+const searchOptions: SearchOption[] = [
+  {
+    propName: "korName",
+    inputType: "string",
+    placeholder: "이름",
+    searchType: "hangul",
+  },
+];
+
 export default function CardTable({ data = [] }: Props) {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  let filteredData: any[] = data.filter((datum: any) => {
-    if (!searchParams.get("korName")) {
-      return true;
-    }
-    return datum.student.korName
-      ?.toString()
-      .includes(searchParams.get("korName"));
-  });
+  let filteredData = useSearches(data, searchOptions, null, "student");
 
   filteredData = filteredData.filter((datum: any) => {
     if (!searchParams.get("type")) {
@@ -29,45 +34,7 @@ export default function CardTable({ data = [] }: Props) {
     <>
       <S.TableContainer>
         <S.SearchBarContainer>
-          <S.SearchBarInputContainer>
-            <S.SearchBarInput
-              autoComplete="off"
-              name="namesearch"
-              type="text"
-              inputMode="text"
-              placeholder="이름"
-              value={searchParams.get("korName") || ""}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  (document.activeElement as HTMLElement).blur();
-                }
-              }}
-              onChange={(e) => {
-                if (!e.target.value) {
-                  searchParams.delete("korName");
-                  setSearchParams(searchParams, {
-                    replace: true,
-                  });
-                } else {
-                  searchParams.set("korName", e.target.value);
-                  setSearchParams(searchParams, {
-                    replace: true,
-                  });
-                }
-              }}
-            />
-            <S.ClearIcon
-              src="/icons/clear.svg"
-              draggable={false}
-              style={{
-                display: `${searchParams.get("korName") ? "" : "none"}`,
-              }}
-              onClick={() => {
-                searchParams.delete("korName");
-                setSearchParams(searchParams);
-              }}
-            />
-          </S.SearchBarInputContainer>
+          <Inputs searchOptions={searchOptions} />
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
               name="typeselect"

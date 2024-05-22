@@ -1,10 +1,23 @@
 import * as S from "./TableStyled";
 import { useSearchParams } from "react-router-dom";
 import ShuttleRow from "../Row/shuttle/ShuttleRow";
+import Inputs from "./Inputs";
+import SearchOption from "@/interfaces/SearchOption";
+import useSearches from "@/hooks/useSearches";
+
+const searchOptions: SearchOption[] = [
+  {
+    propName: "korName",
+    inputType: "string",
+    placeholder: "이름",
+    searchType: "hangul",
+  },
+];
 
 export default function ShuttleTable({ data = [] }: { data: any[] }) {
   const [searchParams, setSearchParams] = useSearchParams();
-  let filteredData: any[] = data.filter((datum: any) => {
+  let filteredData = useSearches(data, searchOptions, null, "student");
+  filteredData = filteredData.filter((datum: any) => {
     if (!searchParams.get("time")) {
       return true;
     }
@@ -12,12 +25,6 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
       return datum["time"] === "";
     }
     return datum["time"] === searchParams.get("time");
-  });
-  filteredData = filteredData.filter((datum: any) => {
-    if (!searchParams.get("korName")) {
-      return true;
-    }
-    return datum.student.korName === searchParams.get("korName");
   });
   filteredData = filteredData.filter((datum: any) => {
     if (!searchParams.get("departure")) {
@@ -31,6 +38,7 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
     }
     return datum["destination"] === searchParams.get("destination");
   });
+  console.log(filteredData);
 
   const timeIndex = [
     "오전등교",
@@ -100,45 +108,7 @@ export default function ShuttleTable({ data = [] }: { data: any[] }) {
           </option>
         </S.ActionSelector>
         <S.SearchBarContainer>
-          <S.SearchBarInputContainer>
-            <S.SearchBarInput
-              autoComplete="off"
-              name="namesearch"
-              type="text"
-              inputMode="text"
-              placeholder="이름"
-              value={searchParams.get("korName") || ""}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  (document.activeElement as HTMLElement).blur();
-                }
-              }}
-              onChange={(e) => {
-                if (!e.target.value) {
-                  searchParams.delete("korName");
-                  setSearchParams(searchParams, {
-                    replace: true,
-                  });
-                } else {
-                  searchParams.set("korName", e.target.value);
-                  setSearchParams(searchParams, {
-                    replace: true,
-                  });
-                }
-              }}
-            />
-            <S.ClearIcon
-              src="/icons/clear.svg"
-              draggable={false}
-              style={{
-                display: `${searchParams.get("korName") ? "" : "none"}`,
-              }}
-              onClick={() => {
-                searchParams.delete("korName");
-                setSearchParams(searchParams);
-              }}
-            />
-          </S.SearchBarInputContainer>
+          <Inputs searchOptions={searchOptions} />
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
               name="departureselect"

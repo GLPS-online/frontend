@@ -8,23 +8,26 @@ import { useEffect, useState } from "react";
 import User from "@/interfaces/User";
 import Nametag from "../Nametag/Nametag";
 import { SmallSpinner } from "../Spinner";
+import useSearches from "@/hooks/useSearches";
+import SearchOption from "@/interfaces/SearchOption";
+import Inputs from "./Inputs";
 
 type Props = {
   data: Student[];
 };
 
-const searchOptions = [
+const searchOptions: SearchOption[] = [
   {
     propName: "korName",
     inputType: "string",
     placeholder: "이름",
-    searchType: "string",
+    searchType: "hangul",
   },
   {
     propName: "className",
     inputType: "string",
     placeholder: "학급",
-    searchType: "string",
+    searchType: "text",
   },
 ];
 
@@ -52,27 +55,7 @@ export default function ClubTable({ data = [] }: Props) {
     }
   }, [clubName]);
 
-  let filteredData: Student[] = data.filter((datum: any) => {
-    return searchOptions.every((searchOption) => {
-      if (!searchParams.get(searchOption.propName)) {
-        return true;
-      }
-      switch (searchOption.searchType) {
-        case "string":
-          return datum[searchOption.propName]
-            ?.toString()
-            .includes(searchParams.get(searchOption.propName));
-        case "number":
-          return (
-            searchParams.get(searchOption.propName) === "" ||
-            datum[searchOption.propName] ===
-              Number(searchParams.get(searchOption.propName))
-          );
-        default:
-          return false;
-      }
-    });
-  });
+  let filteredData = useSearches(data, searchOptions);
 
   filteredData = filteredData.filter((datum: any) => {
     if (!searchParams.get("club")) {
@@ -103,51 +86,7 @@ export default function ClubTable({ data = [] }: Props) {
           </span>
         </S.InformationRow>
         <S.SearchBarContainer>
-          {searchOptions.map((searchOption, i) => (
-            <S.SearchBarInputContainer key={i}>
-              <S.SearchBarInput
-                autoComplete="off"
-                name={searchOption.propName + "search"}
-                type={searchOption.inputType}
-                inputMode={
-                  searchOption.inputType === "number" ? "numeric" : "text"
-                }
-                placeholder={searchOption.placeholder}
-                value={searchParams.get(searchOption.propName) || ""}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    (document.activeElement as HTMLElement).blur();
-                  }
-                }}
-                onChange={(e) => {
-                  if (!e.target.value) {
-                    searchParams.delete(searchOption.propName);
-                    setSearchParams(searchParams, {
-                      replace: true,
-                    });
-                  } else {
-                    searchParams.set(searchOption.propName, e.target.value);
-                    setSearchParams(searchParams, {
-                      replace: true,
-                    });
-                  }
-                }}
-              />
-              <S.ClearIcon
-                src="/icons/clear.svg"
-                draggable={false}
-                style={{
-                  display: `${
-                    searchParams.get(searchOption.propName) ? "" : "none"
-                  }`,
-                }}
-                onClick={() => {
-                  searchParams.delete(searchOption.propName);
-                  setSearchParams(searchParams);
-                }}
-              />
-            </S.SearchBarInputContainer>
-          ))}
+          <Inputs searchOptions={searchOptions} />
           <S.SearchBarInputContainer>
             <S.SearchBarSelect
               name="clubselect"
