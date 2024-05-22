@@ -57,7 +57,7 @@ export default function ClubTable({ data = [] }: Props) {
 
   let filteredData = useSearches(data, searchOptions);
 
-  filteredData = filteredData.filter((datum: any) => {
+  filteredData = filteredData.filter((datum: Student) => {
     if (!searchParams.get("club")) {
       return true;
     }
