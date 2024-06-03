@@ -13,6 +13,7 @@ import StudyPage from "./pages/StudyPage/StudyPage";
 import CardsPage from "./pages/CardsPage/CardsPage";
 import EopPage from "./pages/EopPage/EopPage";
 import MealsPage from "./pages/MealsPage/MealsPage";
+import AdmissionPage from "./pages/AdmissionPage/AdmissionPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "admin",
         element: <AdminPage />,
+      },
+      {
+        path: "admission",
+        element: <AdmissionPage />,
       },
       {
         path: "timetables/:className?",

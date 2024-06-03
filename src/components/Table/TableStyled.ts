@@ -15,6 +15,20 @@ export const TableContainer = styled.div<{ $selectable?: boolean }>`
   }
 `;
 
+export const IpsoButtons = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+`;
+
+export const IpsoButton = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const ActionBar = styled.div`
   position: relative;
   display: flex;

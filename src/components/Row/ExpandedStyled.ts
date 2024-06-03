@@ -67,6 +67,7 @@ export const ClubChoiceSelect = styled.select<{ $isError?: boolean }>`
 `;
 
 export const ButtonsContainer = styled.div`
+  width: 100%;
   /* align-self: flex-end; */
   display: flex;
   flex-direction: row;
