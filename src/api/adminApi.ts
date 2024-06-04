@@ -42,6 +42,17 @@ export async function initialize(body: string) {
   }
 }
 
+export async function assignClasses(body: string) {
+  try {
+    const response = await client.put("/students/classNames", body);
+    const result = response.data;
+    return result;
+  } catch (err: any) {
+    alert(err.response?.status);
+    alert(err.response?.data.msg);
+  }
+}
+
 export async function endOfCamp() {
   try {
     const response = await client.delete("/students");

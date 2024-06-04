@@ -34,6 +34,27 @@ export const studentsInitializer = `Paste a JSON array like below:
 ]
     `;
 
+export const classAssignment = `Paste a JSON array like below:
+[
+  {
+    "korName": "강성윤",
+    "className": "13"
+  },
+  {
+    "korName": "강소담",
+    "className": "14"
+  },
+  {
+    "korName": "강승현",
+    "className": "9"
+  },
+  {
+    "korName": "강이안",
+    "className": "11"
+  },
+  ...
+]`;
+
 export const usersInitializer = `Paste a JSON array like below:
 [
   {

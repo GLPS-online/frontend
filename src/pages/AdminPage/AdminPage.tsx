@@ -12,6 +12,7 @@ import {
   updateClubAssignment,
   signupOpen,
   signupClose,
+  assignClasses,
 } from "@/api/adminApi";
 import { classList } from "@/constants";
 import { createMeal, deleteMeals } from "@/api/mealApi";
@@ -21,6 +22,7 @@ export default function AdminPage() {
 
   const [state, setState] = useState({
     students: "",
+    classes: "",
     users: "",
     clubChoices: "",
     clubAssignment: "",
@@ -46,6 +48,20 @@ export default function AdminPage() {
       setIsLoading(false);
     }
   }
+
+  async function handleAssignClass() {
+    try {
+      setIsLoading(true);
+      const res = await assignClasses(state.classes);
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setState((prev) => ({ ...prev, students: "" }));
+      setIsLoading(false);
+    }
+  }
+
   async function handleDeleteStudents() {
     try {
       setIsLoading(true);
@@ -70,6 +86,7 @@ export default function AdminPage() {
       setIsLoading(false);
     }
   }
+
   async function handleDeleteUsers() {
     try {
       setIsLoading(true);
@@ -207,6 +224,21 @@ export default function AdminPage() {
           cols={70}
         />
         <S.Button disabled={isLoading} onClick={handleInitializeStudents}>
+          삽입하기
+        </S.Button>
+      </S.Content>
+      <S.Content>
+        학생 학급 배정
+        <S.Textarea
+          placeholder={Placeholders.classAssignment}
+          value={state.classes}
+          onChange={(e) =>
+            setState((prev) => ({ ...prev, classes: e.target.value }))
+          }
+          rows={30}
+          cols={70}
+        />
+        <S.Button disabled={isLoading} onClick={handleAssignClass}>
           삽입하기
         </S.Button>
       </S.Content>
