@@ -5,9 +5,9 @@ type PropName = (keyof Student | keyof User) & string;
 
 interface SearchOption {
   propName: PropName;
-  inputType: string;
+  inputType: "text" | "number";
   placeholder: string;
-  searchType: string;
+  searchType: "hangul" | "text" | "number";
 }
 
 export default SearchOption;

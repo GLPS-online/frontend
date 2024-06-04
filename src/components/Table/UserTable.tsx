@@ -13,21 +13,21 @@ type Props = {
 const searchOptions: SearchOption[] = [
   {
     propName: "korName",
-    inputType: "string",
+    inputType: "text",
     placeholder: "이름",
-    searchType: "string",
+    searchType: "hangul",
   },
   {
     propName: "position",
-    inputType: "string",
+    inputType: "text",
     placeholder: "직책",
-    searchType: "string",
+    searchType: "text",
   },
   {
     propName: "roomNum",
     inputType: "number",
     placeholder: "방",
-    searchType: "string",
+    searchType: "text",
   },
 ];
 
