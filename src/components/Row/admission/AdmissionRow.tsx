@@ -9,9 +9,7 @@ type Props = {
 };
 export default function AdmissionRow({ student, isExpanded = false }: Props) {
   return (
-    <S.RowContainer
-    // $disabled={student.status === "active"}
-    >
+    <S.RowContainer $disabled={student.status === "active"}>
       <S.Cells>
         <S.Cell>
           <>

@@ -48,11 +48,11 @@ export default function AdmissionTable({ data = [] }: Props) {
     }
   });
   let filteredData: Student[] = [];
-  if (showIpso) {
-    filteredData = filteredData.concat(Ipsos);
-  }
   if (showMiIpso) {
     filteredData = filteredData.concat(MiIpsos);
+  }
+  if (showIpso) {
+    filteredData = filteredData.concat(Ipsos);
   }
   filteredData = useSearches(filteredData, searchOptions);
 
@@ -60,19 +60,19 @@ export default function AdmissionTable({ data = [] }: Props) {
     <S.TableContainer>
       <S.IpsoButtons>
         <S.IpsoButton>
-          입소 {Ipsos.length}명
-          <input
-            type="checkbox"
-            checked={showIpso}
-            onChange={(e) => setShowIpso(e.target.checked)}
-          />
-        </S.IpsoButton>
-        <S.IpsoButton>
           미입소 {MiIpsos.length}명
           <input
             type="checkbox"
             checked={showMiIpso}
             onChange={(e) => setShowMiIpso(e.target.checked)}
+          />
+        </S.IpsoButton>
+        <S.IpsoButton style={{ opacity: "0.3" }}>
+          입소완료 {Ipsos.length}명
+          <input
+            type="checkbox"
+            checked={showIpso}
+            onChange={(e) => setShowIpso(e.target.checked)}
           />
         </S.IpsoButton>
       </S.IpsoButtons>
