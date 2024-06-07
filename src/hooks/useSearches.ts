@@ -8,6 +8,7 @@ export default function useSearches(
   selectedItems: Set<string> | null = null,
   depth: string | null = null
 ) {
+  console.log(data);
   const [searchParams] = useSearchParams();
   let filteredData: any[] = data.filter((datum: any) => {
     if (selectedItems && selectedItems.has(datum._id)) {
